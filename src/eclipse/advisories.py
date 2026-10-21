@@ -132,7 +132,7 @@ def fetch(country_code: str, timeout: int = 30) -> Advisory:
     slug = SLUGS[country_code]
     req = urllib.request.Request(
         FCDO_API.format(slug=slug),
-        headers={'User-Agent': 'besselian/0.1 (+https://github.com/aravpanwar/besselian)'},
+        headers={'User-Agent': 'eclipse.aravpanwar.com/0.1 (+https://github.com/aravpanwar/eclipse.aravpanwar.com)'},
     )
     with urllib.request.urlopen(req, timeout=timeout) as resp:
         payload = json.load(resp)

@@ -1,4 +1,4 @@
-# besselian
+# eclipse.aravpanwar.com
 
 Solar eclipse local circumstances computed from Besselian elements, then
 intersected with populated places, so you can see what a location actually

@@ -9,7 +9,7 @@
  * the Free Software Foundation, either version 3 of the License, or (at your
  * option) any later version. See <https://www.gnu.org/licenses/>.
  *
- * Source: https://github.com/aravpanwar/besselian
+ * Source: https://github.com/aravpanwar/eclipse.aravpanwar.com
  */
 
 const EVENT = '2027-08-02';

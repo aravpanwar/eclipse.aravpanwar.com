@@ -75,7 +75,7 @@ API = ('https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/'
 
 SUMMARY = 'https://{lang}.wikipedia.org/api/rest_v1/page/summary/{title}'
 
-USER_AGENT = ('besselian/0.1 (https://github.com/aravpanwar/besselian) '
+USER_AGENT = ('eclipse.aravpanwar.com/0.1 (https://github.com/aravpanwar/eclipse.aravpanwar.com) '
               'build-time dataset generation')
 
 

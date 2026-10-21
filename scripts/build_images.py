@@ -28,7 +28,7 @@ EVENT = '2027-08-02'
 DOCS = ROOT / 'docs'
 DATA = DOCS / 'data'
 CACHE = ROOT / 'data' / 'cache'
-UA = {'User-Agent': 'besselian/0.1 (+https://github.com/aravpanwar/besselian)'}
+UA = {'User-Agent': 'eclipse.aravpanwar.com/0.1 (+https://github.com/aravpanwar/eclipse.aravpanwar.com)'}
 
 NE_URL = ('https://raw.githubusercontent.com/nvkelso/natural-earth-vector/'
           'v5.1.2/geojson/ne_10m_admin_0_countries_gbr.geojson')

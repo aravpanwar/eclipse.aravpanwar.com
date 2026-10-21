@@ -36,7 +36,7 @@ if not CACHE.exists():
     print(f'downloading       {NE_URL}')
     req = urllib.request.Request(
         NE_URL,
-        headers={'User-Agent': 'besselian/0.1 (+https://github.com/aravpanwar/besselian)'},
+        headers={'User-Agent': 'eclipse.aravpanwar.com/0.1 (+https://github.com/aravpanwar/eclipse.aravpanwar.com)'},
     )
     with urllib.request.urlopen(req, timeout=120) as resp:
         CACHE.write_bytes(resp.read())
