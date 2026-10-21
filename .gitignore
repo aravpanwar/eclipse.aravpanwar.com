@@ -19,6 +19,9 @@ data/cache/ne_*.geojson
 # IBM Plex fonts for scripts/build_images.py, re-downloadable.
 data/cache/*.ttf
 
+# NASA path tables for the homepage thumbnails, re-downloadable.
+data/cache/SE*path.html
+
 # ERA5 netcdf is large and re-downloadable from the CDS.
 data/cache/cloud/*.nc
 
