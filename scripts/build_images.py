@@ -191,8 +191,13 @@ def nasa_path(slug):
     return north + south[::-1], centre
 
 
-def thumb(ring, centre, dots, dest):
-    """A map fitted to one path: land, the band of totality, the centre line."""
+def thumb(ring, centre, dots, dest, scale=1):
+    """A map fitted to one path: land, the band of totality, the centre line.
+
+    scale 2 draws the same picture at twice the size, lines and dots included,
+    for high-density screens.
+    """
+    tw, th, z = TW * scale, TH * scale, S * scale
     # Paths that cross 180 degrees are drawn in 0..360 longitude.
     wrap = max(x for x, _ in centre) - min(x for x, _ in centre) > 180
     fix = (lambda x: x + 360 if x < 0 else x) if wrap else (lambda x: x)
@@ -211,13 +216,13 @@ def thumb(ring, centre, dots, dest):
     else:
         w = h * TW / TH
     cx, cy = (min(xs) + max(xs)) / 2, lat_c
-    k = TW * S / w
+    k = tw * S / w
 
     def project(lon, lat):
-        return ((lon - cx) * kx * k + TW * S / 2, (cy - lat) * k + TH * S / 2)
+        return ((lon - cx) * kx * k + tw * S / 2, (cy - lat) * k + th * S / 2)
 
     land = json.loads(cached(NE_URL).read_text(encoding='utf-8'))
-    img = Image.new('RGBA', (TW * S, TH * S), SEA)
+    img = Image.new('RGBA', (tw * S, th * S), SEA)
     d = ImageDraw.Draw(img)
     for f in land['features']:
         for poly in polygons(f['geometry']):
@@ -225,23 +230,23 @@ def thumb(ring, centre, dots, dest):
                 pts = [project(x + shift, y) for x, y in poly[0]]
                 px = [p[0] for p in pts]
                 py = [p[1] for p in pts]
-                if max(px) < 0 or min(px) > TW * S or max(py) < 0 or min(py) > TH * S:
+                if max(px) < 0 or min(px) > tw * S or max(py) < 0 or min(py) > th * S:
                     continue
-                d.polygon(pts, fill=GROUND, outline=LINE, width=S)
+                d.polygon(pts, fill=GROUND, outline=LINE, width=z)
 
     over = Image.new('RGBA', img.size, (0, 0, 0, 0))
     o = ImageDraw.Draw(over)
     band = [project(*p) for p in ring]
     o.polygon(band, fill=rgba(ACCENT, 0.2))
-    o.line(band + band[:1], fill=rgba('#7fa0b2', 1), width=round(1.2 * S))
+    o.line(band + band[:1], fill=rgba('#7fa0b2', 1), width=round(1.2 * z))
     o.line([project(*p) for p in centre], fill=rgba(ACCENT, 1),
-           width=round(2 * S), joint='curve')
+           width=round(2 * z), joint='curve')
     for x, y, pop in dots:
         px, py = project(fix(x), y)
-        r = (1.0 + 1.6 * min(1.0, math.log10(max(pop, 1000) / 1000) / 3.3)) * S
+        r = (1.0 + 1.6 * min(1.0, math.log10(max(pop, 1000) / 1000) / 3.3)) * z
         o.ellipse((px - r, py - r, px + r, py + r), fill=rgba(DOT, 0.8))
     img = Image.alpha_composite(img, over)
-    img.resize((TW, TH), Image.LANCZOS).convert('RGB').save(dest, quality=82, method=6)
+    img.resize((tw, th), Image.LANCZOS).convert('RGB').save(dest, quality=82, method=6)
     print(f'wrote             {dest.relative_to(ROOT)} ({dest.stat().st_size // 1024} KB)')
 
 
@@ -252,8 +257,11 @@ def thumbs():
     path = json.loads((DATA / f'{EVENT}-path.geojson').read_text(encoding='utf-8'))
     places = json.loads((DATA / f'{EVENT}-places.json').read_text(encoding='utf-8'))
     feats = {f['properties']['kind']: f['geometry']['coordinates'] for f in path['features']}
-    thumb([tuple(p) for p in feats['umbra'][0]], [tuple(p) for p in feats['centerline']],
-          [(p['x'], p['y'], p['p']) for p in places['places']], out / f'{EVENT}.webp')
+    args = ([tuple(p) for p in feats['umbra'][0]], [tuple(p) for p in feats['centerline']],
+            [(p['x'], p['y'], p['p']) for p in places['places']])
+    thumb(*args, out / f'{EVENT}.webp')
+    # The homepage shows this one about 560 px wide, so it also gets a 2x copy.
+    thumb(*args, out / f'{EVENT}@2x.webp', scale=2)
     for event, slug in NASA_PATHS.items():
         ring, centre = nasa_path(slug)
         thumb(ring, centre, [], out / f'{event}.webp')

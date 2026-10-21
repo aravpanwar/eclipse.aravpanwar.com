@@ -31,51 +31,67 @@
 <style>
   body { display: block; }
   /* style.css makes main a flex row for the map layout; this page is a column. */
-  .home { display: block; max-width: 1040px; margin: 0 auto; padding: 30px 20px 70px; }
-  .home > p { max-width: 680px; font-size: 15px; line-height: 1.6; color: #2f2a24; margin: 0 0 8px; }
-  .home h2.section { font-size: 12px; font-weight: 600; letter-spacing: .05em;
-    text-transform: uppercase; color: var(--dim); margin: 34px 0 4px; }
-  .home p.hint { font-size: 12.5px; color: var(--dim); margin: 0 0 14px; }
+  .home { display: block; max-width: 1040px; margin: 0 auto; padding: 26px 20px 70px; }
+  .lede { max-width: 680px; font-size: 15px; line-height: 1.6; color: #2f2a24; margin: 0 0 22px; }
+  h2.section { font-size: 12px; font-weight: 600; letter-spacing: .05em;
+    text-transform: uppercase; color: var(--dim); margin: 34px 0 8px; }
 
-  .cards {
-    list-style: none; margin: 0; padding: 0;
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px;
-  }
-  .card { position: relative; display: flex; flex-direction: column;
-    background: var(--paper); border: 1px solid var(--line); }
+  /* The computed eclipse: a wide block, map left and text right. Only the
+     date, the map picture and the button link to the map, because the country
+     buttons sit inside it and links cannot nest. */
+  .feature { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    background: var(--paper); border: 1px solid var(--accent); }
+  /* The map fills its column however tall the text beside it runs. */
+  .feature .pic { display: block; border: 0; border-right: 1px solid var(--line); background: #e2e7ea; }
+  .feature img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .feature .body { display: flex; flex-direction: column; gap: 6px; padding: 18px 20px 20px; }
+  .feature h3 { margin: 0; font-size: 22px; font-weight: 600; }
+  .feature h3 a { color: var(--ink); border-bottom: 0; }
+  .feature h3 a:hover { color: var(--accent); }
+  .feature .when { margin: 0; font-family: var(--mono); font-size: 12px; color: var(--dim); }
+  .feature .dur { margin: 4px 0 0; font-size: 13px; }
+  .feature .dur b { font-weight: 600; }
+  .feature .what { margin: 8px 0 0; font-size: 13.5px; line-height: 1.55; color: #2f2a24; }
+  .chiplabel { margin: 12px 0 0; font-size: 11.5px; color: var(--dim); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; padding: 0; list-style: none; }
+  .chips a { display: inline-block; padding: 4px 9px; font-size: 12.5px; color: var(--ink);
+    background: var(--ground); border: 1px solid var(--line); }
+  .chips a:hover { color: var(--accent); border-color: var(--accent); }
+  .gap { flex: 1; min-height: 14px; }
+  .go { align-self: flex-start; padding: 9px 16px; font-size: 14px; font-weight: 500;
+    color: #fff; background: var(--accent); border: 0; }
+  .go:hover { color: #fff; background: #0d3c52; }
+  .feature h3 a:focus-visible, .chips a:focus-visible, .go:focus-visible, .feature .pic:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* Later eclipses: not computed yet, greyed, smaller. */
+  .hint { margin: 0 0 12px; font-size: 12.5px; color: var(--dim); max-width: 680px; }
+  .cards { list-style: none; margin: 0; padding: 0; display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+  .card { display: flex; flex-direction: column; background: #f2f0eb; border: 1px solid var(--line); }
   .card img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10;
-    border-bottom: 1px solid var(--line); }
-  .card .body { display: flex; flex-direction: column; gap: 4px; flex-grow: 1; padding: 12px 14px 14px; }
-  .card h3 { margin: 0; font-size: 15px; font-weight: 600; }
-  .card .where { margin: 0; font-size: 12.5px; line-height: 1.45; color: #2f2a24; }
-  .card .dur { margin: 0; font-family: var(--mono); font-size: 12px; color: var(--dim); }
-  .card .foot { margin: auto 0 0; padding-top: 10px; font-size: 12.5px; }
-
-  /* The open eclipse: the date is the link and its ::after covers the card. */
-  .card.open { border-color: var(--accent); }
-  .card.open:hover { box-shadow: 0 2px 10px rgba(26, 92, 122, .16); }
-  .card.open h3 a { color: var(--ink); border-bottom: 0; }
-  .card.open h3 a::after { content: ''; position: absolute; inset: 0; }
-  .card.open h3 a:focus-visible { outline: none; }
-  .card.open:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .card.open .foot { color: var(--accent); font-weight: 500; }
-
-  /* Not computed yet: greyed, but the text stays readable. */
-  .card.soon { background: #f2f0eb; }
-  .card.soon img { filter: grayscale(1); opacity: .55; }
-  .card.soon h3, .card.soon .where { color: #4a453d; }
-  .card.soon .foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; color: var(--dim); }
-  .interest {
-    min-height: 32px; padding: 0 12px;
-    font: inherit; font-size: 12.5px; font-weight: 500;
-    color: var(--accent); background: var(--paper);
-    border: 1px solid var(--accent); cursor: pointer;
-  }
+    filter: grayscale(1); opacity: .55; border-bottom: 1px solid var(--line); }
+  .card .b { display: flex; flex-direction: column; gap: 3px; flex-grow: 1; padding: 10px 11px 11px; }
+  .card h3 { margin: 0; font-size: 13.5px; font-weight: 600; color: #4a453d; }
+  .card .where { margin: 0; font-size: 12px; line-height: 1.4; color: #4a453d; }
+  .card .d { margin: 0; font-family: var(--mono); font-size: 11.5px; color: var(--dim); }
+  .card .gap { min-height: 8px; }
+  .interest { min-height: 30px; font: inherit; font-size: 12px; font-weight: 500;
+    color: var(--accent); background: var(--paper); border: 1px solid var(--accent); cursor: pointer; }
   .interest:hover { background: #eef4f7; }
   .interest:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .interest[aria-pressed="true"] { color: var(--dim); border-color: var(--line); cursor: default; }
 
-  .home .note { max-width: 680px; margin-top: 26px; font-size: 12px; line-height: 1.55; color: var(--dim); }
+  .note { max-width: 680px; margin-top: 26px; font-size: 12px; line-height: 1.55; color: var(--dim); }
+
+  @media (max-width: 760px) {
+    .home { padding: 18px 16px 50px; }
+    .feature { grid-template-columns: 1fr; }
+    .feature .pic { border-right: 0; border-bottom: 1px solid var(--line); }
+    .feature img { height: auto; aspect-ratio: 16 / 10; }
+    .go { align-self: stretch; text-align: center; }
+    .cards { grid-template-columns: 1fr 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -92,88 +108,96 @@
 </header>
 
 <main class="home">
-  <p>Maps and data for watching eclipses, worked out from NASA&rsquo;s eclipse
-  predictions. Free and open source, with no ads and no sign-up.</p>
+  <p class="lede">Maps and data for choosing where to watch a total solar eclipse,
+  worked out from NASA&rsquo;s predictions. Free and open source, with no ads and
+  no sign-up.</p>
 
-  <h2 class="section">Upcoming total solar eclipses</h2>
-  <p class="hint">Each map is <b>Totality Path &amp; Nearby Locations</b>: every
-  populated place inside the path, ranked by how many seconds of totality it
-  gives up against the best spot, with local times, typical cloud cover, places
-  to stay nearby and UK travel advice. Eclipses not computed yet are done in
-  order of interest, so show interest in the ones you are planning for.</p>
+  <article class="feature">
+    <a class="pic" href="/solar-eclipse/2027-08-02/" tabindex="-1" aria-hidden="true"><img
+      src="/thumbs/2027-08-02.webp" srcset="/thumbs/2027-08-02.webp 1x, /thumbs/2027-08-02@2x.webp 2x"
+      alt="" width="640" height="400"></a>
+    <div class="body">
+      <h3><a href="/solar-eclipse/2027-08-02/">2 August 2027</a></h3>
+      <p class="when" id="countdown" hidden></p>
+      <p class="dur">Up to <b>6 min 23 s</b> of totality, 772 places mapped</p>
+      <p class="what"><b>Totality Path &amp; Nearby Locations</b>: every populated
+      place inside the path, ranked by how many seconds of totality it gives up
+      against the best spot, with local times, August cloud, places to stay
+      nearby and UK travel advice.</p>
+      <p class="chiplabel" id="chipsLabel">Go straight to a country</p>
+      <ul class="chips" aria-labelledby="chipsLabel">
+        <li><a href="/solar-eclipse/2027-08-02/?c=ES">Spain</a></li>
+        <li><a href="/solar-eclipse/2027-08-02/?c=MA">Morocco</a></li>
+        <li><a href="/solar-eclipse/2027-08-02/?c=DZ">Algeria</a></li>
+        <li><a href="/solar-eclipse/2027-08-02/?c=TN">Tunisia</a></li>
+        <li><a href="/solar-eclipse/2027-08-02/?c=LY">Libya</a></li>
+        <li><a href="/solar-eclipse/2027-08-02/?c=EG">Egypt</a></li>
+        <li><a href="/solar-eclipse/2027-08-02/?c=SA">Saudi Arabia</a></li>
+        <li><a href="/solar-eclipse/2027-08-02/?c=YE">Yemen</a></li>
+        <li><a href="/solar-eclipse/2027-08-02/?c=SO">Somalia</a></li>
+      </ul>
+      <span class="gap"></span>
+      <a class="go" href="/solar-eclipse/2027-08-02/">Open the map</a>
+    </div>
+  </article>
+
+  <h2 class="section">Later total solar eclipses</h2>
+  <p class="hint">Not computed yet. They are done in order of interest, so show
+  interest in the ones you are planning for.</p>
   <ol class="cards">
-    <li class="card open">
-      <img src="/thumbs/2027-08-02.webp" alt="" width="640" height="400">
-      <div class="body">
-        <h3><a href="/solar-eclipse/2027-08-02/">2 August 2027</a></h3>
-        <p class="where">Spain, Morocco, Algeria, Tunisia, Libya, Egypt, Saudi Arabia, Yemen, Somalia</p>
-        <p class="dur">6 min 23 s longest totality</p>
-        <p class="foot">Open the map: 772 places</p>
-      </div>
-    </li>
-    <li class="card soon">
+    <li class="card">
       <img src="/thumbs/2028-07-22.webp" alt="" width="640" height="400" loading="lazy">
-      <div class="body">
+      <div class="b">
         <h3>22 July 2028</h3>
         <p class="where">Australia, New Zealand</p>
-        <p class="dur">5 min 10 s longest totality</p>
-        <div class="foot">
-          <span>Not computed yet</span>
-          <button type="button" class="interest" aria-pressed="false" data-eclipse="22 July 2028"
-                  data-goatcounter-click="interest-2028-07-22" data-goatcounter-title="Show interest: 22 July 2028">Show interest</button>
-        </div>
+        <p class="d">5:10 longest</p>
+        <span class="gap"></span>
+        <button type="button" class="interest" aria-pressed="false" data-eclipse="22 July 2028"
+                data-goatcounter-click="interest-2028-07-22" data-goatcounter-title="Show interest: 22 July 2028">Show interest</button>
       </div>
     </li>
-    <li class="card soon">
+    <li class="card">
       <img src="/thumbs/2030-11-25.webp" alt="" width="640" height="400" loading="lazy">
-      <div class="body">
+      <div class="b">
         <h3>25 November 2030</h3>
         <p class="where">Botswana, South Africa, Australia</p>
-        <p class="dur">3 min 44 s longest totality</p>
-        <div class="foot">
-          <span>Not computed yet</span>
-          <button type="button" class="interest" aria-pressed="false" data-eclipse="25 November 2030"
-                  data-goatcounter-click="interest-2030-11-25" data-goatcounter-title="Show interest: 25 November 2030">Show interest</button>
-        </div>
+        <p class="d">3:44 longest</p>
+        <span class="gap"></span>
+        <button type="button" class="interest" aria-pressed="false" data-eclipse="25 November 2030"
+                data-goatcounter-click="interest-2030-11-25" data-goatcounter-title="Show interest: 25 November 2030">Show interest</button>
       </div>
     </li>
-    <li class="card soon">
+    <li class="card">
       <img src="/thumbs/2033-03-30.webp" alt="" width="640" height="400" loading="lazy">
-      <div class="body">
+      <div class="b">
         <h3>30 March 2033</h3>
         <p class="where">Russia, United States (Alaska)</p>
-        <p class="dur">2 min 37 s longest totality</p>
-        <div class="foot">
-          <span>Not computed yet</span>
-          <button type="button" class="interest" aria-pressed="false" data-eclipse="30 March 2033"
-                  data-goatcounter-click="interest-2033-03-30" data-goatcounter-title="Show interest: 30 March 2033">Show interest</button>
-        </div>
+        <p class="d">2:37 longest</p>
+        <span class="gap"></span>
+        <button type="button" class="interest" aria-pressed="false" data-eclipse="30 March 2033"
+                data-goatcounter-click="interest-2033-03-30" data-goatcounter-title="Show interest: 30 March 2033">Show interest</button>
       </div>
     </li>
-    <li class="card soon">
+    <li class="card">
       <img src="/thumbs/2034-03-20.webp" alt="" width="640" height="400" loading="lazy">
-      <div class="body">
+      <div class="b">
         <h3>20 March 2034</h3>
         <p class="where">Nigeria, Cameroon, Chad, Sudan, Egypt, Saudi Arabia, Iran, Afghanistan, Pakistan, India, China</p>
-        <p class="dur">4 min 9 s longest totality</p>
-        <div class="foot">
-          <span>Not computed yet</span>
-          <button type="button" class="interest" aria-pressed="false" data-eclipse="20 March 2034"
-                  data-goatcounter-click="interest-2034-03-20" data-goatcounter-title="Show interest: 20 March 2034">Show interest</button>
-        </div>
+        <p class="d">4:09 longest</p>
+        <span class="gap"></span>
+        <button type="button" class="interest" aria-pressed="false" data-eclipse="20 March 2034"
+                data-goatcounter-click="interest-2034-03-20" data-goatcounter-title="Show interest: 20 March 2034">Show interest</button>
       </div>
     </li>
-    <li class="card soon">
+    <li class="card">
       <img src="/thumbs/2035-09-02.webp" alt="" width="640" height="400" loading="lazy">
-      <div class="body">
+      <div class="b">
         <h3>2 September 2035</h3>
         <p class="where">China, Korea, Japan</p>
-        <p class="dur">2 min 54 s longest totality</p>
-        <div class="foot">
-          <span>Not computed yet</span>
-          <button type="button" class="interest" aria-pressed="false" data-eclipse="2 September 2035"
-                  data-goatcounter-click="interest-2035-09-02" data-goatcounter-title="Show interest: 2 September 2035">Show interest</button>
-        </div>
+        <p class="d">2:54 longest</p>
+        <span class="gap"></span>
+        <button type="button" class="interest" aria-pressed="false" data-eclipse="2 September 2035"
+                data-goatcounter-click="interest-2035-09-02" data-goatcounter-title="Show interest: 2 September 2035">Show interest</button>
       </div>
     </li>
   </ol>
@@ -186,6 +210,17 @@
 </main>
 
 <script>
+  // Days to go, by the visitor's own calendar date. Hidden once it has passed.
+  (() => {
+    const now = new Date();
+    const days = Math.round((Date.UTC(2027, 7, 2) -
+      Date.UTC(now.getFullYear(), now.getMonth(), now.getDate())) / 864e5);
+    const el = document.getElementById('countdown');
+    if (days < 0) return;
+    el.textContent = days > 1 ? `In ${days} days` : days === 1 ? 'Tomorrow' : 'Today';
+    el.hidden = false;
+  })();
+
   // Show interest. Clicks are counted by GoatCounter (data-goatcounter-click).
   // Set FORM to a Google Form pre-filled link whose eclipse answer is the text
   // ECLIPSE, and each button also opens the form with its eclipse filled in.

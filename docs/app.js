@@ -21,6 +21,7 @@ const state = {
   radius: 120,
   sort: 's',
   selected: null,     // geonameid
+  country: null,      // ?c= from the homepage: the country to open on
   query: '',
   closed: new Set(),  // advisories put away, as advisoryId() strings
   coverage: {},       // country code -> stays coverage, from build_coverage.py
@@ -282,6 +283,9 @@ function render() {
   for (const [cc, places] of byCountry(list)) {
     const name = state.data.advisories[cc]
       ? state.data.advisories[cc].country : cc;
+    // Each country in its own box, so its sticky headers stop at its last
+    // row instead of piling up under the next country's.
+    html += `<div class="country" data-cc="${cc}">`;
     html += `<div class="group" role="rowgroup"><div class="name"><b>${esc(name)}</b>
       <span class="n">${places.length}</span>${coverageHtml(cc)}${advisoryShowHtml(cc, name)}</div>
       ${advisoryHtml(cc, name)}</div>`;
@@ -313,6 +317,7 @@ function render() {
         <div class="num" role="cell">${p.l || 'none'}</div>
       </div>`;
     }
+    html += '</div>';
   }
   rows.innerHTML = html;
   rows.setAttribute('aria-rowcount', String(list.length));
@@ -490,8 +495,27 @@ function initMap() {
         const row = document.querySelector('#rows .row.sel');
         if (row) row.scrollIntoView({ block: 'center' });
       }
+    } else if (state.country) {
+      openOnCountry(state.country);
     }
   });
+}
+
+// A link from the homepage's country buttons (?c=ES) opens framed on that
+// country's places, with its group at the top of the list where the list
+// sits beside the map. Everything stays loaded: it is a view, not a filter.
+function openOnCountry(cc) {
+  const ps = state.data.places.filter((q) => q.c === cc);
+  if (!ps.length) return;
+  const xs = ps.map((q) => q.x);
+  const ys = ps.map((q) => q.y);
+  map.fitBounds([[Math.min(...xs), Math.min(...ys)], [Math.max(...xs), Math.max(...ys)]],
+                { padding: 40, maxZoom: 8, duration: 0 });
+  if (!STACKED.matches) {
+    const rows = document.getElementById('rows');
+    const group = rows.querySelector(`.country[data-cc="${cc}"]`);
+    if (group) rows.scrollTop += group.getBoundingClientRect().top - rows.getBoundingClientRect().top;
+  }
 }
 
 const emptyFC = () => ({ type: 'FeatureCollection', features: [] });
@@ -685,6 +709,8 @@ function readUrl() {
   if (['s', 'w', 'l', 'p'].includes(s)) state.sort = s;
   const place = Number(q.get('place'));
   if (place) state.selected = place;
+  const c = q.get('c');
+  if (c && /^[A-Z]{2}$/.test(c)) state.country = c;
 }
 
 /* ---------- wiring ---------- */
