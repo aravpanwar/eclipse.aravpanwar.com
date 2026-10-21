@@ -1,0 +1,77 @@
+{
+  "about": "Official counts of hotel establishments, used only to rate how completely OpenStreetMap maps hotels in each country. Collected 2026-10-20. Each figure is the closest official count to what OpenStreetMap tags tourism=hotel.",
+  "by_country": {
+    "ES": {
+      "hotels": 16951,
+      "counts": "Hoteles (10,006) plus hostales (6,944) open in the month, establishments registered with regional tourism authorities. Hostales are included because OpenStreetMap often tags them as hotels.",
+      "period": "August 2026, provisional",
+      "publisher": "INE, Encuesta de Ocupación Hotelera, table 2011",
+      "url": "https://www.ine.es/jaxiT3/Tabla.htm?t=2011",
+      "doubts": null
+    },
+    "MA": {
+      "hotels": 1223,
+      "counts": "Classified hotels, 1 to 5 stars. Unclassified hotels are not counted; riads and maisons d'hôtes (2,534) are counted separately.",
+      "period": "31 December 2024",
+      "publisher": "HCP, Annuaire statistique du Maroc 2025, table 10-2, from Ministry of Tourism data",
+      "url": "https://www.hcp.ma/file/248151/",
+      "doubts": "Morocco reformed hotel classification in 2025, so later editions may count differently."
+    },
+    "DZ": {
+      "hotels": 1423,
+      "counts": "Hotels and similar establishments (ISIC 5510), all types, classified and unclassified.",
+      "period": "2024",
+      "publisher": "UN Tourism Statistics Database, December 2025 release, as reported by Algeria",
+      "url": "https://www.untourism.int/tourism-statistics/tourism-data-tourism-accommodation",
+      "doubts": "Official figures conflict: 1,638 for 2023, and ministry statements of about 1,467 in 2026."
+    },
+    "TN": {
+      "hotels": 665,
+      "counts": "Hotels, classified 1 to 5 stars (557) plus unclassified hotels. All accommodation types: 895.",
+      "period": "2022",
+      "publisher": "ONTT, Tourisme en chiffres 2022",
+      "url": "https://www.tourisme.gov.tn/wp-content/uploads/2024/12/rapport-EXTRAIT-2022-1.pdf",
+      "doubts": "Registered, not operating: many registered hotels are reported closed."
+    },
+    "EG": {
+      "hotels": 1207,
+      "counts": "Hotels and similar establishments (ISIC 5510), not split into land hotels, tourist villages and Nile cruise boats.",
+      "period": "2022",
+      "publisher": "UN Tourism Statistics Database, as reported by Egypt",
+      "url": "https://www.untourism.int/tourism-statistics/tourism-data-tourism-accommodation",
+      "doubts": "Nothing newer found. The same 2022 submission nearly doubles Egypt's room count from 2021, so its quality is doubtful."
+    },
+    "SA": {
+      "hotels": 3020,
+      "counts": "Licensed hotels. Serviced apartments and other licensed facilities (3,258) are excluded.",
+      "period": "Q2 2026",
+      "publisher": "GASTAT, Tourism Establishments Statistics Q2 2026",
+      "url": "https://www.stats.gov.sa/documents/d/guest/tourism-establishments-statistics-q2-of-2026-en-pdf",
+      "doubts": "Rising fast as licensing expands (2,527 a year earlier), so it measures licensing as well as hotels."
+    },
+    "LY": {
+      "hotels": null,
+      "counts": null,
+      "period": null,
+      "publisher": null,
+      "url": null,
+      "doubts": "No official count since 2008, before the conflict."
+    },
+    "YE": {
+      "hotels": null,
+      "counts": null,
+      "period": null,
+      "publisher": null,
+      "url": null,
+      "doubts": "No official count since the war began; the last is from 2010."
+    },
+    "SO": {
+      "hotels": null,
+      "counts": null,
+      "period": null,
+      "publisher": null,
+      "url": null,
+      "doubts": "No official hotel count found."
+    }
+  }
+}

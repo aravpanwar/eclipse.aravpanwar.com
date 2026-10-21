@@ -88,6 +88,7 @@ python scripts/build.py             # writes data/out/<event>-places.{csv,json}
 python scripts/build_site_data.py   # writes docs/data/<event>-places.json
 python scripts/build_geojson.py     # writes docs/data/<event>-path.geojson
 python scripts/build_countries.py   # writes docs/data/<event>-countries.geojson
+python scripts/build_coverage.py    # writes docs/data/<event>-coverage.json from data/hotel_registers.json
 python scripts/build_images.py      # writes docs/og.png and the site icons, needs Pillow
 python -m pytest tests/ -q          # validation gate
 ```
@@ -176,6 +177,10 @@ in `LICENSE-DATA.md`.
   Licence v3.0.
 - Country outlines: Natural Earth 1:10m, UK point of view, v5.1.2, public
   domain.
+- Hotel registers, for the stays coverage rating only: INE (Spain), HCP
+  (Morocco), ONTT (Tunisia), GASTAT (Saudi Arabia), UN Tourism Statistics
+  Database (Algeria, Egypt). Figures, periods and links in
+  `data/hotel_registers.json`.
 - Prior art worth using: [eclipsewhere.com](https://eclipsewhere.com) for
   curated cloud-first guidance, [Xavier Jubier's interactive map](http://xjubier.free.fr/en/site_pages/solar_eclipses/xSE_GoogleMap3.php?Ecl=+20270802)
   for point queries, [Eclipsophile](https://eclipsophile.com/tse2027/) for

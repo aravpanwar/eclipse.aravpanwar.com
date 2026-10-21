@@ -23,6 +23,7 @@ const state = {
   selected: null,     // geonameid
   query: '',
   closed: new Set(),  // advisories put away, as advisoryId() strings
+  coverage: {},       // country code -> stays coverage, from build_coverage.py
 };
 
 /* ---------- geometry ---------- */
@@ -67,6 +68,9 @@ function mmss(seconds) {
 
 const fmtKm = (v) => (v == null ? 'n/a' : v.toFixed(1));
 const fmtPct = (v) => (v == null ? 'n/a' : v.toFixed(1) + '%');
+// Stays are what OpenStreetMap has mapped, not what exists or is free, so a
+// zero is said as "none mapped" rather than as a fact about the town.
+const staysSpoken = (n) => (n ? `About ${n} stay${n === 1 ? '' : 's'}` : 'No stays');
 // A third of the places are west of Greenwich, so the hemisphere is not fixed.
 const fmtLat = (v) => `${Math.abs(v).toFixed(4)}°${v < 0 ? 'S' : 'N'}`;
 const fmtLon = (v) => `${Math.abs(v).toFixed(4)}°${v < 0 ? 'W' : 'E'}`;
@@ -150,6 +154,14 @@ function advisoryShowHtml(cc, name) {
   return `<button type="button" class="advshow" data-adv="${cc}"
     aria-expanded="false" aria-label="Show the travel advisory for ${esc(name)}">
     ${WARN_ICON}<span>Advisory</span></button>`;
+}
+
+// How far to trust the stays counts in this country: mapped hotels against
+// the official register. National, so it says nothing about a single town.
+function coverageHtml(cc) {
+  const c = state.coverage[cc];
+  if (!c) return '';
+  return `<a class="cov" href="/method.html#stays-coverage">Stays coverage: ${c.rating}</a>`;
 }
 
 /* ---------- closed advisories ---------- */
@@ -261,14 +273,14 @@ function render() {
     const name = state.data.advisories[cc]
       ? state.data.advisories[cc].country : cc;
     html += `<div class="group" role="rowgroup"><div class="name"><b>${esc(name)}</b>
-      <span class="n">${places.length}</span>${advisoryShowHtml(cc, name)}</div>
+      <span class="n">${places.length}</span>${coverageHtml(cc)}${advisoryShowHtml(cc, name)}</div>
       ${advisoryHtml(cc, name)}</div>`;
     html += `<div class="head" role="row">
       <div role="columnheader">Place</div>
       <div class="num" role="columnheader">Totality</div>
       <div class="num" role="columnheader">Lost</div>
       <div class="num" role="columnheader">Cloud</div>
-      <div class="num" role="columnheader" title="Approximate number of stays available within 25 km">Stays</div></div>`;
+      <div class="num" role="columnheader" title="Places to stay mapped in OpenStreetMap within 25 km">Stays</div></div>`;
     for (const p of places) {
       const sel = p.i === state.selected ? ' sel' : '';
       // Roving tabindex: exactly one row is tabbable, the rest are reached
@@ -277,7 +289,7 @@ function render() {
       const tab = p.i === focusId ? 0 : -1;
       const label = `${p.n}. Totality ${mmss(p.d)}, ${p.s.toFixed(1)} seconds `
         + `less than the maximum. ${fmtPct(p.w)} August cloud. `
-        + `About ${p.l} stay${p.l === 1 ? '' : 's'} available within 25 km.`;
+        + `${staysSpoken(p.l)} mapped within 25 km.`;
       html += `<div class="row${sel}" data-id="${p.i}" tabindex="${tab}"
         role="row" aria-selected="${p.i === state.selected}"
         aria-label="${esc(label)}">
@@ -285,7 +297,7 @@ function render() {
         <div class="num dur" role="cell">${mmss(p.d)}</div>
         <div class="num${p.s < 1 ? ' near' : ''}" role="cell">−${p.s.toFixed(1)}</div>
         <div class="num" role="cell">${fmtPct(p.w)}</div>
-        <div class="num${p.l < 10 ? ' thin' : ''}" role="cell">${p.l}</div>
+        <div class="num" role="cell">${p.l || 'none'}</div>
       </div>`;
     }
   }
@@ -344,8 +356,8 @@ function initMap() {
   map.on('load', async () => {
     // A missing overlay should not take the places layer down with it.
     const [path, countries] = await Promise.all([
-      getJson(`data/${EVENT}-path.geojson`),
-      getJson(`data/${EVENT}-countries.geojson`),
+      getJson(`/data/${EVENT}-path.geojson`),
+      getJson(`/data/${EVENT}-countries.geojson`),
     ].map((p) => p.catch((e) => { console.error(e); return emptyFC(); })));
 
     // The advisory level comes from the places data, not the outlines, so a
@@ -586,8 +598,8 @@ function showPopup(p) {
       <dt>From centre line</dt><dd>${fmtKm(p.k)} km</dd>
       <dt>Sun altitude</dt><dd>${p.a.toFixed(1)}°</dd>
       <dt>August cloud</dt><dd>${fmtPct(p.w)}</dd>
-      <dt>Stays within 25 km</dt><dd>~${p.l}</dd>
-      <dt>Stays within 80 km</dt><dd>~${p.L}</dd>
+      <dt>Stays mapped, 25 km</dt><dd>${p.l ? `~${p.l}` : 'none'}</dd>
+      <dt>Stays mapped, 80 km</dt><dd>${p.L ? `~${p.L}` : 'none'}</dd>
       </dl></div>`)
     .addTo(map);
 }
@@ -743,11 +755,17 @@ function bind() {
 async function main() {
   readUrl();
   try {
-    state.data = await getJson(`data/${EVENT}-places.json`);
+    state.data = await getJson(`/data/${EVENT}-places.json`);
   } catch (e) {
     console.error(e);
     showLoadError('the list of places');
     return;
+  }
+  // Optional: without it the list simply shows no coverage ratings.
+  try {
+    state.coverage = (await getJson(`/data/${EVENT}-coverage.json`)).by_country;
+  } catch (e) {
+    console.error(e);
   }
   for (const p of state.data.places) p.f = fold(p.n);
   loadClosed();
@@ -759,7 +777,7 @@ async function main() {
      <span>${state.data.places.length} places</span>
      <span>${Object.keys(state.data.advisories).length} countries</span>`;
   document.querySelector('nav a[download]').href =
-    `data/${EVENT}-places.csv`;
+    `/data/${EVENT}-places.csv`;
 
   bind();
   if (state.pin) document.getElementById('clearPin').hidden = false;

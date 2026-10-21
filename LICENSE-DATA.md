@@ -32,6 +32,9 @@ Attribution for every source that went into the dataset:
   ECMWF is responsible for any use of this information.
 - **Places to stay.** © OpenStreetMap contributors, ODbL 1.0.
   https://www.openstreetmap.org/copyright
+- **Hotel registers**, used only for the stays coverage rating. INE (Spain),
+  HCP (Morocco), ONTT (Tunisia), GASTAT (Saudi Arabia) and the UN Tourism
+  Statistics Database (Algeria, Egypt). Sources in `data/hotel_registers.json`.
 - **Country outlines.** Natural Earth, public domain. No attribution is
   required; it is listed for provenance. https://www.naturalearthdata.com/
 - **Travel advisories.** Contains public sector information licensed under the

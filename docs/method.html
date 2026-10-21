@@ -29,6 +29,9 @@
   .prose p, .prose li { line-height: 1.62; color: #2f2a24; }
   .prose li { margin-bottom: 5px; }
   .prose table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 12.5px; }
+  /* Wide tables scroll inside their box on a phone; the page never scrolls sideways. */
+  .tablewrap { overflow-x: auto; }
+  .prose table.wide { min-width: 620px; }
   .prose th, .prose td { text-align: left; padding: 6px 9px; border-bottom: 1px solid var(--hair); }
   .prose th { font-size: 10px; text-transform: uppercase; letter-spacing: .05em; color: var(--faint); }
   .prose td.n { font-family: var(--mono); text-align: right; }
@@ -38,11 +41,11 @@
 <body>
 
 <header>
-  <h1>Totality Path &amp; Nearby Locations</h1>
+  <h1><a href="/">Totality Path &amp; Nearby Locations</a></h1>
   <span class="rule" aria-hidden="true"></span>
   <span class="event">Method</span>
   <span class="spacer"></span>
-  <nav><a href="index.html">Back to the map</a></nav>
+  <nav><a href="/2027-08-02/">Back to the map</a></nav>
 </header>
 
 <div class="prose">
@@ -87,14 +90,14 @@ Desert are very different drives.</p>
 <h2>Validation</h2>
 <p>The computation is checked against independently published values before
 anything downstream is trusted.</p>
-<table>
+<div class="tablewrap"><table>
 <tr><th>Check</th><th>Published</th><th>Computed</th></tr>
 <tr><td>Greatest eclipse on the shadow axis</td><td class="n">~0</td><td class="n">1.0e-5</td></tr>
 <tr><td>Sun altitude at greatest eclipse</td><td class="n">81.7&deg;</td><td class="n">81.69&deg;</td></tr>
 <tr><td>Duration at greatest eclipse</td><td class="n">6m 23s</td><td class="n">382.5 s</td></tr>
 <tr><td>Luxor</td><td class="n">6m 20s</td><td class="n">380.4 s</td></tr>
 <tr><td>Countries crossed</td><td class="n">9</td><td class="n">9</td></tr>
-</table>
+</table></div>
 <p>Sudan appears in some lists of countries this eclipse crosses. It does not:
 where the path is at Sudan&rsquo;s longitudes the centre line is near
 25&ndash;27&deg;N, and Sudan&rsquo;s northern border is at 22&deg;N.</p>
@@ -138,11 +141,47 @@ three-room guest house each count as one. Real room counts are not available:
 only 7% of these features carry a room count in OpenStreetMap, so any total
 built from them would be mostly guesswork.</p>
 <p>No prices. This site holds none and scrapes none.</p>
-<p>Two things to know when reading the numbers. Coverage varies enormously by
-country, 28,463 features in Spain against 1,314 in Libya, so counts compare
-honestly within a country and poorly across borders. And a 25 km radius around
-a village next to a city sweeps up the city&rsquo;s hotels, so several places
-near Luxor show almost identical counts.</p>
+<p>A count is what OpenStreetMap has mapped, not what exists, and says nothing
+about whether any room is free on the day.</p>
+
+<h3 id="stays-coverage">How complete the counts are</h3>
+<p>The counts differ enormously by country: 28,463 places to stay in Spain
+against 1,314 in Libya. Much of that is how much tourism each country has. To
+check how much is mapping, hotels mapped in OpenStreetMap are compared with
+each country&rsquo;s official count of hotel establishments. Hotels are used
+because they are the one kind of stay that both OpenStreetMap and every tourism
+ministry count.</p>
+<div class="tablewrap"><table class="wide">
+  <tr><th>Country</th><th>Mapped</th><th>Official</th><th>Ratio</th><th>Coverage</th><th>Official source</th></tr>
+  <tr><td>Spain</td><td class="n">12,320</td><td class="n">16,951</td><td class="n">73%</td><td>high</td><td><a href="https://www.ine.es/jaxiT3/Tabla.htm?t=2011">INE</a>, August 2026, provisional</td></tr>
+  <tr><td>Morocco</td><td class="n">2,748</td><td class="n">1,223</td><td class="n">225%</td><td>high</td><td><a href="https://www.hcp.ma/file/248151/">HCP</a>, 31 December 2024</td></tr>
+  <tr><td>Algeria</td><td class="n">1,078</td><td class="n">1,423</td><td class="n">76%</td><td>high</td><td><a href="https://www.untourism.int/tourism-statistics/tourism-data-tourism-accommodation">UN Tourism Statistics Database</a>, 2024</td></tr>
+  <tr><td>Tunisia</td><td class="n">735</td><td class="n">665</td><td class="n">111%</td><td>high</td><td><a href="https://www.tourisme.gov.tn/wp-content/uploads/2024/12/rapport-EXTRAIT-2022-1.pdf">ONTT</a>, 2022</td></tr>
+  <tr><td>Libya</td><td class="n">318</td><td class="n">none</td><td class="n"></td><td>unknown</td><td>No official count since 2008, before the conflict.</td></tr>
+  <tr><td>Egypt</td><td class="n">1,370</td><td class="n">1,207</td><td class="n">114%</td><td>high</td><td><a href="https://www.untourism.int/tourism-statistics/tourism-data-tourism-accommodation">UN Tourism Statistics Database</a>, 2022</td></tr>
+  <tr><td>Saudi Arabia</td><td class="n">1,834</td><td class="n">3,020</td><td class="n">61%</td><td>medium</td><td><a href="https://www.stats.gov.sa/documents/d/guest/tourism-establishments-statistics-q2-of-2026-en-pdf">GASTAT</a>, Q2 2026</td></tr>
+  <tr><td>Yemen</td><td class="n">672</td><td class="n">none</td><td class="n"></td><td>unknown</td><td>No official count since the war began; the last is from 2010.</td></tr>
+  <tr><td>Somalia</td><td class="n">163</td><td class="n">none</td><td class="n"></td><td>unknown</td><td>No official hotel count found.</td></tr>
+</table></div>
+<p>Coverage is high when OpenStreetMap has at least 70% as many hotels as the
+official count, medium from 35% to 70%, low below 35%, and unknown where no
+credible official count exists. Above 100% is normal where the official count
+leaves out unclassified hotels. The comparison is rough, because each country
+defines a hotel a little differently:</p>
+<ul>
+  <li><b>Spain.</b> Hoteles (10,006) plus hostales (6,944) open in the month, establishments registered with regional tourism authorities. Hostales are included because OpenStreetMap often tags them as hotels.</li>
+  <li><b>Morocco.</b> Classified hotels, 1 to 5 stars. Unclassified hotels are not counted; riads and maisons d&#x27;hôtes (2,534) are counted separately. Morocco reformed hotel classification in 2025, so later editions may count differently.</li>
+  <li><b>Algeria.</b> Hotels and similar establishments (ISIC 5510), all types, classified and unclassified. Official figures conflict: 1,638 for 2023, and ministry statements of about 1,467 in 2026.</li>
+  <li><b>Tunisia.</b> Hotels, classified 1 to 5 stars (557) plus unclassified hotels. All accommodation types: 895. Registered, not operating: many registered hotels are reported closed.</li>
+  <li><b>Egypt.</b> Hotels and similar establishments (ISIC 5510), not split into land hotels, tourist villages and Nile cruise boats. Nothing newer found. The same 2022 submission nearly doubles Egypt&#x27;s room count from 2021, so its quality is doubtful.</li>
+  <li><b>Saudi Arabia.</b> Licensed hotels. Serviced apartments and other licensed facilities (3,258) are excluded. Rising fast as licensing expands (2,527 a year earlier), so it measures licensing as well as hotels.</li>
+</ul>
+<p>The rating is national. It cannot tell whether the mapped hotels sit in the
+cities or are spread evenly, so a small town&rsquo;s count can still miss
+places that exist. And a 25 km radius around a village next to a city sweeps
+up the city&rsquo;s hotels, so several places near Luxor show almost identical
+counts. The figures and their sources are in <code>data/hotel_registers.json</code>,
+and <code>scripts/build_coverage.py</code> recomputes the ratings.</p>
 
 <h2>Travel advisories</h2>
 <p>From the UK Foreign, Commonwealth &amp; Development Office, fetched when the
@@ -166,6 +205,8 @@ its UK point-of-view edition to match the source of the advisories.</p>
       pageviews and dropped: only 28% of these places have an English article
       with meaningful traffic, and the ratio it produced ranked obscure towns
       as more overpriced than famous ones.</li>
+  <li><b>Tracking.</b> Visits are counted with GoatCounter, which sets no
+      cookies and keeps no personal data. There are no accounts and no ads.</li>
 </ul>
 
 <h2>Sources</h2>
@@ -190,5 +231,8 @@ the lodging counts come from OpenStreetMap, which is share-alike.</p>
 <a href="https://github.com/aravpanwar/besselian">AGPL 3.0</a>.</p>
 
 </div>
+<!-- Visit counts: GoatCounter, no cookies, no personal data. -->
+<script data-goatcounter="https://aravpanwar.goatcounter.com/count"
+        async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

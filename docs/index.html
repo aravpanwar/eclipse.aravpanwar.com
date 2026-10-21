@@ -3,111 +3,138 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Totality Path &amp; Nearby Locations | 2 August 2027</title>
-<meta name="description" content="Every populated place inside the path of the 2 August 2027 total solar eclipse, ranked by how many seconds of totality it costs you.">
+<script>
+  // The 2027 map lived at the site root until October 2026. Links shared
+  // from then carry its state in the query string; send them on to it.
+  if (/[?&](place|at|r|sort)=/.test(location.search)) {
+    location.replace('/2027-08-02/' + location.search);
+  }
+</script>
+<title>Totality Path &amp; Nearby Locations</title>
+<meta name="description" content="Every populated place inside the path of a total solar eclipse, ranked by how many seconds of totality it gives up against the best spot on the path.">
 <link rel="canonical" href="https://eclipse.aravpanwar.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Totality Path &amp; Nearby Locations">
-<meta property="og:title" content="Totality Path &amp; Nearby Locations | 2 August 2027">
-<meta property="og:description" content="Every populated place inside the path of the 2 August 2027 total solar eclipse, ranked by how many seconds of totality it costs you.">
+<meta property="og:title" content="Totality Path &amp; Nearby Locations">
+<meta property="og:description" content="Every populated place inside the path of a total solar eclipse, ranked by how many seconds of totality it gives up against the best spot on the path.">
 <meta property="og:url" content="https://eclipse.aravpanwar.com/">
 <meta property="og:image" content="https://eclipse.aravpanwar.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Map of the path of totality from Spain to Somalia, with the 772 places inside it marked.">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="favicon.ico" sizes="32x32">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="/style.css">
+<style>
+  body { display: block; }
+  /* style.css makes main a flex row for the map layout; this page is a column. */
+  .home { display: block; max-width: 760px; margin: 0 auto; padding: 30px 20px 70px; }
+  .home > p { font-size: 15px; line-height: 1.6; color: #2f2a24; margin: 0 0 8px; }
+  .home h2.section { font-size: 12px; font-weight: 600; letter-spacing: .05em;
+    text-transform: uppercase; color: var(--dim); margin: 34px 0 0; }
+
+  .events { list-style: none; margin: 10px 0 0; padding: 0; border-top: 1px solid var(--line); }
+  .events li {
+    position: relative;
+    display: grid;
+    grid-template-columns: 160px 1fr auto;
+    gap: 4px 20px;
+    align-items: baseline;
+    padding: 14px 12px;
+    border-bottom: 1px solid var(--hair);
+  }
+  .events h3 { margin: 0; font-size: 15px; font-weight: 600; }
+  .events .where { margin: 0; line-height: 1.5; color: #2f2a24; }
+  .events .dur { margin: 0; font-family: var(--mono); font-size: 12.5px; color: var(--dim); white-space: nowrap; }
+  .events .status { grid-column: 2 / -1; margin: 0; font-size: 12px; color: var(--faint); }
+
+  /* The open eclipse is one big target: the date is the link, and its
+     ::after stretches over the whole row. */
+  .events li.open { background: var(--paper); border-left: 3px solid var(--accent); padding-left: 9px; }
+  .events li.open:hover { background: #f4f8fa; }
+  .events li.open h3 a { color: var(--ink); border-bottom: 0; }
+  .events li.open h3 a::after { content: ''; position: absolute; inset: 0; }
+  .events li.open h3 a:focus-visible { outline: none; }
+  .events li.open:focus-within { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .events li.open .status { color: var(--accent); font-weight: 500; }
+
+  .home .note { margin-top: 22px; font-size: 12px; line-height: 1.55; color: var(--dim); }
+
+  @media (max-width: 640px) {
+    .events li { grid-template-columns: 1fr auto; }
+    .events .where, .events .status { grid-column: 1 / -1; }
+    .events .dur { grid-column: 2; grid-row: 1; }
+  }
+</style>
 </head>
 <body>
 
-<a class="skip" href="#rows">Skip to results</a>
-
-<header id="top">
+<header>
   <h1>Totality Path &amp; Nearby Locations</h1>
-  <span class="rule" aria-hidden="true"></span>
-  <span class="event">2 August 2027</span>
   <span class="spacer"></span>
-  <span class="stats" id="stats"></span>
-  <span class="rule" aria-hidden="true"></span>
   <nav>
-    <a href="data/2027-08-02-places.csv" download>Download CSV</a>
-    <a href="method.html">Method</a>
+    <a href="/method.html">Method</a>
     <a href="https://github.com/aravpanwar/besselian">Source</a>
   </nav>
 </header>
 
-<main>
-  <section id="mapwrap" aria-label="Map of the eclipse path">
-    <div id="map"></div>
+<main class="home">
+  <p>Every populated place inside the path of a total solar eclipse, ranked by
+  how many seconds of totality it gives up against the best spot on the path,
+  with typical cloud cover, places to stay nearby and UK travel advice.</p>
 
-    <div class="panel controls">
-      <div class="ctl">
-        <label for="radius">Radius from pin</label>
-        <output id="radiusOut" for="radius">120 km</output>
-      </div>
-      <input type="range" id="radius" min="10" max="400" step="5" value="120"
-             aria-describedby="radiusNote">
-      <div class="scale" aria-hidden="true"><span>10</span><span>400 km</span></div>
-      <p id="radiusNote" class="note">
-        Straight-line distance. 120 km along the Nile and 120 km into the
-        Western Desert are not the same journey.
-      </p>
-    </div>
+  <h2 class="section">Upcoming total solar eclipses</h2>
+  <ol class="events">
+    <li class="open">
+      <h3><a href="/2027-08-02/">2 August 2027</a></h3>
+      <p class="where">Spain, Morocco, Algeria, Tunisia, Libya, Egypt, Saudi Arabia, Yemen, Somalia</p>
+      <p class="dur">6 min 23 s</p>
+      <p class="status">Open the map: 772 places</p>
+    </li>
+    <li>
+      <h3>22 July 2028</h3>
+      <p class="where">Australia, New Zealand</p>
+      <p class="dur">5 min 10 s</p>
+      <p class="status">Not computed yet</p>
+    </li>
+    <li>
+      <h3>25 November 2030</h3>
+      <p class="where">Botswana, South Africa, Australia</p>
+      <p class="dur">3 min 44 s</p>
+      <p class="status">Not computed yet</p>
+    </li>
+    <li>
+      <h3>30 March 2033</h3>
+      <p class="where">Russia, United States (Alaska)</p>
+      <p class="dur">2 min 37 s</p>
+      <p class="status">Not computed yet</p>
+    </li>
+    <li>
+      <h3>20 March 2034</h3>
+      <p class="where">Nigeria, Cameroon, Chad, Sudan, Egypt, Saudi Arabia, Iran, Afghanistan, Pakistan, India, China</p>
+      <p class="dur">4 min 9 s</p>
+      <p class="status">Not computed yet</p>
+    </li>
+    <li>
+      <h3>2 September 2035</h3>
+      <p class="where">China, Korea, Japan</p>
+      <p class="dur">2 min 54 s</p>
+      <p class="status">Not computed yet</p>
+    </li>
+  </ol>
 
-    <div class="panel caveat">
-      <div id="key" class="key" hidden></div>
-      Computed with &Delta;T&nbsp;=&nbsp;<span id="dt"></span>&nbsp;s.
-      Path limits carry 1&ndash;2 km of uncertainty from the lunar limb profile.
-    </div>
-
-    <button type="button" id="clearPin" class="panel clearpin" hidden>
-      Clear pin, show whole path
-    </button>
-  </section>
-
-  <section id="results" aria-label="Places in the circle">
-    <div id="summary">
-      <h2 id="count">772 places</h2>
-      <p id="where">across the whole path</p>
-    </div>
-
-    <div id="searchbar" role="search">
-      <label for="q">Find</label>
-      <input type="search" id="q" placeholder="Town name" autocomplete="off"
-             spellcheck="false" aria-describedby="qHelp">
-    </div>
-    <p id="qHelp" class="sr-only">
-      Filters the list and the map as you type. Enter shows the first match on
-      the map, Down arrow moves into the list.
-    </p>
-
-    <div id="sortbar" role="group" aria-label="Sort by">
-      <span class="sortlabel">Sort</span>
-      <button type="button" data-sort="s" class="active" aria-pressed="true">seconds lost</button>
-      <button type="button" data-sort="w" aria-pressed="false">cloud</button>
-      <button type="button" data-sort="l" aria-pressed="false">stays</button>
-      <button type="button" data-sort="p" aria-pressed="false">population</button>
-    </div>
-
-    <p id="announce" class="sr-only" aria-live="polite"></p>
-    <p id="rowsHelp" class="sr-only">
-      Use the arrow keys to move between places, Enter to show one on the map.
-    </p>
-    <div id="rows" role="table" aria-describedby="rowsHelp"
-         aria-label="Places inside the path, grouped by country"
-         aria-rowcount="0"></div>
-
-  </section>
+  <p class="note">The time is the longest totality anywhere on the path.
+  Dates, times and countries for eclipses not yet computed here are from
+  <a href="https://eclipse.gsfc.nasa.gov/solar.html">NASA&rsquo;s eclipse tables</a>
+  (Fred Espenak, NASA GSFC). Only total eclipses are listed; annular and
+  hybrid eclipses are not.</p>
 </main>
 
-<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
-<script src="app.js"></script>
+<!-- Visit counts: GoatCounter, no cookies, no personal data. -->
+<script data-goatcounter="https://aravpanwar.goatcounter.com/count"
+        async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
