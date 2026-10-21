@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Totality Path &amp; Nearby Locations | 2 August 2027</title>
+<meta name="description" content="Every populated place inside the path of the 2 August 2027 total solar eclipse, ranked by how many seconds of totality it costs you.">
+<link rel="canonical" href="https://eclipse.aravpanwar.com/solar-eclipse/2027-08-02/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Totality Path &amp; Nearby Locations">
+<meta property="og:title" content="Totality Path &amp; Nearby Locations | 2 August 2027">
+<meta property="og:description" content="Every populated place inside the path of the 2 August 2027 total solar eclipse, ranked by how many seconds of totality it costs you.">
+<meta property="og:url" content="https://eclipse.aravpanwar.com/solar-eclipse/2027-08-02/">
+<meta property="og:image" content="https://eclipse.aravpanwar.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Map of the path of totality from Spain to Somalia, with the 772 places inside it marked.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<a class="skip" href="#rows">Skip to results</a>
+
+<header id="top">
+  <h1><a href="/">Totality Path &amp; Nearby Locations</a></h1>
+  <span class="rule" aria-hidden="true"></span>
+  <span class="event">2 August 2027</span>
+  <span class="spacer"></span>
+  <span class="stats" id="stats"></span>
+  <span class="rule" aria-hidden="true"></span>
+  <nav>
+    <a href="/data/2027-08-02-places.csv" download>Download CSV</a>
+    <a href="/method.html">Method</a>
+    <a href="https://github.com/aravpanwar/eclipse.aravpanwar.com">Source</a>
+  </nav>
+</header>
+
+<main>
+  <section id="mapwrap" aria-label="Map of the eclipse path">
+    <div id="map"></div>
+
+    <div class="panel controls">
+      <div class="ctl">
+        <label for="radius">Radius from pin</label>
+        <output id="radiusOut" for="radius">120 km</output>
+      </div>
+      <input type="range" id="radius" min="10" max="400" step="5" value="120"
+             aria-describedby="radiusNote">
+      <div class="scale" aria-hidden="true"><span>10</span><span>400 km</span></div>
+      <p id="radiusNote" class="note">
+        Straight-line distance. 120 km along the Nile and 120 km into the
+        Western Desert are not the same journey.
+      </p>
+    </div>
+
+    <div class="panel caveat">
+      <div id="key" class="key" hidden></div>
+      Computed with &Delta;T&nbsp;=&nbsp;<span id="dt"></span>&nbsp;s.
+      Path limits carry 1&ndash;2 km of uncertainty from the lunar limb profile.
+    </div>
+
+    <button type="button" id="clearPin" class="panel clearpin" hidden>
+      Clear pin, show whole path
+    </button>
+  </section>
+
+  <section id="results" aria-label="Places in the circle">
+    <div id="summary">
+      <h2 id="count">772 places</h2>
+      <p id="where">across the whole path</p>
+    </div>
+
+    <div id="searchbar" role="search">
+      <label for="q">Find</label>
+      <input type="search" id="q" placeholder="Town name" autocomplete="off"
+             spellcheck="false" aria-describedby="qHelp">
+    </div>
+    <p id="qHelp" class="sr-only">
+      Filters the list and the map as you type. Enter shows the first match on
+      the map, Down arrow moves into the list.
+    </p>
+
+    <div id="sortbar" role="group" aria-label="Sort by">
+      <span class="sortlabel">Sort</span>
+      <button type="button" data-sort="s" class="active" aria-pressed="true">seconds lost</button>
+      <button type="button" data-sort="w" aria-pressed="false">cloud</button>
+      <button type="button" data-sort="l" aria-pressed="false">stays</button>
+      <button type="button" data-sort="p" aria-pressed="false">population</button>
+    </div>
+
+    <p class="staysnote">Stays counts places to stay mapped in OpenStreetMap within
+      25 km, not rooms free on the day.</p>
+    <p id="announce" class="sr-only" aria-live="polite"></p>
+    <p id="rowsHelp" class="sr-only">
+      Use the arrow keys to move between places, Enter to show one on the map.
+    </p>
+    <div id="rows" role="table" aria-describedby="rowsHelp"
+         aria-label="Places inside the path, grouped by country"
+         aria-rowcount="0"></div>
+
+  </section>
+</main>
+
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="/app.js"></script>
+<!-- Visit counts: GoatCounter, no cookies, no personal data. -->
+<script data-goatcounter="https://aravpanwar.goatcounter.com/count"
+        async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

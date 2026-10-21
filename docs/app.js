@@ -75,6 +75,16 @@ const staysSpoken = (n) => (n ? `About ${n} stay${n === 1 ? '' : 's'}` : 'No sta
 const fmtLat = (v) => `${Math.abs(v).toFixed(4)}°${v < 0 ? 'S' : 'N'}`;
 const fmtLon = (v) => `${Math.abs(v).toFixed(4)}°${v < 0 ? 'W' : 'E'}`;
 
+// Local clock times come with the data (t0, t1 and the offset o, in minutes),
+// worked out at build time from a current tz database. Browsers' own zone
+// data can be stale: Morocco moved to UTC+0 in September 2026.
+function addTimes(p) {
+  if (p.t0 == null || p.o == null) return;
+  const h = Math.floor(Math.abs(p.o) / 60);
+  const m = Math.abs(p.o) % 60;
+  p.off = `UTC${p.o < 0 ? '−' : '+'}${h}${m ? `:${String(m).padStart(2, '0')}` : ''}`;
+}
+
 const esc = (s) => s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 
 // Search key: no accents, case, apostrophes, hyphens or spaces, so typing
@@ -277,6 +287,7 @@ function render() {
       ${advisoryHtml(cc, name)}</div>`;
     html += `<div class="head" role="row">
       <div role="columnheader">Place</div>
+      <div class="num" role="columnheader" title="Local time totality begins${places[0].off ? `, ${places[0].off}` : ''}">Starts</div>
       <div class="num" role="columnheader">Totality</div>
       <div class="num" role="columnheader">Lost</div>
       <div class="num" role="columnheader">Cloud</div>
@@ -287,13 +298,15 @@ function render() {
       // with arrow keys. Without this a keyboard user has to press Tab 772
       // times to get past the table.
       const tab = p.i === focusId ? 0 : -1;
-      const label = `${p.n}. Totality ${mmss(p.d)}, ${p.s.toFixed(1)} seconds `
+      const label = `${p.n}. Totality ${p.t0 ? `from ${p.t0} local time, ` : ''}`
+        + `${mmss(p.d)} long, ${p.s.toFixed(1)} seconds `
         + `less than the maximum. ${fmtPct(p.w)} August cloud. `
         + `${staysSpoken(p.l)} mapped within 25 km.`;
       html += `<div class="row${sel}" data-id="${p.i}" tabindex="${tab}"
         role="row" aria-selected="${p.i === state.selected}"
         aria-label="${esc(label)}">
         <div class="nm" role="cell">${esc(p.n)}</div>
+        <div class="num" role="cell">${p.t0 || 'n/a'}</div>
         <div class="num dur" role="cell">${mmss(p.d)}</div>
         <div class="num${p.s < 1 ? ' near' : ''}" role="cell">−${p.s.toFixed(1)}</div>
         <div class="num" role="cell">${fmtPct(p.w)}</div>
@@ -466,6 +479,18 @@ function initMap() {
     });
 
     render();
+
+    // A shared link to a place (?place=) opens on that place: map centred,
+    // popup open and, where the list sits beside the map, its row in view.
+    const p = state.data.places.find((q) => q.i === state.selected);
+    if (p) {
+      centreOn(p, false);
+      showPopup(p);
+      if (!STACKED.matches) {
+        const row = document.querySelector('#rows .row.sel');
+        if (row) row.scrollIntoView({ block: 'center' });
+      }
+    }
   });
 }
 
@@ -515,6 +540,16 @@ function drawCircle() {
 
 // Matches the breakpoint in style.css, where the list sits below the map.
 const STACKED = window.matchMedia('(max-width: 900px)');
+
+// On a phone the map is half the screen, too short for the popup to fit
+// beside a place in the middle, so the place sits low and the popup opens
+// above it.
+function centreOn(p, animate) {
+  const opts = { center: [p.x, p.y] };
+  if (STACKED.matches) opts.offset = [0, Math.round(map.getContainer().clientHeight * 0.36)];
+  // easeTo even when not animating: jumpTo ignores offset.
+  map.easeTo({ ...opts, duration: animate ? 500 : 0 });
+}
 const CALM = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 function selectPlace(id, fly) {
@@ -522,7 +557,7 @@ function selectPlace(id, fly) {
   const p = state.data.places.find((q) => q.i === state.selected);
   if (p) {
     showPopup(p);
-    if (fly) map.easeTo({ center: [p.x, p.y], duration: 500 });
+    if (fly) centreOn(p, true);
     // On a phone the list is below the map, so picking a row from it would
     // otherwise move a map that has scrolled out of view.
     if (fly && STACKED.matches) {
@@ -572,7 +607,7 @@ function showTip(id) {
     });
   }
   tip.setLngLat([p.x, p.y])
-    .setHTML(`<b>${esc(p.n)}</b> <span>${mmss(p.d)}, −${p.s.toFixed(1)} s</span>`)
+    .setHTML(`<b>${esc(p.n)}</b> <span>${p.t0 ? `${p.t0}, ` : ''}${mmss(p.d)}, −${p.s.toFixed(1)} s</span>`)
     .addTo(map);
 }
 
@@ -590,10 +625,11 @@ let popup = null;
 function showPopup(p) {
   if (popup) popup.remove();
   const adv = state.data.advisories[p.c];
-  popup = new maplibregl.Popup({ closeButton: true, offset: 10 })
+  popup = new maplibregl.Popup({ closeButton: true, offset: 10, maxWidth: '300px' })
     .setLngLat([p.x, p.y])
     .setHTML(`<div class="pop"><b>${esc(p.n)}</b><dl>
       <dt>Totality</dt><dd>${mmss(p.d)}</dd>
+      <dt>Local time</dt><dd>${p.t0 ? `${p.t0} to ${p.t1}, ${p.off}` : 'n/a'}</dd>
       <dt>Seconds lost</dt><dd>−${p.s.toFixed(1)}</dd>
       <dt>From centre line</dt><dd>${fmtKm(p.k)} km</dd>
       <dt>Sun altitude</dt><dd>${p.a.toFixed(1)}°</dd>
@@ -767,7 +803,10 @@ async function main() {
   } catch (e) {
     console.error(e);
   }
-  for (const p of state.data.places) p.f = fold(p.n);
+  for (const p of state.data.places) {
+    p.f = fold(p.n);
+    addTimes(p);
+  }
   loadClosed();
   renderKey();
 

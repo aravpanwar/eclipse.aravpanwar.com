@@ -10,10 +10,17 @@
 
 Short keys and rounded numbers: the full CSV stays the download, this is what
 the page loads on every visit.
+
+Local clock times of totality are worked out here, not in the browser, so
+every visitor sees the same times whatever their browser's time-zone data.
+That needs a current tz database: install tzdata 2026.3 or later.
 """
+import importlib.metadata
 import json
 import sys
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 sys.stdout.reconfigure(encoding='utf-8')
 ROOT = Path(__file__).resolve().parents[1]
@@ -24,8 +31,28 @@ src = json.loads((ROOT / 'data' / 'out' / f'{EVENT}-places.json')
 OUT = ROOT / 'docs' / 'data'
 OUT.mkdir(parents=True, exist_ok=True)
 
+# Morocco moved to permanent UTC+0 on 2026-09-20 (tz 2026c). Older tz data
+# puts it on UTC+1 and every Moroccan time an hour late, so refuse to build.
+DAY = datetime.fromisoformat(f'{EVENT}T00:00:00+00:00')
+if (DAY + timedelta(hours=9)).astimezone(ZoneInfo('Africa/Casablanca')).utcoffset():
+    sys.exit('tz data predates 2026c (Morocco on UTC+0): pip install "tzdata>=2026.3"')
+try:
+    TZ_VERSION = importlib.metadata.version('tzdata')
+except importlib.metadata.PackageNotFoundError:
+    TZ_VERSION = 'system'
+
+
+def local_times(p):
+    """Start and end of totality as local HH:MM, truncated, and the UTC offset in minutes."""
+    mid = DAY + timedelta(hours=p['max_eclipse_ut_hours'])
+    half = timedelta(seconds=p['duration_seconds'] / 2)
+    start = (mid - half).replace(microsecond=0).astimezone(ZoneInfo(p['timezone']))
+    end = (mid + half).astimezone(ZoneInfo(p['timezone']))
+    return start.strftime('%H:%M'), end.strftime('%H:%M'), int(start.utcoffset().total_seconds() // 60)
+
 places = []
 for p in src['places']:
+    t0, t1, offset = local_times(p)
     places.append({
         'i': p['geonameid'],
         'n': p['name'],
@@ -43,6 +70,9 @@ for p in src['places']:
         'l': p['lodging_within_25km'],
         'L': p['lodging_within_80km'],
         'z': p['timezone'],
+        't0': t0,
+        't1': t1,
+        'o': offset,
     })
 
 adv = {}
@@ -64,6 +94,7 @@ payload = {
         'peak': src['event']['greatest_duration']['duration_seconds'],
         'peak_lat': src['event']['greatest_duration']['latitude_deg'],
         'peak_lon': src['event']['greatest_duration']['longitude_deg'],
+        'tz_version': TZ_VERSION,
     },
     'caveats': src['event']['caveats'],
     'sources': src['sources'],

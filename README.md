@@ -85,7 +85,7 @@ state no licence.
 python scripts/extract_lodging.py   # once per OSM refresh, needs the extracts
 python scripts/fetch_cloud.py       # once per event, needs ~/.cdsapirc
 python scripts/build.py             # writes data/out/<event>-places.{csv,json}
-python scripts/build_site_data.py   # writes docs/data/<event>-places.json
+python scripts/build_site_data.py   # writes docs/data/<event>-places.json, needs tzdata 2026.3+
 python scripts/build_geojson.py     # writes docs/data/<event>-path.geojson
 python scripts/build_countries.py   # writes docs/data/<event>-countries.geojson
 python scripts/build_coverage.py    # writes docs/data/<event>-coverage.json from data/hotel_registers.json

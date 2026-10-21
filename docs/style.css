@@ -438,7 +438,7 @@ input[type=range] {
 
 .head, .row {
   display: grid;
-  grid-template-columns: 1.5fr 0.68fr 0.56fr 0.6fr 0.46fr;
+  grid-template-columns: 1.4fr 0.56fr 0.62fr 0.56fr 0.56fr 0.46fr;
   gap: 9px;
   padding: 8px 17px;
 }
@@ -521,7 +521,10 @@ input[type=range] {
 .pop b { display: block; font-size: 13px; margin-bottom: 3px; }
 .pop dl { margin: 0; display: grid; grid-template-columns: auto auto; gap: 1px 10px; }
 .pop dt { color: var(--dim); }
-.pop dd { margin: 0; font-family: var(--mono); text-align: right; }
+.pop dd { margin: 0; font-family: var(--mono); text-align: right; white-space: nowrap; }
+
+/* Above the map's own controls, so the scale bar never covers it. */
+.maplibregl-popup { z-index: 3; }
 
 /* ---------- narrow ---------- */
 
