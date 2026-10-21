@@ -55,7 +55,7 @@ def cached(url):
     if not dest.exists():
         print(f'downloading       {url}')
         with urllib.request.urlopen(urllib.request.Request(url, headers=UA),
-                                    timeout=120) as resp:
+                                    timeout=134) as resp:
             dest.write_bytes(resp.read())
     return dest
 

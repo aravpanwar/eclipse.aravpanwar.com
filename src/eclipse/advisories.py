@@ -127,7 +127,7 @@ def _regional_headings(details: dict) -> list[str]:
     return []
 
 
-def fetch(country_code: str, timeout: int = 30) -> Advisory:
+def fetch(country_code: str, timeout: int = 34) -> Advisory:
     """Fetch one country's advisory. Build time only."""
     slug = SLUGS[country_code]
     req = urllib.request.Request(

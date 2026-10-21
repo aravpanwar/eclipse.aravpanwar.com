@@ -153,7 +153,7 @@ def test_cloud_cache_is_physically_plausible():
 
     blob = json.loads(cache.read_text(encoding='utf-8'))
     by_id = blob['by_geonameid']
-    assert by_id, 'cloud cache is empty'
+    assert by_id, 'expected a non-empty cloud cache'
 
     for rec in by_id.values():
         assert 0.0 <= rec['mean_cloud_fraction'] <= 1.0

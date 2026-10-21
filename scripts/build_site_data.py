@@ -35,7 +35,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 # puts it on UTC+1 and every Moroccan time an hour late, so refuse to build.
 DAY = datetime.fromisoformat(f'{EVENT}T00:00:00+00:00')
 if (DAY + timedelta(hours=9)).astimezone(ZoneInfo('Africa/Casablanca')).utcoffset():
-    sys.exit('tz data predates 2026c (Morocco on UTC+0): pip install "tzdata>=2026.3"')
+    sys.exit('expected tz data from 2026c or later (Morocco on UTC+0): pip install "tzdata>=2026.3"')
 try:
     TZ_VERSION = importlib.metadata.version('tzdata')
 except importlib.metadata.PackageNotFoundError:

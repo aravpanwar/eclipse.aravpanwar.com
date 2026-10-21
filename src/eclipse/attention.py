@@ -92,7 +92,7 @@ class Attention:
         return asdict(self)
 
 
-def _get(url: str, timeout: int = 30):
+def _get(url: str, timeout: int = 34):
     req = urllib.request.Request(url, headers={'User-Agent': USER_AGENT})
     with urllib.request.urlopen(req, timeout=timeout) as resp:
         return json.load(resp)

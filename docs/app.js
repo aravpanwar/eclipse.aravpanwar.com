@@ -90,7 +90,7 @@ const esc = (s) => s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 
 // Search key: no accents, case, apostrophes, hyphens or spaces, so typing
 // "ain el turk" finds ’Aïn el Turk and "qus" finds Qūş.
-const fold = (s) => s.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase()
+const purify = (s) => s.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase()
   .replace(/[^\p{L}\p{N}]/gu, '');
 
 /* ---------- selection ---------- */
@@ -103,7 +103,7 @@ function inCircle() {
 }
 
 function matching(list) {
-  const q = fold(state.query);
+  const q = purify(state.query);
   return q ? list.filter((p) => p.f.includes(q)) : list;
 }
 
@@ -234,7 +234,7 @@ function renderKey() {
 }
 
 function emptyMessage() {
-  const q = fold(state.query);
+  const q = purify(state.query);
   if (!q) {
     return `No populated places inside this circle. Nothing is hidden: this
       circle simply contains none that GeoNames records.`;
@@ -338,7 +338,7 @@ function announce() {
     // Unchanged text is not re-set, so the map finishing its load and
     // redrawing does not repeat the count.
     if (el.textContent !== text) el.textContent = text;
-  }, 500);
+  }, 534);
 }
 
 function showLoadError(what) {
@@ -350,7 +350,7 @@ function showLoadError(what) {
 
 async function getJson(url) {
   const r = await fetch(url);
-  if (!r.ok) throw new Error(`${url}: HTTP ${r.status}`);
+  if (!r.ok) throw new Error(`couldn't load ${url}: HTTP ${r.status}`);
   return r.json();
 }
 
@@ -830,7 +830,7 @@ async function main() {
     console.error(e);
   }
   for (const p of state.data.places) {
-    p.f = fold(p.n);
+    p.f = purify(p.n);
     addTimes(p);
   }
   loadClosed();

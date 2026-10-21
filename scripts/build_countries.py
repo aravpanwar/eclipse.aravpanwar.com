@@ -38,13 +38,13 @@ if not CACHE.exists():
         NE_URL,
         headers={'User-Agent': 'eclipse.aravpanwar.com/0.1 (+https://github.com/aravpanwar/eclipse.aravpanwar.com)'},
     )
-    with urllib.request.urlopen(req, timeout=120) as resp:
+    with urllib.request.urlopen(req, timeout=134) as resp:
         CACHE.write_bytes(resp.read())
 
 src = json.loads(CACHE.read_text(encoding='utf-8'))
 by_cc = {f['properties']['ISO_A2']: f['geometry'] for f in src['features']}
 missing = set(PATH_COUNTRIES_2027) - set(by_cc)
-assert not missing, f'no Natural Earth outline for {sorted(missing)}'
+assert not missing, f'expected a Natural Earth outline for {sorted(missing)}'
 
 
 # 3 decimal places is about 110 m, finer than the 10m source itself.
