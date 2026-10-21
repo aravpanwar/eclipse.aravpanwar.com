@@ -68,7 +68,15 @@ fc = {
 }
 dest = OUT / f'{EVENT}-path.geojson'
 dest.write_text(json.dumps(fc, separators=(',', ':')), encoding='utf-8')
+# Totality along the centre line, one value per vertex, for the chart of
+# duration by longitude. Computed at the same rounded points the map draws.
+profile = [[lon, round(L.compute(lat, lon, 0.0, E).duration_seconds, 1)]
+           for lon, lat in centre]
+profile_dest = OUT / f'{EVENT}-centre-profile.json'
+profile_dest.write_text(json.dumps(profile, separators=(', ', ': ')), encoding='utf-8')
+
 print(f'centreline points {len(centre)}')
 print(f'corridor vertices {len(ring)}')
 print(f'wrote             {dest.relative_to(ROOT)} '
       f'({dest.stat().st_size // 1024} KB)')
+print(f'wrote             {profile_dest.relative_to(ROOT)}')

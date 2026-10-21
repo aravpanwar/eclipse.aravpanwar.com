@@ -22,6 +22,7 @@ const state = {
   sort: 's',
   selected: null,     // geonameid
   country: null,      // ?c= from the homepage: the country to open on
+  view: 'map',        // 'map' or 'path'
   query: '',
   closed: new Set(),  // advisories put away, as advisoryId() strings
   coverage: {},       // country code -> stays coverage, from build_coverage.py
@@ -218,7 +219,12 @@ function renderKey() {
     const t = tintFor(cc);
     if (t !== 'none') labels[t].add(a.label.toLowerCase());
   }
-  let html = '';
+  let html = `<div class="keyrow"><span class="sw path dash" aria-hidden="true"></span>
+      <span>Path of totality</span></div>
+    <div class="keyrow"><span class="sw centre" aria-hidden="true"></span>
+      <span>Centre line</span></div>
+    <div class="keyrow"><span class="sw dot" aria-hidden="true"></span>
+      <span>Town, sized by population</span></div>`;
   if (labels.whole.size) {
     html += `<div class="keyrow"><span class="sw whole" aria-hidden="true"></span>
       <span>FCDO ${[...labels.whole].join('; ')}, shown in red.</span></div>`;
@@ -266,6 +272,8 @@ function render() {
     ? `within ${state.radius} km of ${fmtLat(state.pin.lat)} ` +
       `${fmtLon(state.pin.lon)}`
     : 'across the whole path';
+  document.getElementById('pinHint').hidden = !!state.pin;
+  document.querySelector('.controls').classList.toggle('nopin', !state.pin);
   document.getElementById('where').textContent = state.query.trim()
     ? `matching “${state.query.trim()}” ${scope}`
     : scope;
@@ -288,14 +296,13 @@ function render() {
     html += `<div class="country" data-cc="${cc}">`;
     html += `<div class="group" role="rowgroup"><div class="name"><b>${esc(name)}</b>
       <span class="n">${places.length}</span>${coverageHtml(cc)}${advisoryShowHtml(cc, name)}</div>
-      ${advisoryHtml(cc, name)}</div>`;
+      ${advisoryHtml(cc, name)}`;
     html += `<div class="head" role="row">
       <div role="columnheader">Place</div>
       <div class="num" role="columnheader" title="Local time totality begins${places[0].off ? `, ${places[0].off}` : ''}">Starts</div>
       <div class="num" role="columnheader">Totality</div>
-      <div class="num" role="columnheader">Lost</div>
       <div class="num" role="columnheader">Cloud</div>
-      <div class="num" role="columnheader" title="Places to stay mapped in OpenStreetMap within 25 km">Stays</div></div>`;
+      <div class="num" role="columnheader" title="Places to stay mapped in OpenStreetMap within 25 km">Stays</div></div></div>`;
     for (const p of places) {
       const sel = p.i === state.selected ? ' sel' : '';
       // Roving tabindex: exactly one row is tabbable, the rest are reached
@@ -303,8 +310,7 @@ function render() {
       // times to get past the table.
       const tab = p.i === focusId ? 0 : -1;
       const label = `${p.n}. Totality ${p.t0 ? `from ${p.t0} local time, ` : ''}`
-        + `${mmss(p.d)} long, ${p.s.toFixed(1)} seconds `
-        + `less than the maximum. ${fmtPct(p.w)} August cloud. `
+        + `${mmss(p.d)} long. ${fmtPct(p.w)} August cloud. `
         + `${staysSpoken(p.l)} mapped within 25 km.`;
       html += `<div class="row${sel}" data-id="${p.i}" tabindex="${tab}"
         role="row" aria-selected="${p.i === state.selected}"
@@ -312,7 +318,6 @@ function render() {
         <div class="nm" role="cell">${esc(p.n)}</div>
         <div class="num" role="cell">${p.t0 || 'n/a'}</div>
         <div class="num dur" role="cell">${mmss(p.d)}</div>
-        <div class="num${p.s < 1 ? ' near' : ''}" role="cell">−${p.s.toFixed(1)}</div>
         <div class="num" role="cell">${fmtPct(p.w)}</div>
         <div class="num" role="cell">${p.l || 'none'}</div>
       </div>`;
@@ -323,6 +328,8 @@ function render() {
   rows.setAttribute('aria-rowcount', String(list.length));
   drawPlaces(list);
   drawCircle();
+  renderTown();
+  profileMarks();
 }
 
 // The count is spoken once input settles, not on every keystroke or slider
@@ -372,6 +379,18 @@ function initMap() {
                  'bottom-right');
 
   map.on('load', async () => {
+    // One name per place, in English where the tiles carry one. name:latin
+    // comes before name_en because the tiles fill name_en from the local name
+    // when there is no English one, and in Morocco that local name is often
+    // written in three scripts at once.
+    for (const l of map.getStyle().layers) {
+      if (l.type !== 'symbol') continue;
+      const f = map.getLayoutProperty(l.id, 'text-field');
+      if (f && JSON.stringify(f).includes('name')) {
+        map.setLayoutProperty(l.id, 'text-field', ['coalesce',
+          ['get', 'name:en'], ['get', 'name:latin'], ['get', 'name_en'], ['get', 'name']]);
+      }
+    }
     // A missing overlay should not take the places layer down with it.
     const [path, countries] = await Promise.all([
       getJson(`/data/${EVENT}-path.geojson`),
@@ -410,13 +429,16 @@ function initMap() {
     map.addLayer({
       id: 'umbra', type: 'fill', source: 'path',
       filter: ['==', ['get', 'kind'], 'umbra'],
-      paint: { 'fill-color': '#1a5c7a', 'fill-opacity': 0.10 },
+      paint: { 'fill-color': '#1a5c7a', 'fill-opacity': 0.15 },
     });
     map.addLayer({
       id: 'umbra-edge', type: 'line', source: 'path',
       filter: ['==', ['get', 'kind'], 'umbra'],
       paint: {
-        'line-color': '#7fa0b2', 'line-width': 1.2, 'line-dasharray': [4, 3],
+        // Dashed: the edges are known to about 1 to 2 km, and dashes keep them
+        // apart from the solid centre line and the grey country borders.
+        'line-color': '#1a5c7a', 'line-width': 1.8, 'line-opacity': 0.95,
+        'line-dasharray': [3, 2],
       },
     });
     map.addLayer({
@@ -432,9 +454,8 @@ function initMap() {
     });
     map.addLayer({
       id: 'circle-edge', type: 'line', source: 'circle',
-      paint: {
-        'line-color': '#1a5c7a', 'line-width': 1.5, 'line-dasharray': [3, 2],
-      },
+      // Solid, because the dashed teal line is the edge of totality.
+      paint: { 'line-color': '#1a5c7a', 'line-width': 1.5 },
     });
 
     // Radius by population, so the map answers "what is near here" without
@@ -486,17 +507,24 @@ function initMap() {
     render();
 
     // A shared link to a place (?place=) opens on that place: map centred,
-    // popup open and, where the list sits beside the map, its row in view.
+    // its card open and, where the list sits beside the map, its row in view.
     const p = state.data.places.find((q) => q.i === state.selected);
     if (p) {
       centreOn(p, false);
-      showPopup(p);
+      renderTown();
       if (!STACKED.matches) {
         const row = document.querySelector('#rows .row.sel');
         if (row) row.scrollIntoView({ block: 'center' });
       }
     } else if (state.country) {
       openOnCountry(state.country);
+    } else if (state.pin) {
+      // A shared pin link opens framed on its circle, not on the default view.
+      const ring = circlePolygon(state.pin.lat, state.pin.lon, state.radius).geometry.coordinates[0];
+      const xs = ring.map((c) => c[0]);
+      const ys = ring.map((c) => c[1]);
+      map.fitBounds([[Math.min(...xs), Math.min(...ys)], [Math.max(...xs), Math.max(...ys)]],
+                    { padding: 30, duration: 0 });
     }
   });
 }
@@ -565,12 +593,8 @@ function drawCircle() {
 // Matches the breakpoint in style.css, where the list sits below the map.
 const STACKED = window.matchMedia('(max-width: 900px)');
 
-// On a phone the map is half the screen, too short for the popup to fit
-// beside a place in the middle, so the place sits low and the popup opens
-// above it.
 function centreOn(p, animate) {
   const opts = { center: [p.x, p.y] };
-  if (STACKED.matches) opts.offset = [0, Math.round(map.getContainer().clientHeight * 0.36)];
   // easeTo even when not animating: jumpTo ignores offset.
   map.easeTo({ ...opts, duration: animate ? 500 : 0 });
 }
@@ -580,7 +604,7 @@ function selectPlace(id, fly) {
   state.selected = Number(id) === state.selected ? null : Number(id);
   const p = state.data.places.find((q) => q.i === state.selected);
   if (p) {
-    showPopup(p);
+    renderTown();
     if (fly) centreOn(p, true);
     // On a phone the list is below the map, so picking a row from it would
     // otherwise move a map that has scrolled out of view.
@@ -589,8 +613,6 @@ function selectPlace(id, fly) {
         behavior: CALM.matches ? 'auto' : 'smooth', block: 'start',
       });
     }
-  } else if (popup) {
-    popup.remove();
   }
   render();
   writeUrl();
@@ -609,7 +631,7 @@ function nearest(e) {
   return best;
 }
 
-// Hover label: name, totality and seconds lost. It sits above the dot and
+// Hover label: name, start time and totality. It sits above the dot and
 // lets the pointer through (style.css), so it never covers what it labels;
 // Esc dismisses it.
 let tip = null;
@@ -618,7 +640,7 @@ let tipId = null;
 function showTip(id) {
   if (id === tipId) return;
   tipId = id;
-  // The selected place already has its full popup open.
+  // The selected place already has its card open.
   const p = id === state.selected ? null : state.data.places.find((q) => q.i === id);
   if (!p) {
     if (tip) tip.remove();
@@ -631,7 +653,7 @@ function showTip(id) {
     });
   }
   tip.setLngLat([p.x, p.y])
-    .setHTML(`<b>${esc(p.n)}</b> <span>${p.t0 ? `${p.t0}, ` : ''}${mmss(p.d)}, −${p.s.toFixed(1)} s</span>`)
+    .setHTML(`<b>${esc(p.n)}</b> <span>${p.t0 ? `${p.t0}, ` : ''}${mmss(p.d)}</span>`)
     .addTo(map);
 }
 
@@ -644,24 +666,37 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') hideTip();
 });
 
-let popup = null;
 
-function showPopup(p) {
-  if (popup) popup.remove();
+const TC = (n, v) => `<div><dt>${n}</dt><dd>${v}</dd></div>`;
+
+// The selected place, in the column beside the map rather than over it.
+function renderTown() {
+  const el = document.getElementById('town');
+  const p = state.selected && state.data.places.find((q) => q.i === state.selected);
+  if (!p) { el.hidden = true; el.innerHTML = ''; return; }
   const adv = state.data.advisories[p.c];
-  popup = new maplibregl.Popup({ closeButton: true, offset: 10, maxWidth: '300px' })
-    .setLngLat([p.x, p.y])
-    .setHTML(`<div class="pop"><b>${esc(p.n)}</b><dl>
-      <dt>Totality</dt><dd>${mmss(p.d)}</dd>
-      <dt>Local time</dt><dd>${p.t0 ? `${p.t0} to ${p.t1}, ${p.off}` : 'n/a'}</dd>
-      <dt>Seconds lost</dt><dd>−${p.s.toFixed(1)}</dd>
-      <dt>From centre line</dt><dd>${fmtKm(p.k)} km</dd>
-      <dt>Sun altitude</dt><dd>${p.a.toFixed(1)}°</dd>
-      <dt>August cloud</dt><dd>${fmtPct(p.w)}</dd>
-      <dt>Stays mapped, 25 km</dt><dd>${p.l ? `~${p.l}` : 'none'}</dd>
-      <dt>Stays mapped, 80 km</dt><dd>${p.L ? `~${p.L}` : 'none'}</dd>
-      </dl></div>`)
-    .addTo(map);
+  const country = adv ? adv.country : p.c;
+  el.innerHTML = `
+    <div class="tc-head"><h2>${esc(p.n)}</h2><span class="tc-cc">${esc(country)}</span>
+      ${state.view === 'path' ? '<button type="button" class="tc-map">Show on map</button>' : ''}
+      <button type="button" class="tc-close" aria-label="Close ${esc(p.n)}">×</button></div>
+    <div class="tc-main">
+      <div><div class="tc-big">${mmss(p.d)}</div>
+        <div class="tc-sub">of totality</div></div>
+      <div><div class="tc-time">${p.t0 ? `${p.t0} to ${p.t1}` : 'n/a'}</div>
+        <div class="tc-sub">local time${p.off ? `, ${p.off}` : ''}</div></div>
+    </div>
+    <dl class="tc-facts">
+      ${TC('August cloud', fmtPct(p.w))}${TC('Sun altitude', `${p.a.toFixed(0)}°`)}
+      ${TC('From centre line', `${fmtKm(p.k)} km`)}${TC('Stays, 25 km', p.l ? `~${p.l}` : 'none')}
+      ${TC('Stays, 80 km', p.L ? `~${p.L}` : 'none')}
+    </dl>
+    ${adv && adv.worst && adv.label ? `<p class="tc-adv">The UK FCDO ${esc(adv.label.toLowerCase()
+      .replace('the whole country', country).replace('the country', country))}. The named areas are under ${esc(country)} in the list.</p>` : ''}`;
+  el.hidden = false;
+  el.querySelector('.tc-close').onclick = () => selectPlace(p.i, false);
+  const back = el.querySelector('.tc-map');
+  if (back) back.onclick = () => { setView('map'); centreOn(p, false); };
 }
 
 function setPin(lat, lon) {
@@ -690,6 +725,7 @@ function writeUrl() {
   }
   if (state.sort !== 's') q.set('sort', state.sort);
   if (state.selected) q.set('place', String(state.selected));
+  if (state.view === 'path') q.set('view', 'cloud');
   const url = q.toString() ? `?${q}` : location.pathname;
   history.replaceState(null, '', url);
 }
@@ -711,6 +747,7 @@ function readUrl() {
   if (place) state.selected = place;
   const c = q.get('c');
   if (c && /^[A-Z]{2}$/.test(c)) state.country = c;
+  if (q.get('view') === 'cloud') state.view = 'path';
 }
 
 /* ---------- wiring ---------- */
@@ -835,11 +872,14 @@ async function main() {
   }
   loadClosed();
   renderKey();
+  // On a phone the key would push the list below the fold; it starts closed.
+  try { state.profile = await getJson(`/data/${EVENT}-centre-profile.json`); } catch (e) { state.profile = []; }
+  bindViews();
+  if (STACKED.matches) document.getElementById('keybox').open = false;
+  window.addEventListener('resize', () => { if (state.view === 'path') drawProfile(); });
 
-  document.getElementById('dt').textContent = state.data.event.delta_t;
   document.getElementById('stats').innerHTML =
-    `<span>ΔT ${state.data.event.delta_t} s</span>
-     <span>${state.data.places.length} places</span>
+    `<span>${state.data.places.length} places</span>
      <span>${Object.keys(state.data.advisories).length} countries</span>`;
   document.querySelector('nav a[download]').href =
     `/data/${EVENT}-places.csv`;
@@ -851,12 +891,233 @@ async function main() {
   render();
   try {
     initMap();
+    if (state.view === 'path') setView('path');
   } catch (e) {
     console.error(e);
     const el = document.getElementById('map');
     el.classList.add('failed');
     el.textContent = 'The map could not be loaded. The list still works.';
   }
+}
+
+/* ---------- view: totality and cloud along the path ---------- */
+
+const PLON = [-7, 52];
+const CLOUD_MAX = 80;
+// Line colour by totality, shortest dark to longest bright. A single-hue
+// ramp still grades under red-green colour blindness, and red already means
+// an FCDO advisory on this site.
+const RAMP = [[0, [96, 46, 140]], [0.35, [190, 58, 90]], [0.7, [238, 124, 50]], [1, [252, 231, 146]]];
+let P = null;   // scales and sizes of the last draw
+
+function rampColour(stops, f) {
+  for (let i = 1; i < stops.length; i++) {
+    const [f1, c1] = stops[i];
+    const [f0, c0] = stops[i - 1];
+    if (f <= f1) {
+      const t = (f - f0) / ((f1 - f0) || 1);
+      return `rgb(${c0.map((c, k) => Math.round(c + (c1[k] - c) * t)).join(',')})`;
+    }
+  }
+  return `rgb(${stops[stops.length - 1][1].join(',')})`;
+}
+
+// Country spans along the axis. Two countries that share most of a span, as
+// Spain and Morocco do across the strait, share one label.
+function countrySpans() {
+  const by = new Map();
+  for (const p of state.data.places) {
+    const s = by.get(p.c) || { cc: [p.c], lo: p.x, hi: p.x, ws: [] };
+    s.lo = Math.min(s.lo, p.x); s.hi = Math.max(s.hi, p.x);
+    if (p.w != null) s.ws.push(p.w);
+    by.set(p.c, s);
+  }
+  const spans = [...by.values()].sort((a, b) => a.lo - b.lo);
+  const out = [];
+  for (const s of spans) {
+    const prev = out[out.length - 1];
+    if (prev && prev.hi > s.lo) {
+      const overlap = Math.min(prev.hi, s.hi) - s.lo;
+      if (overlap > 0.5 * Math.min(prev.hi - prev.lo, s.hi - s.lo)) {
+        prev.cc.push(...s.cc); prev.ws.push(...s.ws); prev.hi = Math.max(prev.hi, s.hi); continue;
+      }
+      const mid = (s.lo + prev.hi) / 2;
+      prev.hi = mid; s.lo = mid;
+    }
+    out.push({ ...s, ws: [...s.ws] });
+  }
+  return out;
+}
+
+const median = (xs) => { const s = [...xs].sort((a, b) => a - b); return s[Math.floor(s.length / 2)]; };
+
+function drawProfile() {
+  const svg = document.getElementById('psvg');
+  const W = svg.clientWidth;
+  const H = svg.clientHeight;
+  if (!W || !H || !state.data) return;
+  const narrow = W < 600;
+  const m = { l: narrow ? 34 : 50, r: narrow ? 10 : 20 };
+  const t0 = 26;                                  // totality chart top
+  const t1 = Math.round(t0 + (H - 120) * 0.6);    // totality chart bottom
+  const sy = t1 + 10;                             // country strip
+  const c0 = sy + 50;                             // cloud chart top
+  const c1 = H - 8;                               // cloud chart bottom
+  const x = (lon) => m.l + (lon - PLON[0]) / (PLON[1] - PLON[0]) * (W - m.l - m.r);
+  const y = (s) => t1 - (s / 400) * (t1 - t0);
+  const yc = (w) => c1 - (Math.min(w, CLOUD_MAX) / CLOUD_MAX) * (c1 - c0);
+  P = { x, y, yc, m, W, H, t0, t1, c0, c1 };
+  let h = '';
+
+  // Totality chart.
+  h += `<text class="ax" x="${m.l}" y="${t0 - 10}">Totality</text>`;
+  for (const s of [120, 240, 360]) {
+    h += `<line class="pg" x1="${m.l}" x2="${W - m.r}" y1="${y(s)}" y2="${y(s)}"/>`;
+    h += `<text class="pt" x="${m.l - 7}" y="${y(s) + 3.5}" text-anchor="end">${s / 60}:00</text>`;
+  }
+  for (const p of state.data.places) {
+    h += `<circle class="pd" data-id="${p.i}" cx="${x(p.x).toFixed(1)}" cy="${y(p.d).toFixed(1)}" r="${narrow ? 1.6 : 2}"/>`;
+  }
+  const pts = (state.profile || []).filter((r) => r[1] && r[0] >= PLON[0] && r[0] <= PLON[1]);
+  if (pts.length) {
+    const lo = Math.min(...pts.map((r) => r[1]));
+    const hi = Math.max(...pts.map((r) => r[1]));
+    const ramp = RAMP;
+    // The legend swatch runs through the same colours as the line.
+    document.querySelector('.pl-line').style.background =
+      `linear-gradient(to right, ${ramp.map(([f]) => rampColour(ramp, f)).join(', ')})`;
+    const span = W - m.l - m.r;
+    h += `<defs><linearGradient id="tg" gradientUnits="userSpaceOnUse" x1="${m.l}" x2="${W - m.r}" y1="0" y2="0">
+      ${pts.map((r) => `<stop offset="${((x(r[0]) - m.l) / span).toFixed(4)}" stop-color="${rampColour(ramp, (r[1] - lo) / (hi - lo))}"/>`).join('')}
+      </linearGradient></defs>`;
+    h += `<path class="pc" stroke="url(#tg)" d="M${pts.map((r) => `${x(r[0]).toFixed(1)},${y(r[1]).toFixed(1)}`).join('L')}"/>`;
+    const pk = pts.reduce((a, b) => (b[1] > a[1] ? b : a));
+    h += `<text class="pkl" x="${x(pk[0])}" y="${y(pk[1]) - 9}" text-anchor="middle">${mmss(state.data.event.peak)} longest</text>`;
+  }
+
+  // Country strip, with each country's median cloud.
+  const spans = countrySpans();
+  for (const s of spans) {
+    const pad = Math.max(0, 1.2 - (s.hi - s.lo)) / 2;
+    const x0 = x(s.lo - pad) + 0.5;
+    const x1 = x(s.hi + pad) - 0.5;
+    const names = s.cc.map((c) => (state.data.advisories[c] || { country: c }).country);
+    const full = names.join(', ');
+    const label = (x1 - x0) > full.length * 5.7 + 6 ? full : s.cc.join(' ');
+    h += `<g class="pcn" data-cc="${s.cc[0]}"><rect x="${x0}" y="${sy}" width="${x1 - x0}" height="18"/>
+      <text x="${(x0 + x1) / 2}" y="${sy + 12.5}" text-anchor="middle">${esc(label)}</text></g>`;
+  }
+
+  // Cloud chart: median August cloud of the towns in each 1 degree of longitude.
+  h += `<text class="ax" x="${m.l}" y="${c0 - 12}">August cloud at eclipse time</text>`;
+  for (const w of [25, 50, 75]) {
+    h += `<line class="pg" x1="${m.l}" x2="${W - m.r}" y1="${yc(w)}" y2="${yc(w)}"/>`;
+    h += `<text class="pt" x="${m.l - 7}" y="${yc(w) + 3.5}" text-anchor="end">${w}%</text>`;
+  }
+  h += `<line class="pbase" x1="${m.l}" x2="${W - m.r}" y1="${c1}" y2="${c1}"/>`;
+  const bins = new Map();
+  for (const p of state.data.places) {
+    if (p.w == null) continue;
+    const k = Math.floor(p.x);
+    if (!bins.has(k)) bins.set(k, []);
+    bins.get(k).push(p.w);
+  }
+  for (const [k, ws] of bins) {
+    const med = median(ws);
+    h += `<rect class="pbar" x="${x(k) + 0.5}" y="${yc(med)}" width="${Math.max(1, x(k + 1) - x(k) - 1)}" height="${c1 - yc(med)}"><title>${med.toFixed(1)}% cloud, ${ws.length} towns</title></rect>`;
+  }
+  for (const s of spans) {
+    if (!s.ws.length) continue;
+    const med = median(s.ws);
+    const top = Math.min(...[...bins].filter(([k]) => k + 1 > s.lo && k < s.hi).map(([, ws]) => yc(median(ws))));
+    h += `<text class="pcm" x="${x((s.lo + s.hi) / 2)}" y="${Math.max(c0 + 10, top - 6)}" text-anchor="middle">${med < 10 ? med.toFixed(1) : Math.round(med)}%</text>`;
+  }
+
+  h += `<g id="psel"></g>`;
+  svg.innerHTML = h;
+  svg.onclick = (e) => {
+    const g = e.target.closest('.pcn');
+    if (g) { setView('map'); openOnCountry(g.dataset.cc); return; }
+    const r = svg.getBoundingClientRect();
+    const px = e.clientX - r.left;
+    const py = e.clientY - r.top;
+    let best = null;
+    let bd = 100;
+    for (const p of state.data.places) {
+      const d = (x(p.x) - px) ** 2 + (y(p.d) - py) ** 2;
+      if (d < bd) { bd = d; best = p; }
+    }
+    if (best) selectPlace(best.i, false);
+  };
+  profileMarks();
+}
+
+// The selected place, marked on both charts.
+function profileMarks() {
+  const sel = document.getElementById('psel');
+  if (!P || !sel) return;
+  const { x, y, yc, W, t1, c0, c1 } = P;
+  const p = state.selected && state.data.places.find((q) => q.i === state.selected);
+  if (!p) {
+    sel.innerHTML = '';
+    for (const t of document.querySelectorAll('#psvg .pcm')) t.style.visibility = '';
+    return;
+  }
+  const sx = x(p.x);
+  const right = sx < W - 160;
+  const a = right ? 'start' : 'end';
+  const dx = right ? 10 : -10;
+  sel.innerHTML = `<line class="psl" x1="${sx}" x2="${sx}" y1="${y(p.d)}" y2="${c1}"/>
+    <circle class="ps" cx="${sx}" cy="${y(p.d)}" r="5"/>
+    <text class="psn" x="${sx + dx}" y="${y(p.d) + 15}" text-anchor="${a}">${esc(p.n)} ${mmss(p.d)}</text>
+    ${p.w != null ? `<circle class="ps" cx="${sx}" cy="${yc(p.w)}" r="4"/>
+    <text class="psn psw" x="${sx + dx}" y="${Math.max(c0 + 12, yc(p.w) - 7)}" text-anchor="${a}">${fmtPct(p.w)}</text>` : ''}`;
+
+  // A country's median cloud label can sit where the selected town's figure
+  // goes. The town's figure is the one being looked at, so the median steps
+  // aside, and comes back when the town is deselected or another is picked.
+  const medians = document.querySelectorAll('#psvg .pcm');
+  for (const t of medians) t.style.visibility = '';
+  const own = sel.querySelector('.psw');
+  if (!own) return;
+  const a2 = own.getBBox();
+  for (const t of medians) {
+    const b = t.getBBox();
+    if (a2.x < b.x + b.width + 4 && b.x < a2.x + a2.width + 4
+        && a2.y < b.y + b.height + 2 && b.y < a2.y + a2.height + 2) {
+      t.style.visibility = 'hidden';
+    }
+  }
+}
+
+function setView(v) {
+  state.view = v === 'path' ? 'path' : 'map';
+  const path = state.view === 'path';
+  document.getElementById('pathview').hidden = !path;
+  document.getElementById('mapwrap').hidden = path;
+  for (const t of document.querySelectorAll('.views [role="tab"]')) {
+    const on = t.dataset.view === state.view;
+    t.setAttribute('aria-selected', String(on));
+    t.tabIndex = on ? 0 : -1;
+  }
+  if (path) drawProfile();
+  else if (map) map.resize();
+  renderTown();
+  writeUrl();
+}
+
+function bindViews() {
+  const tabs = [...document.querySelectorAll('.views [role="tab"]')];
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => setView(t.dataset.view));
+    t.addEventListener('keydown', (e) => {
+      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!d) return;
+      const n = tabs[(i + d + tabs.length) % tabs.length];
+      n.focus();
+      setView(n.dataset.view);
+    });
+  });
 }
 
 main();

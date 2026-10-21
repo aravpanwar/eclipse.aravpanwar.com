@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>2 August 2027 Total Solar Eclipse | Totality Path &amp; Nearby Locations | Arav Panwar</title>
-<meta name="description" content="Every populated place inside the path of the 2 August 2027 total solar eclipse, ranked by how many seconds of totality it costs you.">
+<meta name="description" content="Every populated place inside the path of the 2 August 2027 total solar eclipse, with how long totality lasts there, local times, cloud and places to stay.">
 <link rel="canonical" href="https://eclipse.aravpanwar.com/solar-eclipse/2027-08-02/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Eclipses | Arav Panwar">
 <meta property="og:title" content="2 August 2027 Total Solar Eclipse | Totality Path &amp; Nearby Locations">
-<meta property="og:description" content="Every populated place inside the path of the 2 August 2027 total solar eclipse, ranked by how many seconds of totality it costs you.">
+<meta property="og:description" content="Every populated place inside the path of the 2 August 2027 total solar eclipse, with how long totality lasts there, local times, cloud and places to stay.">
 <meta property="og:url" content="https://eclipse.aravpanwar.com/solar-eclipse/2027-08-02/">
 <meta property="og:image" content="https://eclipse.aravpanwar.com/og.png">
 <meta property="og:image:width" content="1200">
@@ -43,39 +43,49 @@
   </nav>
 </header>
 
+<div class="views" role="tablist" aria-label="View">
+  <button type="button" role="tab" id="tab-map" data-view="map" aria-selected="true" aria-controls="mapwrap">Map</button>
+  <button type="button" role="tab" id="tab-path" data-view="path" aria-selected="false" aria-controls="pathview" tabindex="-1">Cloud view</button>
+</div>
+
 <main>
-  <section id="mapwrap" aria-label="Map of the eclipse path">
+  <section id="pathview" role="tabpanel" aria-labelledby="tab-path" hidden>
+    <div class="phead">
+      <h2 id="ptitle">Along the path, west to east</h2>
+      <span class="plegend"><span class="pl-line" aria-hidden="true"></span>Totality on the centre line
+        <span class="pl-dot" aria-hidden="true"></span>Each town</span>
+    </div>
+    <svg id="psvg" role="img" aria-label="Two charts sharing one axis, west to east. Top: totality, rising from 4 minutes 31 seconds west of Spain to 6 minutes 23 seconds in Egypt, then falling to 5 minutes 23 seconds past Somalia. Bottom: median August cloud, lowest in Egypt, Libya and Tunisia, highest in Saudi Arabia and Yemen."></svg>
+  </section>
+
+  <section id="mapwrap" role="tabpanel" aria-labelledby="tab-map">
     <div id="map"></div>
 
-    <div class="panel controls">
-      <div class="ctl">
-        <label for="radius">Radius from pin</label>
-        <output id="radiusOut" for="radius">120 km</output>
-      </div>
-      <input type="range" id="radius" min="10" max="400" step="5" value="120"
-             aria-describedby="radiusNote">
-      <div class="scale" aria-hidden="true"><span>10</span><span>400 km</span></div>
-      <p id="radiusNote" class="note">
-        Straight-line distance. 120 km along the Nile and 120 km into the
-        Western Desert are not the same journey.
-      </p>
-    </div>
-
-    <div class="panel caveat">
+    <details class="panel caveat" id="keybox" open>
+      <summary>Map key</summary>
       <div id="key" class="key" hidden></div>
-      Computed with &Delta;T&nbsp;=&nbsp;<span id="dt"></span>&nbsp;s.
-      Path limits carry 1&ndash;2 km of uncertainty from the lunar limb profile.
-    </div>
+      The path edges are accurate to about 1 to 2 km.
+    </details>
 
-    <button type="button" id="clearPin" class="panel clearpin" hidden>
-      Clear pin, show whole path
-    </button>
   </section>
 
   <section id="results" aria-label="Places in the circle">
+    <div id="town" aria-live="polite" hidden></div>
+
     <div id="summary">
       <h2 id="count">772 places</h2>
       <p id="where">across the whole path</p>
+    </div>
+
+    <div class="controls">
+      <p id="pinHint" class="hint"><svg class="pinicon" width="14" height="18" viewBox="0 0 14 18" aria-hidden="true"><path fill="currentColor" d="M7 0a7 7 0 0 0-7 7c0 5 7 11 7 11s7-6 7-11a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 7 4.5a2.5 2.5 0 0 1 0 5z"/></svg><span><b>Drop a pin</b> by clicking or
+        tapping the map. The list then shows only the places near it.</span></p>
+      <div class="ctl">
+        <label for="radius">Straight-line distance from the pin</label>
+        <output id="radiusOut" for="radius">120 km</output>
+        <button type="button" id="clearPin" class="clearpin" hidden>Clear pin</button>
+      </div>
+      <input type="range" id="radius" min="10" max="400" step="5" value="120">
     </div>
 
     <div id="searchbar" role="search">
@@ -90,7 +100,7 @@
 
     <div id="sortbar" role="group" aria-label="Sort by">
       <span class="sortlabel">Sort</span>
-      <button type="button" data-sort="s" class="active" aria-pressed="true">seconds lost</button>
+      <button type="button" data-sort="s" class="active" aria-pressed="true">totality</button>
       <button type="button" data-sort="w" aria-pressed="false">cloud</button>
       <button type="button" data-sort="l" aria-pressed="false">stays</button>
       <button type="button" data-sort="p" aria-pressed="false">population</button>
