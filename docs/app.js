@@ -284,6 +284,10 @@ function render() {
     rows.setAttribute('aria-rowcount', '0');
     drawPlaces(list);
     drawCircle();
+    // An empty list must not stop the card and the chart marker: a town
+    // picked on the chart while a search matches nothing is still picked.
+    renderTown();
+    profileMarks();
     return;
   }
 
