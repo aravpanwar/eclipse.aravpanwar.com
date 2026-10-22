@@ -14,7 +14,7 @@
 <meta property="og:image" content="https://eclipse.aravpanwar.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Map of the path of totality from Spain to Somalia, with the 772 places inside it marked.">
+<meta property="og:image:alt" content="Map of the path of totality from Spain to Somalia, with the 770 places inside it marked.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -53,7 +53,8 @@
 <h2>What this is</h2>
 <p>Every populated place inside the path of the total solar eclipse of
 2 August 2027, with how long totality lasts there and what that costs against
-the longest totality anywhere on the path.</p>
+the longest totality anywhere on the path. Places within 100 km outside the
+path are listed too, with how much of the sun is covered there.</p>
 
 <h2>Eclipse geometry</h2>
 <p>Local circumstances are computed from the Besselian elements published by
@@ -108,7 +109,7 @@ anything downstream is trusted.</p>
 <tr><td>Sun altitude at greatest eclipse</td><td class="n">81.7&deg;</td><td class="n">81.69&deg;</td></tr>
 <tr><td>Duration at greatest eclipse</td><td class="n">6m 23s</td><td class="n">382.5 s</td></tr>
 <tr><td>Luxor</td><td class="n">6m 20s</td><td class="n">380.4 s</td></tr>
-<tr><td>Countries crossed</td><td class="n">9</td><td class="n">9</td></tr>
+<tr><td>Countries crossed</td><td class="n">9 and Gibraltar</td><td class="n">9 and Gibraltar</td></tr>
 </table></div>
 <p>Sudan appears in some lists of countries this eclipse crosses. It does not:
 where the path is at Sudan&rsquo;s longitudes the centre line is near
@@ -116,13 +117,34 @@ where the path is at Sudan&rsquo;s longitudes the centre line is near
 
 <h2>Places</h2>
 <p>From GeoNames <code>cities1000</code>, filtered to populated places and
-administrative seats. Coverage is uneven by country: 118 Spanish places inside
+administrative seats. Sections of a town are left out, since GeoNames lists
+them as places of their own and they would list one town twice. Every country
+is searched, and the eclipse calculation decides which places are in totality.
+Coverage is uneven by country: 117 Spanish places inside
 the path against 18 Libyan and 8 Somali. That is a fact about who edits
 GeoNames, not about where towns are. A place missing here is missing from
 GeoNames.</p>
 <p>Population figures come from GeoNames as published and are not always the
 town: for some Egyptian entries they are the surrounding district, which is why
 Esna appears larger than Luxor.</p>
+
+<h2 id="outside">Towns outside the path</h2>
+<p>Every place in the same GeoNames list that is within 100 km of the edge of
+totality but not inside it: 1,053 places in 13 countries. They see a partial
+eclipse only. They are on the map as hollow dots and join the list when you
+search or drop a pin. They have no cloud, stays or ranking, and are in a
+CSV of their own.</p>
+<p>For each one the site shows how much of the sun is covered at the peak, and
+the local time of the peak. The share covered is the part of the sun&rsquo;s
+disc hidden by the Moon, by area. At 99% the sky dims, but the day stays
+bright and the corona does not appear: only totality shows it.</p>
+<p>Two distances are given: to the nearest point on the edge of totality, and
+to the nearest point on the centre line, where totality is longest. Both are
+straight-line distances, measured to the path as drawn on the map, and are not
+road distances.</p>
+<p>A partial eclipse is never safe to look at without eclipse glasses or a
+proper solar filter, even at 99%. Only totality itself is safe to look at with
+the naked eye.</p>
 
 <h2>Cloud</h2>
 <p>ERA5 total cloud cover, 1985&ndash;2024, sampled at each place&rsquo;s local
@@ -174,6 +196,7 @@ ministry count.</p>
   <tr><td>Saudi Arabia</td><td class="n">1,834</td><td class="n">3,020</td><td class="n">61%</td><td>medium</td><td><a href="https://www.stats.gov.sa/documents/d/guest/tourism-establishments-statistics-q2-of-2026-en-pdf">GASTAT</a>, Q2 2026</td></tr>
   <tr><td>Yemen</td><td class="n">672</td><td class="n">none</td><td class="n"></td><td>unknown</td><td>No official count since the war began; the last is from 2010.</td></tr>
   <tr><td>Somalia</td><td class="n">163</td><td class="n">none</td><td class="n"></td><td>unknown</td><td>No official hotel count found.</td></tr>
+  <tr><td>Gibraltar</td><td class="n">6</td><td class="n">5</td><td class="n">120%</td><td>high</td><td><a href="https://www.gibraltar.gov.gi/uploads/statistics/2025/Reports/Hotel%20Occupancy%20Survey%202025.pdf">Statistics Office</a>, 2025</td></tr>
 </table></div>
 <p>Coverage is high when OpenStreetMap has at least 70% as many hotels as the
 official count, medium from 35% to 70%, low below 35%, and unknown where no
@@ -187,6 +210,7 @@ defines a hotel a little differently:</p>
   <li><b>Tunisia.</b> Hotels, classified 1 to 5 stars (557) plus unclassified hotels. All accommodation types: 895. Registered, not operating: many registered hotels are reported closed.</li>
   <li><b>Egypt.</b> Hotels and similar establishments (ISIC 5510), not split into land hotels, tourist villages and Nile cruise boats. Nothing newer found. The same 2022 submission nearly doubles Egypt&#x27;s room count from 2021, so its quality is doubtful.</li>
   <li><b>Saudi Arabia.</b> Licensed hotels. Serviced apartments and other licensed facilities (3,258) are excluded. Rising fast as licensing expands (2,527 a year earlier), so it measures licensing as well as hotels.</li>
+  <li><b>Gibraltar.</b> Hotels reporting to the Hotel Occupancy Survey: Bristol, Holiday Inn Express, O&#x27;Callaghan Eliott, Rock and Sunborn. The Emile Youth Hostel, also in the survey, is not counted. A list of the hotels in the survey, not a register: hotels that do not report are left out, such as the Caleta Hotel since January 2022.</li>
 </ul>
 <p>The rating is national. It cannot tell whether the mapped hotels sit in the
 cities or are spread evenly, so a small town&rsquo;s count can still miss
@@ -230,11 +254,12 @@ its UK point-of-view edition to match the source of the advisories.</p>
   <li>UK FCDO, Open Government Licence v3.0.</li>
   <li>Natural Earth country outlines, public domain.</li>
 </ul>
-<p>The full dataset is on the map page as a CSV download. Corrections are
+<p>The full dataset is on the map page as two CSV downloads: the places in
+totality, and the places within 100 km outside the path. Corrections are
 visible in the git history.</p>
 
 <h2>Licence</h2>
-<p>The dataset is <a href="https://opendatacommons.org/licenses/odbl/1-0/">ODbL
+<p>The dataset, both CSV files included, is <a href="https://opendatacommons.org/licenses/odbl/1-0/">ODbL
 1.0</a>. Use it, change it, build on it, including commercially; if you publish
 a database derived from it, publish that under ODbL too and carry the
 attributions above. It is ODbL rather than something more permissive because

@@ -135,7 +135,8 @@ def card():
     d.text((x, py + 84 * S), 'Total solar eclipse, 2 August 2027',
            font=font('regular', 27 * S), fill='#4a453d')
     n = len(places['places'])
-    countries = len(places['advisories'])
+    # Advisories also cover countries with towns outside the path only.
+    countries = len({p['c'] for p in places['places']})
     d.text((x, py + 136 * S),
            f'{n} places in {countries} countries, ranked by seconds of totality lost',
            font=font('mono', 15 * S), fill=DIM)

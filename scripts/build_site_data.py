@@ -11,7 +11,8 @@
 Short keys and rounded numbers: the full CSV stays the download, this is what
 the page loads on every visit.
 
-Local clock times of totality are worked out here, not in the browser, so
+Local clock times of totality, and of the peak at towns outside the path,
+are worked out here, not in the browser, so
 every visitor sees the same times whatever their browser's time-zone data.
 That needs a current tz database: install tzdata 2026.3 or later.
 """
@@ -107,4 +108,34 @@ dest = OUT / f'{EVENT}-places.json'
 dest.write_text(json.dumps(payload, separators=(',', ':'), ensure_ascii=False),
                 encoding='utf-8')
 print(f'places  {len(places)}')
+print(f'wrote   {dest.relative_to(ROOT)} ({dest.stat().st_size // 1024} KB)')
+
+outside_src = json.loads((ROOT / 'data' / 'out' / f'{EVENT}-outside.json')
+                         .read_text(encoding='utf-8'))
+outside = []
+for p in outside_src['places']:
+    mid = (DAY + timedelta(hours=p['max_eclipse_ut_hours'])).astimezone(ZoneInfo(p['timezone']))
+    outside.append({
+        'i': p['geonameid'],
+        'n': p['name'],
+        'c': p['country_code'],
+        'y': round(p['latitude'], 4),
+        'x': round(p['longitude'], 4),
+        'p': p['population'],
+        'v': round(p['obscuration_percent'], 1),
+        'm': mid.strftime('%H:%M'),
+        'o': int(mid.utcoffset().total_seconds() // 60),
+        'a': round(p['sun_altitude_deg'], 1),
+        'e': round(p['km_to_edge_of_totality'], 1),
+        'k': round(p['km_to_centre_line'], 1),
+    })
+outside.sort(key=lambda r: r['e'])
+
+dest = OUT / f'{EVENT}-outside.json'
+dest.write_text(json.dumps({
+    'range_km': outside_src['range_km'],
+    'countries': outside_src['countries'],
+    'places': outside,
+}, separators=(',', ':'), ensure_ascii=False), encoding='utf-8')
+print(f'outside {len(outside)}')
 print(f'wrote   {dest.relative_to(ROOT)} ({dest.stat().st_size // 1024} KB)')

@@ -26,6 +26,9 @@ const state = {
   query: '',
   closed: new Set(),  // advisories put away, as advisoryId() strings
   coverage: {},       // country code -> stays coverage, from build_coverage.py
+  outside: [],        // towns within 100 km outside the path: partial only
+  outsideNames: {},   // country code -> name, for countries only outside towns have
+  outsideRange: 100,  // km, from the outside data file
 };
 
 /* ---------- geometry ---------- */
@@ -102,6 +105,21 @@ function inCircle() {
   return all.filter((p) =>
     haversine(state.pin.lat, state.pin.lon, p.y, p.x) <= state.radius);
 }
+
+// Towns inside the path and towns just outside it share one id space
+// (GeoNames ids), so a selection or a ?place= link can point at either.
+function findPlace(id) {
+  return state.data.places.find((q) => q.i === id) || state.outside.find((q) => q.i === id);
+}
+
+function outsideInCircle() {
+  if (!state.pin) return state.outside;
+  return state.outside.filter((p) =>
+    haversine(state.pin.lat, state.pin.lon, p.y, p.x) <= state.radius);
+}
+
+const countryName = (cc) => (state.data.advisories[cc] || {}).country || state.outsideNames[cc] || cc;
+const fmtOff = (o) => `UTC${o < 0 ? '−' : '+'}${Math.floor(Math.abs(o) / 60)}${Math.abs(o) % 60 ? `:${String(Math.abs(o) % 60).padStart(2, '0')}` : ''}`;
 
 function matching(list) {
   const q = purify(state.query);
@@ -224,7 +242,9 @@ function renderKey() {
     <div class="keyrow"><span class="sw centre" aria-hidden="true"></span>
       <span>Centre line</span></div>
     <div class="keyrow"><span class="sw dot" aria-hidden="true"></span>
-      <span>Town, sized by population</span></div>`;
+      <span>Town in totality, sized by population</span></div>
+    <div class="keyrow"><span class="sw dot hollow" aria-hidden="true"></span>
+      <span>Town within ${state.outsideRange} km outside the path: partial eclipse only</span></div>`;
   if (labels.whole.size) {
     html += `<div class="keyrow"><span class="sw whole" aria-hidden="true"></span>
       <span>FCDO ${[...labels.whole].join('; ')}, shown in red.</span></div>`;
@@ -237,6 +257,34 @@ function renderKey() {
   const key = document.getElementById('key');
   key.innerHTML = html;
   key.hidden = !html;
+}
+
+function outsideGroupHtml(outs, focusId) {
+  let html = `<div class="country out" data-cc="OUT">
+    <div class="group" role="rowgroup"><div class="name"><b>Outside the path of totality</b>
+      <span class="n">${outs.length}</span></div>
+    <p class="outsub">Partial eclipse only. Distance is straight-line to the
+      edge of totality, not a road distance.</p>
+    <div class="head" role="row">
+      <div role="columnheader">Place</div>
+      <div class="num" role="columnheader" title="Local time of the most coverage">Peak</div>
+      <div class="num" role="columnheader" title="Share of the sun covered at its peak">Covered</div>
+      <div class="num" role="columnheader" title="Straight-line distance to the edge of totality">To totality</div></div></div>`;
+  for (const p of outs) {
+    const sel = p.i === state.selected ? ' sel' : '';
+    const tab = p.i === focusId ? 0 : -1;
+    const label = `${p.n}, ${countryName(p.c)}. Outside the path of totality: `
+      + `${p.v.toFixed(1)}% of the sun covered at ${p.m} local time, `
+      + `${Math.round(p.e)} km in a straight line to the edge of totality.`;
+    html += `<div class="row out${sel}" data-id="${p.i}" tabindex="${tab}"
+      role="row" aria-selected="${p.i === state.selected}" aria-label="${esc(label)}">
+      <div class="nm" role="cell">${esc(p.n)} <span class="cc">${p.c}</span></div>
+      <div class="num" role="cell">${p.m}</div>
+      <div class="num dur" role="cell">${p.v.toFixed(1)}%</div>
+      <div class="num" role="cell">${Math.round(p.e)} km</div>
+    </div>`;
+  }
+  return html + '</div>';
 }
 
 function emptyMessage() {
@@ -254,17 +302,24 @@ function emptyMessage() {
       elsewhere in the path: clear the pin to see
       ${elsewhere === 1 ? 'it' : 'them'}.`;
   }
-  return `No place matching “${said}” in the path. Only places inside the path
-    of totality are listed, under their GeoNames spelling.`;
+  return `No place matching “${said}”. Towns inside the path of totality and
+    within ${state.outsideRange} km outside it are listed, under their GeoNames spelling.`;
 }
 
 function render() {
   const list = sorted(matching(inCircle()));
+  // Outside towns join the list only when they answer something: a search
+  // or a pin. The whole-path view stays about totality.
+  const asked = state.query.trim() || state.pin;
+  const outs = asked
+    ? matching(outsideInCircle()).slice().sort((a, b) => a.e - b.e)
+    : [];
   const rows = document.getElementById('rows');
   // The selected row keeps the tab stop; otherwise the first row does.
-  const focusId = (state.selected && list.some((p) => p.i === state.selected))
+  const both = list.concat(outs);
+  const focusId = (state.selected && both.some((p) => p.i === state.selected))
     ? state.selected
-    : (list[0] ? list[0].i : null);
+    : (both[0] ? both[0].i : null);
 
   document.getElementById('count').textContent =
     `${list.length} place${list.length === 1 ? '' : 's'}`;
@@ -279,10 +334,15 @@ function render() {
     : scope;
   announce();
 
-  if (!list.length) {
+  if (outs.length) {
+    document.getElementById('count').textContent =
+      `${list.length} in totality, ${outs.length} outside`;
+  }
+
+  if (!list.length && !outs.length) {
     rows.innerHTML = `<p class="empty">${emptyMessage()}</p>`;
     rows.setAttribute('aria-rowcount', '0');
-    drawPlaces(list);
+    drawPlaces(list, outs);
     drawCircle();
     // An empty list must not stop the card and the chart marker: a town
     // picked on the chart while a search matches nothing is still picked.
@@ -328,9 +388,18 @@ function render() {
     }
     html += '</div>';
   }
+  if (!list.length) {
+    html += `<p class="empty small">No town in the path of totality matches.</p>`;
+  }
+  if (outs.length) html += outsideGroupHtml(outs, focusId);
+  if (!asked && state.outside.length) {
+    html += `<p class="outnote">${state.outside.length.toLocaleString('en-GB')} towns
+      within ${state.outsideRange} km outside the path are on the map as hollow
+      dots. They see a partial eclipse only. Search for one, or drop a pin, to list them.</p>`;
+  }
   rows.innerHTML = html;
-  rows.setAttribute('aria-rowcount', String(list.length));
-  drawPlaces(list);
+  rows.setAttribute('aria-rowcount', String(list.length + outs.length));
+  drawPlaces(list, outs);
   drawCircle();
   renderTown();
   profileMarks();
@@ -469,6 +538,24 @@ function initMap() {
       0, 2.5 + pad, 20000, 3.5 + pad, 100000, 5 + pad,
       500000, 7.5 + pad, 2000000, 10 + pad,
     ];
+    // Towns outside the path: hollow, under the filled dots of the towns in
+    // totality, so the two never read as the same thing.
+    map.addSource('outside', { type: 'geojson', data: emptyFC() });
+    map.addLayer({
+      id: 'outside', type: 'circle', source: 'outside',
+      paint: {
+        'circle-radius': dotRadius(0),
+        'circle-color': '#fffefb',
+        'circle-opacity': 0.75,
+        'circle-stroke-width': ['case', ['==', ['get', 'sel'], true], 2.5, 1.2],
+        'circle-stroke-color': ['case', ['==', ['get', 'sel'], true], '#b5540e', '#3d382f'],
+      },
+    });
+    map.addLayer({
+      id: 'outside-hit', type: 'circle', source: 'outside',
+      paint: { 'circle-radius': dotRadius(5), 'circle-opacity': 0 },
+    });
+
     map.addSource('places', { type: 'geojson', data: emptyFC() });
     map.addLayer({
       id: 'places', type: 'circle', source: 'places',
@@ -489,30 +576,31 @@ function initMap() {
       paint: { 'circle-radius': dotRadius(5), 'circle-opacity': 0 },
     });
 
-    map.on('click', 'places-hit', (e) => {
-      hideTip();
-      selectPlace(nearest(e).properties.id, false);
-    });
-    map.on('mousemove', 'places-hit', (e) => {
-      map.getCanvas().style.cursor = 'pointer';
-      showTip(Number(nearest(e).properties.id));
-    });
-    map.on('mouseleave', 'places-hit', () => {
-      map.getCanvas().style.cursor = '';
-      hideTip();
-    });
-    // Clicking bare map drops the pin there.
+    // A town in totality wins over an outside town under the same pointer.
+    const HIT = ['places-hit', 'outside-hit'];
+    const under = (point) => {
+      const inside = map.queryRenderedFeatures(point, { layers: ['places-hit'] });
+      const fs = inside.length ? inside : map.queryRenderedFeatures(point, { layers: ['outside-hit'] });
+      return fs.length ? Number(nearest({ features: fs, point }).properties.id) : null;
+    };
     map.on('click', (e) => {
-      const hit = map.queryRenderedFeatures(e.point, { layers: ['places-hit'] });
-      if (hit.length) return;
+      const id = under(e.point);
+      if (id) { hideTip(); selectPlace(id, false); return; }
+      // Clicking bare map drops the pin there.
       setPin(e.lngLat.lat, e.lngLat.lng);
     });
+    map.on('mousemove', (e) => {
+      const id = under(e.point);
+      map.getCanvas().style.cursor = id ? 'pointer' : '';
+      if (id) showTip(id); else hideTip();
+    });
+    map.on('mouseout', () => hideTip());
 
     render();
 
     // A shared link to a place (?place=) opens on that place: map centred,
     // its card open and, where the list sits beside the map, its row in view.
-    const p = state.data.places.find((q) => q.i === state.selected);
+    const p = findPlace(state.selected);
     if (p) {
       centreOn(p, false);
       renderTown();
@@ -552,8 +640,19 @@ function openOnCountry(cc) {
 
 const emptyFC = () => ({ type: 'FeatureCollection', features: [] });
 
-function drawPlaces(visible) {
+function drawPlaces(visible, outs) {
   if (!map || !map.getSource('places')) return;
+  // Every outside town shows on the whole-path view; a search or a pin
+  // narrows them like the towns in totality.
+  const outShown = (state.query.trim() || state.pin) ? (outs || []) : state.outside;
+  map.getSource('outside').setData({
+    type: 'FeatureCollection',
+    features: outShown.map((p) => ({
+      type: 'Feature',
+      geometry: { type: 'Point', coordinates: [p.x, p.y] },
+      properties: { id: p.i, pop: p.p, sel: p.i === state.selected },
+    })),
+  });
   const shown = new Set(visible.map((p) => p.i));
   const features = state.data.places
     .filter((p) => shown.has(p.i))
@@ -606,7 +705,7 @@ const CALM = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 function selectPlace(id, fly) {
   state.selected = Number(id) === state.selected ? null : Number(id);
-  const p = state.data.places.find((q) => q.i === state.selected);
+  const p = findPlace(state.selected);
   if (p) {
     renderTown();
     if (fly) centreOn(p, true);
@@ -645,11 +744,14 @@ function showTip(id) {
   if (id === tipId) return;
   tipId = id;
   // The selected place already has its card open.
-  const p = id === state.selected ? null : state.data.places.find((q) => q.i === id);
+  const p = id === state.selected ? null : findPlace(id);
   if (!p) {
     if (tip) tip.remove();
     return;
   }
+  const text = p.v != null
+    ? `${p.v.toFixed(1)}% covered, ${Math.round(p.e)} km to totality`
+    : `${p.t0 ? `${p.t0}, ` : ''}${mmss(p.d)}`;
   if (!tip) {
     tip = new maplibregl.Popup({
       closeButton: false, closeOnClick: false, anchor: 'bottom',
@@ -657,7 +759,7 @@ function showTip(id) {
     });
   }
   tip.setLngLat([p.x, p.y])
-    .setHTML(`<b>${esc(p.n)}</b> <span>${p.t0 ? `${p.t0}, ` : ''}${mmss(p.d)}</span>`)
+    .setHTML(`<b>${esc(p.n)}</b> <span>${text}</span>`)
     .addTo(map);
 }
 
@@ -673,11 +775,19 @@ document.addEventListener('keydown', (e) => {
 
 const TC = (n, v) => `<div><dt>${n}</dt><dd>${v}</dd></div>`;
 
+// The FCDO line on a town card, or nothing when the country has no advisory.
+function advLine(adv, country, after) {
+  if (!adv || !adv.worst || !adv.label) return '';
+  return `<p class="tc-adv">The UK FCDO ${esc(adv.label.toLowerCase()
+    .replace('the whole country', country).replace('the country', country))}. ${after}</p>`;
+}
+
 // The selected place, in the column beside the map rather than over it.
 function renderTown() {
   const el = document.getElementById('town');
-  const p = state.selected && state.data.places.find((q) => q.i === state.selected);
+  const p = state.selected && findPlace(state.selected);
   if (!p) { el.hidden = true; el.innerHTML = ''; return; }
+  if (p.v != null) { renderOutsideTown(el, p); return; }
   const adv = state.data.advisories[p.c];
   const country = adv ? adv.country : p.c;
   el.innerHTML = `
@@ -695,12 +805,42 @@ function renderTown() {
       ${TC('From centre line', `${fmtKm(p.k)} km`)}${TC('Stays, 25 km', p.l ? `~${p.l}` : 'none')}
       ${TC('Stays, 80 km', p.L ? `~${p.L}` : 'none')}
     </dl>
-    ${adv && adv.worst && adv.label ? `<p class="tc-adv">The UK FCDO ${esc(adv.label.toLowerCase()
-      .replace('the whole country', country).replace('the country', country))}. The named areas are under ${esc(country)} in the list.</p>` : ''}`;
+    ${advLine(adv, country, `The named areas are under ${esc(country)} in the list.`)}`;
   el.hidden = false;
   el.querySelector('.tc-close').onclick = () => selectPlace(p.i, false);
   const back = el.querySelector('.tc-map');
   if (back) back.onclick = () => { setView('map'); centreOn(p, false); };
+}
+
+// A town outside the path: how much of the sun is covered and when, how far
+// totality is, and the one safety fact a partial eclipse needs.
+function renderOutsideTown(el, p) {
+  const adv = state.data.advisories[p.c];
+  // Outside towns have no country group in the list to name the areas, so
+  // the line points at the FCDO page instead.
+  const named = adv ? `<a href="${esc(adv.url)}" target="_blank" rel="noopener">Read the FCDO advice</a>.` : '';
+  el.innerHTML = `
+    <div class="tc-head"><h2>${esc(p.n)}</h2><span class="tc-cc">${esc(countryName(p.c))}</span>
+      <button type="button" class="tc-close" aria-label="Close ${esc(p.n)}">×</button></div>
+    <p class="tc-kind">Outside the path of totality: a partial eclipse here</p>
+    <div class="tc-main">
+      <div><div class="tc-big">${p.v.toFixed(1)}%</div>
+        <div class="tc-sub">of the sun covered at its peak</div></div>
+      <div><div class="tc-time">${p.m}</div>
+        <div class="tc-sub">local time, ${fmtOff(p.o)}</div></div>
+    </div>
+    <dl class="tc-facts">
+      ${TC('To the edge of totality', `${fmtKm(p.e)} km`)}
+      ${TC('To the centre line', `${fmtKm(p.k)} km`)}
+      ${TC('Sun altitude', `${p.a.toFixed(0)}°`)}
+    </dl>
+    <p class="tc-note">Straight-line distances, not road distances. Totality is
+      longest along the centre line.</p>
+    <p class="tc-safe">${WARN_ICON}<span>Never look at a partial eclipse without
+      eclipse glasses, even at 99%. Only totality itself is safe to look at.</span></p>
+    ${advLine(adv, countryName(p.c), named)}`;
+  el.hidden = false;
+  el.querySelector('.tc-close').onclick = () => selectPlace(p.i, false);
 }
 
 function setPin(lat, lon) {
@@ -874,6 +1014,16 @@ async function main() {
     p.f = purify(p.n);
     addTimes(p);
   }
+  // Optional: without it the site is exactly as before.
+  try {
+    const outside = await getJson(`/data/${EVENT}-outside.json`);
+    state.outside = outside.places;
+    state.outsideNames = outside.countries;
+    state.outsideRange = outside.range_km;
+    for (const p of state.outside) p.f = purify(p.n);
+  } catch (e) {
+    console.error(e);
+  }
   loadClosed();
   renderKey();
   // On a phone the key would push the list below the fold; it starts closed.
@@ -882,11 +1032,13 @@ async function main() {
   if (STACKED.matches) document.getElementById('keybox').open = false;
   window.addEventListener('resize', () => { if (state.view === 'path') drawProfile(); });
 
+  // Countries with a town in totality. The advisories also cover countries
+  // that only have towns outside the path, so they are not counted here.
   document.getElementById('stats').innerHTML =
     `<span>${state.data.places.length} places</span>
-     <span>${Object.keys(state.data.advisories).length} countries</span>`;
-  document.querySelector('nav a[download]').href =
-    `/data/${EVENT}-places.csv`;
+     <span>${new Set(state.data.places.map((p) => p.c)).size} countries</span>`;
+  document.getElementById('csvIn').href = `/data/${EVENT}-places.csv`;
+  document.getElementById('csvOut').href = `/data/${EVENT}-outside.csv`;
 
   bind();
   if (state.pin) document.getElementById('clearPin').hidden = false;
@@ -927,7 +1079,8 @@ function rampColour(stops, f) {
 }
 
 // Country spans along the axis. Two countries that share most of a span, as
-// Spain and Morocco do across the strait, share one label.
+// Spain and Morocco do across the strait, share one label. A country with a
+// single town, Gibraltar, has a span of no width and joins the one it sits in.
 function countrySpans() {
   const by = new Map();
   for (const p of state.data.places) {
@@ -942,7 +1095,7 @@ function countrySpans() {
     const prev = out[out.length - 1];
     if (prev && prev.hi > s.lo) {
       const overlap = Math.min(prev.hi, s.hi) - s.lo;
-      if (overlap > 0.5 * Math.min(prev.hi - prev.lo, s.hi - s.lo)) {
+      if (overlap >= 0.5 * Math.min(prev.hi - prev.lo, s.hi - s.lo)) {
         prev.cc.push(...s.cc); prev.ws.push(...s.ws); prev.hi = Math.max(prev.hi, s.hi); continue;
       }
       const mid = (s.lo + prev.hi) / 2;

@@ -127,11 +127,12 @@ def extract(pbf_path: str | Path) -> list[Lodging]:
 
 
 # GeoNames country code -> Geofabrik extract basename. Saudi Arabia has no
-# standalone extract; it is inside the GCC states region.
+# standalone extract; it is inside the GCC states region. Gibraltar is inside
+# the Spain extract.
 EXTRACTS = {
     'EG': 'egypt', 'LY': 'libya', 'TN': 'tunisia', 'DZ': 'algeria',
     'MA': 'morocco', 'SO': 'somalia', 'YE': 'yemen', 'ES': 'spain',
-    'SA': 'gcc-states',
+    'SA': 'gcc-states', 'GI': 'spain',
 }
 
 

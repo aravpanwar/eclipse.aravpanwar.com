@@ -34,18 +34,33 @@
   "issuer_short": "FCDO",
   "handling": "Attached to the country group, never to individual rows. Nothing is hidden or reordered because of an advisory: a ranking that optimises for duration, clear sky and low crowds will surface places under serious advisories at the top, because on those axes they genuinely win.",
   "by_country": {
-   "ES": {
-    "country_code": "ES",
-    "country": "Spain",
+   "PT": {
+    "country_code": "PT",
+    "country": "Portugal",
     "alert_status": [],
     "labels": [],
     "worst": null,
-    "reviewed_at": "2026-08-12T15:46:24Z",
-    "updated_at": "2026-08-12T16:46:24+01:00",
-    "checked_at": "2026-10-22T04:55:52Z",
+    "reviewed_at": "2026-08-11T09:21:44Z",
+    "updated_at": "2026-08-11T10:21:44+01:00",
+    "checked_at": "2026-10-22T05:22:14Z",
     "issuer": "UK Foreign, Commonwealth & Development Office",
     "issuer_short": "FCDO",
-    "url": "https://www.gov.uk/foreign-travel-advice/spain",
+    "url": "https://www.gov.uk/foreign-travel-advice/portugal",
+    "unknown_statuses": [],
+    "regions": []
+   },
+   "GI": {
+    "country_code": "GI",
+    "country": "Gibraltar",
+    "alert_status": [],
+    "labels": [],
+    "worst": null,
+    "reviewed_at": "2026-07-14T08:32:42Z",
+    "updated_at": "2026-07-14T09:32:42+01:00",
+    "checked_at": "2026-10-22T05:22:15Z",
+    "issuer": "UK Foreign, Commonwealth & Development Office",
+    "issuer_short": "FCDO",
+    "url": "https://www.gov.uk/foreign-travel-advice/gibraltar",
     "unknown_statuses": [],
     "regions": []
    },
@@ -57,7 +72,7 @@
     "worst": null,
     "reviewed_at": "2026-08-19T11:00:36Z",
     "updated_at": "2026-08-19T12:00:36+01:00",
-    "checked_at": "2026-10-22T04:55:53Z",
+    "checked_at": "2026-10-22T05:22:15Z",
     "issuer": "UK Foreign, Commonwealth & Development Office",
     "issuer_short": "FCDO",
     "url": "https://www.gov.uk/foreign-travel-advice/morocco",
@@ -66,6 +81,21 @@
      "Western Sahara",
      "Morocco-Algeria border"
     ]
+   },
+   "ES": {
+    "country_code": "ES",
+    "country": "Spain",
+    "alert_status": [],
+    "labels": [],
+    "worst": null,
+    "reviewed_at": "2026-08-12T15:46:24Z",
+    "updated_at": "2026-08-12T16:46:24+01:00",
+    "checked_at": "2026-10-22T05:22:16Z",
+    "issuer": "UK Foreign, Commonwealth & Development Office",
+    "issuer_short": "FCDO",
+    "url": "https://www.gov.uk/foreign-travel-advice/spain",
+    "unknown_statuses": [],
+    "regions": []
    },
    "DZ": {
     "country_code": "DZ",
@@ -79,7 +109,7 @@
     "worst": "avoid_all_travel_to_parts",
     "reviewed_at": "2026-09-25T15:01:59Z",
     "updated_at": "2026-09-25T16:01:59+01:00",
-    "checked_at": "2026-10-22T04:55:54Z",
+    "checked_at": "2026-10-22T05:22:17Z",
     "issuer": "UK Foreign, Commonwealth & Development Office",
     "issuer_short": "FCDO",
     "url": "https://www.gov.uk/foreign-travel-advice/algeria",
@@ -98,7 +128,7 @@
     "worst": "avoid_all_travel_to_parts",
     "reviewed_at": "2026-07-24T16:07:53Z",
     "updated_at": "2026-07-24T17:07:53+01:00",
-    "checked_at": "2026-10-22T04:55:54Z",
+    "checked_at": "2026-10-22T05:22:17Z",
     "issuer": "UK Foreign, Commonwealth & Development Office",
     "issuer_short": "FCDO",
     "url": "https://www.gov.uk/foreign-travel-advice/tunisia",
@@ -107,6 +137,36 @@
      "Western Tunisia, including the Tunisia-Algeria border",
      "Southern Tunisia, including the Tunisia-Libya border"
     ]
+   },
+   "IT": {
+    "country_code": "IT",
+    "country": "Italy",
+    "alert_status": [],
+    "labels": [],
+    "worst": null,
+    "reviewed_at": "2026-10-21T10:01:07Z",
+    "updated_at": "2026-10-21T11:01:07+01:00",
+    "checked_at": "2026-10-22T05:22:18Z",
+    "issuer": "UK Foreign, Commonwealth & Development Office",
+    "issuer_short": "FCDO",
+    "url": "https://www.gov.uk/foreign-travel-advice/italy",
+    "unknown_statuses": [],
+    "regions": []
+   },
+   "MT": {
+    "country_code": "MT",
+    "country": "Malta",
+    "alert_status": [],
+    "labels": [],
+    "worst": null,
+    "reviewed_at": "2026-08-11T09:20:07Z",
+    "updated_at": "2026-08-11T10:20:07+01:00",
+    "checked_at": "2026-10-22T05:22:19Z",
+    "issuer": "UK Foreign, Commonwealth & Development Office",
+    "issuer_short": "FCDO",
+    "url": "https://www.gov.uk/foreign-travel-advice/malta",
+    "unknown_statuses": [],
+    "regions": []
    },
    "LY": {
     "country_code": "LY",
@@ -122,7 +182,7 @@
     "worst": "avoid_all_travel_to_parts",
     "reviewed_at": "2026-07-21T09:00:09Z",
     "updated_at": "2026-07-21T10:00:09+01:00",
-    "checked_at": "2026-10-22T04:55:55Z",
+    "checked_at": "2026-10-22T05:22:19Z",
     "issuer": "UK Foreign, Commonwealth & Development Office",
     "issuer_short": "FCDO",
     "url": "https://www.gov.uk/foreign-travel-advice/libya",
@@ -147,7 +207,7 @@
     "worst": "avoid_all_travel_to_parts",
     "reviewed_at": "2026-08-04T10:10:57Z",
     "updated_at": "2026-08-04T11:10:57+01:00",
-    "checked_at": "2026-10-22T04:55:56Z",
+    "checked_at": "2026-10-22T05:22:20Z",
     "issuer": "UK Foreign, Commonwealth & Development Office",
     "issuer_short": "FCDO",
     "url": "https://www.gov.uk/foreign-travel-advice/egypt",
@@ -159,6 +219,29 @@
      "Eastern part of Ismailiyah Governorate",
      "Western Desert",
      "Hala’ib Triangle and Bir Tawil Trapezoid"
+    ]
+   },
+   "SD": {
+    "country_code": "SD",
+    "country": "Sudan",
+    "alert_status": [
+     "avoid_all_travel_to_parts"
+    ],
+    "labels": [
+     "Advises against all travel to parts of the country"
+    ],
+    "worst": "avoid_all_travel_to_parts",
+    "reviewed_at": "2026-05-11T15:07:13Z",
+    "updated_at": "2026-05-11T16:07:13+01:00",
+    "checked_at": "2026-10-22T05:22:20Z",
+    "issuer": "UK Foreign, Commonwealth & Development Office",
+    "issuer_short": "FCDO",
+    "url": "https://www.gov.uk/foreign-travel-advice/sudan",
+    "unknown_statuses": [],
+    "regions": [
+     "Travelling to Saudi Arabia from Port Sudan",
+     "Leaving Sudan by a land border",
+     "Sudan-Egypt border"
     ]
    },
    "SA": {
@@ -175,7 +258,7 @@
     "worst": "avoid_all_travel_to_parts",
     "reviewed_at": "2026-10-21T11:35:47Z",
     "updated_at": "2026-10-21T12:35:47+01:00",
-    "checked_at": "2026-10-22T04:55:57Z",
+    "checked_at": "2026-10-22T05:22:21Z",
     "issuer": "UK Foreign, Commonwealth & Development Office",
     "issuer_short": "FCDO",
     "url": "https://www.gov.uk/foreign-travel-advice/saudi-arabia",
@@ -197,7 +280,7 @@
     "worst": "avoid_all_travel_to_whole_country",
     "reviewed_at": "2026-07-31T09:35:27Z",
     "updated_at": "2026-07-31T10:35:27+01:00",
-    "checked_at": "2026-10-22T04:55:58Z",
+    "checked_at": "2026-10-22T05:22:22Z",
     "issuer": "UK Foreign, Commonwealth & Development Office",
     "issuer_short": "FCDO",
     "url": "https://www.gov.uk/foreign-travel-advice/yemen",
@@ -216,7 +299,7 @@
     "worst": "avoid_all_travel_to_parts",
     "reviewed_at": "2026-06-04T14:57:41Z",
     "updated_at": "2026-06-04T15:57:41+01:00",
-    "checked_at": "2026-10-22T04:55:58Z",
+    "checked_at": "2026-10-22T05:22:23Z",
     "issuer": "UK Foreign, Commonwealth & Development Office",
     "issuer_short": "FCDO",
     "url": "https://www.gov.uk/foreign-travel-advice/somalia",
@@ -261,7 +344,7 @@
    "note": "Contains public sector information licensed under the Open Government Licence v3.0."
   }
  ],
- "count": 772,
+ "count": 770,
  "places": [
   {
    "geonameid": 355026,
@@ -5117,29 +5200,6 @@
    "camping_within_80km": 5
   },
   {
-   "geonameid": 2473466,
-   "name": "El Ksar",
-   "country_code": "TN",
-   "country": "Tunisia",
-   "latitude": 34.3992,
-   "longitude": 8.80399,
-   "elevation_m": 284,
-   "population": 33729,
-   "timezone": "Africa/Tunis",
-   "duration_seconds": 305.1,
-   "seconds_sacrificed": 78.0,
-   "sun_altitude_deg": 54.12,
-   "max_eclipse_ut_hours": 9.136105,
-   "distance_from_centerline_km": 53.9,
-   "mean_cloud_percent": 2.3,
-   "clear_sky_probability": 0.958,
-   "cloud_observations": 120,
-   "lodging_within_25km": 10,
-   "camping_within_25km": 0,
-   "lodging_within_80km": 25,
-   "camping_within_80km": 3
-  },
-  {
    "geonameid": 2476897,
    "name": "Tiaret",
    "country_code": "DZ",
@@ -6334,29 +6394,6 @@
    "camping_within_25km": 0,
    "lodging_within_80km": 348,
    "camping_within_80km": 12
-  },
-  {
-   "geonameid": 8259951,
-   "name": "Principe",
-   "country_code": "ES",
-   "country": "Spain",
-   "latitude": 35.87924,
-   "longitude": -5.34695,
-   "elevation_m": 88,
-   "population": 12000,
-   "timezone": "Europe/Madrid",
-   "duration_seconds": 288.6,
-   "seconds_sacrificed": 94.5,
-   "sun_altitude_deg": 38.4,
-   "max_eclipse_ut_hours": 8.792983,
-   "distance_from_centerline_km": 19.3,
-   "mean_cloud_percent": 24.0,
-   "clear_sky_probability": 0.625,
-   "cloud_observations": 120,
-   "lodging_within_25km": 84,
-   "camping_within_25km": 8,
-   "lodging_within_80km": 1287,
-   "camping_within_80km": 75
   },
   {
    "geonameid": 2482447,
@@ -7990,6 +8027,29 @@
    "camping_within_25km": 1,
    "lodging_within_80km": 549,
    "camping_within_80km": 41
+  },
+  {
+   "geonameid": 2411585,
+   "name": "Gibraltar",
+   "country_code": "GI",
+   "country": "Gibraltar",
+   "latitude": 36.14474,
+   "longitude": -5.35257,
+   "elevation_m": 11,
+   "population": 26544,
+   "timezone": "Europe/Gibraltar",
+   "duration_seconds": 266.4,
+   "seconds_sacrificed": 116.7,
+   "sun_altitude_deg": 38.39,
+   "max_eclipse_ut_hours": 8.794386,
+   "distance_from_centerline_km": 48.8,
+   "mean_cloud_percent": 18.7,
+   "clear_sky_probability": 0.683,
+   "cloud_observations": 120,
+   "lodging_within_25km": 266,
+   "camping_within_25km": 7,
+   "lodging_within_80km": 1584,
+   "camping_within_80km": 103
   },
   {
    "geonameid": 2544367,
@@ -13556,29 +13616,6 @@
    "camping_within_25km": 24,
    "lodging_within_80km": 1587,
    "camping_within_80km": 116
-  },
-  {
-   "geonameid": 2472833,
-   "name": "Zouila",
-   "country_code": "TN",
-   "country": "Tunisia",
-   "latitude": 35.50056,
-   "longitude": 11.06056,
-   "elevation_m": 5,
-   "population": 44349,
-   "timezone": "Africa/Tunis",
-   "duration_seconds": 170.5,
-   "seconds_sacrificed": 212.6,
-   "sun_altitude_deg": 56.16,
-   "max_eclipse_ut_hours": 9.196319,
-   "distance_from_centerline_km": 107.6,
-   "mean_cloud_percent": 4.6,
-   "clear_sky_probability": 0.917,
-   "cloud_observations": 120,
-   "lodging_within_25km": 42,
-   "camping_within_25km": 2,
-   "lodging_within_80km": 225,
-   "camping_within_80km": 7
   },
   {
    "geonameid": 2513882,

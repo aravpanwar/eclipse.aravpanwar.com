@@ -28,6 +28,7 @@ EVENT = '2027-08-02'
 LODGING = ROOT / 'data' / 'cache' / 'lodging'
 REGISTERS = ROOT / 'data' / 'hotel_registers.json'
 OUTLINES = ROOT / 'docs' / 'data' / f'{EVENT}-countries.geojson'
+PLACES = ROOT / 'data' / 'out' / f'{EVENT}-places.json'
 DEST = ROOT / 'docs' / 'data' / f'{EVENT}-coverage.json'
 
 # Mapped hotels as a share of officially registered ones. Above 1 is common
@@ -73,7 +74,14 @@ for path in sorted(LODGING.glob('*.json')):
 hotels = sorted(set(hotels))
 
 registers = json.loads(REGISTERS.read_text(encoding='utf-8'))['by_country']
-outlines = json.loads(OUTLINES.read_text(encoding='utf-8'))['features']
+# Stays are counted only for towns in totality, so only their countries are
+# rated, although the outlines also cover countries with outside towns only.
+totality = {p['country_code'] for p in json.loads(PLACES.read_text(encoding='utf-8'))['places']}
+outlines = [f for f in json.loads(OUTLINES.read_text(encoding='utf-8'))['features']
+            if f['properties']['cc'] in totality]
+unrated = sorted(totality - set(registers))
+if unrated:
+    sys.exit(f'expected an entry in data/hotel_registers.json for {unrated}')
 
 out = {}
 for f in outlines:

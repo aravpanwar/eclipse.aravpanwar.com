@@ -26,7 +26,7 @@ Fourteen towns sit within 1.7 s of the theoretical maximum. Sohag has 267,000
 people and beats Luxor by 1.8 s.
 
 All 18 places within 3 s of the maximum are in Egypt. The best Spanish location
-sacrifices 94.5 s.
+sacrifices 94.9 s.
 
 ### Supply does not follow the path
 
@@ -57,10 +57,11 @@ Median cloud cover at the local eclipse hour, from ERA5 over 1985-2024:
 | Country | Places | Median cloud | Range |
 |---|---|---|---|
 | Egypt | 60 | 1.8% | 0.1-14.1 |
-| Tunisia | 136 | 4.2% | 1.8-6.7 |
+| Tunisia | 134 | 4.2% | 1.8-6.7 |
 | Libya | 18 | 4.7% | 0.1-8.5 |
 | Algeria | 186 | 12.5% | 4.3-22.3 |
-| Spain | 118 | 16.1% | 12.2-25.3 |
+| Spain | 117 | 16.1% | 12.2-25.3 |
+| Gibraltar | 1 | 18.7% | 18.7 |
 | Morocco | 89 | 22.9% | 12.7-30.8 |
 | Somalia | 8 | 36.6% | 30.9-41.3 |
 | Saudi Arabia | 43 | 54.6% | 15.0-73.8 |
@@ -84,8 +85,8 @@ state no licence.
 ```
 python scripts/extract_lodging.py   # once per OSM refresh, needs the extracts
 python scripts/fetch_cloud.py       # once per event, needs ~/.cdsapirc
-python scripts/build.py             # writes data/out/<event>-places.{csv,json}
-python scripts/build_site_data.py   # writes docs/data/<event>-places.json, needs tzdata 2026.3+
+python scripts/build.py             # writes data/out/<event>-places.{csv,json} and <event>-outside.{csv,json}
+python scripts/build_site_data.py   # writes docs/data/<event>-places.json and <event>-outside.json, needs tzdata 2026.3+
 python scripts/build_geojson.py     # writes docs/data/<event>-path.geojson
 python scripts/build_countries.py   # writes docs/data/<event>-countries.geojson
 python scripts/build_coverage.py    # writes docs/data/<event>-coverage.json from data/hotel_registers.json
@@ -112,7 +113,7 @@ downstream work is trusted:
 | Duration at greatest eclipse | 06m23s | 382.5 s |
 | Luxor duration | 6m19-6m23s | 380.0 s |
 | Seconds Luxor sacrifices | a few | 3.1 s |
-| Countries crossed | 9, not incl. Sudan | confirmed |
+| Countries crossed | 9 and Gibraltar, not Sudan | confirmed |
 | Aden / Berbera | partial only | confirmed |
 | Girga cloud, Aug | very low | 1.8% |
 | Sanaa cloud, Aug | monsoon | 79.8% |
@@ -139,21 +140,30 @@ Limb-corrected predictions only appear 12-18 months before an event.
 
 ## Coverage
 
-772 of 9,191 places in the nine path countries are inside totality.
+1,823 places are inside the path or within 100 km of its edge. 770 of them,
+in 10 countries, are inside totality. The other 1,053 see a partial eclipse
+only.
 
 | Country | Places | Best |
 |---|---|---|
 | Algeria | 186 | Arris, 5m30s |
-| Tunisia | 136 | Mahires, 5m42s |
-| Spain | 118 | Principe, 4m48s |
+| Tunisia | 134 | Mahires, 5m42s |
+| Spain | 117 | Ceuta, 4m48s |
 | Yemen | 114 | Baqim as Suq, 6m00s |
 | Morocco | 89 | Mdiq, 4m52s |
 | Egypt | 60 | Girga, 6m23s |
 | Saudi Arabia | 43 | Al Lith, 6m10s |
 | Libya | 18 | Benghazi, 6m09s |
 | Somalia | 8 | Qandala, 5m27s |
+| Gibraltar | 1 | Gibraltar, 4m26s |
 
-Those counts are GeoNames density, not reality. Spain having 118 entries and
+Places within 100 km outside the path, by country: Spain 477, Algeria 107,
+Yemen 105, Morocco 98, Tunisia 88, Portugal 60, Libya 52, Egypt 31, Malta 22,
+Saudi Arabia 10, Italy 1, Somalia 1, Sudan 1. For these the dataset has the
+share of the sun covered at the peak, the time of the peak, and straight-line
+distances to the edge of totality and to the centre line. No cloud or stays.
+
+Those counts are GeoNames density, not reality. Spain having 117 entries and
 Somalia 8 says more about who edits the gazetteer than about where towns are.
 A place missing here is missing from GeoNames.
 
@@ -162,7 +172,9 @@ A place missing here is missing from GeoNames.
 Code: AGPL 3.0 (`LICENSE`). Run a modified version as a network service and you
 have to publish your changes.
 
-Data under `data/out/` and `docs/data/`: ODbL 1.0 (`LICENSE-DATA.md`). The
+Data under `data/out/` and `docs/data/`: ODbL 1.0 (`LICENSE-DATA.md`). This
+covers both CSV files: `<event>-places.csv`, the places in totality, and
+`<event>-outside.csv`, the places within 100 km outside the path. The
 lodging columns come from OpenStreetMap, which is share-alike, so the dataset
 cannot be more permissive than that. Attributions you have to carry are listed
 in `LICENSE-DATA.md`.
@@ -179,7 +191,7 @@ in `LICENSE-DATA.md`.
   domain.
 - Hotel registers, for the stays coverage rating only: INE (Spain), HCP
   (Morocco), ONTT (Tunisia), GASTAT (Saudi Arabia), UN Tourism Statistics
-  Database (Algeria, Egypt). Figures, periods and links in
+  Database (Algeria, Egypt), Statistics Office (Gibraltar). Figures, periods and links in
   `data/hotel_registers.json`.
 - Prior art worth using: [eclipsewhere.com](https://eclipsewhere.com) for
   curated cloud-first guidance, [Xavier Jubier's interactive map](http://xjubier.free.fr/en/site_pages/solar_eclipses/xSE_GoogleMap3.php?Ecl=+20270802)

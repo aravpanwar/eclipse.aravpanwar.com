@@ -72,6 +72,14 @@
       "publisher": null,
       "url": null,
       "doubts": "No official hotel count found."
+    },
+    "GI": {
+      "hotels": 5,
+      "counts": "Hotels reporting to the Hotel Occupancy Survey: Bristol, Holiday Inn Express, O'Callaghan Eliott, Rock and Sunborn. The Emile Youth Hostel, also in the survey, is not counted.",
+      "period": "2025",
+      "publisher": "HM Government of Gibraltar Statistics Office, Hotel Occupancy Survey 2025, definitions and notes",
+      "url": "https://www.gibraltar.gov.gi/uploads/statistics/2025/Reports/Hotel%20Occupancy%20Survey%202025.pdf",
+      "doubts": "A list of the hotels in the survey, not a register: hotels that do not report are left out, such as the Caleta Hotel since January 2022."
     }
   }
 }

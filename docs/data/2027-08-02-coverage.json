@@ -5,61 +5,6 @@
   "medium": 0.35
  },
  "by_country": {
-  "ES": {
-   "osm_hotels": 12320,
-   "official_hotels": 16951,
-   "ratio": 0.73,
-   "rating": "high",
-   "counts": "Hoteles (10,006) plus hostales (6,944) open in the month, establishments registered with regional tourism authorities. Hostales are included because OpenStreetMap often tags them as hotels.",
-   "period": "August 2026, provisional",
-   "publisher": "INE, Encuesta de Ocupación Hotelera, table 2011",
-   "url": "https://www.ine.es/jaxiT3/Tabla.htm?t=2011",
-   "doubts": null
-  },
-  "MA": {
-   "osm_hotels": 2748,
-   "official_hotels": 1223,
-   "ratio": 2.25,
-   "rating": "high",
-   "counts": "Classified hotels, 1 to 5 stars. Unclassified hotels are not counted; riads and maisons d'hôtes (2,534) are counted separately.",
-   "period": "31 December 2024",
-   "publisher": "HCP, Annuaire statistique du Maroc 2025, table 10-2, from Ministry of Tourism data",
-   "url": "https://www.hcp.ma/file/248151/",
-   "doubts": "Morocco reformed hotel classification in 2025, so later editions may count differently."
-  },
-  "DZ": {
-   "osm_hotels": 1078,
-   "official_hotels": 1423,
-   "ratio": 0.76,
-   "rating": "high",
-   "counts": "Hotels and similar establishments (ISIC 5510), all types, classified and unclassified.",
-   "period": "2024",
-   "publisher": "UN Tourism Statistics Database, December 2025 release, as reported by Algeria",
-   "url": "https://www.untourism.int/tourism-statistics/tourism-data-tourism-accommodation",
-   "doubts": "Official figures conflict: 1,638 for 2023, and ministry statements of about 1,467 in 2026."
-  },
-  "TN": {
-   "osm_hotels": 735,
-   "official_hotels": 665,
-   "ratio": 1.11,
-   "rating": "high",
-   "counts": "Hotels, classified 1 to 5 stars (557) plus unclassified hotels. All accommodation types: 895.",
-   "period": "2022",
-   "publisher": "ONTT, Tourisme en chiffres 2022",
-   "url": "https://www.tourisme.gov.tn/wp-content/uploads/2024/12/rapport-EXTRAIT-2022-1.pdf",
-   "doubts": "Registered, not operating: many registered hotels are reported closed."
-  },
-  "LY": {
-   "osm_hotels": 318,
-   "official_hotels": null,
-   "ratio": null,
-   "rating": "unknown",
-   "counts": null,
-   "period": null,
-   "publisher": null,
-   "url": null,
-   "doubts": "No official count since 2008, before the conflict."
-  },
   "EG": {
    "osm_hotels": 1370,
    "official_hotels": 1207,
@@ -82,6 +27,17 @@
    "url": "https://www.stats.gov.sa/documents/d/guest/tourism-establishments-statistics-q2-of-2026-en-pdf",
    "doubts": "Rising fast as licensing expands (2,527 a year earlier), so it measures licensing as well as hotels."
   },
+  "LY": {
+   "osm_hotels": 318,
+   "official_hotels": null,
+   "ratio": null,
+   "rating": "unknown",
+   "counts": null,
+   "period": null,
+   "publisher": null,
+   "url": null,
+   "doubts": "No official count since 2008, before the conflict."
+  },
   "YE": {
    "osm_hotels": 672,
    "official_hotels": null,
@@ -93,6 +49,28 @@
    "url": null,
    "doubts": "No official count since the war began; the last is from 2010."
   },
+  "TN": {
+   "osm_hotels": 735,
+   "official_hotels": 665,
+   "ratio": 1.11,
+   "rating": "high",
+   "counts": "Hotels, classified 1 to 5 stars (557) plus unclassified hotels. All accommodation types: 895.",
+   "period": "2022",
+   "publisher": "ONTT, Tourisme en chiffres 2022",
+   "url": "https://www.tourisme.gov.tn/wp-content/uploads/2024/12/rapport-EXTRAIT-2022-1.pdf",
+   "doubts": "Registered, not operating: many registered hotels are reported closed."
+  },
+  "DZ": {
+   "osm_hotels": 1078,
+   "official_hotels": 1423,
+   "ratio": 0.76,
+   "rating": "high",
+   "counts": "Hotels and similar establishments (ISIC 5510), all types, classified and unclassified.",
+   "period": "2024",
+   "publisher": "UN Tourism Statistics Database, December 2025 release, as reported by Algeria",
+   "url": "https://www.untourism.int/tourism-statistics/tourism-data-tourism-accommodation",
+   "doubts": "Official figures conflict: 1,638 for 2023, and ministry statements of about 1,467 in 2026."
+  },
   "SO": {
    "osm_hotels": 163,
    "official_hotels": null,
@@ -103,6 +81,39 @@
    "publisher": null,
    "url": null,
    "doubts": "No official hotel count found."
+  },
+  "MA": {
+   "osm_hotels": 2748,
+   "official_hotels": 1223,
+   "ratio": 2.25,
+   "rating": "high",
+   "counts": "Classified hotels, 1 to 5 stars. Unclassified hotels are not counted; riads and maisons d'hôtes (2,534) are counted separately.",
+   "period": "31 December 2024",
+   "publisher": "HCP, Annuaire statistique du Maroc 2025, table 10-2, from Ministry of Tourism data",
+   "url": "https://www.hcp.ma/file/248151/",
+   "doubts": "Morocco reformed hotel classification in 2025, so later editions may count differently."
+  },
+  "ES": {
+   "osm_hotels": 12320,
+   "official_hotels": 16951,
+   "ratio": 0.73,
+   "rating": "high",
+   "counts": "Hoteles (10,006) plus hostales (6,944) open in the month, establishments registered with regional tourism authorities. Hostales are included because OpenStreetMap often tags them as hotels.",
+   "period": "August 2026, provisional",
+   "publisher": "INE, Encuesta de Ocupación Hotelera, table 2011",
+   "url": "https://www.ine.es/jaxiT3/Tabla.htm?t=2011",
+   "doubts": null
+  },
+  "GI": {
+   "osm_hotels": 6,
+   "official_hotels": 5,
+   "ratio": 1.2,
+   "rating": "high",
+   "counts": "Hotels reporting to the Hotel Occupancy Survey: Bristol, Holiday Inn Express, O'Callaghan Eliott, Rock and Sunborn. The Emile Youth Hostel, also in the survey, is not counted.",
+   "period": "2025",
+   "publisher": "HM Government of Gibraltar Statistics Office, Hotel Occupancy Survey 2025, definitions and notes",
+   "url": "https://www.gibraltar.gov.gi/uploads/statistics/2025/Reports/Hotel%20Occupancy%20Survey%202025.pdf",
+   "doubts": "A list of the hotels in the survey, not a register: hotels that do not report are left out, such as the Caleta Hotel since January 2022."
   }
  }
 }

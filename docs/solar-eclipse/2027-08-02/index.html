@@ -14,7 +14,7 @@
 <meta property="og:image" content="https://eclipse.aravpanwar.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Map of the path of totality from Spain to Somalia, with the 772 places inside it marked.">
+<meta property="og:image:alt" content="Map of the path of totality from Spain to Somalia, with the 770 places inside it marked.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -37,7 +37,8 @@
   <span class="stats" id="stats"></span>
   <span class="rule" aria-hidden="true"></span>
   <nav>
-    <a href="/data/2027-08-02-places.csv" download>Download CSV</a>
+    <a id="csvIn" href="/data/2027-08-02-places.csv" download title="Towns in the path of totality">Totality CSV</a>
+    <a id="csvOut" href="/data/2027-08-02-outside.csv" download title="Towns within 100 km outside the path">Outside CSV</a>
     <a href="/method.html">Method</a>
     <a href="https://github.com/aravpanwar/eclipse.aravpanwar.com">Source</a>
   </nav>
@@ -73,7 +74,7 @@
     <div id="town" aria-live="polite" hidden></div>
 
     <div id="summary">
-      <h2 id="count">772 places</h2>
+      <h2 id="count">770 places</h2>
       <p id="where">across the whole path</p>
     </div>
 

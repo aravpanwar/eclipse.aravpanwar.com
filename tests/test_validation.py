@@ -112,6 +112,31 @@ def test_path_does_not_cross_sudan():
         assert not c.in_totality, (lat, lon, c.magnitude)
 
 
+def test_nearest_km_is_straight_line_distance_to_the_path():
+    """Distance to a line: to a segment's interior, to its end, and in km.
+
+    One degree of latitude is 111.2 km on the sphere used here. A point due
+    north of a segment's middle is measured square to it; a point past the
+    end is measured to the end, not to the line extended. The drawn outline's
+    end caps are not an edge of totality, so path_edges leaves them out.
+    """
+    from eclipse.path import nearest_km, path_edges, in_outline
+    line = [[30.0, 25.0], [32.0, 25.0]]
+    assert approx(nearest_km(31.0, 26.0, line), 111.2, 0.2)
+    assert approx(nearest_km(30.0, 25.0, line), 0.0, 1e-9)
+    beyond = nearest_km(34.0, 25.0, line)
+    assert approx(beyond, 2 * 111.2 * math.cos(math.radians(25.0)), 0.5), beyond
+
+    ring = [[0, 1], [1, 1], [2, 1], [2, -1], [1, -1], [0, -1], [0, 1]]
+    north, south = path_edges(ring)
+    assert north == [[0, 1], [1, 1], [2, 1]]
+    assert south == [[2, -1], [1, -1], [0, -1]]
+    assert in_outline(1.0, 0.0, ring) and not in_outline(3.0, 0.0, ring)
+    # Past the cap the nearest edge is the corner, about 1.41 degrees away.
+    assert approx(min(nearest_km(3.0, 0.0, e) for e in (north, south)),
+                  math.hypot(1, 1) * 111.2, 1.0)
+
+
 def test_delta_t_is_recorded():
     """The brief requires the assumed delta T to be stored and displayable."""
     assert E.delta_t_seconds == 76.0

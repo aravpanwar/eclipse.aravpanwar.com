@@ -21,7 +21,7 @@
   "Climatology is not a forecast. A real forecast for 2 August 2027 will exist about a week beforehand and will be worth more than any of this.",
   "For the authoritative eclipse-specific treatment see Jay Anderson at eclipsophile.com, which uses the satellite record rather than reanalysis. Not reproduced here: it states no licence."
  ],
- "count": 772,
+ "count": 770,
  "by_geonameid": {
   "355026": {
    "mean_cloud_fraction": 0.017722066243489584,
@@ -2344,17 +2344,6 @@
    "mean_cloud_percent": 2.2,
    "clear_sky_probability": 0.958
   },
-  "2473466": {
-   "mean_cloud_fraction": 0.02258758544921875,
-   "observations": 120,
-   "hour_ut": 9,
-   "clear_observations": 115,
-   "overcast_observations": 0,
-   "grid_lat": 34.5,
-   "grid_lon": 8.75,
-   "mean_cloud_percent": 2.3,
-   "clear_sky_probability": 0.958
-  },
   "2476897": {
    "mean_cloud_fraction": 0.08778127034505208,
    "observations": 120,
@@ -2926,17 +2915,6 @@
    "grid_lon": 44.75,
    "mean_cloud_percent": 54.3,
    "clear_sky_probability": 0.142
-  },
-  "8259951": {
-   "mean_cloud_fraction": 0.24046630859375,
-   "observations": 120,
-   "hour_ut": 9,
-   "clear_observations": 75,
-   "overcast_observations": 8,
-   "grid_lat": 36.0,
-   "grid_lon": -5.25,
-   "mean_cloud_percent": 24.0,
-   "clear_sky_probability": 0.625
   },
   "2482447": {
    "mean_cloud_fraction": 0.0870880126953125,
@@ -3718,6 +3696,17 @@
    "grid_lon": -5.75,
    "mean_cloud_percent": 19.4,
    "clear_sky_probability": 0.717
+  },
+  "2411585": {
+   "mean_cloud_fraction": 0.1870348612467448,
+   "observations": 120,
+   "hour_ut": 9,
+   "clear_observations": 82,
+   "overcast_observations": 6,
+   "grid_lat": 36.25,
+   "grid_lon": -5.25,
+   "mean_cloud_percent": 18.7,
+   "clear_sky_probability": 0.683
   },
   "2544367": {
    "mean_cloud_fraction": 0.27444051106770834,
@@ -6380,17 +6369,6 @@
    "grid_lon": -4.5,
    "mean_cloud_percent": 14.8,
    "clear_sky_probability": 0.792
-  },
-  "2472833": {
-   "mean_cloud_fraction": 0.046019490559895834,
-   "observations": 120,
-   "hour_ut": 9,
-   "clear_observations": 110,
-   "overcast_observations": 0,
-   "grid_lat": 35.5,
-   "grid_lon": 11.0,
-   "mean_cloud_percent": 4.6,
-   "clear_sky_probability": 0.917
   },
   "2513882": {
    "mean_cloud_fraction": 0.14907175699869793,

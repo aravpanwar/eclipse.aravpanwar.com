@@ -38,7 +38,8 @@ ISSUER_SHORT = 'FCDO'
 SLUGS = {
     'ES': 'spain', 'MA': 'morocco', 'DZ': 'algeria', 'TN': 'tunisia',
     'LY': 'libya', 'EG': 'egypt', 'SA': 'saudi-arabia', 'YE': 'yemen',
-    'SO': 'somalia', 'SD': 'sudan',
+    'SO': 'somalia', 'SD': 'sudan', 'GI': 'gibraltar', 'PT': 'portugal',
+    'MT': 'malta', 'IT': 'italy',
 }
 
 # The FCDO taxonomy, most severe first. Ordering is ours, for sorting badges;
@@ -159,6 +160,12 @@ def fetch(country_code: str, timeout: int = 34) -> Advisory:
 
 
 def fetch_all(country_codes: list[str]) -> dict[str, Advisory]:
+    # The countries come from the towns found, so a new one can turn up
+    # without a slug. Stop before fetching anything rather than ship a
+    # country with no advisory.
+    missing = sorted(set(country_codes) - set(SLUGS))
+    if missing:
+        raise ValueError(f'expected a gov.uk slug in SLUGS for {missing}')
     out: dict[str, Advisory] = {}
     for cc in country_codes:
         out[cc] = fetch(cc)

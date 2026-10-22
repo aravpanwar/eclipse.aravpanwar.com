@@ -8,7 +8,9 @@
 
 """Emit outlines of the path countries as GeoJSON for the advisory tint.
 
-Only geometry and the country code are written. The advisory level stays in
+Every country with a town in the dataset gets one, in totality or outside
+it, so each dot sits on its own country's tint. Only geometry and the
+country code are written. The advisory level stays in
 the places JSON, so re-fetching advisories never needs this script re-run.
 """
 import json
@@ -18,9 +20,6 @@ from pathlib import Path
 
 sys.stdout.reconfigure(encoding='utf-8')
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / 'src'))
-
-from eclipse.places import PATH_COUNTRIES_2027
 
 EVENT = '2027-08-02'
 # The UK point-of-view edition, because the advisories are the UK's. It draws
@@ -41,9 +40,17 @@ if not CACHE.exists():
     with urllib.request.urlopen(req, timeout=134) as resp:
         CACHE.write_bytes(resp.read())
 
+# The countries come from the towns scripts/build.py found.
+COUNTRIES = []
+for kind in ('places', 'outside'):
+    for p in json.loads((ROOT / 'data' / 'out' / f'{EVENT}-{kind}.json')
+                        .read_text(encoding='utf-8'))['places']:
+        if p['country_code'] not in COUNTRIES:
+            COUNTRIES.append(p['country_code'])
+
 src = json.loads(CACHE.read_text(encoding='utf-8'))
 by_cc = {f['properties']['ISO_A2']: f['geometry'] for f in src['features']}
-missing = set(PATH_COUNTRIES_2027) - set(by_cc)
+missing = set(COUNTRIES) - set(by_cc)
 assert not missing, f'expected a Natural Earth outline for {sorted(missing)}'
 
 
@@ -55,7 +62,7 @@ def rounded(coords):
 
 
 features = []
-for cc in PATH_COUNTRIES_2027:
+for cc in COUNTRIES:
     geom = by_cc[cc]
     features.append({
         'type': 'Feature',

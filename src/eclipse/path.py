@@ -177,6 +177,47 @@ class RankedPlace:
         }
 
 
+def nearest_km(lon: float, lat: float, line: list[list[float]]) -> float:
+    """Straight-line distance from a point to the nearest point of a polyline, in km.
+
+    Each segment is measured in a flat projection centred on the point, which
+    is accurate to well under 1% at the distances this is used for (a few
+    hundred km). The line is GeoJSON order, [lon, lat] per vertex.
+    """
+    k = math.cos(math.radians(lat))
+    best = float('inf')
+    for (x0, y0), (x1, y1) in zip(line, line[1:]):
+        ax, ay = (x0 - lon) * k, y0 - lat
+        dx, dy = (x1 - x0) * k, y1 - y0
+        t = max(0.0, min(1.0, -(ax * dx + ay * dy) / ((dx * dx + dy * dy) or 1)))
+        best = min(best, math.hypot(ax + t * dx, ay + t * dy))
+    return best * math.pi / 180 * 6371.0088
+
+
+def path_edges(ring: list[list[float]]) -> list[list[list[float]]]:
+    """The north and south limits of totality from the drawn outline.
+
+    The outline is closed with two straight caps where the drawing stops, but
+    totality carries on past both, so the caps are not an edge. Distances are
+    measured to the two limits alone.
+    """
+    east = max(range(len(ring)), key=lambda i: ring[i][0])
+    return [ring[:east + 1], ring[east + 1:-1]]
+
+
+def in_outline(lon: float, lat: float, ring: list[list[float]]) -> bool:
+    """Even-odd ray casting against the drawn outline of the path."""
+    hit = False
+    j = len(ring) - 1
+    for i in range(len(ring)):
+        xi, yi = ring[i]
+        xj, yj = ring[j]
+        if (yi > lat) != (yj > lat) and lon < (xj - xi) * (lat - yi) / (yj - yi) + xi:
+            hit = not hit
+        j = i
+    return hit
+
+
 def rank(places: list[Place], elements: L.Elements, peak_duration: float,
          track: list[tuple[float, float]] | None = None) -> list[RankedPlace]:
     """Compute circumstances for every place and keep those inside totality."""
@@ -196,4 +237,65 @@ def rank(places: list[Place], elements: L.Elements, peak_duration: float,
                 if track else None),
         ))
     out.sort(key=lambda r: r.seconds_sacrificed)
+    return out
+
+
+@dataclass
+class OutsidePlace:
+    """A town near the path that sees a partial eclipse only."""
+
+    place: Place
+    magnitude: float
+    obscuration: float
+    sun_altitude_deg: float
+    max_eclipse_ut_hours: float
+    km_to_edge: float
+    km_to_centre_line: float
+
+    def as_row(self) -> dict:
+        p = self.place
+        return {
+            'geonameid': p.geonameid,
+            'name': p.name,
+            'country_code': p.country_code,
+            'country': p.country,
+            'latitude': round(p.latitude, 5),
+            'longitude': round(p.longitude, 5),
+            'elevation_m': int(p.elevation_m),
+            'population': p.population,
+            'timezone': p.timezone,
+            'obscuration_percent': round(self.obscuration * 100, 3),
+            'magnitude': round(self.magnitude, 5),
+            'max_eclipse_ut_hours': round(self.max_eclipse_ut_hours, 6),
+            'sun_altitude_deg': round(self.sun_altitude_deg, 2),
+            'km_to_edge_of_totality': round(self.km_to_edge, 2),
+            'km_to_centre_line': round(self.km_to_centre_line, 2),
+        }
+
+
+def outside(places: list[Place], elements: L.Elements, edges: list,
+            centre: list[list[float]], range_km: float) -> list[OutsidePlace]:
+    """Places within range_km of the edge of totality that are not in it.
+
+    Inside or outside is decided by the eclipse calculation, not by the drawn
+    outline, which is only sampled every half degree of longitude.
+    """
+    out: list[OutsidePlace] = []
+    for p in places:
+        edge = min(nearest_km(p.longitude, p.latitude, e) for e in edges)
+        if edge > range_km:
+            continue
+        c = L.compute(p.latitude, p.longitude, p.elevation_m, elements)
+        if c.in_totality or c.max_eclipse_ut_hours is None:
+            continue
+        out.append(OutsidePlace(
+            place=p,
+            magnitude=c.magnitude,
+            obscuration=c.obscuration,
+            sun_altitude_deg=c.sun_altitude_deg,
+            max_eclipse_ut_hours=c.max_eclipse_ut_hours,
+            km_to_edge=edge,
+            km_to_centre_line=nearest_km(p.longitude, p.latitude, centre),
+        ))
+    out.sort(key=lambda r: r.km_to_edge)
     return out

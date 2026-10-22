@@ -33,18 +33,22 @@ GEONAMES_FIELDS = [
 ]
 
 # Feature codes worth keeping: populated places and administrative seats.
-# Excludes abandoned (PPLQ), destroyed (PPLW) and historical (PPLH) places.
+# Excludes abandoned (PPLQ), destroyed (PPLW) and historical (PPLH) places,
+# and sections of a town (PPLX), which list one town twice: Principe is a
+# district of Ceuta, not a second town beside it.
 KEEP_FEATURE_CODES = {
     'PPL', 'PPLA', 'PPLA2', 'PPLA3', 'PPLA4', 'PPLA5',
-    'PPLC', 'PPLG', 'PPLS', 'PPLL', 'PPLF', 'PPLR', 'PPLX',
+    'PPLC', 'PPLG', 'PPLS', 'PPLL', 'PPLF', 'PPLR',
 }
 
-PATH_COUNTRIES_2027 = ['ES', 'MA', 'DZ', 'TN', 'LY', 'EG', 'SA', 'YE', 'SO']
-
+# Every country with a town in or near a path needs a name here. The list of
+# countries is not kept by hand: it comes from the towns the eclipse
+# calculation finds, so a country is never missed (Gibraltar once was).
 COUNTRY_NAMES = {
     'ES': 'Spain', 'MA': 'Morocco', 'DZ': 'Algeria', 'TN': 'Tunisia',
     'LY': 'Libya', 'EG': 'Egypt', 'SA': 'Saudi Arabia', 'YE': 'Yemen',
-    'SO': 'Somalia', 'SD': 'Sudan',
+    'SO': 'Somalia', 'SD': 'Sudan', 'GI': 'Gibraltar', 'PT': 'Portugal',
+    'MT': 'Malta', 'IT': 'Italy',
 }
 
 
@@ -66,8 +70,12 @@ class Place:
 
 
 def load(zip_path: str | Path, countries: list[str] | None = None,
-         min_population: int = 0) -> list[Place]:
-    """Read the GeoNames cities archive, filtered to countries of interest."""
+         min_population: int = 0,
+         box: tuple[float, float, float, float] | None = None) -> list[Place]:
+    """Read the GeoNames cities archive, filtered to countries or to a box.
+
+    box is (west, south, east, north) in degrees.
+    """
     wanted = set(countries) if countries else None
     out: list[Place] = []
 
@@ -90,6 +98,9 @@ def load(zip_path: str | Path, countries: list[str] | None = None,
             pop = 0
         if pop < min_population:
             continue
+        lat, lon = float(r['latitude']), float(r['longitude'])
+        if box and not (box[0] <= lon <= box[2] and box[1] <= lat <= box[3]):
+            continue
 
         # 'elevation' is usually blank; 'dem' is the SRTM/GTOPO30 fallback and
         # is populated far more often. Either is fine for eclipse work, where
@@ -106,8 +117,8 @@ def load(zip_path: str | Path, countries: list[str] | None = None,
             geonameid=int(r['geonameid']),
             name=r['name'],
             country_code=r['country_code'],
-            latitude=float(r['latitude']),
-            longitude=float(r['longitude']),
+            latitude=lat,
+            longitude=lon,
             elevation_m=elev_m,
             population=pop,
             timezone=r['timezone'],
