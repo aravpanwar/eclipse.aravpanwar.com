@@ -23,6 +23,7 @@ const state = {
   selected: null,     // geonameid
   country: null,      // ?c= from the homepage: the country to open on
   shut: new Map(),    // country code -> true (closed) / false (open), set by the visitor
+  placing: false,     // true after Drop a pin / Move pin, until the next map click
   view: 'map',        // 'map' or 'path'
   query: '',
   closed: new Set(),  // advisories put away, as advisoryId() strings
@@ -603,12 +604,18 @@ function initMap() {
       return fs.length ? Number(nearest({ features: fs, point }).properties.id) : null;
     };
     map.on('click', (e) => {
+      // While placing, a click anywhere puts the pin there, on a town too.
+      if (state.placing) {
+        stopPlacing();
+        setPin(e.lngLat.lat, e.lngLat.lng);
+        document.getElementById('radius').focus();
+        return;
+      }
       const id = under(e.point);
-      if (id) { hideTip(); selectPlace(id, false); return; }
-      // Clicking bare map drops the pin there.
-      setPin(e.lngLat.lat, e.lngLat.lng);
+      if (id) { hideTip(); selectPlace(id, false); }
     });
     map.on('mousemove', (e) => {
+      if (state.placing) return;
       const id = under(e.point);
       map.getCanvas().style.cursor = id ? 'pointer' : '';
       if (id) showTip(id); else hideTip();
@@ -697,15 +704,23 @@ function drawCircle() {
           features: [circlePolygon(state.pin.lat, state.pin.lon, state.radius)] }
       : emptyFC());
 
-  // The pin marks the circle's centre. Decorative: the summary already
-  // states the coordinates in text, and clicks pass through it (style.css)
-  // so the towns under it stay clickable.
+  // The pin marks the circle's centre and can be dragged. Hidden from screen
+  // readers: the summary states the coordinates, and Move pin does the same
+  // job from the keyboard.
   if (state.pin && !pinMarker) {
     pinMarker = new maplibregl.Marker({
-      color: '#1a5c7a', scale: 0.8, className: 'pin',
+      color: '#1a5c7a', scale: 0.8, className: 'pin', draggable: true,
     });
     pinMarker.getElement().setAttribute('aria-hidden', 'true');
     pinMarker.setLngLat([state.pin.lon, state.pin.lat]).addTo(map);
+    // The circle follows while dragging; the list redraws once, on release.
+    pinMarker.on('drag', () => {
+      const ll = pinMarker.getLngLat();
+      state.pin = { lat: ll.lat, lon: ll.lng };
+      map.getSource('circle').setData({ type: 'FeatureCollection',
+        features: [circlePolygon(state.pin.lat, state.pin.lon, state.radius)] });
+    });
+    pinMarker.on('dragend', () => { render(); writeUrl(); });
   } else if (state.pin) {
     pinMarker.setLngLat([state.pin.lon, state.pin.lat]);
   } else if (pinMarker) {
@@ -775,7 +790,7 @@ function showTip(id) {
     : `${p.t0 ? `${p.t0}, ` : ''}${mmss(p.d)}`;
   if (!tip) {
     tip = new maplibregl.Popup({
-      closeButton: false, closeOnClick: false, anchor: 'bottom',
+      closeButton: false, closeOnClick: false, anchor: 'bottom', maxWidth: 'none',
       offset: 9, className: 'tip',
     });
   }
@@ -791,6 +806,18 @@ function hideTip() {
 
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') hideTip();
+  if (!state.placing) return;
+  if (e.key === 'Escape') {
+    stopPlacing();
+    document.getElementById(state.pin ? 'movePin' : 'dropPin').focus();
+  } else if (e.key === 'Enter' && e.target === map.getCanvas()) {
+    // From the keyboard: pan with the arrow keys, Enter drops at the centre.
+    e.preventDefault();
+    const c = map.getCenter();
+    stopPlacing();
+    setPin(c.lat, c.lng);
+    document.getElementById('radius').focus();
+  }
 });
 
 
@@ -864,6 +891,24 @@ function renderOutsideTown(el, p) {
   el.querySelector('.tc-close').onclick = () => selectPlace(p.i, false);
 }
 
+// Drop a pin and Move pin: the next map click places the one pin.
+function startPlacing() {
+  if (!map) return;
+  state.placing = true;
+  hideTip();
+  document.getElementById('placing').hidden = false;
+  document.getElementById('mapwrap').classList.add('placing-on');
+  // Focus on the map, so the arrow keys pan it and Enter drops the pin.
+  map.getCanvas().focus();
+  if (STACKED.matches) document.getElementById('map').scrollIntoView({ block: 'start' });
+}
+
+function stopPlacing() {
+  state.placing = false;
+  document.getElementById('placing').hidden = true;
+  document.getElementById('mapwrap').classList.remove('placing-on');
+}
+
 function setPin(lat, lon) {
   state.pin = { lat, lon };
   document.getElementById('clearPin').hidden = false;
@@ -873,6 +918,7 @@ function setPin(lat, lon) {
 }
 
 function clearPin() {
+  stopPlacing();
   state.pin = null;
   document.getElementById('clearPin').hidden = true;
   drawCircle();
@@ -932,7 +978,16 @@ function bind() {
   });
   radius.addEventListener('change', writeUrl);
 
-  document.getElementById('clearPin').addEventListener('click', clearPin);
+  document.getElementById('clearPin').addEventListener('click', () => {
+    clearPin();
+    document.getElementById('dropPin').focus();
+  });
+  document.getElementById('dropPin').addEventListener('click', startPlacing);
+  document.getElementById('movePin').addEventListener('click', startPlacing);
+  document.getElementById('cancelPlace').addEventListener('click', () => {
+    stopPlacing();
+    document.getElementById(state.pin ? 'movePin' : 'dropPin').focus();
+  });
 
   const search = document.getElementById('q');
   search.addEventListener('input', () => {

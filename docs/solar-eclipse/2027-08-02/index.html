@@ -61,6 +61,11 @@
 
   <section id="mapwrap" role="tabpanel" aria-labelledby="tab-map">
     <div id="map"></div>
+    <div id="placing" class="placing" role="status" hidden>
+      <span class="pl-long">Click the map to place your pin. Enter drops it at the centre.</span>
+      <span class="pl-short">Tap the map to place your pin.</span>
+      <button type="button" id="cancelPlace">Cancel <kbd>Esc</kbd></button>
+    </div>
 
     <details class="panel caveat" id="keybox" open>
       <summary>Map key</summary>
@@ -79,14 +84,20 @@
     </div>
 
     <div class="controls">
-      <p id="pinHint" class="hint"><svg class="pinicon" width="14" height="18" viewBox="0 0 14 18" aria-hidden="true"><path fill="currentColor" d="M7 0a7 7 0 0 0-7 7c0 5 7 11 7 11s7-6 7-11a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 7 4.5a2.5 2.5 0 0 1 0 5z"/></svg><span><b>Drop a pin</b> by clicking or
-        tapping the map. The list then shows only the places near it.</span></p>
+      <div id="pinHint" class="hint">
+        <button type="button" id="dropPin" class="pinbtn"><svg class="pinicon" width="14" height="18" viewBox="0 0 14 18" aria-hidden="true"><path fill="currentColor" d="M7 0a7 7 0 0 0-7 7c0 5 7 11 7 11s7-6 7-11a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 7 4.5a2.5 2.5 0 0 1 0 5z"/></svg>Drop a pin</button>
+        <span>The list then shows only the places near it.</span>
+      </div>
       <div class="ctl">
         <label for="radius">Straight-line distance from the pin</label>
         <output id="radiusOut" for="radius">120 km</output>
-        <button type="button" id="clearPin" class="clearpin" hidden>Clear pin</button>
       </div>
       <input type="range" id="radius" min="10" max="400" step="5" value="120">
+      <div class="pinacts">
+        <button type="button" id="movePin">Move pin</button>
+        <button type="button" id="clearPin">Remove pin</button>
+        <span class="pinnote">or drag the pin on the map</span>
+      </div>
     </div>
 
     <div id="searchbar" role="search">
