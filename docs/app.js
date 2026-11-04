@@ -341,6 +341,8 @@ function render() {
       `${fmtLon(state.pin.lon)}`
     : 'across the whole path';
   document.getElementById('pinHint').hidden = !!state.pin;
+  // The stays caveat only matters when the list is ranked by stays.
+  document.querySelector('.staysnote').hidden = state.sort !== 'l';
   document.querySelector('.controls').classList.toggle('nopin', !state.pin);
   document.getElementById('where').textContent = state.query.trim()
     ? `matching “${state.query.trim()}” ${scope}`
