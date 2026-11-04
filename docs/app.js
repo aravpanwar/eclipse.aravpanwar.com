@@ -22,6 +22,7 @@ const state = {
   sort: 's',
   selected: null,     // geonameid
   country: null,      // ?c= from the homepage: the country to open on
+  shut: new Map(),    // country code -> true (closed) / false (open), set by the visitor
   view: 'map',        // 'map' or 'path'
   query: '',
   closed: new Set(),  // advisories put away, as advisoryId() strings
@@ -306,6 +307,14 @@ function emptyMessage() {
     within ${state.outsideRange} km outside it are listed, under their GeoNames spelling.`;
 }
 
+function isOpen(cc, asked, groups) {
+  if (state.shut.has(cc)) return !state.shut.get(cc);
+  if (asked || groups === 1) return true;
+  if (cc === state.country) return true;
+  const sel = state.selected && findPlace(state.selected);
+  return !!sel && sel.c === cc;
+}
+
 function render() {
   const list = sorted(matching(inCircle()));
   // Outside towns join the list only when they answer something: a search
@@ -316,7 +325,10 @@ function render() {
     : [];
   const rows = document.getElementById('rows');
   // The selected row keeps the tab stop; otherwise the first row does.
-  const both = list.concat(outs);
+  const groups = byCountry(list);
+  const openCc = new Set(groups.map(([cc]) => cc).filter((cc) => isOpen(cc, asked, groups.length)));
+  // Only rows in an open country can hold the list's tab stop.
+  const both = list.filter((p) => openCc.has(p.c)).concat(outs);
   const focusId = (state.selected && both.some((p) => p.i === state.selected))
     ? state.selected
     : (both[0] ? both[0].i : null);
@@ -352,15 +364,22 @@ function render() {
   }
 
   let html = '';
-  for (const [cc, places] of byCountry(list)) {
+  for (const [cc, places] of groups) {
     const name = state.data.advisories[cc]
       ? state.data.advisories[cc].country : cc;
+    const open = openCc.has(cc);
+    const longest = Math.max(...places.map((p) => p.d));
+    const adv = state.data.advisories[cc];
     // Each country in its own box, so its sticky headers stop at its last
     // row instead of piling up under the next country's.
-    html += `<div class="country" data-cc="${cc}">`;
-    html += `<div class="group" role="rowgroup"><div class="name"><b>${esc(name)}</b>
-      <span class="n">${places.length}</span>${coverageHtml(cc)}${advisoryShowHtml(cc, name)}</div>
-      ${advisoryHtml(cc, name)}`;
+    html += `<div class="country${open ? '' : ' shut'}" data-cc="${cc}">`;
+    html += `<div class="group" role="rowgroup"><div class="name">
+      <button type="button" class="gtoggle" data-cc="${cc}" aria-expanded="${open}">
+        <b>${esc(name)}</b><span class="n">${places.length}</span>
+        <span class="gsum">up to ${mmss(longest)}</span></button>
+      ${open ? coverageHtml(cc) + advisoryShowHtml(cc, name)
+             : (adv && adv.worst ? `<span class="advtag">${WARN_ICON}<span>FCDO advisory</span></span>` : '')}</div>
+      ${open ? advisoryHtml(cc, name) : ''}`;
     html += `<div class="head" role="row">
       <div role="columnheader">Place</div>
       <div class="num" role="columnheader" title="Local time totality begins${places[0].off ? `, ${places[0].off}` : ''}">Starts</div>
@@ -631,6 +650,8 @@ function openOnCountry(cc) {
   const ys = ps.map((q) => q.y);
   map.fitBounds([[Math.min(...xs), Math.min(...ys)], [Math.max(...xs), Math.max(...ys)]],
                 { padding: 40, maxZoom: 8, duration: 0 });
+  state.shut.set(cc, false);
+  render();
   if (!STACKED.matches) {
     const rows = document.getElementById('rows');
     const group = rows.querySelector(`.country[data-cc="${cc}"]`);
@@ -956,6 +977,15 @@ function bind() {
 
   const rows = document.getElementById('rows');
   rows.addEventListener('click', (e) => {
+    const g = e.target.closest('.gtoggle');
+    if (g) {
+      const wasOpen = g.getAttribute('aria-expanded') === 'true';
+      state.shut.set(g.dataset.cc, wasOpen);
+      render();
+      const again = rows.querySelector(`.gtoggle[data-cc="${g.dataset.cc}"]`);
+      if (again) again.focus();
+      return;
+    }
     const adv = e.target.closest('[data-adv]');
     if (adv) {
       toggleAdvisory(adv.dataset.adv);
@@ -975,7 +1005,7 @@ function bind() {
     }
 
     // Arrow keys move between rows, so the table is one tab stop.
-    const all = [...rows.querySelectorAll('.row')];
+    const all = [...rows.querySelectorAll('.row')].filter((r) => r.offsetParent !== null);
     const at = all.indexOf(row);
     let to = -1;
     if (e.key === 'ArrowDown') to = Math.min(at + 1, all.length - 1);
