@@ -31,8 +31,26 @@
 <style>
   body { display: block; }
   /* style.css makes main a flex row for the map layout; this page is a column. */
-  .home { display: block; max-width: 1040px; margin: 0 auto; padding: 26px 20px 70px; }
-  .lede { max-width: 680px; font-size: 15px; line-height: 1.6; color: #2f2a24; margin: 0 0 22px; }
+  .home { display: block; max-width: 1040px; margin: 0 auto; padding: 0 20px 70px; }
+
+  /* The dark band at the top: name and links, then the opening sentence.
+     Its contents line up with the 1040px column below, and the 2027 card
+     overlaps its bottom edge. */
+  header.mast { display: block; padding: 0; background: var(--ink); color: #f2efe9; border: 0; }
+  .mast .in { display: flex; align-items: center; gap: 22px; max-width: 1040px; min-height: 56px;
+    margin: 0 auto; padding: 0 20px; }
+  .mast h1 { margin: 0; font-size: 17px; font-weight: 600; letter-spacing: -0.015em; }
+  .mast h1 a { display: flex; align-items: center; gap: 10px; color: #f2efe9; border: 0; padding: 0; }
+  .mast h1 img { display: block; }
+  .mast nav { display: flex; gap: 22px; font-size: 13.5px; }
+  .mast nav a { color: #c9c2b6; border-bottom: 1px solid transparent; padding-bottom: 2px; }
+  .mast nav a:hover { color: #fff; border-bottom-color: #fff; }
+  .mast .lede { max-width: 1040px; margin: 0 auto; padding: 22px 20px 74px; }
+  .mast .lede p { max-width: 640px; margin: 0; font-size: 21px; line-height: 1.45; letter-spacing: -0.01em; }
+  .mast .lede p.small { margin-top: 12px; font-size: 13px; letter-spacing: 0; color: #a9a196; }
+  .mast .lede a { color: #a9a196; border-bottom-color: #4a453d; }
+  .mast .lede a:hover { color: #fff; border-bottom-color: #fff; }
+  .mast a:focus-visible { outline: 2px solid #f2efe9; outline-offset: 3px; }
   h2.section { font-size: 12px; font-weight: 600; letter-spacing: .05em;
     text-transform: uppercase; color: var(--dim); margin: 34px 0 8px; }
 
@@ -40,7 +58,8 @@
      date, the map picture and the button link to the map, because the country
      buttons sit inside it and links cannot nest. */
   .feature { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-    background: var(--paper); border: 1px solid var(--accent); }
+    position: relative; margin-top: -52px; background: var(--paper); border: 1px solid var(--accent);
+    box-shadow: 0 10px 30px rgba(20, 17, 14, .10); }
   /* The map fills its column however tall the text beside it runs. */
   .feature .pic { display: block; border: 0; border-right: 1px solid var(--line); background: #e2e7ea; }
   .feature img { display: block; width: 100%; height: 100%; object-fit: cover; }
@@ -85,7 +104,12 @@
   .note { max-width: 680px; margin-top: 26px; font-size: 12px; line-height: 1.55; color: var(--dim); }
 
   @media (max-width: 760px) {
-    .home { padding: 18px 16px 50px; }
+    .home { padding: 0 16px 50px; }
+    .mast .in { gap: 14px; min-height: 54px; padding: 0 16px; }
+    .mast nav { gap: 16px; font-size: 13px; }
+    .mast .lede { padding: 16px 16px 58px; }
+    .mast .lede p { font-size: 18px; }
+    .feature { margin-top: -40px; }
     .feature { grid-template-columns: 1fr; }
     .feature .pic { border-right: 0; border-bottom: 1px solid var(--line); }
     .feature img { height: auto; aspect-ratio: 16 / 10; }
@@ -96,21 +120,24 @@
 </head>
 <body>
 
-<header>
-  <h1>Eclipses</h1>
-  <span class="rule" aria-hidden="true"></span>
-  <span class="event"><a href="https://aravpanwar.com">Arav Panwar</a></span>
-  <span class="spacer"></span>
-  <nav>
-    <a href="/method.html">Method</a>
-    <a href="https://github.com/aravpanwar/eclipse.aravpanwar.com">Source</a>
-  </nav>
+<header class="mast">
+  <div class="in">
+    <h1><a href="/"><img src="/favicon.svg" width="26" height="26" alt="">Eclipses</a></h1>
+    <span class="spacer"></span>
+    <nav>
+      <a href="/method.html">Method</a>
+      <a href="https://github.com/aravpanwar/eclipse.aravpanwar.com">Source</a>
+    </nav>
+  </div>
+  <div class="lede">
+    <p>Maps and data for choosing where to watch a total solar eclipse
+    using predictions from NASA.</p>
+    <p class="small">Free and open source, with no ads and no sign-up.
+    By <a href="https://aravpanwar.com">Arav&nbsp;Panwar</a>.</p>
+  </div>
 </header>
 
 <main class="home">
-  <p class="lede">Maps and data for choosing where to watch a total solar eclipse,
-  worked out from NASA&rsquo;s predictions. Free and open source, with no ads and
-  no sign-up.</p>
 
   <article class="feature">
     <a class="pic" href="/solar-eclipse/2027-08-02/" tabindex="-1" aria-hidden="true"><img
@@ -122,7 +149,7 @@
       <p class="dur">Up to <b>6 min 23 s</b> of totality, 770 places mapped</p>
       <p class="what"><b>Totality Path &amp; Nearby Locations</b>: every populated
       place inside the path, ranked by how long totality lasts there, with
-      local times, August cloud, places to stay nearby and UK travel advice.</p>
+      local times, cloud cover and places to stay nearby.</p>
       <p class="chiplabel" id="chipsLabel">Go straight to a country</p>
       <ul class="chips" aria-labelledby="chipsLabel">
         <li><a href="/solar-eclipse/2027-08-02/?c=ES">Spain</a></li>
