@@ -1,199 +1,158 @@
 # eclipse.aravpanwar.com
 
-Solar eclipse local circumstances computed from Besselian elements, then
-intersected with populated places, so you can see what a location actually
-costs you in seconds of totality.
+Computes local circumstances of a solar eclipse from NASA's Besselian elements
+for every populated place in GeoNames near the path, and publishes the results
+as CSV, JSON and a static map site.
 
-Eclipse is a data row, not a constant: one record per event under
-`data/elements/`, same computation for any of them.
+For each place inside the path the dataset gives the duration of totality, the
+time of maximum eclipse, the Sun's altitude, the distance from the centre line,
+historical cloud cover for the date and hour, and counts of lodging and camping
+sites nearby. For each place within 100 km outside the path it gives the
+fraction of the Sun covered at maximum and the distances to the path edge and
+centre line.
 
-Code is AGPL 3.0, data is ODbL 1.0. See `LICENSE` and `LICENSE-DATA.md`.
+Computed events: 2 August 2027 (total).
 
-## The finding, for the 2 August 2027 eclipse
+## Repository layout
 
-Luxor is the destination everyone names. It ranks **18th of 60 Egyptian places**
-by seconds of totality sacrificed.
+| Path | Contents |
+|---|---|
+| `data/elements/` | Besselian elements, one JSON file per event |
+| `src/eclipse/` | Computation: local circumstances, path, places, cloud, lodging, advisories |
+| `scripts/` | Build steps, listed below |
+| `data/cache/` | Downloaded inputs and extracted caches |
+| `data/out/` | Full build output (CSV and JSON) |
+| `docs/` | The site, served by GitHub Pages; `docs/data/` holds the site's data files |
+| `tests/` | Validation tests |
 
-| Place | Totality | Sacrificed | From centerline | Population |
-|---|---|---|---|---|
-| Girga | 6m23s | 0.1 s | 1.0 km | 151,256 |
-| Al Balyana | 6m22s | 0.2 s | 3.7 km | 68,413 |
-| Nag Hammadi | 6m22s | 0.6 s | 6.9 km | 59,601 |
-| Sohag | 6m22s | 0.9 s | 7.7 km | 266,944 |
-| **Luxor** | **6m20s** | **2.7 s** | **15.1 km** | 422,407 |
+Each script sets `EVENT = '2027-08-02'` at the top. To build another event,
+change that value in each script and add the event's file to `data/elements/`.
 
-Fourteen towns sit within 1.7 s of the theoretical maximum. Sohag has 267,000
-people and beats Luxor by 1.8 s.
+## Requirements
 
-All 18 places within 3 s of the maximum are in Egypt. The best Spanish location
-sacrifices 94.9 s.
+Python 3.11. Packages: `osmium`, `xarray`, `netCDF4` or another xarray netCDF
+engine, `cdsapi`, `Pillow`, `tzdata` 2026.3 or later, `pytest`.
 
-### Supply does not follow the path
+Download these separately:
 
-The obvious hypothesis, that lodging thins toward the centreline and that is
-where the markup comes from, is not supported. Binned by distance from the
-centreline, the median count of lodging within 25 km of an Egyptian place runs
-12, 21, 1, 13, 6, 0. There is no gradient. Supply tracks the tourism cluster,
-not the geometry.
+- `data/cache/cities1000.zip` from GeoNames.
+- Geofabrik country extracts in `data/cache/osm/`, for `extract_lodging.py`
+  only.
+- A Copernicus Climate Data Store account in `~/.cdsapirc`, for
+  `fetch_cloud.py` only.
 
-What the counts do show is sharper:
+The scripts download Natural Earth outlines, NASA path tables and fonts
+themselves.
 
-| | Totality | Sacrificed | Lodging within 25 km | Within 80 km |
-|---|---|---|---|---|
-| Girga | 6m23s | 0.1 s | 4 | 22 |
-| Luxor | 6m20s | 2.7 s | 115 | 127 |
-
-Luxor has 29 times the lodging within 25 km and gives up 2.6 more seconds.
-Widen to 80 km and the two are comparable, because at that radius both reach
-the same Nile-valley cluster. Girga and Luxor are 103 km apart.
-
-That is the sleep-and-stand case in two rows: the rooms and the maximum are not
-in the same place, and the gap between them is a drive, not a compromise.
-
-### Cloud does not complicate the choice
-
-Median cloud cover at the local eclipse hour, from ERA5 over 1985-2024:
-
-| Country | Places | Median cloud | Range |
-|---|---|---|---|
-| Egypt | 60 | 1.8% | 0.1-14.1 |
-| Tunisia | 134 | 4.2% | 1.8-6.7 |
-| Libya | 18 | 4.7% | 0.1-8.5 |
-| Algeria | 186 | 12.5% | 4.3-22.3 |
-| Spain | 117 | 16.1% | 12.2-25.3 |
-| Gibraltar | 1 | 18.7% | 18.7 |
-| Morocco | 89 | 22.9% | 12.7-30.8 |
-| Somalia | 8 | 36.6% | 30.9-41.3 |
-| Saudi Arabia | 43 | 54.6% | 15.0-73.8 |
-| Yemen | 114 | 61.5% | 32.8-79.8 |
-
-Spain gives 4m48s with roughly one August day in four cloudy. Egypt gives
-6m23s at 1.8%. Duration and clear sky point the same way, so there is no
-trade to agonise over.
-
-Checked against Jay Anderson's satellite-derived figures at eclipsophile.com:
-Tarifa computes at 23.8% against his 26%, from an independent method and
-dataset. Luxor computes at 3.1% against his 0.7%, and Melilla at 25.3%
-against his 39%. Those two read high for the same reason: at 0.25 degrees one
-ERA5 cell blends the Nile valley with the desert beside it, and Melilla with
-the sea and the Rif. Treat these numbers as regional. Anderson is the better
-source for a specific site and is linked, not reproduced, because his tables
-state no licence.
-
-## Usage
+## Build
 
 ```
-python scripts/extract_lodging.py   # once per OSM refresh, needs the extracts
-python scripts/fetch_cloud.py       # once per event, needs ~/.cdsapirc
-python scripts/build.py             # writes data/out/<event>-places.{csv,json} and <event>-outside.{csv,json}
-python scripts/build_site_data.py   # writes docs/data/<event>-places.json and <event>-outside.json, needs tzdata 2026.3+
-python scripts/build_geojson.py     # writes docs/data/<event>-path.geojson
-python scripts/build_countries.py   # writes docs/data/<event>-countries.geojson
-python scripts/build_coverage.py    # writes docs/data/<event>-coverage.json from data/hotel_registers.json
-python scripts/build_images.py      # writes docs/og.png and the site icons, needs Pillow
-python -m pytest tests/ -q          # validation gate
+python scripts/extract_lodging.py   # once per OSM refresh; writes data/cache/lodging/
+python scripts/fetch_cloud.py       # once per event; writes data/cache/cloud/
+python scripts/build_geojson.py     # docs/data/<event>-path.geojson, <event>-centre-profile.json
+python scripts/build.py             # data/out/<event>-places.{csv,json}, <event>-outside.{csv,json}
+python scripts/build_site_data.py   # docs/data/<event>-places.json, <event>-outside.json
+python scripts/build_countries.py   # docs/data/<event>-countries.geojson
+python scripts/build_coverage.py    # docs/data/<event>-coverage.json
+python scripts/build_images.py      # docs/og.png, homepage thumbnails, site icons
+python -m pytest tests/ -q
 ```
 
-`build.py` runs without the lodging or cloud caches and says which columns are
-missing, so the core dataset is reproducible without a CDS account.
+Then copy `data/out/<event>-places.csv` and `data/out/<event>-outside.csv`
+into `docs/data/`.
 
-The full build takes about 7 minutes, dominated by the exact centerline solve.
+`build.py` fetches UK travel advice at run time and takes about 8 minutes, most
+of it the centre line solve. It runs without the lodging or cloud caches and
+leaves those columns empty.
+
+## Output
+
+`<event>-places.csv`, one row per place inside the path:
+
+| Column | Meaning |
+|---|---|
+| `geonameid` | GeoNames ID |
+| `name`, `country_code`, `country` | From GeoNames |
+| `latitude`, `longitude`, `elevation_m`, `population`, `timezone` | From GeoNames |
+| `duration_seconds` | Duration of totality |
+| `seconds_sacrificed` | Greatest duration on the path minus this place's duration |
+| `sun_altitude_deg` | Sun altitude at maximum eclipse |
+| `max_eclipse_ut_hours` | Time of maximum eclipse, decimal hours UT |
+| `distance_from_centerline_km` | Straight-line distance to the centre line |
+| `mean_cloud_percent` | Mean total cloud cover, ERA5, 1985 to 2024, eclipse date and a day either side, nearest hour |
+| `clear_sky_probability` | Share of those hours under 20% cloud cover |
+| `cloud_observations` | Number of hours sampled |
+| `lodging_within_25km`, `lodging_within_80km` | OSM `tourism=*` lodging features |
+| `camping_within_25km`, `camping_within_80km` | OSM camp and caravan sites |
+
+`<event>-outside.csv`, one row per place within 100 km outside the path:
+GeoNames columns as above, then `obscuration_percent`, `magnitude`,
+`max_eclipse_ut_hours`, `sun_altitude_deg`, `km_to_edge_of_totality` and
+`km_to_centre_line`.
+
+Place counts follow GeoNames coverage, which varies by country. A place missing
+from GeoNames is missing here.
 
 ## Validation
 
-`python -m pytest tests/ -q`
+`tests/test_validation.py` checks the 2027 computation against published
+values:
 
-The computation is checked against independently published values before any
-downstream work is trusted:
-
-| Check | Expected | Computed |
+| Check | Reference | Computed |
 |---|---|---|
-| Greatest eclipse on shadow axis | ~0 | 1.0e-5 Earth radii |
-| Sun altitude at greatest eclipse | 81.7 deg | 81.69 deg |
-| Duration at greatest eclipse | 06m23s | 382.5 s |
-| Luxor duration | 6m19-6m23s | 380.0 s |
-| Seconds Luxor sacrifices | a few | 3.1 s |
-| Countries crossed | 9 and Gibraltar, not Sudan | confirmed |
-| Aden / Berbera | partial only | confirmed |
-| Girga cloud, Aug | very low | 1.8% |
-| Sanaa cloud, Aug | monsoon | 79.8% |
+| Distance of NASA's greatest eclipse point from the shadow axis | 0 | 1.0e-5 Earth radii |
+| Sun altitude at greatest eclipse | 81.7 deg (NASA) | 81.69 deg |
+| Duration at greatest eclipse | 6m23s (NASA) | 382.5 s |
+| Duration at Luxor | 6m19s to 6m23s | 380.0 s |
+| Greatest duration minus duration at greatest eclipse | 0 to 3 s | passes |
+| Countries crossed | 9 plus Gibraltar, not Sudan | passes |
+| Cairo, Aden, Berbera | outside totality | passes |
+| ERA5 August cloud, Girga and Sanaa | under 10%, over 40% | 1.8%, 79.8% |
 
-## Notes on correctness
+ERA5 cells are 0.25 degrees, so cloud figures are regional. Against Jay
+Anderson's satellite figures (eclipsophile.com): Tarifa 23.8% against 26%,
+Luxor 3.1% against 0.7%, Melilla 25.3% against 39%. The last two differ
+because one cell mixes the Nile valley with desert, and Melilla with sea and
+mountains.
 
-**Delta T is load-bearing.** `mu` is tabulated against TDT but expresses a
-Greenwich hour angle, a UT quantity. The frames differ by delta T, so it must
-be subtracted in the hour angle. Omitting it leaves latitude correct and shifts
-longitude by delta_T * 15 / 3600 degrees, about 32 km for this eclipse. This
-eclipse assumes delta T = 76.0 s; NASA's older 2027 map used 71.7 s.
+## Method notes
 
-**Greatest eclipse is not greatest duration.** For total eclipses these are
-different points, differing by 1-2 seconds and 100+ km. Greatest eclipse is
-where the shadow axis passes closest to Earth's centre; greatest duration is
-where totality lasts longest. Here they are 0.6 s and ~215 km apart. See
-[Espenak on the distinction](https://eclipsewise.com/solar/SEhelp/SEgreatest.html).
+`mu` is tabulated against TDT but is a Greenwich hour angle, which is a UT
+quantity, so the code subtracts delta T from it. Leaving it out shifts
+longitudes by delta T x 15 / 3600 degrees. The 2027 build uses delta T =
+76.0 s.
 
-**Two lunar radius constants.** k1 = 0.272488 for penumbral contacts,
-k2 = 0.272281 for umbral. Duration and path limits use the umbral value.
+Greatest eclipse and greatest duration are different points. For 2027 they are
+about 215 km and 0.6 s apart. `seconds_sacrificed` is measured from greatest
+duration.
 
-**Lunar limb profile** shifts path limits by 1-2 km and duration by 1-3 s.
-Limb-corrected predictions only appear 12-18 months before an event.
+The lunar radius is k1 = 0.272488 for penumbral contacts and k2 = 0.272281 for
+umbral contacts. Durations and path limits use k2.
 
-## Coverage
-
-1,823 places are inside the path or within 100 km of its edge. 770 of them,
-in 10 countries, are inside totality. The other 1,053 see a partial eclipse
-only.
-
-| Country | Places | Best |
-|---|---|---|
-| Algeria | 186 | Arris, 5m30s |
-| Tunisia | 134 | Mahires, 5m42s |
-| Spain | 117 | Ceuta, 4m48s |
-| Yemen | 114 | Baqim as Suq, 6m00s |
-| Morocco | 89 | Mdiq, 4m52s |
-| Egypt | 60 | Girga, 6m23s |
-| Saudi Arabia | 43 | Al Lith, 6m10s |
-| Libya | 18 | Benghazi, 6m09s |
-| Somalia | 8 | Qandala, 5m27s |
-| Gibraltar | 1 | Gibraltar, 4m26s |
-
-Places within 100 km outside the path, by country: Spain 477, Algeria 107,
-Yemen 105, Morocco 98, Tunisia 88, Portugal 60, Libya 52, Egypt 31, Malta 22,
-Saudi Arabia 10, Italy 1, Somalia 1, Sudan 1. For these the dataset has the
-share of the sun covered at the peak, the time of the peak, and straight-line
-distances to the edge of totality and to the centre line. No cloud or stays.
-
-Those counts are GeoNames density, not reality. Spain having 117 entries and
-Somalia 8 says more about who edits the gazetteer than about where towns are.
-A place missing here is missing from GeoNames.
-
-## Licence
-
-Code: AGPL 3.0 (`LICENSE`). Run a modified version as a network service and you
-have to publish your changes.
-
-Data under `data/out/` and `docs/data/`: ODbL 1.0 (`LICENSE-DATA.md`). This
-covers both CSV files: `<event>-places.csv`, the places in totality, and
-`<event>-outside.csv`, the places within 100 km outside the path. The
-lodging columns come from OpenStreetMap, which is share-alike, so the dataset
-cannot be more permissive than that. Attributions you have to carry are listed
-in `LICENSE-DATA.md`.
+The lunar limb profile is not modelled. It moves path limits by 1 to 2 km and
+durations by 1 to 3 s.
 
 ## Data sources
 
-- Besselian elements: NASA GSFC. *Eclipse Predictions by Fred Espenak, NASA's GSFC.*
+- Besselian elements: NASA GSFC, *Eclipse Predictions by Fred Espenak, NASA's
+  GSFC*.
+- Places: GeoNames, CC BY 4.0.
 - Cloud: ERA5 hourly data on single levels, Copernicus Climate Change Service.
   Contains modified Copernicus Climate Change Service information.
 - Lodging: OpenStreetMap contributors, ODbL 1.0, via Geofabrik extracts.
-- Advisories: UK Foreign, Commonwealth & Development Office, Open Government
+- Travel advice: UK Foreign, Commonwealth & Development Office, Open Government
   Licence v3.0.
 - Country outlines: Natural Earth 1:10m, UK point of view, v5.1.2, public
   domain.
-- Hotel registers, for the stays coverage rating only: INE (Spain), HCP
+- Hotel registers, used for the stays coverage rating: INE (Spain), HCP
   (Morocco), ONTT (Tunisia), GASTAT (Saudi Arabia), UN Tourism Statistics
-  Database (Algeria, Egypt), Statistics Office (Gibraltar). Figures, periods and links in
-  `data/hotel_registers.json`.
-- Prior art worth using: [eclipsewhere.com](https://eclipsewhere.com) for
-  curated cloud-first guidance, [Xavier Jubier's interactive map](http://xjubier.free.fr/en/site_pages/solar_eclipses/xSE_GoogleMap3.php?Ecl=+20270802)
-  for point queries, [Eclipsophile](https://eclipsophile.com/tse2027/) for
-  the authoritative cloud climatology.
+  Database (Algeria, Egypt), Statistics Office (Gibraltar). Figures, periods
+  and links are in `data/hotel_registers.json`.
+
+## Licence
+
+Code: AGPL 3.0 (`LICENSE`).
+
+Data in `data/out/` and `docs/data/`: ODbL 1.0 (`LICENSE-DATA.md`). The lodging
+columns come from OpenStreetMap, which is share-alike. Required attributions
+are listed in `LICENSE-DATA.md`.
