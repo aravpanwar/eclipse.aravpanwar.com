@@ -94,12 +94,6 @@
   .card h3 { margin: 0; font-size: 13.5px; font-weight: 600; color: #4a453d; }
   .card .where { margin: 0; font-size: 12px; line-height: 1.4; color: #4a453d; }
   .card .d { margin: 0; font-family: var(--mono); font-size: 11.5px; color: var(--dim); }
-  .card .gap { min-height: 8px; }
-  .interest { min-height: 30px; font: inherit; font-size: 12px; font-weight: 500;
-    color: var(--accent); background: var(--paper); border: 1px solid var(--accent); cursor: pointer; }
-  .interest:hover { background: #eef4f7; }
-  .interest:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .interest[aria-pressed="true"] { color: var(--dim); border-color: var(--line); cursor: default; }
 
   .note { max-width: 680px; margin-top: 26px; font-size: 12px; line-height: 1.55; color: var(--dim); }
 
@@ -169,8 +163,8 @@
   </article>
 
   <h2 class="section">Later total solar eclipses</h2>
-  <p class="hint">Not computed yet. They are done in order of interest, so show
-  interest in the ones you are planning for.</p>
+  <p class="hint">Not computed yet. The ones up to the end of 2031 are next,
+  soonest first.</p>
   <ol class="cards">
     <li class="card">
       <img src="/thumbs/2028-07-22.webp" alt="" width="640" height="400" loading="lazy">
@@ -178,9 +172,6 @@
         <h3>22 July 2028</h3>
         <p class="where">Australia, New Zealand</p>
         <p class="d">5:10 longest</p>
-        <span class="gap"></span>
-        <button type="button" class="interest" aria-pressed="false" data-eclipse="22 July 2028"
-                data-goatcounter-click="interest-2028-07-22" data-goatcounter-title="Show interest: 22 July 2028">Show interest</button>
       </div>
     </li>
     <li class="card">
@@ -189,9 +180,6 @@
         <h3>25 November 2030</h3>
         <p class="where">Botswana, South Africa, Australia</p>
         <p class="d">3:44 longest</p>
-        <span class="gap"></span>
-        <button type="button" class="interest" aria-pressed="false" data-eclipse="25 November 2030"
-                data-goatcounter-click="interest-2030-11-25" data-goatcounter-title="Show interest: 25 November 2030">Show interest</button>
       </div>
     </li>
     <li class="card">
@@ -200,9 +188,6 @@
         <h3>30 March 2033</h3>
         <p class="where">Russia, United States (Alaska)</p>
         <p class="d">2:37 longest</p>
-        <span class="gap"></span>
-        <button type="button" class="interest" aria-pressed="false" data-eclipse="30 March 2033"
-                data-goatcounter-click="interest-2033-03-30" data-goatcounter-title="Show interest: 30 March 2033">Show interest</button>
       </div>
     </li>
     <li class="card">
@@ -211,9 +196,6 @@
         <h3>20 March 2034</h3>
         <p class="where">Nigeria, Cameroon, Chad, Sudan, Egypt, Saudi Arabia, Iran, Afghanistan, Pakistan, India, China</p>
         <p class="d">4:09 longest</p>
-        <span class="gap"></span>
-        <button type="button" class="interest" aria-pressed="false" data-eclipse="20 March 2034"
-                data-goatcounter-click="interest-2034-03-20" data-goatcounter-title="Show interest: 20 March 2034">Show interest</button>
       </div>
     </li>
     <li class="card">
@@ -222,9 +204,6 @@
         <h3>2 September 2035</h3>
         <p class="where">China, Korea, Japan</p>
         <p class="d">2:54 longest</p>
-        <span class="gap"></span>
-        <button type="button" class="interest" aria-pressed="false" data-eclipse="2 September 2035"
-                data-goatcounter-click="interest-2035-09-02" data-goatcounter-title="Show interest: 2 September 2035">Show interest</button>
       </div>
     </li>
   </ol>
@@ -247,22 +226,6 @@
     el.textContent = days > 1 ? `In ${days} days` : days === 1 ? 'Tomorrow' : 'Today';
     el.hidden = false;
   })();
-
-  // Show interest. Clicks are counted by GoatCounter (data-goatcounter-click).
-  // Set FORM to a Google Form pre-filled link whose eclipse answer is the text
-  // ECLIPSE, and each button also opens the form with its eclipse filled in.
-  const FORM = '';
-  for (const b of document.querySelectorAll('.interest')) {
-    b.addEventListener('click', () => {
-      if (b.getAttribute('aria-pressed') === 'true') return;
-      if (FORM) {
-        window.open(FORM.replace('ECLIPSE', encodeURIComponent(b.dataset.eclipse)),
-                    '_blank', 'noopener');
-      }
-      b.setAttribute('aria-pressed', 'true');
-      b.textContent = 'Thanks';
-    });
-  }
 </script>
 
 <!-- Visit counts: GoatCounter, no cookies, no personal data. -->
