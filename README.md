@@ -31,7 +31,13 @@ change that value in each script and add the event's file to `data/elements/`.
 ## Requirements
 
 Python 3.11. Packages: `osmium`, `xarray`, `netCDF4` or another xarray netCDF
-engine, `cdsapi`, `Pillow`, `tzdata` 2026.3 or later, `pytest`.
+engine, `cdsapi`, `Pillow`, `tzdata` 2026.3 or later, `pytest`. Pinned
+versions are in `requirements.txt`:
+
+```
+python -m venv .venv
+.venv/Scripts/python -m pip install -r requirements.txt
+```
 
 Download these separately:
 
