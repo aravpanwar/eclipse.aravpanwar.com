@@ -159,6 +159,9 @@ durations by 1 to 3 s.
 
 Code: AGPL 3.0 (`LICENSE`).
 
+Fonts in `docs/fonts/`: Schibsted Grotesk and Source Serif 4, SIL Open Font
+License 1.1.
+
 Data in `data/out/` and `docs/data/`: ODbL 1.0 (`LICENSE-DATA.md`). The lodging
 columns come from OpenStreetMap, which is share-alike. Required attributions
 are listed in `LICENSE-DATA.md`.

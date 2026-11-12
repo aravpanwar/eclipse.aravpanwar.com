@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#1e4a33">
 <script>
   // The 2027 map lived at the site root until October 2026. Links shared
   // from then carry its state in the query string; send them on to it.
@@ -26,7 +27,8 @@
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/schibsted-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/source-serif-4.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/style.css">
 <style>
   body { display: block; }
@@ -36,50 +38,52 @@
   /* The dark band at the top: name and links, then the opening sentence.
      Its contents line up with the 1040px column below, and the 2027 card
      overlaps its bottom edge. */
-  header.mast { display: block; padding: 0; background: var(--ink); color: #f2efe9; border: 0; }
+  header.mast { display: block; padding: 0; background: var(--rail); color: var(--rail-ink); border: 0; }
   .mast .in { display: flex; align-items: center; gap: 22px; max-width: 1040px; min-height: 56px;
     margin: 0 auto; padding: 0 20px; }
-  .mast h1 { margin: 0; font-size: 17px; font-weight: 600; letter-spacing: -0.015em; }
-  .mast h1 a { display: flex; align-items: center; gap: 10px; color: #f2efe9; border: 0; padding: 0; }
+  .mast h1 { margin: 0; font-size: 18px; font-weight: 750; letter-spacing: -0.03em; }
+  .mast h1 a { display: flex; align-items: center; gap: 10px; color: var(--rail-ink); border: 0; padding: 0; }
   .mast h1 img { display: block; }
   .mast nav { display: flex; gap: 22px; font-size: 13.5px; }
-  .mast nav a { color: #c9c2b6; border-bottom: 1px solid transparent; padding-bottom: 2px; }
-  .mast nav a:hover { color: #fff; border-bottom-color: #fff; }
+  .mast nav a { color: var(--rail-muted); border-bottom: 1px solid transparent; padding-bottom: 2px; }
+  .mast nav a:hover { color: var(--rail-ink); border-bottom-color: var(--ochre); }
   .mast .lede { max-width: 1040px; margin: 0 auto; padding: 22px 20px 74px; }
-  .mast .lede p { max-width: 640px; margin: 0; font-size: 21px; line-height: 1.45; letter-spacing: -0.01em; }
-  .mast .lede p.small { margin-top: 12px; font-size: 13px; letter-spacing: 0; color: #a9a196; }
-  .mast .lede a { color: #a9a196; border-bottom-color: #4a453d; }
-  .mast .lede a:hover { color: #fff; border-bottom-color: #fff; }
-  .mast a:focus-visible { outline: 2px solid #f2efe9; outline-offset: 3px; }
-  h2.section { font-size: 12px; font-weight: 600; letter-spacing: .05em;
-    text-transform: uppercase; color: var(--dim); margin: 34px 0 8px; }
+  .mast .lede p { max-width: 640px; margin: 0; font-family: var(--serif); font-size: 25px; line-height: 1.4; letter-spacing: -0.01em; }
+  .mast .lede p.small { margin-top: 12px; font-family: var(--sans); font-size: 13px; letter-spacing: 0; color: var(--rail-muted); }
+  .mast .lede a { color: var(--rail-ink); border-bottom-color: rgba(255, 255, 255, .3); }
+  .mast .lede a:hover { color: var(--ochre); border-bottom-color: var(--ochre); }
+  .mast a:focus-visible { outline: 2px solid var(--rail-ink); outline-offset: 3px; }
+  h2.section { font-size: 14px; font-weight: 700; color: var(--accent); margin: 44px 0 8px; }
 
   /* The computed eclipse: a wide block, map left and text right. Only the
      date, the map picture and the button link to the map, because the country
      buttons sit inside it and links cannot nest. */
   .feature { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-    position: relative; margin-top: -52px; background: var(--paper); border: 1px solid var(--accent);
-    box-shadow: 0 10px 30px rgba(20, 17, 14, .10); }
+    position: relative; margin-top: -52px; background: var(--paper); border: 1px solid var(--line);
+    border-top: 3px solid var(--accent);
+    box-shadow: 0 10px 30px rgba(30, 26, 18, .10), 0 1px 2px rgba(30, 26, 18, .06); }
   /* The map fills its column however tall the text beside it runs. */
   .feature .pic { display: block; border: 0; border-right: 1px solid var(--line); background: #e2e7ea; }
   .feature img { display: block; width: 100%; height: 100%; object-fit: cover; }
   .feature .body { display: flex; flex-direction: column; gap: 6px; padding: 18px 20px 20px; }
-  .feature h3 { margin: 0; font-size: 22px; font-weight: 600; }
+  .feature h3 { margin: 0; font-size: 26px; font-weight: 750; letter-spacing: -0.03em; }
   .feature h3 a { color: var(--ink); border-bottom: 0; }
   .feature h3 a:hover { color: var(--accent); }
-  .feature .when { margin: 0; font-family: var(--mono); font-size: 12px; color: var(--dim); }
+  .feature .when { margin: 0; font-size: 12.5px; color: var(--dim); }
   .feature .dur { margin: 4px 0 0; font-size: 13px; }
   .feature .dur b { font-weight: 600; }
-  .feature .what { margin: 8px 0 0; font-size: 13.5px; line-height: 1.55; color: #2f2a24; }
+  .feature .what { margin: 8px 0 0; font-family: var(--serif); font-size: 16px; line-height: 1.55; color: #45423d; }
+  .feature .what b { font-family: var(--sans); font-size: 14.5px; font-weight: 700; color: var(--ink); }
   .chiplabel { margin: 12px 0 0; font-size: 11.5px; color: var(--dim); }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; padding: 0; list-style: none; }
   .chips a { display: inline-block; padding: 4px 9px; font-size: 12.5px; color: var(--ink);
     background: var(--ground); border: 1px solid var(--line); }
   .chips a:hover { color: var(--accent); border-color: var(--accent); }
   .gap { flex: 1; min-height: 14px; }
-  .go { align-self: flex-start; padding: 9px 16px; font-size: 14px; font-weight: 500;
+  .go { align-self: flex-start; padding: 9px 16px; font-size: 14px;
+    font-weight: 600;
     color: #fff; background: var(--accent); border: 0; }
-  .go:hover { color: #fff; background: #0d3c52; }
+  .go:hover { color: #fff; background: var(--rail); }
   .feature h3 a:focus-visible, .chips a:focus-visible, .go:focus-visible, .feature .pic:focus-visible {
     outline: 2px solid var(--accent); outline-offset: 2px; }
 
@@ -87,13 +91,13 @@
   .hint { margin: 0 0 12px; font-size: 12.5px; color: var(--dim); max-width: 680px; }
   .cards { list-style: none; margin: 0; padding: 0; display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
-  .card { display: flex; flex-direction: column; background: #f2f0eb; border: 1px solid var(--line); }
+  .card { display: flex; flex-direction: column; background: #f3efe5; border: 1px solid var(--line); }
   .card img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10;
     filter: grayscale(1); opacity: .55; border-bottom: 1px solid var(--line); }
   .card .b { display: flex; flex-direction: column; gap: 3px; flex-grow: 1; padding: 10px 11px 11px; }
-  .card h3 { margin: 0; font-size: 13.5px; font-weight: 600; color: #4a453d; }
-  .card .where { margin: 0; font-size: 12px; line-height: 1.4; color: #4a453d; }
-  .card .d { margin: 0; font-family: var(--mono); font-size: 11.5px; color: var(--dim); }
+  .card h3 { margin: 0; font-size: 14px; font-weight: 700; color: #45423d; }
+  .card .where { margin: 0; font-size: 12px; line-height: 1.4; color: #45423d; }
+  .card .d { margin: 0; font-size: 12px; color: var(--dim); }
 
   .note { max-width: 680px; margin-top: 26px; font-size: 12px; line-height: 1.55; color: var(--dim); }
 
@@ -102,7 +106,7 @@
     .mast .in { gap: 14px; min-height: 54px; padding: 0 16px; }
     .mast nav { gap: 16px; font-size: 13px; }
     .mast .lede { padding: 16px 16px 58px; }
-    .mast .lede p { font-size: 18px; }
+    .mast .lede p { font-size: 20px; }
     .feature { margin-top: -40px; }
     .feature { grid-template-columns: 1fr; }
     .feature .pic { border-right: 0; border-bottom: 1px solid var(--line); }

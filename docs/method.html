@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#1e4a33">
 <title>Method | Totality Path &amp; Nearby Locations | Arav Panwar</title>
 <meta name="description" content="How the durations, places, cloud, stays and travel advisories for the 2 August 2027 total solar eclipse are computed, sourced and checked.">
 <link rel="canonical" href="https://eclipse.aravpanwar.com/method.html">
@@ -19,23 +20,29 @@
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/schibsted-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/source-serif-4.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
 <style>
   body { display: block; }
-  .prose { max-width: 660px; margin: 0 auto; padding: 26px 20px 70px; }
-  .prose h2 { font-size: 16px; margin: 30px 0 8px; }
-  .prose h3 { font-size: 13px; margin: 20px 0 5px; }
-  .prose p, .prose li { line-height: 1.62; color: #2f2a24; }
-  .prose li { margin-bottom: 5px; }
-  .prose table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 12.5px; }
+  /* Reads like an essay on www.aravpanwar.com: serif body, grotesk heads. */
+  .prose { max-width: 680px; margin: 0 auto; padding: 30px 20px 80px; }
+  .prose h2 { font-size: 26px; font-weight: 750; letter-spacing: -0.03em; line-height: 1.15; margin: 40px 0 10px; }
+  .prose h3 { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; margin: 26px 0 6px; }
+  .prose p, .prose li { font-family: var(--serif); font-size: 18px; line-height: 1.62; color: #2b2925; }
+  .prose li { margin-bottom: 6px; }
+  .prose table { border-collapse: collapse; width: 100%; margin: 14px 0; font-size: 13px; }
   /* Wide tables scroll inside their box on a phone; the page never scrolls sideways. */
   .tablewrap { overflow-x: auto; }
   .prose table.wide { min-width: 620px; }
   .prose th, .prose td { text-align: left; padding: 6px 9px; border-bottom: 1px solid var(--hair); }
-  .prose th { font-size: 10px; text-transform: uppercase; letter-spacing: .05em; color: var(--faint); }
-  .prose td.n { font-family: var(--mono); text-align: right; }
-  code { font-family: var(--mono); font-size: 12px; background: #f2efe8; padding: 1px 4px; }
+  .prose th { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--accent); }
+  .prose td.n { text-align: right; }
+  code { font-family: ui-monospace, 'SF Mono', Consolas, Menlo, monospace; font-size: .82em; background: #efeae0; padding: 1px 5px; }
+  @media (max-width: 760px) {
+    .prose h2 { font-size: 22px; }
+    .prose p, .prose li { font-size: 17px; }
+  }
 </style>
 </head>
 <body>

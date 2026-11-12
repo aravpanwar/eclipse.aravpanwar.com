@@ -524,7 +524,7 @@ function initMap() {
     map.addLayer({
       id: 'umbra', type: 'fill', source: 'path',
       filter: ['==', ['get', 'kind'], 'umbra'],
-      paint: { 'fill-color': '#1a5c7a', 'fill-opacity': 0.15 },
+      paint: { 'fill-color': '#1e6a45', 'fill-opacity': 0.15 },
     });
     map.addLayer({
       id: 'umbra-edge', type: 'line', source: 'path',
@@ -532,25 +532,25 @@ function initMap() {
       paint: {
         // Dashed: the edges are known to about 1 to 2 km, and dashes keep them
         // apart from the solid centre line and the grey country borders.
-        'line-color': '#1a5c7a', 'line-width': 1.8, 'line-opacity': 0.95,
+        'line-color': '#1e6a45', 'line-width': 1.8, 'line-opacity': 0.95,
         'line-dasharray': [3, 2],
       },
     });
     map.addLayer({
       id: 'centreline', type: 'line', source: 'path',
       filter: ['==', ['get', 'kind'], 'centerline'],
-      paint: { 'line-color': '#1a5c7a', 'line-width': 2 },
+      paint: { 'line-color': '#1e6a45', 'line-width': 2 },
     });
 
     map.addSource('circle', { type: 'geojson', data: emptyFC() });
     map.addLayer({
       id: 'circle-fill', type: 'fill', source: 'circle',
-      paint: { 'fill-color': '#1a5c7a', 'fill-opacity': 0.05 },
+      paint: { 'fill-color': '#1e6a45', 'fill-opacity': 0.05 },
     });
     map.addLayer({
       id: 'circle-edge', type: 'line', source: 'circle',
-      // Solid, because the dashed teal line is the edge of totality.
-      paint: { 'line-color': '#1a5c7a', 'line-width': 1.5 },
+      // Solid, because the dashed green line is the edge of totality.
+      paint: { 'line-color': '#1e6a45', 'line-width': 1.5 },
     });
 
     // Radius by population, so the map answers "what is near here" without
@@ -567,10 +567,10 @@ function initMap() {
       id: 'outside', type: 'circle', source: 'outside',
       paint: {
         'circle-radius': dotRadius(0),
-        'circle-color': '#fffefb',
+        'circle-color': '#fffdf8',
         'circle-opacity': 0.75,
         'circle-stroke-width': ['case', ['==', ['get', 'sel'], true], 2.5, 1.2],
-        'circle-stroke-color': ['case', ['==', ['get', 'sel'], true], '#b5540e', '#3d382f'],
+        'circle-stroke-color': ['case', ['==', ['get', 'sel'], true], '#b5781a', '#3d382f'],
       },
     });
     map.addLayer({
@@ -584,11 +584,11 @@ function initMap() {
       paint: {
         'circle-radius': dotRadius(0),
         'circle-color': [
-          'case', ['==', ['get', 'sel'], true], '#b5540e', '#3d382f',
+          'case', ['==', ['get', 'sel'], true], '#b5781a', '#3d382f',
         ],
         'circle-opacity': 0.85,
         'circle-stroke-width': ['case', ['==', ['get', 'sel'], true], 2, 0.5],
-        'circle-stroke-color': '#fffefb',
+        'circle-stroke-color': '#fffdf8',
       },
     });
     // Invisible and 5 px wider than each dot: the smallest are 5 px across,
@@ -711,7 +711,7 @@ function drawCircle() {
   // job from the keyboard.
   if (state.pin && !pinMarker) {
     pinMarker = new maplibregl.Marker({
-      color: '#1a5c7a', scale: 0.8, className: 'pin', draggable: true,
+      color: '#1e6a45', scale: 0.8, className: 'pin', draggable: true,
     });
     pinMarker.getElement().setAttribute('aria-hidden', 'true');
     pinMarker.setLngLat([state.pin.lon, state.pin.lat]).addTo(map);
