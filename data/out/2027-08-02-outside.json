@@ -20,7 +20,7 @@
   "TN": "Tunisia",
   "YE": "Yemen"
  },
- "count": 1053,
+ "count": 1061,
  "places": [
   {
    "geonameid": 13608821,
@@ -11895,12 +11895,12 @@
    "country": "Spain",
    "latitude": 37.4063,
    "longitude": -1.58289,
-   "elevation_m": 23,
-   "population": 34533,
+   "elevation_m": 18,
+   "population": 34142,
    "timezone": "Europe/Madrid",
    "obscuration_percent": 98.491,
    "magnitude": 0.97998,
-   "max_eclipse_ut_hours": 8.877323,
+   "max_eclipse_ut_hours": 8.877324,
    "sun_altitude_deg": 42.19,
    "km_to_edge_of_totality": 65.19,
    "km_to_centre_line": 186.09
@@ -12329,6 +12329,23 @@
    "sun_altitude_deg": 39.22,
    "km_to_edge_of_totality": 67.55,
    "km_to_centre_line": 187.07
+  },
+  {
+   "geonameid": 13715442,
+   "name": "Urbanización Todosol",
+   "country_code": "ES",
+   "country": "Spain",
+   "latitude": 37.42746,
+   "longitude": -1.53674,
+   "elevation_m": 38,
+   "population": 1259,
+   "timezone": "Europe/Madrid",
+   "obscuration_percent": 98.417,
+   "magnitude": 0.97925,
+   "max_eclipse_ut_hours": 8.878388,
+   "sun_altitude_deg": 42.24,
+   "km_to_edge_of_totality": 67.55,
+   "km_to_centre_line": 188.51
   },
   {
    "geonameid": 79845,
@@ -14378,7 +14395,7 @@
    "latitude": 25.02126,
    "longitude": 37.2685,
    "elevation_m": 4,
-   "population": 33874,
+   "population": 46229,
    "timezone": "Asia/Riyadh",
    "obscuration_percent": 98.096,
    "magnitude": 0.97574,
@@ -16207,6 +16224,40 @@
    "km_to_centre_line": 209.88
   },
   {
+   "geonameid": 2514817,
+   "name": "Los Belones",
+   "country_code": "ES",
+   "country": "Spain",
+   "latitude": 37.62157,
+   "longitude": -0.77866,
+   "elevation_m": 35,
+   "population": 2394,
+   "timezone": "Europe/Madrid",
+   "obscuration_percent": 97.686,
+   "magnitude": 0.97228,
+   "max_eclipse_ut_hours": 8.895381,
+   "sun_altitude_deg": 42.99,
+   "km_to_edge_of_totality": 90.0,
+   "km_to_centre_line": 211.69
+  },
+  {
+   "geonameid": 2515015,
+   "name": "Llano del Beal",
+   "country_code": "ES",
+   "country": "Spain",
+   "latitude": 37.62394,
+   "longitude": -0.83611,
+   "elevation_m": 109,
+   "population": 1289,
+   "timezone": "Europe/Madrid",
+   "obscuration_percent": 97.681,
+   "magnitude": 0.97224,
+   "max_eclipse_ut_hours": 8.894137,
+   "sun_altitude_deg": 42.93,
+   "km_to_edge_of_totality": 90.01,
+   "km_to_centre_line": 211.8
+  },
+  {
    "geonameid": 2558470,
    "name": "Khemisset",
    "country_code": "MA",
@@ -16290,6 +16341,23 @@
    "sun_altitude_deg": 74.51,
    "km_to_edge_of_totality": 90.88,
    "km_to_centre_line": 219.27
+  },
+  {
+   "geonameid": 7778650,
+   "name": "Playa Honda",
+   "country_code": "ES",
+   "country": "Spain",
+   "latitude": 37.62796,
+   "longitude": -0.72965,
+   "elevation_m": 8,
+   "population": 1515,
+   "timezone": "Europe/Madrid",
+   "obscuration_percent": 97.659,
+   "magnitude": 0.97203,
+   "max_eclipse_ut_hours": 8.896468,
+   "sun_altitude_deg": 43.04,
+   "km_to_edge_of_totality": 90.93,
+   "km_to_centre_line": 212.54
   },
   {
    "geonameid": 2514733,
@@ -16392,6 +16460,23 @@
    "sun_altitude_deg": 37.81,
    "km_to_edge_of_totality": 91.53,
    "km_to_centre_line": 211.09
+  },
+  {
+   "geonameid": 2520648,
+   "name": "Cabo de Palos",
+   "country_code": "ES",
+   "country": "Spain",
+   "latitude": 37.63298,
+   "longitude": -0.6924,
+   "elevation_m": 18,
+   "population": 1052,
+   "timezone": "Europe/Madrid",
+   "obscuration_percent": 97.638,
+   "magnitude": 0.97183,
+   "max_eclipse_ut_hours": 8.897289,
+   "sun_altitude_deg": 43.08,
+   "km_to_edge_of_totality": 91.65,
+   "km_to_centre_line": 213.2
   },
   {
    "geonameid": 2558428,
@@ -16666,6 +16751,23 @@
    "km_to_centre_line": 212.8
   },
   {
+   "geonameid": 2514570,
+   "name": "Los Nietos",
+   "country_code": "ES",
+   "country": "Spain",
+   "latitude": 37.64876,
+   "longitude": -0.78484,
+   "elevation_m": 3,
+   "population": 1660,
+   "timezone": "Europe/Madrid",
+   "obscuration_percent": 97.587,
+   "magnitude": 0.97137,
+   "max_eclipse_ut_hours": 8.895366,
+   "sun_altitude_deg": 42.98,
+   "km_to_edge_of_totality": 92.99,
+   "km_to_centre_line": 214.7
+  },
+  {
    "geonameid": 2510419,
    "name": "Tocina",
    "country_code": "ES",
@@ -16749,6 +16851,23 @@
    "sun_altitude_deg": 54.68,
    "km_to_edge_of_totality": 93.72,
    "km_to_centre_line": 217.92
+  },
+  {
+   "geonameid": 2515275,
+   "name": "Las Palas",
+   "country_code": "ES",
+   "country": "Spain",
+   "latitude": 37.66306,
+   "longitude": -1.19032,
+   "elevation_m": 185,
+   "population": 1368,
+   "timezone": "Europe/Madrid",
+   "obscuration_percent": 97.56,
+   "magnitude": 0.97113,
+   "max_eclipse_ut_hours": 8.886714,
+   "sun_altitude_deg": 42.56,
+   "km_to_edge_of_totality": 93.74,
+   "km_to_centre_line": 215.36
   },
   {
    "geonameid": 2509835,
@@ -17191,6 +17310,23 @@
    "sun_altitude_deg": 38.96,
    "km_to_edge_of_totality": 96.79,
    "km_to_centre_line": 216.69
+  },
+  {
+   "geonameid": 2516212,
+   "name": "La Aljorra",
+   "country_code": "ES",
+   "country": "Spain",
+   "latitude": 37.69071,
+   "longitude": -1.06867,
+   "elevation_m": 78,
+   "population": 4673,
+   "timezone": "Europe/Madrid",
+   "obscuration_percent": 97.451,
+   "magnitude": 0.97014,
+   "max_eclipse_ut_hours": 8.889447,
+   "sun_altitude_deg": 42.68,
+   "km_to_edge_of_totality": 96.82,
+   "km_to_centre_line": 218.68
   },
   {
    "geonameid": 2514411,

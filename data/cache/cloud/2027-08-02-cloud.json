@@ -21,7 +21,7 @@
   "Climatology is not a forecast. A real forecast for 2 August 2027 will exist about a week beforehand and will be worth more than any of this.",
   "For the authoritative eclipse-specific treatment see Jay Anderson at eclipsophile.com, which uses the satellite record rather than reanalysis. Not reproduced here: it states no licence."
  ],
- "count": 770,
+ "count": 771,
  "by_geonameid": {
   "355026": {
    "mean_cloud_fraction": 0.017722066243489584,
@@ -187,6 +187,17 @@
    "grid_lon": 32.75,
    "mean_cloud_percent": 3.1,
    "clear_sky_probability": 0.95
+  },
+  "347196": {
+   "mean_cloud_fraction": 0.017270914713541665,
+   "observations": 120,
+   "hour_ut": 10,
+   "clear_observations": 115,
+   "overcast_observations": 0,
+   "grid_lat": 26.5,
+   "grid_lon": 31.75,
+   "mean_cloud_percent": 1.7,
+   "clear_sky_probability": 0.958
   },
   "350422": {
    "mean_cloud_fraction": 0.019272359212239583,

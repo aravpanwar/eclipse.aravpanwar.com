@@ -6,9 +6,9 @@
  },
  "by_country": {
   "EG": {
-   "osm_hotels": 1370,
+   "osm_hotels": 1389,
    "official_hotels": 1207,
-   "ratio": 1.14,
+   "ratio": 1.15,
    "rating": "high",
    "counts": "Hotels and similar establishments (ISIC 5510), not split into land hotels, tourist villages and Nile cruise boats.",
    "period": "2022",
@@ -17,7 +17,7 @@
    "doubts": "Nothing newer found. The same 2022 submission nearly doubles Egypt's room count from 2021, so its quality is doubtful."
   },
   "SA": {
-   "osm_hotels": 1834,
+   "osm_hotels": 1849,
    "official_hotels": 3020,
    "ratio": 0.61,
    "rating": "medium",
@@ -28,7 +28,7 @@
    "doubts": "Rising fast as licensing expands (2,527 a year earlier), so it measures licensing as well as hotels."
   },
   "LY": {
-   "osm_hotels": 318,
+   "osm_hotels": 320,
    "official_hotels": null,
    "ratio": null,
    "rating": "unknown",
@@ -39,7 +39,7 @@
    "doubts": "No official count since 2008, before the conflict."
   },
   "YE": {
-   "osm_hotels": 672,
+   "osm_hotels": 675,
    "official_hotels": null,
    "ratio": null,
    "rating": "unknown",
@@ -50,7 +50,7 @@
    "doubts": "No official count since the war began; the last is from 2010."
   },
   "TN": {
-   "osm_hotels": 735,
+   "osm_hotels": 738,
    "official_hotels": 665,
    "ratio": 1.11,
    "rating": "high",
@@ -61,7 +61,7 @@
    "doubts": "Registered, not operating: many registered hotels are reported closed."
   },
   "DZ": {
-   "osm_hotels": 1078,
+   "osm_hotels": 1076,
    "official_hotels": 1423,
    "ratio": 0.76,
    "rating": "high",
@@ -83,9 +83,9 @@
    "doubts": "No official hotel count found."
   },
   "MA": {
-   "osm_hotels": 2748,
+   "osm_hotels": 2788,
    "official_hotels": 1223,
-   "ratio": 2.25,
+   "ratio": 2.28,
    "rating": "high",
    "counts": "Classified hotels, 1 to 5 stars. Unclassified hotels are not counted; riads and maisons d'hôtes (2,534) are counted separately.",
    "period": "31 December 2024",
@@ -94,7 +94,7 @@
    "doubts": "Morocco reformed hotel classification in 2025, so later editions may count differently."
   },
   "ES": {
-   "osm_hotels": 12320,
+   "osm_hotels": 12402,
    "official_hotels": 16951,
    "ratio": 0.73,
    "rating": "high",

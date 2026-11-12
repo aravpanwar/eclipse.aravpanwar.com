@@ -40,9 +40,9 @@
     "alert_status": [],
     "labels": [],
     "worst": null,
-    "reviewed_at": "2026-08-11T09:21:44Z",
-    "updated_at": "2026-08-11T10:21:44+01:00",
-    "checked_at": "2026-11-04T11:07:42Z",
+    "reviewed_at": "2026-11-12T11:00:21Z",
+    "updated_at": "2026-11-12T11:00:21+00:00",
+    "checked_at": "2026-11-12T12:08:19Z",
     "issuer": "UK Foreign, Commonwealth & Development Office",
     "issuer_short": "FCDO",
     "url": "https://www.gov.uk/foreign-travel-advice/portugal",
@@ -57,7 +57,7 @@
     "worst": null,
     "reviewed_at": "2026-07-14T08:32:42Z",
     "updated_at": "2026-07-14T09:32:42+01:00",
-    "checked_at": "2026-11-04T11:07:42Z",
+    "checked_at": "2026-11-12T12:08:20Z",
     "issuer": "UK Foreign, Commonwealth & Development Office",
     "issuer_short": "FCDO",
     "url": "https://www.gov.uk/foreign-travel-advice/gibraltar",
@@ -72,7 +72,7 @@
     "worst": null,
     "reviewed_at": "2026-08-19T11:00:36Z",
     "updated_at": "2026-08-19T12:00:36+01:00",
-    "checked_at": "2026-11-04T11:07:43Z",
+    "checked_at": "2026-11-12T12:08:21Z",
     "issuer": "UK Foreign, Commonwealth & Development Office",
     "issuer_short": "FCDO",
     "url": "https://www.gov.uk/foreign-travel-advice/morocco",
@@ -88,9 +88,9 @@
     "alert_status": [],
     "labels": [],
     "worst": null,
-    "reviewed_at": "2026-10-28T13:02:06Z",
-    "updated_at": "2026-10-28T13:02:06+00:00",
-    "checked_at": "2026-11-04T11:07:43Z",
+    "reviewed_at": "2026-11-10T15:29:19Z",
+    "updated_at": "2026-11-10T15:29:19+00:00",
+    "checked_at": "2026-11-12T12:08:22Z",
     "issuer": "UK Foreign, Commonwealth & Development Office",
     "issuer_short": "FCDO",
     "url": "https://www.gov.uk/foreign-travel-advice/spain",
@@ -109,7 +109,7 @@
     "worst": "avoid_all_travel_to_parts",
     "reviewed_at": "2026-09-25T15:01:59Z",
     "updated_at": "2026-09-25T16:01:59+01:00",
-    "checked_at": "2026-11-04T11:07:44Z",
+    "checked_at": "2026-11-12T12:08:23Z",
     "issuer": "UK Foreign, Commonwealth & Development Office",
     "issuer_short": "FCDO",
     "url": "https://www.gov.uk/foreign-travel-advice/algeria",
@@ -128,7 +128,7 @@
     "worst": "avoid_all_travel_to_parts",
     "reviewed_at": "2026-07-24T16:07:53Z",
     "updated_at": "2026-07-24T17:07:53+01:00",
-    "checked_at": "2026-11-04T11:07:44Z",
+    "checked_at": "2026-11-12T12:08:24Z",
     "issuer": "UK Foreign, Commonwealth & Development Office",
     "issuer_short": "FCDO",
     "url": "https://www.gov.uk/foreign-travel-advice/tunisia",
@@ -146,7 +146,7 @@
     "worst": null,
     "reviewed_at": "2026-11-03T11:56:35Z",
     "updated_at": "2026-11-03T11:56:35+00:00",
-    "checked_at": "2026-11-04T11:07:44Z",
+    "checked_at": "2026-11-12T12:08:25Z",
     "issuer": "UK Foreign, Commonwealth & Development Office",
     "issuer_short": "FCDO",
     "url": "https://www.gov.uk/foreign-travel-advice/italy",
@@ -161,7 +161,7 @@
     "worst": null,
     "reviewed_at": "2026-08-11T09:20:07Z",
     "updated_at": "2026-08-11T10:20:07+01:00",
-    "checked_at": "2026-11-04T11:07:44Z",
+    "checked_at": "2026-11-12T12:08:26Z",
     "issuer": "UK Foreign, Commonwealth & Development Office",
     "issuer_short": "FCDO",
     "url": "https://www.gov.uk/foreign-travel-advice/malta",
@@ -182,7 +182,7 @@
     "worst": "avoid_all_travel_to_parts",
     "reviewed_at": "2026-07-21T09:00:09Z",
     "updated_at": "2026-07-21T10:00:09+01:00",
-    "checked_at": "2026-11-04T11:07:44Z",
+    "checked_at": "2026-11-12T12:08:26Z",
     "issuer": "UK Foreign, Commonwealth & Development Office",
     "issuer_short": "FCDO",
     "url": "https://www.gov.uk/foreign-travel-advice/libya",
@@ -207,7 +207,7 @@
     "worst": "avoid_all_travel_to_parts",
     "reviewed_at": "2026-10-27T16:03:56Z",
     "updated_at": "2026-10-27T16:03:56+00:00",
-    "checked_at": "2026-11-04T11:07:45Z",
+    "checked_at": "2026-11-12T12:08:27Z",
     "issuer": "UK Foreign, Commonwealth & Development Office",
     "issuer_short": "FCDO",
     "url": "https://www.gov.uk/foreign-travel-advice/egypt",
@@ -233,7 +233,7 @@
     "worst": "avoid_all_travel_to_parts",
     "reviewed_at": "2026-05-11T15:07:13Z",
     "updated_at": "2026-05-11T16:07:13+01:00",
-    "checked_at": "2026-11-04T11:07:45Z",
+    "checked_at": "2026-11-12T12:08:28Z",
     "issuer": "UK Foreign, Commonwealth & Development Office",
     "issuer_short": "FCDO",
     "url": "https://www.gov.uk/foreign-travel-advice/sudan",
@@ -258,7 +258,7 @@
     "worst": "avoid_all_travel_to_parts",
     "reviewed_at": "2026-10-27T16:54:07Z",
     "updated_at": "2026-10-27T16:54:07+00:00",
-    "checked_at": "2026-11-04T11:07:45Z",
+    "checked_at": "2026-11-12T12:08:29Z",
     "issuer": "UK Foreign, Commonwealth & Development Office",
     "issuer_short": "FCDO",
     "url": "https://www.gov.uk/foreign-travel-advice/saudi-arabia",
@@ -280,7 +280,7 @@
     "worst": "avoid_all_travel_to_whole_country",
     "reviewed_at": "2026-10-27T16:06:42Z",
     "updated_at": "2026-10-27T16:06:42+00:00",
-    "checked_at": "2026-11-04T11:07:45Z",
+    "checked_at": "2026-11-12T12:08:30Z",
     "issuer": "UK Foreign, Commonwealth & Development Office",
     "issuer_short": "FCDO",
     "url": "https://www.gov.uk/foreign-travel-advice/yemen",
@@ -299,7 +299,7 @@
     "worst": "avoid_all_travel_to_parts",
     "reviewed_at": "2026-06-04T14:57:41Z",
     "updated_at": "2026-06-04T15:57:41+01:00",
-    "checked_at": "2026-11-04T11:07:46Z",
+    "checked_at": "2026-11-12T12:08:30Z",
     "issuer": "UK Foreign, Commonwealth & Development Office",
     "issuer_short": "FCDO",
     "url": "https://www.gov.uk/foreign-travel-advice/somalia",
@@ -344,7 +344,7 @@
    "note": "Contains public sector information licensed under the Open Government Licence v3.0."
   }
  ],
- "count": 770,
+ "count": 771,
  "places": [
   {
    "geonameid": 355026,
@@ -435,7 +435,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 3,
    "camping_within_25km": 1,
-   "lodging_within_80km": 142,
+   "lodging_within_80km": 141,
    "camping_within_80km": 3
   },
   {
@@ -527,7 +527,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 6,
    "camping_within_25km": 2,
-   "lodging_within_80km": 142,
+   "lodging_within_80km": 141,
    "camping_within_80km": 3
   },
   {
@@ -550,7 +550,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 3,
    "camping_within_25km": 0,
-   "lodging_within_80km": 130,
+   "lodging_within_80km": 129,
    "camping_within_80km": 3
   },
   {
@@ -571,9 +571,9 @@
    "mean_cloud_percent": 3.1,
    "clear_sky_probability": 0.95,
    "cloud_observations": 120,
-   "lodging_within_25km": 116,
+   "lodging_within_25km": 115,
    "camping_within_25km": 1,
-   "lodging_within_80km": 127,
+   "lodging_within_80km": 126,
    "camping_within_80km": 2
   },
   {
@@ -594,9 +594,9 @@
    "mean_cloud_percent": 3.1,
    "clear_sky_probability": 0.95,
    "cloud_observations": 120,
-   "lodging_within_25km": 116,
+   "lodging_within_25km": 115,
    "camping_within_25km": 1,
-   "lodging_within_80km": 127,
+   "lodging_within_80km": 126,
    "camping_within_80km": 2
   },
   {
@@ -617,9 +617,9 @@
    "mean_cloud_percent": 1.9,
    "clear_sky_probability": 0.967,
    "cloud_observations": 120,
-   "lodging_within_25km": 99,
+   "lodging_within_25km": 98,
    "camping_within_25km": 1,
-   "lodging_within_80km": 127,
+   "lodging_within_80km": 126,
    "camping_within_80km": 3
   },
   {
@@ -642,7 +642,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 3,
    "camping_within_25km": 2,
-   "lodging_within_80km": 142,
+   "lodging_within_80km": 141,
    "camping_within_80km": 3
   },
   {
@@ -686,9 +686,32 @@
    "mean_cloud_percent": 3.1,
    "clear_sky_probability": 0.95,
    "cloud_observations": 120,
-   "lodging_within_25km": 116,
+   "lodging_within_25km": 115,
    "camping_within_25km": 1,
-   "lodging_within_80km": 127,
+   "lodging_within_80km": 126,
+   "camping_within_80km": 2
+  },
+  {
+   "geonameid": 347196,
+   "name": "Tūnis",
+   "country_code": "EG",
+   "country": "Egypt",
+   "latitude": 26.61238,
+   "longitude": 31.68748,
+   "elevation_m": 64,
+   "population": 19495,
+   "timezone": "Africa/Cairo",
+   "duration_seconds": 381.1,
+   "seconds_sacrificed": 2.0,
+   "sun_altitude_deg": 81.14,
+   "max_eclipse_ut_hours": 10.028717,
+   "distance_from_centerline_km": 12.3,
+   "mean_cloud_percent": 1.7,
+   "clear_sky_probability": 0.958,
+   "cloud_observations": 120,
+   "lodging_within_25km": 12,
+   "camping_within_25km": 0,
+   "lodging_within_80km": 24,
    "camping_within_80km": 2
   },
   {
@@ -711,7 +734,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 7,
    "camping_within_25km": 0,
-   "lodging_within_80km": 127,
+   "lodging_within_80km": 126,
    "camping_within_80km": 2
   },
   {
@@ -734,7 +757,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 5,
    "camping_within_25km": 0,
-   "lodging_within_80km": 130,
+   "lodging_within_80km": 129,
    "camping_within_80km": 3
   },
   {
@@ -755,9 +778,9 @@
    "mean_cloud_percent": 3.1,
    "clear_sky_probability": 0.95,
    "cloud_observations": 120,
-   "lodging_within_25km": 115,
+   "lodging_within_25km": 114,
    "camping_within_25km": 1,
-   "lodging_within_80km": 127,
+   "lodging_within_80km": 126,
    "camping_within_80km": 2
   },
   {
@@ -870,9 +893,9 @@
    "mean_cloud_percent": 3.1,
    "clear_sky_probability": 0.95,
    "cloud_observations": 120,
-   "lodging_within_25km": 115,
+   "lodging_within_25km": 114,
    "camping_within_25km": 1,
-   "lodging_within_80km": 129,
+   "lodging_within_80km": 128,
    "camping_within_80km": 2
   },
   {
@@ -918,7 +941,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 8,
    "camping_within_25km": 0,
-   "lodging_within_80km": 126,
+   "lodging_within_80km": 125,
    "camping_within_80km": 2
   },
   {
@@ -962,9 +985,9 @@
    "mean_cloud_percent": 3.6,
    "clear_sky_probability": 0.933,
    "cloud_observations": 120,
-   "lodging_within_25km": 115,
+   "lodging_within_25km": 114,
    "camping_within_25km": 1,
-   "lodging_within_80km": 131,
+   "lodging_within_80km": 130,
    "camping_within_80km": 2
   },
   {
@@ -1008,9 +1031,9 @@
    "mean_cloud_percent": 3.6,
    "clear_sky_probability": 0.933,
    "cloud_observations": 120,
-   "lodging_within_25km": 115,
+   "lodging_within_25km": 114,
    "camping_within_25km": 1,
-   "lodging_within_80km": 133,
+   "lodging_within_80km": 132,
    "camping_within_80km": 2
   },
   {
@@ -1102,7 +1125,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 7,
    "camping_within_25km": 0,
-   "lodging_within_80km": 126,
+   "lodging_within_80km": 125,
    "camping_within_80km": 3
   },
   {
@@ -1123,9 +1146,9 @@
    "mean_cloud_percent": 5.9,
    "clear_sky_probability": 0.917,
    "cloud_observations": 120,
-   "lodging_within_25km": 74,
+   "lodging_within_25km": 76,
    "camping_within_25km": 3,
-   "lodging_within_80km": 134,
+   "lodging_within_80km": 137,
    "camping_within_80km": 14
   },
   {
@@ -1284,9 +1307,9 @@
    "mean_cloud_percent": 69.7,
    "clear_sky_probability": 0.033,
    "cloud_observations": 120,
-   "lodging_within_25km": 14,
+   "lodging_within_25km": 15,
    "camping_within_25km": 1,
-   "lodging_within_80km": 37,
+   "lodging_within_80km": 38,
    "camping_within_80km": 2
   },
   {
@@ -1332,7 +1355,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 1,
    "camping_within_25km": 2,
-   "lodging_within_80km": 168,
+   "lodging_within_80km": 171,
    "camping_within_80km": 20
   },
   {
@@ -1355,7 +1378,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 16,
    "camping_within_25km": 0,
-   "lodging_within_80km": 34,
+   "lodging_within_80km": 35,
    "camping_within_80km": 2
   },
   {
@@ -1399,9 +1422,9 @@
    "mean_cloud_percent": 20.5,
    "clear_sky_probability": 0.683,
    "cloud_observations": 120,
-   "lodging_within_25km": 178,
+   "lodging_within_25km": 184,
    "camping_within_25km": 0,
-   "lodging_within_80km": 1038,
+   "lodging_within_80km": 1046,
    "camping_within_80km": 590
   },
   {
@@ -1562,7 +1585,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 3,
    "camping_within_25km": 1,
-   "lodging_within_80km": 141,
+   "lodging_within_80km": 144,
    "camping_within_80km": 13
   },
   {
@@ -1677,7 +1700,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 33,
+   "lodging_within_80km": 34,
    "camping_within_80km": 1
   },
   {
@@ -1721,9 +1744,9 @@
    "mean_cloud_percent": 3.3,
    "clear_sky_probability": 0.942,
    "cloud_observations": 120,
-   "lodging_within_25km": 46,
+   "lodging_within_25km": 47,
    "camping_within_25km": 7,
-   "lodging_within_80km": 181,
+   "lodging_within_80km": 186,
    "camping_within_80km": 32
   },
   {
@@ -1908,7 +1931,7 @@
    "lodging_within_25km": 0,
    "camping_within_25km": 2,
    "lodging_within_80km": 24,
-   "camping_within_80km": 8
+   "camping_within_80km": 7
   },
   {
    "geonameid": 7683765,
@@ -2044,9 +2067,9 @@
    "clear_sky_probability": 0.242,
    "cloud_observations": 120,
    "lodging_within_25km": 21,
-   "camping_within_25km": 2,
+   "camping_within_25km": 1,
    "lodging_within_80km": 23,
-   "camping_within_80km": 8
+   "camping_within_80km": 7
   },
   {
    "geonameid": 75518,
@@ -2137,7 +2160,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 1,
    "camping_within_25km": 0,
-   "lodging_within_80km": 124,
+   "lodging_within_80km": 123,
    "camping_within_80km": 1
   },
   {
@@ -2159,9 +2182,9 @@
    "clear_sky_probability": 0.242,
    "cloud_observations": 120,
    "lodging_within_25km": 21,
-   "camping_within_25km": 2,
+   "camping_within_25km": 1,
    "lodging_within_80km": 24,
-   "camping_within_80km": 8
+   "camping_within_80km": 7
   },
   {
    "geonameid": 11125824,
@@ -2275,7 +2298,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 39,
    "camping_within_25km": 1,
-   "lodging_within_80km": 167,
+   "lodging_within_80km": 171,
    "camping_within_80km": 26
   },
   {
@@ -2299,7 +2322,7 @@
    "lodging_within_25km": 0,
    "camping_within_25km": 1,
    "lodging_within_80km": 24,
-   "camping_within_80km": 3
+   "camping_within_80km": 2
   },
   {
    "geonameid": 359823,
@@ -2321,7 +2344,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 1,
    "camping_within_25km": 0,
-   "lodging_within_80km": 123,
+   "lodging_within_80km": 122,
    "camping_within_80km": 1
   },
   {
@@ -2436,8 +2459,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 76,
-   "camping_within_80km": 9
+   "lodging_within_80km": 74,
+   "camping_within_80km": 7
   },
   {
    "geonameid": 361405,
@@ -2459,7 +2482,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 3,
    "camping_within_25km": 0,
-   "lodging_within_80km": 124,
+   "lodging_within_80km": 123,
    "camping_within_80km": 1
   },
   {
@@ -2505,7 +2528,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 48,
+   "lodging_within_80km": 49,
    "camping_within_80km": 0
   },
   {
@@ -2529,7 +2552,7 @@
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
    "lodging_within_80km": 61,
-   "camping_within_80km": 1
+   "camping_within_80km": 2
   },
   {
    "geonameid": 2473258,
@@ -2551,7 +2574,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 10,
+   "lodging_within_80km": 11,
    "camping_within_80km": 0
   },
   {
@@ -2689,7 +2712,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 48,
+   "lodging_within_80km": 49,
    "camping_within_80km": 0
   },
   {
@@ -2735,7 +2758,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 1,
    "camping_within_25km": 0,
-   "lodging_within_80km": 12,
+   "lodging_within_80km": 13,
    "camping_within_80km": 0
   },
   {
@@ -2759,7 +2782,7 @@
    "lodging_within_25km": 0,
    "camping_within_25km": 1,
    "lodging_within_80km": 24,
-   "camping_within_80km": 7
+   "camping_within_80km": 6
   },
   {
    "geonameid": 2471059,
@@ -2781,7 +2804,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 58,
+   "lodging_within_80km": 59,
    "camping_within_80km": 1
   },
   {
@@ -2873,7 +2896,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 58,
+   "lodging_within_80km": 59,
    "camping_within_80km": 1
   },
   {
@@ -3080,7 +3103,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 2,
    "camping_within_25km": 0,
-   "lodging_within_80km": 15,
+   "lodging_within_80km": 16,
    "camping_within_80km": 0
   },
   {
@@ -3147,9 +3170,9 @@
    "mean_cloud_percent": 3.0,
    "clear_sky_probability": 0.942,
    "cloud_observations": 120,
-   "lodging_within_25km": 1,
+   "lodging_within_25km": 2,
    "camping_within_25km": 0,
-   "lodging_within_80km": 38,
+   "lodging_within_80km": 39,
    "camping_within_80km": 0
   },
   {
@@ -3471,7 +3494,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 30,
    "camping_within_25km": 0,
-   "lodging_within_80km": 44,
+   "lodging_within_80km": 45,
    "camping_within_80km": 0
   },
   {
@@ -3538,9 +3561,9 @@
    "mean_cloud_percent": 2.8,
    "clear_sky_probability": 0.95,
    "cloud_observations": 120,
-   "lodging_within_25km": 6,
+   "lodging_within_25km": 7,
    "camping_within_25km": 0,
-   "lodging_within_80km": 38,
+   "lodging_within_80km": 39,
    "camping_within_80km": 0
   },
   {
@@ -3564,7 +3587,7 @@
    "lodging_within_25km": 0,
    "camping_within_25km": 1,
    "lodging_within_80km": 26,
-   "camping_within_80km": 8
+   "camping_within_80km": 6
   },
   {
    "geonameid": 2473183,
@@ -3586,7 +3609,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 1,
    "camping_within_25km": 0,
-   "lodging_within_80km": 15,
+   "lodging_within_80km": 16,
    "camping_within_80km": 1
   },
   {
@@ -3609,7 +3632,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 7,
    "camping_within_25km": 0,
-   "lodging_within_80km": 147,
+   "lodging_within_80km": 148,
    "camping_within_80km": 4
   },
   {
@@ -3633,7 +3656,7 @@
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
    "lodging_within_80km": 57,
-   "camping_within_80km": 3
+   "camping_within_80km": 4
   },
   {
    "geonameid": 107692,
@@ -3654,9 +3677,9 @@
    "clear_sky_probability": 0.158,
    "cloud_observations": 120,
    "lodging_within_25km": 8,
-   "camping_within_25km": 0,
+   "camping_within_25km": 1,
    "lodging_within_80km": 11,
-   "camping_within_80km": 2
+   "camping_within_80km": 3
   },
   {
    "geonameid": 411056,
@@ -3724,7 +3747,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 5,
    "camping_within_25km": 1,
-   "lodging_within_80km": 90,
+   "lodging_within_80km": 92,
    "camping_within_80km": 9
   },
   {
@@ -3816,7 +3839,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 1,
    "camping_within_25km": 0,
-   "lodging_within_80km": 150,
+   "lodging_within_80km": 151,
    "camping_within_80km": 4
   },
   {
@@ -3931,7 +3954,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 53,
+   "lodging_within_80km": 54,
    "camping_within_80km": 1
   },
   {
@@ -3975,9 +3998,9 @@
    "mean_cloud_percent": 3.7,
    "clear_sky_probability": 0.942,
    "cloud_observations": 120,
-   "lodging_within_25km": 5,
+   "lodging_within_25km": 6,
    "camping_within_25km": 0,
-   "lodging_within_80km": 37,
+   "lodging_within_80km": 38,
    "camping_within_80km": 0
   },
   {
@@ -4046,7 +4069,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 18,
+   "lodging_within_80km": 19,
    "camping_within_80km": 0
   },
   {
@@ -4092,7 +4115,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 31,
    "camping_within_25km": 1,
-   "lodging_within_80km": 95,
+   "lodging_within_80km": 96,
    "camping_within_80km": 5
   },
   {
@@ -4230,7 +4253,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 2,
    "camping_within_25km": 0,
-   "lodging_within_80km": 25,
+   "lodging_within_80km": 26,
    "camping_within_80km": 2
   },
   {
@@ -4254,7 +4277,7 @@
    "lodging_within_25km": 5,
    "camping_within_25km": 0,
    "lodging_within_80km": 10,
-   "camping_within_80km": 0
+   "camping_within_80km": 1
   },
   {
    "geonameid": 104269,
@@ -4346,7 +4369,7 @@
    "lodging_within_25km": 2,
    "camping_within_25km": 2,
    "lodging_within_80km": 11,
-   "camping_within_80km": 2
+   "camping_within_80km": 3
   },
   {
    "geonameid": 2486690,
@@ -4459,9 +4482,9 @@
    "clear_sky_probability": 0.142,
    "cloud_observations": 120,
    "lodging_within_25km": 8,
-   "camping_within_25km": 0,
+   "camping_within_25km": 1,
    "lodging_within_80km": 12,
-   "camping_within_80km": 2
+   "camping_within_80km": 3
   },
   {
    "geonameid": 75133,
@@ -4484,7 +4507,7 @@
    "lodging_within_25km": 1,
    "camping_within_25km": 1,
    "lodging_within_80km": 23,
-   "camping_within_80km": 4
+   "camping_within_80km": 3
   },
   {
    "geonameid": 2488616,
@@ -4529,7 +4552,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 48,
+   "lodging_within_80km": 49,
    "camping_within_80km": 0
   },
   {
@@ -4575,7 +4598,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 7,
    "camping_within_25km": 0,
-   "lodging_within_80km": 149,
+   "lodging_within_80km": 150,
    "camping_within_80km": 7
   },
   {
@@ -4736,7 +4759,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 2,
    "camping_within_25km": 0,
-   "lodging_within_80km": 131,
+   "lodging_within_80km": 132,
    "camping_within_80km": 4
   },
   {
@@ -4875,7 +4898,7 @@
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
    "lodging_within_80km": 24,
-   "camping_within_80km": 4
+   "camping_within_80km": 3
   },
   {
    "geonameid": 2496059,
@@ -5010,9 +5033,9 @@
    "mean_cloud_percent": 22.3,
    "clear_sky_probability": 0.633,
    "cloud_observations": 120,
-   "lodging_within_25km": 843,
+   "lodging_within_25km": 845,
    "camping_within_25km": 598,
-   "lodging_within_80km": 1085,
+   "lodging_within_80km": 1093,
    "camping_within_80km": 598
   },
   {
@@ -5056,9 +5079,9 @@
    "mean_cloud_percent": 2.5,
    "clear_sky_probability": 0.942,
    "cloud_observations": 120,
-   "lodging_within_25km": 0,
+   "lodging_within_25km": 1,
    "camping_within_25km": 0,
-   "lodging_within_80km": 46,
+   "lodging_within_80km": 47,
    "camping_within_80km": 0
   },
   {
@@ -5266,7 +5289,7 @@
    "lodging_within_25km": 3,
    "camping_within_25km": 0,
    "lodging_within_80km": 50,
-   "camping_within_80km": 5
+   "camping_within_80km": 7
   },
   {
    "geonameid": 2502239,
@@ -5335,7 +5358,7 @@
    "lodging_within_25km": 1,
    "camping_within_25km": 1,
    "lodging_within_80km": 24,
-   "camping_within_80km": 3
+   "camping_within_80km": 2
   },
   {
    "geonameid": 2491323,
@@ -5794,7 +5817,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 9,
    "camping_within_25km": 0,
-   "lodging_within_80km": 913,
+   "lodging_within_80km": 915,
    "camping_within_80km": 598
   },
   {
@@ -5863,8 +5886,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 3,
    "camping_within_25km": 1,
-   "lodging_within_80km": 334,
-   "camping_within_80km": 8
+   "lodging_within_80km": 328,
+   "camping_within_80km": 7
   },
   {
    "geonameid": 2542898,
@@ -5885,9 +5908,9 @@
    "clear_sky_probability": 0.508,
    "cloud_observations": 120,
    "lodging_within_25km": 127,
-   "camping_within_25km": 9,
-   "lodging_within_80km": 962,
-   "camping_within_80km": 61
+   "camping_within_25km": 8,
+   "lodging_within_80km": 965,
+   "camping_within_80km": 58
   },
   {
    "geonameid": 10955770,
@@ -5908,9 +5931,9 @@
    "clear_sky_probability": 0.508,
    "cloud_observations": 120,
    "lodging_within_25km": 108,
-   "camping_within_25km": 7,
-   "lodging_within_80km": 949,
-   "camping_within_80km": 60
+   "camping_within_25km": 6,
+   "lodging_within_80km": 951,
+   "camping_within_80km": 57
   },
   {
    "geonameid": 2508180,
@@ -5955,7 +5978,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 151,
    "camping_within_25km": 0,
-   "lodging_within_80km": 1061,
+   "lodging_within_80km": 1069,
    "camping_within_80km": 598
   },
   {
@@ -6000,9 +6023,9 @@
    "clear_sky_probability": 0.592,
    "cloud_observations": 120,
    "lodging_within_25km": 106,
-   "camping_within_25km": 7,
-   "lodging_within_80km": 939,
-   "camping_within_80km": 59
+   "camping_within_25km": 6,
+   "lodging_within_80km": 941,
+   "camping_within_80km": 56
   },
   {
    "geonameid": 7931041,
@@ -6069,9 +6092,9 @@
    "clear_sky_probability": 0.617,
    "cloud_observations": 120,
    "lodging_within_25km": 102,
-   "camping_within_25km": 7,
-   "lodging_within_80km": 957,
-   "camping_within_80km": 60
+   "camping_within_25km": 6,
+   "lodging_within_80km": 959,
+   "camping_within_80km": 57
   },
   {
    "geonameid": 2508295,
@@ -6093,7 +6116,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 4,
    "camping_within_25km": 0,
-   "lodging_within_80km": 157,
+   "lodging_within_80km": 158,
    "camping_within_80km": 9
   },
   {
@@ -6115,9 +6138,9 @@
    "clear_sky_probability": 0.642,
    "cloud_observations": 120,
    "lodging_within_25km": 138,
-   "camping_within_25km": 6,
-   "lodging_within_80km": 954,
-   "camping_within_80km": 78
+   "camping_within_25km": 4,
+   "lodging_within_80km": 956,
+   "camping_within_80km": 75
   },
   {
    "geonameid": 2528910,
@@ -6138,9 +6161,9 @@
    "clear_sky_probability": 0.592,
    "cloud_observations": 120,
    "lodging_within_25km": 102,
-   "camping_within_25km": 7,
-   "lodging_within_80km": 933,
-   "camping_within_80km": 59
+   "camping_within_25km": 6,
+   "lodging_within_80km": 935,
+   "camping_within_80km": 56
   },
   {
    "geonameid": 2572146,
@@ -6161,9 +6184,9 @@
    "clear_sky_probability": 0.642,
    "cloud_observations": 120,
    "lodging_within_25km": 138,
-   "camping_within_25km": 6,
-   "lodging_within_80km": 952,
-   "camping_within_80km": 76
+   "camping_within_25km": 4,
+   "lodging_within_80km": 954,
+   "camping_within_80km": 73
   },
   {
    "geonameid": 2494073,
@@ -6229,10 +6252,10 @@
    "mean_cloud_percent": 24.8,
    "clear_sky_probability": 0.633,
    "cloud_observations": 120,
-   "lodging_within_25km": 150,
+   "lodging_within_25km": 149,
    "camping_within_25km": 3,
-   "lodging_within_80km": 982,
-   "camping_within_80km": 81
+   "lodging_within_80km": 985,
+   "camping_within_80km": 78
   },
   {
    "geonameid": 2479916,
@@ -6276,9 +6299,9 @@
    "clear_sky_probability": 0.592,
    "cloud_observations": 120,
    "lodging_within_25km": 114,
-   "camping_within_25km": 11,
-   "lodging_within_80km": 890,
-   "camping_within_80km": 56
+   "camping_within_25km": 10,
+   "lodging_within_80km": 892,
+   "camping_within_80km": 53
   },
   {
    "geonameid": 2548818,
@@ -6299,9 +6322,9 @@
    "clear_sky_probability": 0.508,
    "cloud_observations": 120,
    "lodging_within_25km": 90,
-   "camping_within_25km": 8,
-   "lodging_within_80km": 1251,
-   "camping_within_80km": 73
+   "camping_within_25km": 7,
+   "lodging_within_80km": 1254,
+   "camping_within_80km": 70
   },
   {
    "geonameid": 2502924,
@@ -6346,7 +6369,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 1,
    "camping_within_25km": 0,
-   "lodging_within_80km": 173,
+   "lodging_within_80km": 174,
    "camping_within_80km": 9
   },
   {
@@ -6392,8 +6415,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 348,
-   "camping_within_80km": 12
+   "lodging_within_80km": 342,
+   "camping_within_80km": 10
   },
   {
    "geonameid": 2482447,
@@ -6415,7 +6438,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 4,
    "camping_within_25km": 0,
-   "lodging_within_80km": 126,
+   "lodging_within_80km": 127,
    "camping_within_80km": 8
   },
   {
@@ -6438,8 +6461,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 1,
    "camping_within_25km": 2,
-   "lodging_within_80km": 956,
-   "camping_within_80km": 64
+   "lodging_within_80km": 958,
+   "camping_within_80km": 61
   },
   {
    "geonameid": 6362987,
@@ -6460,9 +6483,9 @@
    "clear_sky_probability": 0.625,
    "cloud_observations": 120,
    "lodging_within_25km": 74,
-   "camping_within_25km": 8,
-   "lodging_within_80km": 1126,
-   "camping_within_80km": 75
+   "camping_within_25km": 7,
+   "lodging_within_80km": 1127,
+   "camping_within_80km": 72
   },
   {
    "geonameid": 2479247,
@@ -6506,9 +6529,9 @@
    "clear_sky_probability": 0.617,
    "cloud_observations": 120,
    "lodging_within_25km": 91,
-   "camping_within_25km": 6,
-   "lodging_within_80km": 922,
-   "camping_within_80km": 60
+   "camping_within_25km": 5,
+   "lodging_within_80km": 924,
+   "camping_within_80km": 57
   },
   {
    "geonameid": 359169,
@@ -6553,8 +6576,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 335,
-   "camping_within_80km": 10
+   "lodging_within_80km": 329,
+   "camping_within_80km": 9
   },
   {
    "geonameid": 107117,
@@ -6598,9 +6621,9 @@
    "clear_sky_probability": 0.625,
    "cloud_observations": 120,
    "lodging_within_25km": 207,
-   "camping_within_25km": 6,
-   "lodging_within_80km": 1166,
-   "camping_within_80km": 83
+   "camping_within_25km": 7,
+   "lodging_within_80km": 1167,
+   "camping_within_80km": 80
   },
   {
    "geonameid": 2487805,
@@ -6645,7 +6668,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 16,
    "camping_within_25km": 2,
-   "lodging_within_80km": 124,
+   "lodging_within_80km": 125,
    "camping_within_80km": 7
   },
   {
@@ -6666,10 +6689,10 @@
    "mean_cloud_percent": 20.5,
    "clear_sky_probability": 0.658,
    "cloud_observations": 120,
-   "lodging_within_25km": 21,
-   "camping_within_25km": 9,
-   "lodging_within_80km": 714,
-   "camping_within_80km": 61
+   "lodging_within_25km": 22,
+   "camping_within_25km": 7,
+   "lodging_within_80km": 715,
+   "camping_within_80km": 58
   },
   {
    "geonameid": 362277,
@@ -6714,8 +6737,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 41,
    "camping_within_25km": 11,
-   "lodging_within_80km": 638,
-   "camping_within_80km": 31
+   "lodging_within_80km": 639,
+   "camping_within_80km": 30
   },
   {
    "geonameid": 2557055,
@@ -6735,10 +6758,10 @@
    "mean_cloud_percent": 24.6,
    "clear_sky_probability": 0.65,
    "cloud_observations": 120,
-   "lodging_within_25km": 26,
-   "camping_within_25km": 10,
-   "lodging_within_80km": 640,
-   "camping_within_80km": 52
+   "lodging_within_25km": 27,
+   "camping_within_25km": 8,
+   "lodging_within_80km": 641,
+   "camping_within_80km": 49
   },
   {
    "geonameid": 2485572,
@@ -6784,7 +6807,7 @@
    "lodging_within_25km": 4,
    "camping_within_25km": 0,
    "lodging_within_80km": 50,
-   "camping_within_80km": 5
+   "camping_within_80km": 7
   },
   {
    "geonameid": 2585234,
@@ -6806,7 +6829,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 47,
+   "lodging_within_80km": 48,
    "camping_within_80km": 0
   },
   {
@@ -6829,8 +6852,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 352,
-   "camping_within_80km": 8
+   "lodging_within_80km": 346,
+   "camping_within_80km": 6
   },
   {
    "geonameid": 7870038,
@@ -6852,7 +6875,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 19,
+   "lodging_within_80km": 20,
    "camping_within_80km": 0
   },
   {
@@ -6875,8 +6898,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 60,
    "camping_within_25km": 5,
-   "lodging_within_80km": 821,
-   "camping_within_80km": 55
+   "lodging_within_80km": 823,
+   "camping_within_80km": 52
   },
   {
    "geonameid": 108198,
@@ -6898,7 +6921,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 3,
    "camping_within_25km": 0,
-   "lodging_within_80km": 17,
+   "lodging_within_80km": 18,
    "camping_within_80km": 1
   },
   {
@@ -6990,8 +7013,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 30,
    "camping_within_25km": 11,
-   "lodging_within_80km": 507,
-   "camping_within_80km": 28
+   "lodging_within_80km": 508,
+   "camping_within_80km": 27
   },
   {
    "geonameid": 2507901,
@@ -7083,7 +7106,7 @@
    "lodging_within_25km": 137,
    "camping_within_25km": 1,
    "lodging_within_80km": 175,
-   "camping_within_80km": 5
+   "camping_within_80km": 6
   },
   {
    "geonameid": 2470789,
@@ -7105,7 +7128,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 1,
    "camping_within_25km": 0,
-   "lodging_within_80km": 61,
+   "lodging_within_80km": 62,
    "camping_within_80km": 1
   },
   {
@@ -7129,7 +7152,7 @@
    "lodging_within_25km": 3,
    "camping_within_25km": 0,
    "lodging_within_80km": 47,
-   "camping_within_80km": 5
+   "camping_within_80km": 7
   },
   {
    "geonameid": 2466897,
@@ -7198,7 +7221,7 @@
    "lodging_within_25km": 2,
    "camping_within_25km": 0,
    "lodging_within_80km": 48,
-   "camping_within_80km": 5
+   "camping_within_80km": 7
   },
   {
    "geonameid": 2510599,
@@ -7218,10 +7241,10 @@
    "mean_cloud_percent": 23.8,
    "clear_sky_probability": 0.617,
    "cloud_observations": 120,
-   "lodging_within_25km": 169,
+   "lodging_within_25km": 168,
    "camping_within_25km": 17,
-   "lodging_within_80km": 1197,
-   "camping_within_80km": 89
+   "lodging_within_80km": 1200,
+   "camping_within_80km": 87
   },
   {
    "geonameid": 2526968,
@@ -7241,10 +7264,10 @@
    "mean_cloud_percent": 27.4,
    "clear_sky_probability": 0.608,
    "cloud_observations": 120,
-   "lodging_within_25km": 26,
-   "camping_within_25km": 10,
-   "lodging_within_80km": 591,
-   "camping_within_80km": 37
+   "lodging_within_25km": 27,
+   "camping_within_25km": 8,
+   "lodging_within_80km": 593,
+   "camping_within_80km": 34
   },
   {
    "geonameid": 2473578,
@@ -7267,7 +7290,7 @@
    "lodging_within_25km": 10,
    "camping_within_25km": 0,
    "lodging_within_80km": 44,
-   "camping_within_80km": 6
+   "camping_within_80km": 8
   },
   {
    "geonameid": 2483936,
@@ -7289,7 +7312,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 4,
    "camping_within_25km": 0,
-   "lodging_within_80km": 140,
+   "lodging_within_80km": 141,
    "camping_within_80km": 14
   },
   {
@@ -7335,7 +7358,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 4,
    "camping_within_25km": 1,
-   "lodging_within_80km": 148,
+   "lodging_within_80km": 149,
    "camping_within_80km": 17
   },
   {
@@ -7450,8 +7473,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 47,
    "camping_within_25km": 1,
-   "lodging_within_80km": 94,
-   "camping_within_80km": 16
+   "lodging_within_80km": 93,
+   "camping_within_80km": 17
   },
   {
    "geonameid": 2473551,
@@ -7496,7 +7519,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 60,
+   "lodging_within_80km": 62,
    "camping_within_80km": 1
   },
   {
@@ -7565,7 +7588,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 26,
    "camping_within_25km": 0,
-   "lodging_within_80km": 72,
+   "lodging_within_80km": 73,
    "camping_within_80km": 1
   },
   {
@@ -7588,8 +7611,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 47,
    "camping_within_25km": 1,
-   "lodging_within_80km": 94,
-   "camping_within_80km": 16
+   "lodging_within_80km": 93,
+   "camping_within_80km": 17
   },
   {
    "geonameid": 2468925,
@@ -7634,7 +7657,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 7,
    "camping_within_25km": 0,
-   "lodging_within_80km": 73,
+   "lodging_within_80km": 74,
    "camping_within_80km": 1
   },
   {
@@ -7772,8 +7795,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 47,
    "camping_within_25km": 2,
-   "lodging_within_80km": 94,
-   "camping_within_80km": 18
+   "lodging_within_80km": 93,
+   "camping_within_80km": 19
   },
   {
    "geonameid": 2508670,
@@ -7841,7 +7864,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 19,
+   "lodging_within_80km": 20,
    "camping_within_80km": 1
   },
   {
@@ -7864,7 +7887,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 9,
    "camping_within_25km": 1,
-   "lodging_within_80km": 432,
+   "lodging_within_80km": 434,
    "camping_within_80km": 38
   },
   {
@@ -7887,8 +7910,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 3,
    "camping_within_25km": 1,
-   "lodging_within_80km": 247,
-   "camping_within_80km": 8
+   "lodging_within_80km": 241,
+   "camping_within_80km": 7
   },
   {
    "geonameid": 2473738,
@@ -7911,7 +7934,7 @@
    "lodging_within_25km": 138,
    "camping_within_25km": 3,
    "lodging_within_80km": 176,
-   "camping_within_80km": 5
+   "camping_within_80km": 6
   },
   {
    "geonameid": 2522013,
@@ -7933,7 +7956,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 357,
    "camping_within_25km": 18,
-   "lodging_within_80km": 1378,
+   "lodging_within_80km": 1382,
    "camping_within_80km": 100
   },
   {
@@ -7956,8 +7979,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 2,
    "camping_within_25km": 1,
-   "lodging_within_80km": 344,
-   "camping_within_80km": 10
+   "lodging_within_80km": 338,
+   "camping_within_80km": 9
   },
   {
    "geonameid": 2465108,
@@ -7979,7 +8002,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 177,
+   "lodging_within_80km": 178,
    "camping_within_80km": 3
   },
   {
@@ -8002,7 +8025,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 53,
+   "lodging_within_80km": 55,
    "camping_within_80km": 0
   },
   {
@@ -8025,8 +8048,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 2,
    "camping_within_25km": 1,
-   "lodging_within_80km": 549,
-   "camping_within_80km": 41
+   "lodging_within_80km": 551,
+   "camping_within_80km": 38
   },
   {
    "geonameid": 2411585,
@@ -8046,10 +8069,10 @@
    "mean_cloud_percent": 18.7,
    "clear_sky_probability": 0.683,
    "cloud_observations": 120,
-   "lodging_within_25km": 266,
+   "lodging_within_25km": 267,
    "camping_within_25km": 7,
-   "lodging_within_80km": 1584,
-   "camping_within_80km": 103
+   "lodging_within_80km": 1587,
+   "camping_within_80km": 101
   },
   {
    "geonameid": 2544367,
@@ -8071,8 +8094,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 39,
    "camping_within_25km": 8,
-   "lodging_within_80km": 437,
-   "camping_within_80km": 28
+   "lodging_within_80km": 439,
+   "camping_within_80km": 27
   },
   {
    "geonameid": 2558545,
@@ -8094,7 +8117,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 14,
    "camping_within_25km": 1,
-   "lodging_within_80km": 31,
+   "lodging_within_80km": 32,
    "camping_within_80km": 6
   },
   {
@@ -8116,9 +8139,9 @@
    "clear_sky_probability": 0.933,
    "cloud_observations": 120,
    "lodging_within_25km": 17,
-   "camping_within_25km": 0,
+   "camping_within_25km": 1,
    "lodging_within_80km": 37,
-   "camping_within_80km": 3
+   "camping_within_80km": 5
   },
   {
    "geonameid": 80635,
@@ -8186,8 +8209,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 236,
    "camping_within_25km": 28,
-   "lodging_within_80km": 1266,
-   "camping_within_80km": 102
+   "lodging_within_80km": 1273,
+   "camping_within_80km": 100
   },
   {
    "geonameid": 2473654,
@@ -8255,7 +8278,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 13,
    "camping_within_25km": 1,
-   "lodging_within_80km": 31,
+   "lodging_within_80km": 32,
    "camping_within_80km": 6
   },
   {
@@ -8276,10 +8299,10 @@
    "mean_cloud_percent": 18.7,
    "clear_sky_probability": 0.683,
    "cloud_observations": 120,
-   "lodging_within_25km": 273,
+   "lodging_within_25km": 274,
    "camping_within_25km": 7,
-   "lodging_within_80km": 1675,
-   "camping_within_80km": 106
+   "lodging_within_80km": 1680,
+   "camping_within_80km": 104
   },
   {
    "geonameid": 2467077,
@@ -8302,7 +8325,7 @@
    "lodging_within_25km": 2,
    "camping_within_25km": 0,
    "lodging_within_80km": 49,
-   "camping_within_80km": 5
+   "camping_within_80km": 7
   },
   {
    "geonameid": 2473229,
@@ -8392,9 +8415,9 @@
    "clear_sky_probability": 0.933,
    "cloud_observations": 120,
    "lodging_within_25km": 18,
-   "camping_within_25km": 0,
+   "camping_within_25km": 1,
    "lodging_within_80km": 44,
-   "camping_within_80km": 3
+   "camping_within_80km": 5
   },
   {
    "geonameid": 2514824,
@@ -8416,7 +8439,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 365,
    "camping_within_25km": 18,
-   "lodging_within_80km": 1421,
+   "lodging_within_80km": 1427,
    "camping_within_80km": 104
   },
   {
@@ -8460,10 +8483,10 @@
    "mean_cloud_percent": 19.1,
    "clear_sky_probability": 0.675,
    "cloud_observations": 120,
-   "lodging_within_25km": 296,
+   "lodging_within_25km": 298,
    "camping_within_25km": 12,
-   "lodging_within_80km": 1472,
-   "camping_within_80km": 106
+   "lodging_within_80km": 1476,
+   "camping_within_80km": 105
   },
   {
    "geonameid": 2498766,
@@ -8530,9 +8553,9 @@
    "clear_sky_probability": 0.933,
    "cloud_observations": 120,
    "lodging_within_25km": 19,
-   "camping_within_25km": 0,
+   "camping_within_25km": 1,
    "lodging_within_80km": 69,
-   "camping_within_80km": 2
+   "camping_within_80km": 4
   },
   {
    "geonameid": 89053,
@@ -8577,8 +8600,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 2,
-   "lodging_within_80km": 342,
-   "camping_within_80km": 33
+   "lodging_within_80km": 345,
+   "camping_within_80km": 31
   },
   {
    "geonameid": 2543549,
@@ -8601,7 +8624,7 @@
    "lodging_within_25km": 21,
    "camping_within_25km": 5,
    "lodging_within_80km": 208,
-   "camping_within_80km": 24
+   "camping_within_80km": 22
   },
   {
    "geonameid": 2508287,
@@ -8644,10 +8667,10 @@
    "mean_cloud_percent": 19.1,
    "clear_sky_probability": 0.675,
    "cloud_observations": 120,
-   "lodging_within_25km": 276,
+   "lodging_within_25km": 278,
    "camping_within_25km": 7,
-   "lodging_within_80km": 1692,
-   "camping_within_80km": 109
+   "lodging_within_80km": 1698,
+   "camping_within_80km": 108
   },
   {
    "geonameid": 2558766,
@@ -8669,7 +8692,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 14,
    "camping_within_25km": 1,
-   "lodging_within_80km": 31,
+   "lodging_within_80km": 32,
    "camping_within_80km": 6
   },
   {
@@ -8738,7 +8761,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 2,
    "camping_within_25km": 0,
-   "lodging_within_80km": 223,
+   "lodging_within_80km": 224,
    "camping_within_80km": 18
   },
   {
@@ -8761,7 +8784,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 258,
    "camping_within_25km": 29,
-   "lodging_within_80km": 1183,
+   "lodging_within_80km": 1190,
    "camping_within_80km": 106
   },
   {
@@ -8807,7 +8830,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 53,
+   "lodging_within_80km": 55,
    "camping_within_80km": 0
   },
   {
@@ -8828,10 +8851,10 @@
    "mean_cloud_percent": 25.3,
    "clear_sky_probability": 0.625,
    "cloud_observations": 120,
-   "lodging_within_25km": 48,
+   "lodging_within_25km": 49,
    "camping_within_25km": 2,
-   "lodging_within_80km": 94,
-   "camping_within_80km": 21
+   "lodging_within_80km": 93,
+   "camping_within_80km": 22
   },
   {
    "geonameid": 80105,
@@ -8876,7 +8899,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 1,
    "camping_within_25km": 0,
-   "lodging_within_80km": 60,
+   "lodging_within_80km": 61,
    "camping_within_80km": 1
   },
   {
@@ -8899,7 +8922,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 17,
    "camping_within_25km": 1,
-   "lodging_within_80km": 32,
+   "lodging_within_80km": 33,
    "camping_within_80km": 6
   },
   {
@@ -8943,10 +8966,10 @@
    "mean_cloud_percent": 19.2,
    "clear_sky_probability": 0.642,
    "cloud_observations": 120,
-   "lodging_within_25km": 210,
+   "lodging_within_25km": 212,
    "camping_within_25km": 6,
-   "lodging_within_80km": 410,
-   "camping_within_80km": 35
+   "lodging_within_80km": 413,
+   "camping_within_80km": 32
   },
   {
    "geonameid": 76930,
@@ -8968,8 +8991,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 6,
    "camping_within_25km": 2,
-   "lodging_within_80km": 345,
-   "camping_within_80km": 9
+   "lodging_within_80km": 339,
+   "camping_within_80km": 8
   },
   {
    "geonameid": 2498782,
@@ -9012,10 +9035,10 @@
    "mean_cloud_percent": 25.3,
    "clear_sky_probability": 0.625,
    "cloud_observations": 120,
-   "lodging_within_25km": 48,
+   "lodging_within_25km": 49,
    "camping_within_25km": 2,
-   "lodging_within_80km": 95,
-   "camping_within_80km": 21
+   "lodging_within_80km": 94,
+   "camping_within_80km": 22
   },
   {
    "geonameid": 2537538,
@@ -9035,10 +9058,10 @@
    "mean_cloud_percent": 25.3,
    "clear_sky_probability": 0.625,
    "cloud_observations": 120,
-   "lodging_within_25km": 48,
+   "lodging_within_25km": 49,
    "camping_within_25km": 1,
-   "lodging_within_80km": 95,
-   "camping_within_80km": 16
+   "lodging_within_80km": 94,
+   "camping_within_80km": 17
   },
   {
    "geonameid": 404915,
@@ -9060,8 +9083,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 3,
    "camping_within_25km": 2,
-   "lodging_within_80km": 347,
-   "camping_within_80km": 10
+   "lodging_within_80km": 341,
+   "camping_within_80km": 9
   },
   {
    "geonameid": 2508228,
@@ -9104,10 +9127,10 @@
    "mean_cloud_percent": 27.5,
    "clear_sky_probability": 0.542,
    "cloud_observations": 120,
-   "lodging_within_25km": 34,
-   "camping_within_25km": 13,
-   "lodging_within_80km": 141,
-   "camping_within_80km": 23
+   "lodging_within_25km": 32,
+   "camping_within_25km": 14,
+   "lodging_within_80km": 140,
+   "camping_within_80km": 24
   },
   {
    "geonameid": 2554997,
@@ -9129,7 +9152,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 6,
    "camping_within_25km": 1,
-   "lodging_within_80km": 65,
+   "lodging_within_80km": 67,
    "camping_within_80km": 4
   },
   {
@@ -9175,7 +9198,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 17,
    "camping_within_25km": 1,
-   "lodging_within_80km": 32,
+   "lodging_within_80km": 34,
    "camping_within_80km": 6
   },
   {
@@ -9198,7 +9221,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 4,
    "camping_within_25km": 0,
-   "lodging_within_80km": 97,
+   "lodging_within_80km": 99,
    "camping_within_80km": 0
   },
   {
@@ -9220,9 +9243,9 @@
    "clear_sky_probability": 0.933,
    "cloud_observations": 120,
    "lodging_within_25km": 19,
-   "camping_within_25km": 0,
+   "camping_within_25km": 1,
    "lodging_within_80km": 67,
-   "camping_within_80km": 3
+   "camping_within_80km": 5
   },
   {
    "geonameid": 2537965,
@@ -9244,7 +9267,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 12,
    "camping_within_25km": 2,
-   "lodging_within_80km": 33,
+   "lodging_within_80km": 34,
    "camping_within_80km": 17
   },
   {
@@ -9265,10 +9288,10 @@
    "mean_cloud_percent": 25.3,
    "clear_sky_probability": 0.625,
    "cloud_observations": 120,
-   "lodging_within_25km": 47,
+   "lodging_within_25km": 48,
    "camping_within_25km": 2,
-   "lodging_within_80km": 95,
-   "camping_within_80km": 21
+   "lodging_within_80km": 94,
+   "camping_within_80km": 22
   },
   {
    "geonameid": 408970,
@@ -9336,8 +9359,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 6,
    "camping_within_25km": 2,
-   "lodging_within_80km": 345,
-   "camping_within_80km": 9
+   "lodging_within_80km": 339,
+   "camping_within_80km": 8
   },
   {
    "geonameid": 2508059,
@@ -9380,10 +9403,10 @@
    "mean_cloud_percent": 21.8,
    "clear_sky_probability": 0.642,
    "cloud_observations": 120,
-   "lodging_within_25km": 262,
+   "lodging_within_25km": 264,
    "camping_within_25km": 28,
-   "lodging_within_80km": 1128,
-   "camping_within_80km": 104
+   "lodging_within_80km": 1134,
+   "camping_within_80km": 106
   },
   {
    "geonameid": 2544656,
@@ -9405,7 +9428,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 1,
    "camping_within_25km": 2,
-   "lodging_within_80km": 67,
+   "lodging_within_80km": 68,
    "camping_within_80km": 5
   },
   {
@@ -9428,8 +9451,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 6,
    "camping_within_25km": 2,
-   "lodging_within_80km": 172,
-   "camping_within_80km": 29
+   "lodging_within_80km": 170,
+   "camping_within_80km": 30
   },
   {
    "geonameid": 2504385,
@@ -9519,9 +9542,9 @@
    "clear_sky_probability": 0.933,
    "cloud_observations": 120,
    "lodging_within_25km": 19,
-   "camping_within_25km": 0,
+   "camping_within_25km": 1,
    "lodging_within_80km": 78,
-   "camping_within_80km": 3
+   "camping_within_80km": 5
   },
   {
    "geonameid": 2481389,
@@ -9589,8 +9612,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 22,
    "camping_within_25km": 2,
-   "lodging_within_80km": 92,
-   "camping_within_80km": 22
+   "lodging_within_80km": 91,
+   "camping_within_80km": 23
   },
   {
    "geonameid": 11092343,
@@ -9612,7 +9635,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 6,
    "camping_within_25km": 1,
-   "lodging_within_80km": 65,
+   "lodging_within_80km": 67,
    "camping_within_80km": 4
   },
   {
@@ -9633,10 +9656,10 @@
    "mean_cloud_percent": 12.7,
    "clear_sky_probability": 0.825,
    "cloud_observations": 120,
-   "lodging_within_25km": 209,
+   "lodging_within_25km": 211,
    "camping_within_25km": 5,
-   "lodging_within_80km": 403,
-   "camping_within_80km": 35
+   "lodging_within_80km": 406,
+   "camping_within_80km": 32
   },
   {
    "geonameid": 2484242,
@@ -9658,7 +9681,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 49,
    "camping_within_25km": 2,
-   "lodging_within_80km": 452,
+   "lodging_within_80km": 455,
    "camping_within_80km": 43
   },
   {
@@ -9679,10 +9702,10 @@
    "mean_cloud_percent": 18.7,
    "clear_sky_probability": 0.683,
    "cloud_observations": 120,
-   "lodging_within_25km": 358,
+   "lodging_within_25km": 360,
    "camping_within_25km": 9,
-   "lodging_within_80km": 1848,
-   "camping_within_80km": 115
+   "lodging_within_80km": 1856,
+   "camping_within_80km": 113
   },
   {
    "geonameid": 2488835,
@@ -9704,7 +9727,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 50,
    "camping_within_25km": 2,
-   "lodging_within_80km": 441,
+   "lodging_within_80km": 443,
    "camping_within_80km": 44
   },
   {
@@ -9773,7 +9796,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 17,
    "camping_within_25km": 1,
-   "lodging_within_80km": 32,
+   "lodging_within_80km": 34,
    "camping_within_80km": 6
   },
   {
@@ -9819,7 +9842,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 56,
    "camping_within_25km": 0,
-   "lodging_within_80km": 914,
+   "lodging_within_80km": 916,
    "camping_within_80km": 598
   },
   {
@@ -9840,10 +9863,10 @@
    "mean_cloud_percent": 21.8,
    "clear_sky_probability": 0.642,
    "cloud_observations": 120,
-   "lodging_within_25km": 242,
-   "camping_within_25km": 28,
-   "lodging_within_80km": 1052,
-   "camping_within_80km": 95
+   "lodging_within_25km": 245,
+   "camping_within_25km": 29,
+   "lodging_within_80km": 1058,
+   "camping_within_80km": 96
   },
   {
    "geonameid": 2483649,
@@ -9865,8 +9888,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 28,
    "camping_within_25km": 1,
-   "lodging_within_80km": 189,
-   "camping_within_80km": 34
+   "lodging_within_80km": 187,
+   "camping_within_80km": 35
   },
   {
    "geonameid": 2537802,
@@ -9886,10 +9909,10 @@
    "mean_cloud_percent": 25.0,
    "clear_sky_probability": 0.633,
    "cloud_observations": 120,
-   "lodging_within_25km": 38,
-   "camping_within_25km": 16,
-   "lodging_within_80km": 157,
-   "camping_within_80km": 23
+   "lodging_within_25km": 36,
+   "camping_within_25km": 17,
+   "lodging_within_80km": 156,
+   "camping_within_80km": 24
   },
   {
    "geonameid": 2499095,
@@ -9911,7 +9934,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 50,
    "camping_within_25km": 1,
-   "lodging_within_80km": 444,
+   "lodging_within_80km": 446,
    "camping_within_80km": 44
   },
   {
@@ -9933,9 +9956,9 @@
    "clear_sky_probability": 0.95,
    "cloud_observations": 120,
    "lodging_within_25km": 19,
-   "camping_within_25km": 0,
+   "camping_within_25km": 1,
    "lodging_within_80km": 67,
-   "camping_within_80km": 3
+   "camping_within_80km": 5
   },
   {
    "geonameid": 64013,
@@ -9980,7 +10003,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 51,
+   "lodging_within_80km": 53,
    "camping_within_80km": 0
   },
   {
@@ -10024,10 +10047,10 @@
    "mean_cloud_percent": 19.1,
    "clear_sky_probability": 0.675,
    "cloud_observations": 120,
-   "lodging_within_25km": 282,
+   "lodging_within_25km": 284,
    "camping_within_25km": 10,
-   "lodging_within_80km": 1749,
-   "camping_within_80km": 124
+   "lodging_within_80km": 1759,
+   "camping_within_80km": 123
   },
   {
    "geonameid": 2550749,
@@ -10049,8 +10072,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 18,
    "camping_within_25km": 3,
-   "lodging_within_80km": 275,
-   "camping_within_80km": 24
+   "lodging_within_80km": 278,
+   "camping_within_80km": 22
   },
   {
    "geonameid": 104923,
@@ -10072,7 +10095,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 202,
+   "lodging_within_80km": 206,
    "camping_within_80km": 0
   },
   {
@@ -10093,10 +10116,10 @@
    "mean_cloud_percent": 25.8,
    "clear_sky_probability": 0.617,
    "cloud_observations": 120,
-   "lodging_within_25km": 49,
+   "lodging_within_25km": 50,
    "camping_within_25km": 2,
-   "lodging_within_80km": 95,
-   "camping_within_80km": 22
+   "lodging_within_80km": 94,
+   "camping_within_80km": 23
   },
   {
    "geonameid": 2473937,
@@ -10119,7 +10142,7 @@
    "lodging_within_25km": 57,
    "camping_within_25km": 2,
    "lodging_within_80km": 188,
-   "camping_within_80km": 5
+   "camping_within_80km": 7
   },
   {
    "geonameid": 81615,
@@ -10141,7 +10164,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 1,
    "camping_within_25km": 4,
-   "lodging_within_80km": 133,
+   "lodging_within_80km": 136,
    "camping_within_80km": 29
   },
   {
@@ -10162,9 +10185,9 @@
    "mean_cloud_percent": 18.8,
    "clear_sky_probability": 0.65,
    "cloud_observations": 120,
-   "lodging_within_25km": 0,
+   "lodging_within_25km": 1,
    "camping_within_25km": 1,
-   "lodging_within_80km": 36,
+   "lodging_within_80km": 37,
    "camping_within_80km": 18
   },
   {
@@ -10187,7 +10210,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 60,
    "camping_within_25km": 0,
-   "lodging_within_80km": 913,
+   "lodging_within_80km": 915,
    "camping_within_80km": 598
   },
   {
@@ -10209,9 +10232,9 @@
    "clear_sky_probability": 0.95,
    "cloud_observations": 120,
    "lodging_within_25km": 20,
-   "camping_within_25km": 0,
+   "camping_within_25km": 1,
    "lodging_within_80km": 91,
-   "camping_within_80km": 3
+   "camping_within_80km": 5
   },
   {
    "geonameid": 2530814,
@@ -10233,7 +10256,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 13,
    "camping_within_25km": 1,
-   "lodging_within_80km": 31,
+   "lodging_within_80km": 32,
    "camping_within_80km": 6
   },
   {
@@ -10254,10 +10277,10 @@
    "mean_cloud_percent": 12.7,
    "clear_sky_probability": 0.825,
    "cloud_observations": 120,
-   "lodging_within_25km": 209,
+   "lodging_within_25km": 211,
    "camping_within_25km": 4,
-   "lodging_within_80km": 362,
-   "camping_within_80km": 36
+   "lodging_within_80km": 364,
+   "camping_within_80km": 35
   },
   {
    "geonameid": 2468328,
@@ -10279,7 +10302,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 1,
    "camping_within_25km": 0,
-   "lodging_within_80km": 30,
+   "lodging_within_80km": 31,
    "camping_within_80km": 1
   },
   {
@@ -10326,7 +10349,7 @@
    "lodging_within_25km": 1,
    "camping_within_25km": 0,
    "lodging_within_80km": 42,
-   "camping_within_80km": 5
+   "camping_within_80km": 7
   },
   {
    "geonameid": 69640,
@@ -10416,9 +10439,9 @@
    "clear_sky_probability": 0.967,
    "cloud_observations": 120,
    "lodging_within_25km": 1,
-   "camping_within_25km": 0,
+   "camping_within_25km": 1,
    "lodging_within_80km": 41,
-   "camping_within_80km": 4
+   "camping_within_80km": 6
   },
   {
    "geonameid": 6544409,
@@ -10438,10 +10461,10 @@
    "mean_cloud_percent": 20.3,
    "clear_sky_probability": 0.667,
    "cloud_observations": 120,
-   "lodging_within_25km": 172,
+   "lodging_within_25km": 173,
    "camping_within_25km": 8,
-   "lodging_within_80km": 1366,
-   "camping_within_80km": 116
+   "lodging_within_80km": 1373,
+   "camping_within_80km": 118
   },
   {
    "geonameid": 13645278,
@@ -10484,10 +10507,10 @@
    "mean_cloud_percent": 14.6,
    "clear_sky_probability": 0.775,
    "cloud_observations": 120,
-   "lodging_within_25km": 203,
+   "lodging_within_25km": 204,
    "camping_within_25km": 12,
-   "lodging_within_80km": 1713,
-   "camping_within_80km": 123
+   "lodging_within_80km": 1723,
+   "camping_within_80km": 121
   },
   {
    "geonameid": 2555504,
@@ -10509,7 +10532,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 3,
    "camping_within_25km": 1,
-   "lodging_within_80km": 67,
+   "lodging_within_80km": 69,
    "camping_within_80km": 5
   },
   {
@@ -10601,8 +10624,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 15,
    "camping_within_25km": 2,
-   "lodging_within_80km": 174,
-   "camping_within_80km": 28
+   "lodging_within_80km": 172,
+   "camping_within_80km": 29
   },
   {
    "geonameid": 2508102,
@@ -10647,7 +10670,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 18,
+   "lodging_within_80km": 19,
    "camping_within_80km": 0
   },
   {
@@ -10670,7 +10693,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 3,
    "camping_within_25km": 0,
-   "lodging_within_80km": 129,
+   "lodging_within_80km": 123,
    "camping_within_80km": 7
   },
   {
@@ -10691,9 +10714,9 @@
    "mean_cloud_percent": 18.8,
    "clear_sky_probability": 0.65,
    "cloud_observations": 120,
-   "lodging_within_25km": 0,
+   "lodging_within_25km": 1,
    "camping_within_25km": 0,
-   "lodging_within_80km": 36,
+   "lodging_within_80km": 37,
    "camping_within_80km": 16
   },
   {
@@ -10714,10 +10737,10 @@
    "mean_cloud_percent": 25.0,
    "clear_sky_probability": 0.633,
    "cloud_observations": 120,
-   "lodging_within_25km": 40,
-   "camping_within_25km": 17,
-   "lodging_within_80km": 141,
-   "camping_within_80km": 23
+   "lodging_within_25km": 38,
+   "camping_within_25km": 18,
+   "lodging_within_80km": 140,
+   "camping_within_80km": 24
   },
   {
    "geonameid": 2544001,
@@ -10739,8 +10762,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 1,
    "camping_within_25km": 0,
-   "lodging_within_80km": 303,
-   "camping_within_80km": 28
+   "lodging_within_80km": 306,
+   "camping_within_80km": 26
   },
   {
    "geonameid": 7364022,
@@ -10762,8 +10785,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 44,
-   "camping_within_80km": 4
+   "lodging_within_80km": 45,
+   "camping_within_80km": 3
   },
   {
    "geonameid": 64412,
@@ -10852,10 +10875,10 @@
    "mean_cloud_percent": 25.8,
    "clear_sky_probability": 0.617,
    "cloud_observations": 120,
-   "lodging_within_25km": 20,
+   "lodging_within_25km": 21,
    "camping_within_25km": 1,
-   "lodging_within_80km": 96,
-   "camping_within_80km": 22
+   "lodging_within_80km": 95,
+   "camping_within_80km": 23
   },
   {
    "geonameid": 72557,
@@ -10901,7 +10924,7 @@
    "lodging_within_25km": 2,
    "camping_within_25km": 0,
    "lodging_within_80km": 10,
-   "camping_within_80km": 0
+   "camping_within_80km": 1
   },
   {
    "geonameid": 2508225,
@@ -10946,7 +10969,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 4,
    "camping_within_25km": 1,
-   "lodging_within_80km": 67,
+   "lodging_within_80km": 69,
    "camping_within_80km": 5
   },
   {
@@ -10969,7 +10992,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 1,
    "camping_within_25km": 0,
-   "lodging_within_80km": 51,
+   "lodging_within_80km": 53,
    "camping_within_80km": 0
   },
   {
@@ -11015,7 +11038,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 3,
    "camping_within_25km": 0,
-   "lodging_within_80km": 316,
+   "lodging_within_80km": 319,
    "camping_within_80km": 31
   },
   {
@@ -11061,7 +11084,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 17,
    "camping_within_25km": 0,
-   "lodging_within_80km": 413,
+   "lodging_within_80km": 415,
    "camping_within_80km": 24
   },
   {
@@ -11107,8 +11130,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 237,
    "camping_within_25km": 7,
-   "lodging_within_80km": 1790,
-   "camping_within_80km": 105
+   "lodging_within_80km": 1804,
+   "camping_within_80km": 104
   },
   {
    "geonameid": 2508002,
@@ -11130,7 +11153,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 11,
    "camping_within_25km": 1,
-   "lodging_within_80km": 144,
+   "lodging_within_80km": 145,
    "camping_within_80km": 6
   },
   {
@@ -11153,7 +11176,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 1,
    "camping_within_25km": 0,
-   "lodging_within_80km": 104,
+   "lodging_within_80km": 103,
    "camping_within_80km": 2
   },
   {
@@ -11176,7 +11199,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 24,
    "camping_within_25km": 13,
-   "lodging_within_80km": 360,
+   "lodging_within_80km": 362,
    "camping_within_80km": 39
   },
   {
@@ -11222,7 +11245,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 20,
+   "lodging_within_80km": 21,
    "camping_within_80km": 1
   },
   {
@@ -11291,8 +11314,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 10,
    "camping_within_25km": 3,
-   "lodging_within_80km": 350,
-   "camping_within_80km": 37
+   "lodging_within_80km": 353,
+   "camping_within_80km": 35
   },
   {
    "geonameid": 83861,
@@ -11337,7 +11360,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 30,
    "camping_within_25km": 1,
-   "lodging_within_80km": 185,
+   "lodging_within_80km": 183,
    "camping_within_80km": 26
   },
   {
@@ -11404,9 +11427,9 @@
    "mean_cloud_percent": 15.0,
    "clear_sky_probability": 0.767,
    "cloud_observations": 120,
-   "lodging_within_25km": 79,
+   "lodging_within_25km": 80,
    "camping_within_25km": 10,
-   "lodging_within_80km": 1788,
+   "lodging_within_80km": 1801,
    "camping_within_80km": 133
   },
   {
@@ -11450,10 +11473,10 @@
    "mean_cloud_percent": 14.6,
    "clear_sky_probability": 0.775,
    "cloud_observations": 120,
-   "lodging_within_25km": 208,
+   "lodging_within_25km": 209,
    "camping_within_25km": 13,
-   "lodging_within_80km": 1725,
-   "camping_within_80km": 127
+   "lodging_within_80km": 1736,
+   "camping_within_80km": 126
   },
   {
    "geonameid": 2550985,
@@ -11475,7 +11498,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 70,
+   "lodging_within_80km": 71,
    "camping_within_80km": 6
   },
   {
@@ -11498,7 +11521,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 48,
    "camping_within_25km": 0,
-   "lodging_within_80km": 70,
+   "lodging_within_80km": 71,
    "camping_within_80km": 1
   },
   {
@@ -11519,9 +11542,9 @@
    "mean_cloud_percent": 23.3,
    "clear_sky_probability": 0.642,
    "cloud_observations": 120,
-   "lodging_within_25km": 1,
+   "lodging_within_25km": 2,
    "camping_within_25km": 1,
-   "lodging_within_80km": 78,
+   "lodging_within_80km": 79,
    "camping_within_80km": 7
   },
   {
@@ -11542,10 +11565,10 @@
    "mean_cloud_percent": 14.0,
    "clear_sky_probability": 0.8,
    "cloud_observations": 120,
-   "lodging_within_25km": 292,
-   "camping_within_25km": 29,
-   "lodging_within_80km": 1039,
-   "camping_within_80km": 94
+   "lodging_within_25km": 297,
+   "camping_within_25km": 30,
+   "lodging_within_80km": 1045,
+   "camping_within_80km": 95
   },
   {
    "geonameid": 2478876,
@@ -11567,8 +11590,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 11,
    "camping_within_25km": 0,
-   "lodging_within_80km": 211,
-   "camping_within_80km": 12
+   "lodging_within_80km": 212,
+   "camping_within_80km": 13
   },
   {
    "geonameid": 2508297,
@@ -11590,7 +11613,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 40,
    "camping_within_25km": 2,
-   "lodging_within_80km": 222,
+   "lodging_within_80km": 223,
    "camping_within_80km": 26
   },
   {
@@ -11611,10 +11634,10 @@
    "mean_cloud_percent": 22.9,
    "clear_sky_probability": 0.683,
    "cloud_observations": 120,
-   "lodging_within_25km": 34,
-   "camping_within_25km": 15,
-   "lodging_within_80km": 163,
-   "camping_within_80km": 24
+   "lodging_within_25km": 32,
+   "camping_within_25km": 16,
+   "lodging_within_80km": 161,
+   "camping_within_80km": 25
   },
   {
    "geonameid": 2498392,
@@ -11634,10 +11657,10 @@
    "mean_cloud_percent": 10.0,
    "clear_sky_probability": 0.85,
    "cloud_observations": 120,
-   "lodging_within_25km": 36,
+   "lodging_within_25km": 37,
    "camping_within_25km": 1,
-   "lodging_within_80km": 207,
-   "camping_within_80km": 27
+   "lodging_within_80km": 208,
+   "camping_within_80km": 28
   },
   {
    "geonameid": 2548855,
@@ -11657,10 +11680,10 @@
    "mean_cloud_percent": 12.7,
    "clear_sky_probability": 0.825,
    "cloud_observations": 120,
-   "lodging_within_25km": 185,
+   "lodging_within_25km": 187,
    "camping_within_25km": 2,
-   "lodging_within_80km": 334,
-   "camping_within_80km": 33
+   "lodging_within_80km": 336,
+   "camping_within_80km": 31
   },
   {
    "geonameid": 2500017,
@@ -11774,8 +11797,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 51,
    "camping_within_25km": 2,
-   "lodging_within_80km": 228,
-   "camping_within_80km": 28
+   "lodging_within_80km": 229,
+   "camping_within_80km": 29
   },
   {
    "geonameid": 2511250,
@@ -11795,10 +11818,10 @@
    "mean_cloud_percent": 14.0,
    "clear_sky_probability": 0.8,
    "cloud_observations": 120,
-   "lodging_within_25km": 269,
+   "lodging_within_25km": 268,
    "camping_within_25km": 10,
-   "lodging_within_80km": 1701,
-   "camping_within_80km": 108
+   "lodging_within_80km": 1714,
+   "camping_within_80km": 107
   },
   {
    "geonameid": 2526435,
@@ -11820,8 +11843,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 2,
    "camping_within_25km": 2,
-   "lodging_within_80km": 104,
-   "camping_within_80km": 23
+   "lodging_within_80km": 103,
+   "camping_within_80km": 24
   },
   {
    "geonameid": 2522162,
@@ -11843,8 +11866,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 14,
    "camping_within_25km": 3,
-   "lodging_within_80km": 1433,
-   "camping_within_80km": 126
+   "lodging_within_80km": 1440,
+   "camping_within_80km": 127
   },
   {
    "geonameid": 2542024,
@@ -11866,7 +11889,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 7,
    "camping_within_25km": 3,
-   "lodging_within_80km": 335,
+   "lodging_within_80km": 337,
    "camping_within_80km": 34
   },
   {
@@ -11910,10 +11933,10 @@
    "mean_cloud_percent": 25.0,
    "clear_sky_probability": 0.633,
    "cloud_observations": 120,
-   "lodging_within_25km": 40,
-   "camping_within_25km": 16,
-   "lodging_within_80km": 144,
-   "camping_within_80km": 24
+   "lodging_within_25km": 38,
+   "camping_within_25km": 17,
+   "lodging_within_80km": 143,
+   "camping_within_80km": 25
   },
   {
    "geonameid": 2484846,
@@ -11958,7 +11981,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 15,
    "camping_within_25km": 0,
-   "lodging_within_80km": 265,
+   "lodging_within_80km": 268,
    "camping_within_80km": 29
   },
   {
@@ -11979,10 +12002,10 @@
    "mean_cloud_percent": 16.5,
    "clear_sky_probability": 0.758,
    "cloud_observations": 120,
-   "lodging_within_25km": 195,
+   "lodging_within_25km": 198,
    "camping_within_25km": 17,
-   "lodging_within_80km": 1285,
-   "camping_within_80km": 111
+   "lodging_within_80km": 1293,
+   "camping_within_80km": 112
   },
   {
    "geonameid": 2471726,
@@ -12025,9 +12048,9 @@
    "mean_cloud_percent": 18.8,
    "clear_sky_probability": 0.65,
    "cloud_observations": 120,
-   "lodging_within_25km": 4,
+   "lodging_within_25km": 5,
    "camping_within_25km": 1,
-   "lodging_within_80km": 40,
+   "lodging_within_80km": 41,
    "camping_within_80km": 17
   },
   {
@@ -12050,7 +12073,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 3,
    "camping_within_25km": 0,
-   "lodging_within_80km": 70,
+   "lodging_within_80km": 72,
    "camping_within_80km": 5
   },
   {
@@ -12073,8 +12096,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 6,
    "camping_within_25km": 2,
-   "lodging_within_80km": 348,
-   "camping_within_80km": 10
+   "lodging_within_80km": 342,
+   "camping_within_80km": 9
   },
   {
    "geonameid": 2557391,
@@ -12096,8 +12119,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 1,
    "camping_within_25km": 0,
-   "lodging_within_80km": 272,
-   "camping_within_80km": 27
+   "lodging_within_80km": 275,
+   "camping_within_80km": 25
   },
   {
    "geonameid": 2555467,
@@ -12117,10 +12140,10 @@
    "mean_cloud_percent": 25.0,
    "clear_sky_probability": 0.633,
    "cloud_observations": 120,
-   "lodging_within_25km": 40,
-   "camping_within_25km": 16,
-   "lodging_within_80km": 143,
-   "camping_within_80km": 24
+   "lodging_within_25km": 38,
+   "camping_within_25km": 17,
+   "lodging_within_80km": 142,
+   "camping_within_80km": 25
   },
   {
    "geonameid": 2564788,
@@ -12142,8 +12165,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 13,
    "camping_within_25km": 6,
-   "lodging_within_80km": 143,
-   "camping_within_80km": 25
+   "lodging_within_80km": 142,
+   "camping_within_80km": 26
   },
   {
    "geonameid": 2477255,
@@ -12165,7 +12188,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 10,
    "camping_within_25km": 0,
-   "lodging_within_80km": 156,
+   "lodging_within_80km": 157,
    "camping_within_80km": 7
   },
   {
@@ -12186,10 +12209,10 @@
    "mean_cloud_percent": 14.0,
    "clear_sky_probability": 0.8,
    "cloud_observations": 120,
-   "lodging_within_25km": 494,
-   "camping_within_25km": 17,
-   "lodging_within_80km": 1602,
-   "camping_within_80km": 107
+   "lodging_within_25km": 496,
+   "camping_within_25km": 16,
+   "lodging_within_80km": 1616,
+   "camping_within_80km": 106
   },
   {
    "geonameid": 2469252,
@@ -12211,7 +12234,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 1,
    "camping_within_25km": 0,
-   "lodging_within_80km": 31,
+   "lodging_within_80km": 32,
    "camping_within_80km": 1
   },
   {
@@ -12232,9 +12255,9 @@
    "mean_cloud_percent": 17.8,
    "clear_sky_probability": 0.675,
    "cloud_observations": 120,
-   "lodging_within_25km": 13,
+   "lodging_within_25km": 14,
    "camping_within_25km": 0,
-   "lodging_within_80km": 263,
+   "lodging_within_80km": 266,
    "camping_within_80km": 27
   },
   {
@@ -12303,8 +12326,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 7,
    "camping_within_25km": 6,
-   "lodging_within_80km": 88,
-   "camping_within_80km": 24
+   "lodging_within_80km": 89,
+   "camping_within_80km": 22
   },
   {
    "geonameid": 12718684,
@@ -12324,10 +12347,10 @@
    "mean_cloud_percent": 25.0,
    "clear_sky_probability": 0.633,
    "cloud_observations": 120,
-   "lodging_within_25km": 39,
-   "camping_within_25km": 16,
-   "lodging_within_80km": 143,
-   "camping_within_80km": 25
+   "lodging_within_25km": 37,
+   "camping_within_25km": 17,
+   "lodging_within_80km": 142,
+   "camping_within_80km": 26
   },
   {
    "geonameid": 2511388,
@@ -12347,10 +12370,10 @@
    "mean_cloud_percent": 14.0,
    "clear_sky_probability": 0.8,
    "cloud_observations": 120,
-   "lodging_within_25km": 217,
-   "camping_within_25km": 27,
-   "lodging_within_80km": 683,
-   "camping_within_80km": 86
+   "lodging_within_25km": 222,
+   "camping_within_25km": 28,
+   "lodging_within_80km": 689,
+   "camping_within_80km": 87
   },
   {
    "geonameid": 407094,
@@ -12439,10 +12462,10 @@
    "mean_cloud_percent": 14.0,
    "clear_sky_probability": 0.8,
    "cloud_observations": 120,
-   "lodging_within_25km": 264,
+   "lodging_within_25km": 263,
    "camping_within_25km": 11,
-   "lodging_within_80km": 1705,
-   "camping_within_80km": 106
+   "lodging_within_80km": 1718,
+   "camping_within_80km": 105
   },
   {
    "geonameid": 7890531,
@@ -12462,10 +12485,10 @@
    "mean_cloud_percent": 77.1,
    "clear_sky_probability": 0.017,
    "cloud_observations": 120,
-   "lodging_within_25km": 309,
-   "camping_within_25km": 3,
-   "lodging_within_80km": 353,
-   "camping_within_80km": 10
+   "lodging_within_25km": 303,
+   "camping_within_25km": 2,
+   "lodging_within_80km": 347,
+   "camping_within_80km": 9
   },
   {
    "geonameid": 2470146,
@@ -12487,7 +12510,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 64,
+   "lodging_within_80km": 65,
    "camping_within_80km": 1
   },
   {
@@ -12510,7 +12533,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 22,
    "camping_within_25km": 3,
-   "lodging_within_80km": 238,
+   "lodging_within_80km": 239,
    "camping_within_80km": 29
   },
   {
@@ -12577,10 +12600,10 @@
    "mean_cloud_percent": 14.8,
    "clear_sky_probability": 0.792,
    "cloud_observations": 120,
-   "lodging_within_25km": 581,
-   "camping_within_25km": 22,
-   "lodging_within_80km": 1760,
-   "camping_within_80km": 117
+   "lodging_within_25km": 585,
+   "camping_within_25km": 21,
+   "lodging_within_80km": 1776,
+   "camping_within_80km": 116
   },
   {
    "geonameid": 2517283,
@@ -12600,10 +12623,10 @@
    "mean_cloud_percent": 14.6,
    "clear_sky_probability": 0.775,
    "cloud_observations": 120,
-   "lodging_within_25km": 192,
+   "lodging_within_25km": 193,
    "camping_within_25km": 14,
-   "lodging_within_80km": 1772,
-   "camping_within_80km": 135
+   "lodging_within_80km": 1785,
+   "camping_within_80km": 134
   },
   {
    "geonameid": 2475687,
@@ -12717,8 +12740,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 4,
    "camping_within_25km": 0,
-   "lodging_within_80km": 355,
-   "camping_within_80km": 9
+   "lodging_within_80km": 350,
+   "camping_within_80km": 8
   },
   {
    "geonameid": 410914,
@@ -12763,8 +12786,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 32,
    "camping_within_25km": 1,
-   "lodging_within_80km": 169,
-   "camping_within_80km": 24
+   "lodging_within_80km": 167,
+   "camping_within_80km": 25
   },
   {
    "geonameid": 2501541,
@@ -12786,8 +12809,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 6,
    "camping_within_25km": 0,
-   "lodging_within_80km": 194,
-   "camping_within_80km": 11
+   "lodging_within_80km": 195,
+   "camping_within_80km": 12
   },
   {
    "geonameid": 12718682,
@@ -12809,7 +12832,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 3,
    "camping_within_25km": 0,
-   "lodging_within_80km": 52,
+   "lodging_within_80km": 55,
    "camping_within_80km": 4
   },
   {
@@ -12855,7 +12878,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 37,
    "camping_within_25km": 1,
-   "lodging_within_80km": 270,
+   "lodging_within_80km": 271,
    "camping_within_80km": 21
   },
   {
@@ -12876,10 +12899,10 @@
    "mean_cloud_percent": 14.6,
    "clear_sky_probability": 0.775,
    "cloud_observations": 120,
-   "lodging_within_25km": 269,
+   "lodging_within_25km": 271,
    "camping_within_25km": 17,
-   "lodging_within_80km": 1797,
-   "camping_within_80km": 114
+   "lodging_within_80km": 1811,
+   "camping_within_80km": 113
   },
   {
    "geonameid": 2512857,
@@ -12901,8 +12924,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 14,
    "camping_within_25km": 2,
-   "lodging_within_80km": 1203,
-   "camping_within_80km": 118
+   "lodging_within_80km": 1213,
+   "camping_within_80km": 119
   },
   {
    "geonameid": 2571434,
@@ -12948,7 +12971,7 @@
    "lodging_within_25km": 3,
    "camping_within_25km": 2,
    "lodging_within_80km": 193,
-   "camping_within_80km": 6
+   "camping_within_80km": 8
   },
   {
    "geonameid": 2543667,
@@ -12970,8 +12993,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 8,
    "camping_within_25km": 6,
-   "lodging_within_80km": 74,
-   "camping_within_80km": 22
+   "lodging_within_80km": 75,
+   "camping_within_80km": 20
   },
   {
    "geonameid": 2513163,
@@ -12991,10 +13014,10 @@
    "mean_cloud_percent": 14.9,
    "clear_sky_probability": 0.758,
    "cloud_observations": 120,
-   "lodging_within_25km": 548,
-   "camping_within_25km": 19,
-   "lodging_within_80km": 1618,
-   "camping_within_80km": 108
+   "lodging_within_25km": 550,
+   "camping_within_25km": 18,
+   "lodging_within_80km": 1633,
+   "camping_within_80km": 107
   },
   {
    "geonameid": 2521121,
@@ -13014,10 +13037,10 @@
    "mean_cloud_percent": 14.6,
    "clear_sky_probability": 0.775,
    "cloud_observations": 120,
-   "lodging_within_25km": 261,
+   "lodging_within_25km": 263,
    "camping_within_25km": 19,
-   "lodging_within_80km": 1878,
-   "camping_within_80km": 129
+   "lodging_within_80km": 1892,
+   "camping_within_80km": 128
   },
   {
    "geonameid": 358388,
@@ -13039,7 +13062,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 1,
    "camping_within_25km": 0,
-   "lodging_within_80km": 104,
+   "lodging_within_80km": 103,
    "camping_within_80km": 2
   },
   {
@@ -13060,10 +13083,10 @@
    "mean_cloud_percent": 77.1,
    "clear_sky_probability": 0.017,
    "cloud_observations": 120,
-   "lodging_within_25km": 320,
-   "camping_within_25km": 4,
-   "lodging_within_80km": 355,
-   "camping_within_80km": 10
+   "lodging_within_25km": 314,
+   "camping_within_25km": 3,
+   "lodging_within_80km": 349,
+   "camping_within_80km": 9
   },
   {
    "geonameid": 2501323,
@@ -13085,7 +13108,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 68,
    "camping_within_25km": 8,
-   "lodging_within_80km": 456,
+   "lodging_within_80km": 459,
    "camping_within_80km": 45
   },
   {
@@ -13108,7 +13131,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 78,
    "camping_within_25km": 18,
-   "lodging_within_80km": 443,
+   "lodging_within_80km": 445,
    "camping_within_80km": 45
   },
   {
@@ -13131,7 +13154,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 64,
    "camping_within_25km": 18,
-   "lodging_within_80km": 458,
+   "lodging_within_80km": 461,
    "camping_within_80km": 45
   },
   {
@@ -13200,8 +13223,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 7,
    "camping_within_25km": 2,
-   "lodging_within_80km": 348,
-   "camping_within_80km": 11
+   "lodging_within_80km": 342,
+   "camping_within_80km": 10
   },
   {
    "geonameid": 2484933,
@@ -13246,8 +13269,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 45,
    "camping_within_25km": 5,
-   "lodging_within_80km": 144,
-   "camping_within_80km": 25
+   "lodging_within_80km": 142,
+   "camping_within_80km": 26
   },
   {
    "geonameid": 105299,
@@ -13269,7 +13292,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 36,
    "camping_within_25km": 0,
-   "lodging_within_80km": 63,
+   "lodging_within_80km": 64,
    "camping_within_80km": 1
   },
   {
@@ -13292,7 +13315,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 71,
    "camping_within_25km": 5,
-   "lodging_within_80km": 468,
+   "lodging_within_80km": 471,
    "camping_within_80km": 51
   },
   {
@@ -13313,10 +13336,10 @@
    "mean_cloud_percent": 77.1,
    "clear_sky_probability": 0.017,
    "cloud_observations": 120,
-   "lodging_within_25km": 318,
-   "camping_within_25km": 4,
-   "lodging_within_80km": 352,
-   "camping_within_80km": 10
+   "lodging_within_25km": 312,
+   "camping_within_25km": 3,
+   "lodging_within_80km": 346,
+   "camping_within_80km": 9
   },
   {
    "geonameid": 2516269,
@@ -13336,10 +13359,10 @@
    "mean_cloud_percent": 14.6,
    "clear_sky_probability": 0.775,
    "cloud_observations": 120,
-   "lodging_within_25km": 278,
+   "lodging_within_25km": 279,
    "camping_within_25km": 17,
-   "lodging_within_80km": 1804,
-   "camping_within_80km": 115
+   "lodging_within_80km": 1818,
+   "camping_within_80km": 114
   },
   {
    "geonameid": 2512169,
@@ -13359,10 +13382,10 @@
    "mean_cloud_percent": 14.0,
    "clear_sky_probability": 0.8,
    "cloud_observations": 120,
-   "lodging_within_25km": 183,
-   "camping_within_25km": 20,
-   "lodging_within_80km": 700,
-   "camping_within_80km": 92
+   "lodging_within_25km": 188,
+   "camping_within_25km": 21,
+   "lodging_within_80km": 706,
+   "camping_within_80km": 93
   },
   {
    "geonameid": 2490584,
@@ -13384,8 +13407,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 21,
    "camping_within_25km": 1,
-   "lodging_within_80km": 169,
-   "camping_within_80km": 27
+   "lodging_within_80km": 167,
+   "camping_within_80km": 28
   },
   {
    "geonameid": 2464809,
@@ -13407,7 +13430,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 1,
    "camping_within_25km": 0,
-   "lodging_within_80km": 31,
+   "lodging_within_80km": 32,
    "camping_within_80km": 1
   },
   {
@@ -13428,10 +13451,10 @@
    "mean_cloud_percent": 14.0,
    "clear_sky_probability": 0.8,
    "cloud_observations": 120,
-   "lodging_within_25km": 179,
-   "camping_within_25km": 20,
-   "lodging_within_80km": 576,
-   "camping_within_80km": 83
+   "lodging_within_25km": 184,
+   "camping_within_25km": 21,
+   "lodging_within_80km": 581,
+   "camping_within_80km": 84
   },
   {
    "geonameid": 2485540,
@@ -13453,7 +13476,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 1,
    "camping_within_25km": 1,
-   "lodging_within_80km": 39,
+   "lodging_within_80km": 40,
    "camping_within_80km": 1
   },
   {
@@ -13476,7 +13499,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 78,
    "camping_within_25km": 6,
-   "lodging_within_80km": 468,
+   "lodging_within_80km": 471,
    "camping_within_80km": 51
   },
   {
@@ -13520,10 +13543,10 @@
    "mean_cloud_percent": 14.0,
    "clear_sky_probability": 0.8,
    "cloud_observations": 120,
-   "lodging_within_25km": 261,
+   "lodging_within_25km": 260,
    "camping_within_25km": 14,
-   "lodging_within_80km": 1610,
-   "camping_within_80km": 110
+   "lodging_within_80km": 1624,
+   "camping_within_80km": 109
   },
   {
    "geonameid": 2501289,
@@ -13568,8 +13591,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 4,
    "camping_within_25km": 2,
-   "lodging_within_80km": 349,
-   "camping_within_80km": 11
+   "lodging_within_80km": 343,
+   "camping_within_80km": 10
   },
   {
    "geonameid": 2522014,
@@ -13589,10 +13612,10 @@
    "mean_cloud_percent": 14.6,
    "clear_sky_probability": 0.775,
    "cloud_observations": 120,
-   "lodging_within_25km": 259,
+   "lodging_within_25km": 261,
    "camping_within_25km": 19,
-   "lodging_within_80km": 1851,
-   "camping_within_80km": 125
+   "lodging_within_80km": 1865,
+   "camping_within_80km": 124
   },
   {
    "geonameid": 2521139,
@@ -13612,10 +13635,10 @@
    "mean_cloud_percent": 14.8,
    "clear_sky_probability": 0.792,
    "cloud_observations": 120,
-   "lodging_within_25km": 733,
-   "camping_within_25km": 24,
-   "lodging_within_80km": 1587,
-   "camping_within_80km": 116
+   "lodging_within_25km": 742,
+   "camping_within_25km": 23,
+   "lodging_within_80km": 1603,
+   "camping_within_80km": 115
   },
   {
    "geonameid": 2513882,
@@ -13635,10 +13658,10 @@
    "mean_cloud_percent": 14.9,
    "clear_sky_probability": 0.758,
    "cloud_observations": 120,
-   "lodging_within_25km": 736,
-   "camping_within_25km": 24,
-   "lodging_within_80km": 1594,
-   "camping_within_80km": 120
+   "lodging_within_25km": 745,
+   "camping_within_25km": 23,
+   "lodging_within_80km": 1610,
+   "camping_within_80km": 119
   },
   {
    "geonameid": 2521554,
@@ -13658,10 +13681,10 @@
    "mean_cloud_percent": 14.8,
    "clear_sky_probability": 0.792,
    "cloud_observations": 120,
-   "lodging_within_25km": 725,
-   "camping_within_25km": 24,
-   "lodging_within_80km": 1578,
-   "camping_within_80km": 115
+   "lodging_within_25km": 733,
+   "camping_within_25km": 23,
+   "lodging_within_80km": 1595,
+   "camping_within_80km": 114
   },
   {
    "geonameid": 403272,
@@ -13683,8 +13706,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 7,
    "camping_within_25km": 2,
-   "lodging_within_80km": 355,
-   "camping_within_80km": 10
+   "lodging_within_80km": 349,
+   "camping_within_80km": 9
   },
   {
    "geonameid": 2501767,
@@ -13751,9 +13774,9 @@
    "clear_sky_probability": 0.967,
    "cloud_observations": 120,
    "lodging_within_25km": 22,
-   "camping_within_25km": 4,
+   "camping_within_25km": 6,
    "lodging_within_80km": 49,
-   "camping_within_80km": 4
+   "camping_within_80km": 6
   },
   {
    "geonameid": 84130,
@@ -13821,7 +13844,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 28,
    "camping_within_25km": 19,
-   "lodging_within_80km": 407,
+   "lodging_within_80km": 409,
    "camping_within_80km": 43
   },
   {
@@ -13865,10 +13888,10 @@
    "mean_cloud_percent": 19.4,
    "clear_sky_probability": 0.675,
    "cloud_observations": 120,
-   "lodging_within_25km": 3,
+   "lodging_within_25km": 4,
    "camping_within_25km": 0,
-   "lodging_within_80km": 96,
-   "camping_within_80km": 22
+   "lodging_within_80km": 95,
+   "camping_within_80km": 23
   },
   {
    "geonameid": 2521142,
@@ -13888,10 +13911,10 @@
    "mean_cloud_percent": 14.6,
    "clear_sky_probability": 0.775,
    "cloud_observations": 120,
-   "lodging_within_25km": 251,
+   "lodging_within_25km": 254,
    "camping_within_25km": 20,
-   "lodging_within_80km": 1822,
-   "camping_within_80km": 119
+   "lodging_within_80km": 1836,
+   "camping_within_80km": 118
   },
   {
    "geonameid": 2510281,
@@ -13911,10 +13934,10 @@
    "mean_cloud_percent": 14.8,
    "clear_sky_probability": 0.792,
    "cloud_observations": 120,
-   "lodging_within_25km": 721,
-   "camping_within_25km": 22,
-   "lodging_within_80km": 1601,
-   "camping_within_80km": 119
+   "lodging_within_25km": 729,
+   "camping_within_25km": 21,
+   "lodging_within_80km": 1617,
+   "camping_within_80km": 118
   },
   {
    "geonameid": 71273,
@@ -13934,10 +13957,10 @@
    "mean_cloud_percent": 79.8,
    "clear_sky_probability": 0.008,
    "cloud_observations": 120,
-   "lodging_within_25km": 322,
-   "camping_within_25km": 4,
-   "lodging_within_80km": 354,
-   "camping_within_80km": 10
+   "lodging_within_25km": 316,
+   "camping_within_25km": 3,
+   "lodging_within_80km": 348,
+   "camping_within_80km": 9
   },
   {
    "geonameid": 13132696,
@@ -14028,7 +14051,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 6,
    "camping_within_25km": 0,
-   "lodging_within_80km": 123,
+   "lodging_within_80km": 117,
    "camping_within_80km": 8
   },
   {
@@ -14095,10 +14118,10 @@
    "mean_cloud_percent": 14.6,
    "clear_sky_probability": 0.775,
    "cloud_observations": 120,
-   "lodging_within_25km": 298,
+   "lodging_within_25km": 299,
    "camping_within_25km": 20,
-   "lodging_within_80km": 1665,
-   "camping_within_80km": 106
+   "lodging_within_80km": 1678,
+   "camping_within_80km": 105
   },
   {
    "geonameid": 2525874,
@@ -14120,7 +14143,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 10,
    "camping_within_25km": 2,
-   "lodging_within_80km": 268,
+   "lodging_within_80km": 270,
    "camping_within_80km": 28
   },
   {
@@ -14143,7 +14166,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 10,
    "camping_within_25km": 2,
-   "lodging_within_80km": 261,
+   "lodging_within_80km": 263,
    "camping_within_80km": 21
   },
   {
@@ -14167,7 +14190,7 @@
    "lodging_within_25km": 1,
    "camping_within_25km": 0,
    "lodging_within_80km": 10,
-   "camping_within_80km": 0
+   "camping_within_80km": 1
   },
   {
    "geonameid": 2517772,
@@ -14187,10 +14210,10 @@
    "mean_cloud_percent": 14.6,
    "clear_sky_probability": 0.775,
    "cloud_observations": 120,
-   "lodging_within_25km": 278,
+   "lodging_within_25km": 279,
    "camping_within_25km": 21,
-   "lodging_within_80km": 1696,
-   "camping_within_80km": 114
+   "lodging_within_80km": 1709,
+   "camping_within_80km": 113
   },
   {
    "geonameid": 2503156,
@@ -14212,7 +14235,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 9,
    "camping_within_25km": 1,
-   "lodging_within_80km": 232,
+   "lodging_within_80km": 233,
    "camping_within_80km": 30
   },
   {
@@ -14233,10 +14256,10 @@
    "mean_cloud_percent": 16.1,
    "clear_sky_probability": 0.758,
    "cloud_observations": 120,
-   "lodging_within_25km": 517,
-   "camping_within_25km": 19,
-   "lodging_within_80km": 1660,
-   "camping_within_80km": 118
+   "lodging_within_25km": 522,
+   "camping_within_25km": 18,
+   "lodging_within_80km": 1676,
+   "camping_within_80km": 117
   },
   {
    "geonameid": 2469744,
@@ -14258,7 +14281,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 1,
    "camping_within_25km": 0,
-   "lodging_within_80km": 31,
+   "lodging_within_80km": 33,
    "camping_within_80km": 0
   },
   {
@@ -14279,10 +14302,10 @@
    "mean_cloud_percent": 14.6,
    "clear_sky_probability": 0.775,
    "cloud_observations": 120,
-   "lodging_within_25km": 137,
+   "lodging_within_25km": 140,
    "camping_within_25km": 20,
-   "lodging_within_80km": 1768,
-   "camping_within_80km": 143
+   "lodging_within_80km": 1782,
+   "camping_within_80km": 142
   },
   {
    "geonameid": 2471454,
@@ -14303,9 +14326,9 @@
    "clear_sky_probability": 0.967,
    "cloud_observations": 120,
    "lodging_within_25km": 22,
-   "camping_within_25km": 4,
+   "camping_within_25km": 6,
    "lodging_within_80km": 52,
-   "camping_within_80km": 5
+   "camping_within_80km": 7
   },
   {
    "geonameid": 2516237,
@@ -14325,10 +14348,10 @@
    "mean_cloud_percent": 14.6,
    "clear_sky_probability": 0.775,
    "cloud_observations": 120,
-   "lodging_within_25km": 288,
+   "lodging_within_25km": 289,
    "camping_within_25km": 21,
-   "lodging_within_80km": 1668,
-   "camping_within_80km": 108
+   "lodging_within_80km": 1681,
+   "camping_within_80km": 107
   },
   {
    "geonameid": 34886,
@@ -14419,8 +14442,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 6,
    "camping_within_25km": 4,
-   "lodging_within_80km": 142,
-   "camping_within_80km": 25
+   "lodging_within_80km": 141,
+   "camping_within_80km": 26
   },
   {
    "geonameid": 6559645,
@@ -14442,8 +14465,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 25,
    "camping_within_25km": 3,
-   "lodging_within_80km": 1253,
-   "camping_within_80km": 125
+   "lodging_within_80km": 1262,
+   "camping_within_80km": 127
   },
   {
    "geonameid": 7363900,
@@ -14486,10 +14509,10 @@
    "mean_cloud_percent": 16.1,
    "clear_sky_probability": 0.758,
    "cloud_observations": 120,
-   "lodging_within_25km": 669,
-   "camping_within_25km": 28,
-   "lodging_within_80km": 1605,
-   "camping_within_80km": 124
+   "lodging_within_25km": 676,
+   "camping_within_25km": 27,
+   "lodging_within_80km": 1621,
+   "camping_within_80km": 123
   },
   {
    "geonameid": 78708,
@@ -14509,10 +14532,10 @@
    "mean_cloud_percent": 77.1,
    "clear_sky_probability": 0.017,
    "cloud_observations": 120,
-   "lodging_within_25km": 318,
-   "camping_within_25km": 4,
-   "lodging_within_80km": 354,
-   "camping_within_80km": 10
+   "lodging_within_25km": 312,
+   "camping_within_25km": 3,
+   "lodging_within_80km": 348,
+   "camping_within_80km": 9
   },
   {
    "geonameid": 2516463,
@@ -14532,10 +14555,10 @@
    "mean_cloud_percent": 14.8,
    "clear_sky_probability": 0.767,
    "cloud_observations": 120,
-   "lodging_within_25km": 301,
+   "lodging_within_25km": 302,
    "camping_within_25km": 19,
-   "lodging_within_80km": 1607,
-   "camping_within_80km": 105
+   "lodging_within_80km": 1620,
+   "camping_within_80km": 104
   },
   {
    "geonameid": 2496643,
@@ -14558,7 +14581,7 @@
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
    "lodging_within_80km": 30,
-   "camping_within_80km": 0
+   "camping_within_80km": 3
   },
   {
    "geonameid": 2518207,
@@ -14578,10 +14601,10 @@
    "mean_cloud_percent": 14.0,
    "clear_sky_probability": 0.8,
    "cloud_observations": 120,
-   "lodging_within_25km": 183,
-   "camping_within_25km": 30,
-   "lodging_within_80km": 615,
-   "camping_within_80km": 91
+   "lodging_within_25km": 187,
+   "camping_within_25km": 31,
+   "lodging_within_80km": 621,
+   "camping_within_80km": 92
   },
   {
    "geonameid": 2521837,
@@ -14601,10 +14624,10 @@
    "mean_cloud_percent": 14.2,
    "clear_sky_probability": 0.792,
    "cloud_observations": 120,
-   "lodging_within_25km": 264,
+   "lodging_within_25km": 266,
    "camping_within_25km": 21,
-   "lodging_within_80km": 1692,
-   "camping_within_80km": 113
+   "lodging_within_80km": 1705,
+   "camping_within_80km": 112
   },
   {
    "geonameid": 2466499,
@@ -14650,7 +14673,7 @@
    "lodging_within_25km": 6,
    "camping_within_25km": 2,
    "lodging_within_80km": 217,
-   "camping_within_80km": 6
+   "camping_within_80km": 8
   },
   {
    "geonameid": 2479183,
@@ -14672,7 +14695,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 95,
    "camping_within_25km": 4,
-   "lodging_within_80km": 470,
+   "lodging_within_80km": 473,
    "camping_within_80km": 51
   },
   {
@@ -14695,7 +14718,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 25,
+   "lodging_within_80km": 26,
    "camping_within_80km": 0
   },
   {
@@ -14718,7 +14741,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 25,
    "camping_within_25km": 4,
-   "lodging_within_80km": 109,
+   "lodging_within_80km": 113,
    "camping_within_80km": 22
   },
   {
@@ -14741,7 +14764,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 100,
    "camping_within_25km": 6,
-   "lodging_within_80km": 468,
+   "lodging_within_80km": 471,
    "camping_within_80km": 51
   },
   {
@@ -14785,10 +14808,10 @@
    "mean_cloud_percent": 14.2,
    "clear_sky_probability": 0.792,
    "cloud_observations": 120,
-   "lodging_within_25km": 139,
+   "lodging_within_25km": 141,
    "camping_within_25km": 21,
-   "lodging_within_80km": 1812,
-   "camping_within_80km": 117
+   "lodging_within_80km": 1828,
+   "camping_within_80km": 116
   },
   {
    "geonameid": 2520056,
@@ -14808,10 +14831,10 @@
    "mean_cloud_percent": 14.2,
    "clear_sky_probability": 0.792,
    "cloud_observations": 120,
-   "lodging_within_25km": 276,
+   "lodging_within_25km": 277,
    "camping_within_25km": 22,
-   "lodging_within_80km": 1611,
-   "camping_within_80km": 108
+   "lodging_within_80km": 1624,
+   "camping_within_80km": 107
   },
   {
    "geonameid": 2516892,
@@ -14831,10 +14854,10 @@
    "mean_cloud_percent": 16.1,
    "clear_sky_probability": 0.758,
    "cloud_observations": 120,
-   "lodging_within_25km": 506,
-   "camping_within_25km": 21,
-   "lodging_within_80km": 1654,
-   "camping_within_80km": 119
+   "lodging_within_25km": 511,
+   "camping_within_25km": 20,
+   "lodging_within_80km": 1670,
+   "camping_within_80km": 118
   },
   {
    "geonameid": 2521986,
@@ -14854,10 +14877,10 @@
    "mean_cloud_percent": 16.4,
    "clear_sky_probability": 0.725,
    "cloud_observations": 120,
-   "lodging_within_25km": 719,
-   "camping_within_25km": 26,
-   "lodging_within_80km": 1608,
-   "camping_within_80km": 122
+   "lodging_within_25km": 730,
+   "camping_within_25km": 25,
+   "lodging_within_80km": 1625,
+   "camping_within_80km": 121
   },
   {
    "geonameid": 2519367,
@@ -14877,10 +14900,10 @@
    "mean_cloud_percent": 16.1,
    "clear_sky_probability": 0.758,
    "cloud_observations": 120,
-   "lodging_within_25km": 612,
-   "camping_within_25km": 24,
-   "lodging_within_80km": 1791,
-   "camping_within_80km": 127
+   "lodging_within_25km": 617,
+   "camping_within_25km": 23,
+   "lodging_within_80km": 1808,
+   "camping_within_80km": 126
   },
   {
    "geonameid": 2538385,
@@ -14902,7 +14925,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 5,
    "camping_within_25km": 0,
-   "lodging_within_80km": 507,
+   "lodging_within_80km": 517,
    "camping_within_80km": 29
   },
   {
@@ -14925,7 +14948,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 1,
    "camping_within_25km": 0,
-   "lodging_within_80km": 23,
+   "lodging_within_80km": 25,
    "camping_within_80km": 0
   },
   {
@@ -14971,7 +14994,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 152,
    "camping_within_25km": 9,
-   "lodging_within_80km": 465,
+   "lodging_within_80km": 468,
    "camping_within_80km": 51
   },
   {
@@ -14992,10 +15015,10 @@
    "mean_cloud_percent": 14.2,
    "clear_sky_probability": 0.792,
    "cloud_observations": 120,
-   "lodging_within_25km": 147,
+   "lodging_within_25km": 149,
    "camping_within_25km": 22,
-   "lodging_within_80km": 1809,
-   "camping_within_80km": 119
+   "lodging_within_80km": 1824,
+   "camping_within_80km": 118
   },
   {
    "geonameid": 2512927,
@@ -15015,10 +15038,10 @@
    "mean_cloud_percent": 14.2,
    "clear_sky_probability": 0.792,
    "cloud_observations": 120,
-   "lodging_within_25km": 277,
+   "lodging_within_25km": 278,
    "camping_within_25km": 21,
-   "lodging_within_80km": 1600,
-   "camping_within_80km": 101
+   "lodging_within_80km": 1614,
+   "camping_within_80km": 100
   },
   {
    "geonameid": 71137,
@@ -15038,10 +15061,10 @@
    "mean_cloud_percent": 79.8,
    "clear_sky_probability": 0.008,
    "cloud_observations": 120,
-   "lodging_within_25km": 321,
-   "camping_within_25km": 4,
-   "lodging_within_80km": 360,
-   "camping_within_80km": 10
+   "lodging_within_25km": 315,
+   "camping_within_25km": 3,
+   "lodging_within_80km": 354,
+   "camping_within_80km": 9
   },
   {
    "geonameid": 2502962,
@@ -15063,7 +15086,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 127,
    "camping_within_25km": 7,
-   "lodging_within_80km": 474,
+   "lodging_within_80km": 477,
    "camping_within_80km": 48
   },
   {
@@ -15109,8 +15132,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 4,
    "camping_within_25km": 1,
-   "lodging_within_80km": 141,
-   "camping_within_80km": 25
+   "lodging_within_80km": 140,
+   "camping_within_80km": 26
   },
   {
    "geonameid": 2510275,
@@ -15130,10 +15153,10 @@
    "mean_cloud_percent": 17.3,
    "clear_sky_probability": 0.717,
    "cloud_observations": 120,
-   "lodging_within_25km": 270,
+   "lodging_within_25km": 272,
    "camping_within_25km": 18,
-   "lodging_within_80km": 1196,
-   "camping_within_80km": 111
+   "lodging_within_80km": 1209,
+   "camping_within_80km": 112
   },
   {
    "geonameid": 2511700,
@@ -15153,10 +15176,10 @@
    "mean_cloud_percent": 14.0,
    "clear_sky_probability": 0.8,
    "cloud_observations": 120,
-   "lodging_within_25km": 167,
-   "camping_within_25km": 28,
-   "lodging_within_80km": 551,
-   "camping_within_80km": 75
+   "lodging_within_25km": 171,
+   "camping_within_25km": 29,
+   "lodging_within_80km": 558,
+   "camping_within_80km": 76
   },
   {
    "geonameid": 2470191,
@@ -15201,7 +15224,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 153,
    "camping_within_25km": 10,
-   "lodging_within_80km": 467,
+   "lodging_within_80km": 470,
    "camping_within_80km": 51
   },
   {
@@ -15224,8 +15247,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 49,
    "camping_within_25km": 8,
-   "lodging_within_80km": 1312,
-   "camping_within_80km": 133
+   "lodging_within_80km": 1321,
+   "camping_within_80km": 135
   },
   {
    "geonameid": 11239116,
@@ -15246,9 +15269,9 @@
    "clear_sky_probability": 0.95,
    "cloud_observations": 120,
    "lodging_within_25km": 13,
-   "camping_within_25km": 0,
+   "camping_within_25km": 1,
    "lodging_within_80km": 68,
-   "camping_within_80km": 3
+   "camping_within_80km": 5
   },
   {
    "geonameid": 2527100,
@@ -15270,7 +15293,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 48,
+   "lodging_within_80km": 51,
    "camping_within_80km": 5
   },
   {
@@ -15293,7 +15316,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 176,
    "camping_within_25km": 10,
-   "lodging_within_80km": 488,
+   "lodging_within_80km": 491,
    "camping_within_80km": 48
   },
   {
@@ -15314,10 +15337,10 @@
    "mean_cloud_percent": 14.8,
    "clear_sky_probability": 0.767,
    "cloud_observations": 120,
-   "lodging_within_25km": 188,
+   "lodging_within_25km": 191,
    "camping_within_25km": 19,
-   "lodging_within_80km": 1638,
-   "camping_within_80km": 116
+   "lodging_within_80km": 1653,
+   "camping_within_80km": 115
   },
   {
    "geonameid": 2489922,
@@ -15362,8 +15385,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 96,
    "camping_within_25km": 17,
-   "lodging_within_80km": 1689,
-   "camping_within_80km": 143
+   "lodging_within_80km": 1704,
+   "camping_within_80km": 144
   },
   {
    "geonameid": 64814,
@@ -15408,7 +15431,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 30,
    "camping_within_25km": 19,
-   "lodging_within_80km": 428,
+   "lodging_within_80km": 430,
    "camping_within_80km": 43
   },
   {
@@ -15431,7 +15454,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 180,
    "camping_within_25km": 10,
-   "lodging_within_80km": 492,
+   "lodging_within_80km": 495,
    "camping_within_80km": 48
   },
   {
@@ -15452,10 +15475,10 @@
    "mean_cloud_percent": 17.4,
    "clear_sky_probability": 0.708,
    "cloud_observations": 120,
-   "lodging_within_25km": 289,
+   "lodging_within_25km": 292,
    "camping_within_25km": 15,
-   "lodging_within_80km": 1174,
-   "camping_within_80km": 110
+   "lodging_within_80km": 1184,
+   "camping_within_80km": 111
   },
   {
    "geonameid": 2463945,
@@ -15500,7 +15523,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 21,
+   "lodging_within_80km": 22,
    "camping_within_80km": 1
   },
   {
@@ -15523,7 +15546,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 13,
    "camping_within_25km": 16,
-   "lodging_within_80km": 304,
+   "lodging_within_80km": 306,
    "camping_within_80km": 39
   },
   {
@@ -15544,10 +15567,10 @@
    "mean_cloud_percent": 17.3,
    "clear_sky_probability": 0.717,
    "cloud_observations": 120,
-   "lodging_within_25km": 277,
+   "lodging_within_25km": 280,
    "camping_within_25km": 19,
-   "lodging_within_80km": 1253,
-   "camping_within_80km": 110
+   "lodging_within_80km": 1266,
+   "camping_within_80km": 111
   },
   {
    "geonameid": 413170,
@@ -15590,9 +15613,9 @@
    "mean_cloud_percent": 16.5,
    "clear_sky_probability": 0.733,
    "cloud_observations": 120,
-   "lodging_within_25km": 374,
+   "lodging_within_25km": 381,
    "camping_within_25km": 26,
-   "lodging_within_80km": 1972,
+   "lodging_within_80km": 1993,
    "camping_within_80km": 119
   },
   {
@@ -15638,7 +15661,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 46,
+   "lodging_within_80km": 48,
    "camping_within_80km": 15
   },
   {
@@ -15659,10 +15682,10 @@
    "mean_cloud_percent": 16.1,
    "clear_sky_probability": 0.758,
    "cloud_observations": 120,
-   "lodging_within_25km": 738,
-   "camping_within_25km": 25,
-   "lodging_within_80km": 1608,
-   "camping_within_80km": 130
+   "lodging_within_25km": 749,
+   "camping_within_25km": 24,
+   "lodging_within_80km": 1624,
+   "camping_within_80km": 129
   },
   {
    "geonameid": 2482090,
@@ -15705,10 +15728,10 @@
    "mean_cloud_percent": 16.7,
    "clear_sky_probability": 0.717,
    "cloud_observations": 120,
-   "lodging_within_25km": 415,
+   "lodging_within_25km": 416,
    "camping_within_25km": 19,
-   "lodging_within_80km": 1498,
-   "camping_within_80km": 111
+   "lodging_within_80km": 1516,
+   "camping_within_80km": 112
   },
   {
    "geonameid": 11204500,
@@ -15730,7 +15753,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 44,
    "camping_within_25km": 2,
-   "lodging_within_80km": 142,
+   "lodging_within_80km": 143,
    "camping_within_80km": 10
   },
   {
@@ -15751,10 +15774,10 @@
    "mean_cloud_percent": 16.4,
    "clear_sky_probability": 0.725,
    "cloud_observations": 120,
-   "lodging_within_25km": 516,
+   "lodging_within_25km": 524,
    "camping_within_25km": 18,
-   "lodging_within_80km": 1740,
-   "camping_within_80km": 121
+   "lodging_within_80km": 1756,
+   "camping_within_80km": 120
   },
   {
    "geonameid": 2515896,
@@ -15774,10 +15797,10 @@
    "mean_cloud_percent": 16.7,
    "clear_sky_probability": 0.717,
    "cloud_observations": 120,
-   "lodging_within_25km": 429,
+   "lodging_within_25km": 431,
    "camping_within_25km": 21,
-   "lodging_within_80km": 1583,
-   "camping_within_80km": 113
+   "lodging_within_80km": 1601,
+   "camping_within_80km": 114
   },
   {
    "geonameid": 2503181,
@@ -15797,9 +15820,9 @@
    "mean_cloud_percent": 14.8,
    "clear_sky_probability": 0.767,
    "cloud_observations": 120,
-   "lodging_within_25km": 245,
+   "lodging_within_25km": 246,
    "camping_within_25km": 8,
-   "lodging_within_80km": 471,
+   "lodging_within_80km": 474,
    "camping_within_80km": 51
   },
   {
@@ -15822,7 +15845,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 2,
    "camping_within_25km": 0,
-   "lodging_within_80km": 593,
+   "lodging_within_80km": 606,
    "camping_within_80km": 30
   },
   {
@@ -15843,9 +15866,9 @@
    "mean_cloud_percent": 12.9,
    "clear_sky_probability": 0.808,
    "cloud_observations": 120,
-   "lodging_within_25km": 149,
+   "lodging_within_25km": 151,
    "camping_within_25km": 19,
-   "lodging_within_80km": 1741,
+   "lodging_within_80km": 1753,
    "camping_within_80km": 139
   },
   {
@@ -15891,7 +15914,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 16,
    "camping_within_25km": 9,
-   "lodging_within_80km": 972,
+   "lodging_within_80km": 983,
    "camping_within_80km": 89
   },
   {
@@ -15912,10 +15935,10 @@
    "mean_cloud_percent": 17.3,
    "clear_sky_probability": 0.717,
    "cloud_observations": 120,
-   "lodging_within_25km": 278,
+   "lodging_within_25km": 280,
    "camping_within_25km": 18,
-   "lodging_within_80km": 1373,
-   "camping_within_80km": 111
+   "lodging_within_80km": 1392,
+   "camping_within_80km": 112
   },
   {
    "geonameid": 2522430,
@@ -15937,7 +15960,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 22,
    "camping_within_25km": 9,
-   "lodging_within_80km": 1107,
+   "lodging_within_80km": 1116,
    "camping_within_80km": 91
   },
   {
@@ -15958,10 +15981,10 @@
    "mean_cloud_percent": 17.3,
    "clear_sky_probability": 0.717,
    "cloud_observations": 120,
-   "lodging_within_25km": 325,
+   "lodging_within_25km": 328,
    "camping_within_25km": 16,
-   "lodging_within_80km": 1184,
-   "camping_within_80km": 111
+   "lodging_within_80km": 1194,
+   "camping_within_80km": 112
   },
   {
    "geonameid": 2521124,
@@ -15981,10 +16004,10 @@
    "mean_cloud_percent": 12.9,
    "clear_sky_probability": 0.808,
    "cloud_observations": 120,
-   "lodging_within_25km": 144,
+   "lodging_within_25km": 146,
    "camping_within_25km": 17,
-   "lodging_within_80km": 1679,
-   "camping_within_80km": 144
+   "lodging_within_80km": 1693,
+   "camping_within_80km": 145
   },
   {
    "geonameid": 2507646,
@@ -16029,8 +16052,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 7,
    "camping_within_25km": 0,
-   "lodging_within_80km": 361,
-   "camping_within_80km": 10
+   "lodging_within_80km": 355,
+   "camping_within_80km": 9
   },
   {
    "geonameid": 2491050,
@@ -16052,7 +16075,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 178,
    "camping_within_25km": 9,
-   "lodging_within_80km": 494,
+   "lodging_within_80km": 497,
    "camping_within_80km": 47
   },
   {
@@ -16074,9 +16097,9 @@
    "clear_sky_probability": 0.967,
    "cloud_observations": 120,
    "lodging_within_25km": 29,
-   "camping_within_25km": 4,
+   "camping_within_25km": 6,
    "lodging_within_80km": 37,
-   "camping_within_80km": 4
+   "camping_within_80km": 6
   },
   {
    "geonameid": 2473417,
@@ -16098,7 +16121,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 0,
    "camping_within_25km": 0,
-   "lodging_within_80km": 25,
+   "lodging_within_80km": 26,
    "camping_within_80km": 1
   },
   {
@@ -16165,9 +16188,9 @@
    "mean_cloud_percent": 14.8,
    "clear_sky_probability": 0.767,
    "cloud_observations": 120,
-   "lodging_within_25km": 320,
+   "lodging_within_25km": 322,
    "camping_within_25km": 12,
-   "lodging_within_80km": 472,
+   "lodging_within_80km": 475,
    "camping_within_80km": 48
   },
   {
@@ -16211,9 +16234,9 @@
    "mean_cloud_percent": 17.1,
    "clear_sky_probability": 0.717,
    "cloud_observations": 120,
-   "lodging_within_25km": 300,
+   "lodging_within_25km": 302,
    "camping_within_25km": 34,
-   "lodging_within_80km": 1953,
+   "lodging_within_80km": 1977,
    "camping_within_80km": 129
   },
   {
@@ -16234,10 +16257,10 @@
    "mean_cloud_percent": 17.3,
    "clear_sky_probability": 0.717,
    "cloud_observations": 120,
-   "lodging_within_25km": 284,
+   "lodging_within_25km": 287,
    "camping_within_25km": 20,
-   "lodging_within_80km": 1227,
-   "camping_within_80km": 112
+   "lodging_within_80km": 1241,
+   "camping_within_80km": 113
   },
   {
    "geonameid": 2507926,
@@ -16259,7 +16282,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 41,
    "camping_within_25km": 2,
-   "lodging_within_80km": 159,
+   "lodging_within_80km": 160,
    "camping_within_80km": 12
   },
   {
@@ -16280,10 +16303,10 @@
    "mean_cloud_percent": 16.4,
    "clear_sky_probability": 0.725,
    "cloud_observations": 120,
-   "lodging_within_25km": 721,
+   "lodging_within_25km": 732,
    "camping_within_25km": 25,
-   "lodging_within_80km": 1608,
-   "camping_within_80km": 129
+   "lodging_within_80km": 1624,
+   "camping_within_80km": 128
   },
   {
    "geonameid": 2473496,
@@ -16326,10 +16349,10 @@
    "mean_cloud_percent": 16.1,
    "clear_sky_probability": 0.758,
    "cloud_observations": 120,
-   "lodging_within_25km": 109,
+   "lodging_within_25km": 115,
    "camping_within_25km": 19,
-   "lodging_within_80km": 1630,
-   "camping_within_80km": 124
+   "lodging_within_80km": 1647,
+   "camping_within_80km": 123
   },
   {
    "geonameid": 2473826,
@@ -16374,8 +16397,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 62,
    "camping_within_25km": 9,
-   "lodging_within_80km": 291,
-   "camping_within_80km": 57
+   "lodging_within_80km": 292,
+   "camping_within_80km": 56
   },
   {
    "geonameid": 2516326,
@@ -16395,10 +16418,10 @@
    "mean_cloud_percent": 12.9,
    "clear_sky_probability": 0.808,
    "cloud_observations": 120,
-   "lodging_within_25km": 150,
+   "lodging_within_25km": 153,
    "camping_within_25km": 19,
-   "lodging_within_80km": 958,
-   "camping_within_80km": 103
+   "lodging_within_80km": 967,
+   "camping_within_80km": 105
   },
   {
    "geonameid": 2521123,
@@ -16418,10 +16441,10 @@
    "mean_cloud_percent": 14.2,
    "clear_sky_probability": 0.792,
    "cloud_observations": 120,
-   "lodging_within_25km": 164,
+   "lodging_within_25km": 166,
    "camping_within_25km": 27,
-   "lodging_within_80km": 1608,
-   "camping_within_80km": 102
+   "lodging_within_80km": 1623,
+   "camping_within_80km": 101
   },
   {
    "geonameid": 2513240,
@@ -16441,10 +16464,10 @@
    "mean_cloud_percent": 16.7,
    "clear_sky_probability": 0.717,
    "cloud_observations": 120,
-   "lodging_within_25km": 414,
+   "lodging_within_25km": 416,
    "camping_within_25km": 29,
-   "lodging_within_80km": 1882,
-   "camping_within_80km": 126
+   "lodging_within_80km": 1906,
+   "camping_within_80km": 125
   },
   {
    "geonameid": 2511716,
@@ -16464,10 +16487,10 @@
    "mean_cloud_percent": 15.4,
    "clear_sky_probability": 0.725,
    "cloud_observations": 120,
-   "lodging_within_25km": 79,
+   "lodging_within_25km": 78,
    "camping_within_25km": 11,
-   "lodging_within_80km": 489,
-   "camping_within_80km": 71
+   "lodging_within_80km": 491,
+   "camping_within_80km": 70
   },
   {
    "geonameid": 8356282,
@@ -16510,10 +16533,10 @@
    "mean_cloud_percent": 14.8,
    "clear_sky_probability": 0.767,
    "cloud_observations": 120,
-   "lodging_within_25km": 123,
+   "lodging_within_25km": 127,
    "camping_within_25km": 20,
-   "lodging_within_80km": 1638,
-   "camping_within_80km": 120
+   "lodging_within_80km": 1652,
+   "camping_within_80km": 119
   },
   {
    "geonameid": 2533158,
@@ -16535,8 +16558,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 10,
    "camping_within_25km": 1,
-   "lodging_within_80km": 262,
-   "camping_within_80km": 29
+   "lodging_within_80km": 265,
+   "camping_within_80km": 28
   },
   {
    "geonameid": 2510245,
@@ -16556,10 +16579,10 @@
    "mean_cloud_percent": 17.1,
    "clear_sky_probability": 0.717,
    "cloud_observations": 120,
-   "lodging_within_25km": 296,
+   "lodging_within_25km": 298,
    "camping_within_25km": 33,
-   "lodging_within_80km": 1918,
-   "camping_within_80km": 129
+   "lodging_within_80km": 1942,
+   "camping_within_80km": 128
   },
   {
    "geonameid": 410915,
@@ -16627,7 +16650,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 32,
    "camping_within_25km": 0,
-   "lodging_within_80km": 381,
+   "lodging_within_80km": 383,
    "camping_within_80km": 24
   },
   {
@@ -16648,9 +16671,9 @@
    "mean_cloud_percent": 16.5,
    "clear_sky_probability": 0.733,
    "cloud_observations": 120,
-   "lodging_within_25km": 317,
+   "lodging_within_25km": 324,
    "camping_within_25km": 27,
-   "lodging_within_80km": 1912,
+   "lodging_within_80km": 1933,
    "camping_within_80km": 129
   },
   {
@@ -16673,7 +16696,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 49,
    "camping_within_25km": 13,
-   "lodging_within_80km": 749,
+   "lodging_within_80km": 753,
    "camping_within_80km": 80
   },
   {
@@ -16696,7 +16719,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 6,
    "camping_within_25km": 0,
-   "lodging_within_80km": 126,
+   "lodging_within_80km": 127,
    "camping_within_80km": 9
   },
   {
@@ -16787,9 +16810,9 @@
    "clear_sky_probability": 0.008,
    "cloud_observations": 120,
    "lodging_within_25km": 217,
-   "camping_within_25km": 3,
-   "lodging_within_80km": 362,
-   "camping_within_80km": 9
+   "camping_within_25km": 2,
+   "lodging_within_80km": 357,
+   "camping_within_80km": 8
   },
   {
    "geonameid": 2497849,
@@ -16811,7 +16834,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 40,
    "camping_within_25km": 2,
-   "lodging_within_80km": 151,
+   "lodging_within_80km": 152,
    "camping_within_80km": 9
   },
   {
@@ -16832,9 +16855,9 @@
    "mean_cloud_percent": 16.5,
    "clear_sky_probability": 0.733,
    "cloud_observations": 120,
-   "lodging_within_25km": 333,
+   "lodging_within_25km": 341,
    "camping_within_25km": 34,
-   "lodging_within_80km": 1925,
+   "lodging_within_80km": 1946,
    "camping_within_80km": 124
   },
   {
@@ -16855,10 +16878,10 @@
    "mean_cloud_percent": 14.2,
    "clear_sky_probability": 0.792,
    "cloud_observations": 120,
-   "lodging_within_25km": 164,
+   "lodging_within_25km": 166,
    "camping_within_25km": 27,
-   "lodging_within_80km": 1606,
-   "camping_within_80km": 101
+   "lodging_within_80km": 1622,
+   "camping_within_80km": 100
   },
   {
    "geonameid": 7870039,
@@ -16880,7 +16903,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 154,
    "camping_within_25km": 2,
-   "lodging_within_80km": 380,
+   "lodging_within_80km": 382,
    "camping_within_80km": 7
   },
   {
@@ -16903,7 +16926,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 137,
    "camping_within_25km": 2,
-   "lodging_within_80km": 305,
+   "lodging_within_80km": 306,
    "camping_within_80km": 8
   },
   {
@@ -16924,10 +16947,10 @@
    "mean_cloud_percent": 14.2,
    "clear_sky_probability": 0.792,
    "cloud_observations": 120,
-   "lodging_within_25km": 154,
+   "lodging_within_25km": 156,
    "camping_within_25km": 22,
-   "lodging_within_80km": 1572,
-   "camping_within_80km": 101
+   "lodging_within_80km": 1587,
+   "camping_within_80km": 100
   },
   {
    "geonameid": 2464861,
@@ -16970,9 +16993,9 @@
    "mean_cloud_percent": 16.5,
    "clear_sky_probability": 0.733,
    "cloud_observations": 120,
-   "lodging_within_25km": 359,
+   "lodging_within_25km": 367,
    "camping_within_25km": 27,
-   "lodging_within_80km": 2022,
+   "lodging_within_80km": 2043,
    "camping_within_80km": 130
   },
   {
@@ -16995,8 +17018,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 1,
    "camping_within_25km": 0,
-   "lodging_within_80km": 604,
-   "camping_within_80km": 32
+   "lodging_within_80km": 616,
+   "camping_within_80km": 31
   },
   {
    "geonameid": 2491134,
@@ -17016,9 +17039,9 @@
    "mean_cloud_percent": 15.1,
    "clear_sky_probability": 0.792,
    "cloud_observations": 120,
-   "lodging_within_25km": 31,
+   "lodging_within_25km": 32,
    "camping_within_25km": 1,
-   "lodging_within_80km": 524,
+   "lodging_within_80km": 527,
    "camping_within_80km": 33
   },
   {
@@ -17039,10 +17062,10 @@
    "mean_cloud_percent": 17.1,
    "clear_sky_probability": 0.717,
    "cloud_observations": 120,
-   "lodging_within_25km": 294,
+   "lodging_within_25km": 296,
    "camping_within_25km": 32,
-   "lodging_within_80km": 1931,
-   "camping_within_80km": 133
+   "lodging_within_80km": 1955,
+   "camping_within_80km": 132
   },
   {
    "geonameid": 79006,
@@ -17085,9 +17108,9 @@
    "mean_cloud_percent": 16.5,
    "clear_sky_probability": 0.733,
    "cloud_observations": 120,
-   "lodging_within_25km": 313,
+   "lodging_within_25km": 320,
    "camping_within_25km": 29,
-   "lodging_within_80km": 1916,
+   "lodging_within_80km": 1937,
    "camping_within_80km": 133
   },
   {
@@ -17108,10 +17131,10 @@
    "mean_cloud_percent": 16.1,
    "clear_sky_probability": 0.758,
    "cloud_observations": 120,
-   "lodging_within_25km": 301,
+   "lodging_within_25km": 311,
    "camping_within_25km": 21,
-   "lodging_within_80km": 1623,
-   "camping_within_80km": 131
+   "lodging_within_80km": 1639,
+   "camping_within_80km": 130
   },
   {
    "geonameid": 11862824,
@@ -17134,7 +17157,7 @@
    "lodging_within_25km": 6,
    "camping_within_25km": 1,
    "lodging_within_80km": 62,
-   "camping_within_80km": 17
+   "camping_within_80km": 19
   },
   {
    "geonameid": 2503755,
@@ -17156,7 +17179,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 61,
    "camping_within_25km": 1,
-   "lodging_within_80km": 277,
+   "lodging_within_80km": 278,
    "camping_within_80km": 21
   },
   {
@@ -17177,9 +17200,9 @@
    "mean_cloud_percent": 17.3,
    "clear_sky_probability": 0.717,
    "cloud_observations": 120,
-   "lodging_within_25km": 355,
-   "camping_within_25km": 18,
-   "lodging_within_80km": 1395,
+   "lodging_within_25km": 358,
+   "camping_within_25km": 19,
+   "lodging_within_80km": 1414,
    "camping_within_80km": 115
   },
   {
@@ -17200,9 +17223,9 @@
    "mean_cloud_percent": 14.8,
    "clear_sky_probability": 0.767,
    "cloud_observations": 120,
-   "lodging_within_25km": 240,
+   "lodging_within_25km": 242,
    "camping_within_25km": 15,
-   "lodging_within_80km": 488,
+   "lodging_within_80km": 491,
    "camping_within_80km": 48
   },
   {
@@ -17223,10 +17246,10 @@
    "mean_cloud_percent": 17.3,
    "clear_sky_probability": 0.717,
    "cloud_observations": 120,
-   "lodging_within_25km": 343,
+   "lodging_within_25km": 346,
    "camping_within_25km": 16,
-   "lodging_within_80km": 1201,
-   "camping_within_80km": 113
+   "lodging_within_80km": 1212,
+   "camping_within_80km": 114
   },
   {
    "geonameid": 2522187,
@@ -17246,10 +17269,10 @@
    "mean_cloud_percent": 17.4,
    "clear_sky_probability": 0.708,
    "cloud_observations": 120,
-   "lodging_within_25km": 132,
+   "lodging_within_25km": 134,
    "camping_within_25km": 18,
-   "lodging_within_80km": 1178,
-   "camping_within_80km": 97
+   "lodging_within_80km": 1188,
+   "camping_within_80km": 98
   },
   {
    "geonameid": 2509769,
@@ -17269,10 +17292,10 @@
    "mean_cloud_percent": 17.1,
    "clear_sky_probability": 0.717,
    "cloud_observations": 120,
-   "lodging_within_25km": 308,
+   "lodging_within_25km": 310,
    "camping_within_25km": 36,
-   "lodging_within_80km": 1970,
-   "camping_within_80km": 133
+   "lodging_within_80km": 1993,
+   "camping_within_80km": 132
   },
   {
    "geonameid": 2540483,
@@ -17294,8 +17317,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 42,
    "camping_within_25km": 1,
-   "lodging_within_80km": 135,
-   "camping_within_80km": 24
+   "lodging_within_80km": 133,
+   "camping_within_80km": 25
   },
   {
    "geonameid": 2469571,
@@ -17361,10 +17384,10 @@
    "mean_cloud_percent": 17.1,
    "clear_sky_probability": 0.717,
    "cloud_observations": 120,
-   "lodging_within_25km": 290,
+   "lodging_within_25km": 292,
    "camping_within_25km": 32,
-   "lodging_within_80km": 1898,
-   "camping_within_80km": 130
+   "lodging_within_80km": 1922,
+   "camping_within_80km": 129
   },
   {
    "geonameid": 2516413,
@@ -17384,10 +17407,10 @@
    "mean_cloud_percent": 16.5,
    "clear_sky_probability": 0.733,
    "cloud_observations": 120,
-   "lodging_within_25km": 370,
+   "lodging_within_25km": 376,
    "camping_within_25km": 36,
-   "lodging_within_80km": 1987,
-   "camping_within_80km": 135
+   "lodging_within_80km": 2009,
+   "camping_within_80km": 134
   },
   {
    "geonameid": 2512423,
@@ -17407,10 +17430,10 @@
    "mean_cloud_percent": 17.4,
    "clear_sky_probability": 0.708,
    "cloud_observations": 120,
-   "lodging_within_25km": 158,
+   "lodging_within_25km": 161,
    "camping_within_25km": 18,
-   "lodging_within_80km": 1191,
-   "camping_within_80km": 110
+   "lodging_within_80km": 1201,
+   "camping_within_80km": 111
   },
   {
    "geonameid": 2510785,
@@ -17430,10 +17453,10 @@
    "mean_cloud_percent": 17.4,
    "clear_sky_probability": 0.708,
    "cloud_observations": 120,
-   "lodging_within_25km": 155,
+   "lodging_within_25km": 157,
    "camping_within_25km": 16,
-   "lodging_within_80km": 1179,
-   "camping_within_80km": 105
+   "lodging_within_80km": 1189,
+   "camping_within_80km": 106
   },
   {
    "geonameid": 78713,
@@ -17478,8 +17501,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 2,
    "camping_within_25km": 1,
-   "lodging_within_80km": 348,
-   "camping_within_80km": 11
+   "lodging_within_80km": 342,
+   "camping_within_80km": 10
   },
   {
    "geonameid": 352628,
@@ -17568,9 +17591,9 @@
    "mean_cloud_percent": 16.7,
    "clear_sky_probability": 0.717,
    "cloud_observations": 120,
-   "lodging_within_25km": 435,
-   "camping_within_25km": 19,
-   "lodging_within_80km": 1496,
+   "lodging_within_25km": 436,
+   "camping_within_25km": 20,
+   "lodging_within_80km": 1515,
    "camping_within_80km": 118
   },
   {
@@ -17593,7 +17616,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 169,
    "camping_within_25km": 2,
-   "lodging_within_80km": 407,
+   "lodging_within_80km": 409,
    "camping_within_80km": 7
   },
   {
@@ -17616,7 +17639,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 124,
    "camping_within_25km": 21,
-   "lodging_within_80km": 455,
+   "lodging_within_80km": 458,
    "camping_within_80km": 45
   },
   {
@@ -17660,10 +17683,10 @@
    "mean_cloud_percent": 16.5,
    "clear_sky_probability": 0.733,
    "cloud_observations": 120,
-   "lodging_within_25km": 387,
+   "lodging_within_25km": 394,
    "camping_within_25km": 36,
-   "lodging_within_80km": 1983,
-   "camping_within_80km": 136
+   "lodging_within_80km": 2005,
+   "camping_within_80km": 135
   },
   {
    "geonameid": 2491578,
@@ -17683,9 +17706,9 @@
    "mean_cloud_percent": 16.3,
    "clear_sky_probability": 0.742,
    "cloud_observations": 120,
-   "lodging_within_25km": 152,
+   "lodging_within_25km": 153,
    "camping_within_25km": 11,
-   "lodging_within_80km": 464,
+   "lodging_within_80km": 467,
    "camping_within_80km": 51
   },
   {
@@ -17706,10 +17729,10 @@
    "mean_cloud_percent": 15.4,
    "clear_sky_probability": 0.725,
    "cloud_observations": 120,
-   "lodging_within_25km": 84,
+   "lodging_within_25km": 83,
    "camping_within_25km": 12,
-   "lodging_within_80km": 525,
-   "camping_within_80km": 79
+   "lodging_within_80km": 529,
+   "camping_within_80km": 78
   },
   {
    "geonameid": 2517049,
@@ -17729,9 +17752,9 @@
    "mean_cloud_percent": 14.2,
    "clear_sky_probability": 0.792,
    "cloud_observations": 120,
-   "lodging_within_25km": 167,
+   "lodging_within_25km": 169,
    "camping_within_25km": 26,
-   "lodging_within_80km": 1547,
+   "lodging_within_80km": 1558,
    "camping_within_80km": 107
   },
   {
@@ -17754,7 +17777,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 63,
    "camping_within_25km": 1,
-   "lodging_within_80km": 232,
+   "lodging_within_80km": 233,
    "camping_within_80km": 21
   },
   {
@@ -17775,9 +17798,9 @@
    "mean_cloud_percent": 16.7,
    "clear_sky_probability": 0.717,
    "cloud_observations": 120,
-   "lodging_within_25km": 410,
-   "camping_within_25km": 16,
-   "lodging_within_80km": 1456,
+   "lodging_within_25km": 412,
+   "camping_within_25km": 17,
+   "lodging_within_80km": 1475,
    "camping_within_80km": 118
   },
   {
@@ -17800,8 +17823,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 96,
    "camping_within_25km": 15,
-   "lodging_within_80km": 1336,
-   "camping_within_80km": 145
+   "lodging_within_80km": 1352,
+   "camping_within_80km": 146
   },
   {
    "geonameid": 2469140,
@@ -17823,7 +17846,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 173,
    "camping_within_25km": 2,
-   "lodging_within_80km": 437,
+   "lodging_within_80km": 440,
    "camping_within_80km": 7
   },
   {
@@ -17846,8 +17869,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 31,
    "camping_within_25km": 3,
-   "lodging_within_80km": 1480,
-   "camping_within_80km": 139
+   "lodging_within_80km": 1493,
+   "camping_within_80km": 141
   },
   {
    "geonameid": 70677,
@@ -17869,8 +17892,8 @@
    "cloud_observations": 120,
    "lodging_within_25km": 2,
    "camping_within_25km": 1,
-   "lodging_within_80km": 348,
-   "camping_within_80km": 11
+   "lodging_within_80km": 342,
+   "camping_within_80km": 10
   },
   {
    "geonameid": 2511009,
@@ -17890,10 +17913,10 @@
    "mean_cloud_percent": 17.1,
    "clear_sky_probability": 0.717,
    "cloud_observations": 120,
-   "lodging_within_25km": 296,
+   "lodging_within_25km": 298,
    "camping_within_25km": 35,
-   "lodging_within_80km": 1934,
-   "camping_within_80km": 133
+   "lodging_within_80km": 1957,
+   "camping_within_80km": 132
   },
   {
    "geonameid": 2467890,
@@ -17959,10 +17982,10 @@
    "mean_cloud_percent": 15.4,
    "clear_sky_probability": 0.725,
    "cloud_observations": 120,
-   "lodging_within_25km": 90,
+   "lodging_within_25km": 89,
    "camping_within_25km": 10,
-   "lodging_within_80km": 522,
-   "camping_within_80km": 75
+   "lodging_within_80km": 525,
+   "camping_within_80km": 74
   },
   {
    "geonameid": 2472196,
@@ -18005,10 +18028,10 @@
    "mean_cloud_percent": 17.4,
    "clear_sky_probability": 0.708,
    "cloud_observations": 120,
-   "lodging_within_25km": 332,
+   "lodging_within_25km": 335,
    "camping_within_25km": 18,
-   "lodging_within_80km": 1210,
-   "camping_within_80km": 111
+   "lodging_within_80km": 1220,
+   "camping_within_80km": 112
   },
   {
    "geonameid": 2519988,
@@ -18028,10 +18051,10 @@
    "mean_cloud_percent": 16.1,
    "clear_sky_probability": 0.758,
    "cloud_observations": 120,
-   "lodging_within_25km": 65,
+   "lodging_within_25km": 68,
    "camping_within_25km": 16,
-   "lodging_within_80km": 1467,
-   "camping_within_80km": 128
+   "lodging_within_80km": 1483,
+   "camping_within_80km": 127
   },
   {
    "geonameid": 13132708,
@@ -18053,7 +18076,7 @@
    "cloud_observations": 120,
    "lodging_within_25km": 132,
    "camping_within_25km": 2,
-   "lodging_within_80km": 354,
+   "lodging_within_80km": 355,
    "camping_within_80km": 8
   }
  ]
