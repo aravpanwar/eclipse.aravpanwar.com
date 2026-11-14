@@ -16,37 +16,45 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'src'))
 
 import eclipse.local_circumstances as L
-from eclipse.path import centerline_latitude
+from eclipse import event
+from eclipse.path import centerline_latitude, lon_window
 
-EVENT = '2027-08-02'
+EVENT = event.from_argv()
 E = L.Elements.from_json(ROOT / 'data' / 'elements' / f'{EVENT}.json')
 OUT = ROOT / 'docs' / 'data'
 OUT.mkdir(parents=True, exist_ok=True)
 
 
-def limits(lon, step=0.02):
-    """North and south edge of totality at this longitude."""
-    lo = hi = None
-    prev = False
-    lat = 5.0
-    while lat <= 50.0:
-        now = L.compute(lat, lon, 0.0, E).in_totality
-        if now and not prev:
-            lo = lat
-        if prev and not now:
-            hi = lat
-        prev = now
-        lat += step
-    return lo, hi
+def limits(lon, centre_lat, step=0.02):
+    """South and north edge of totality at this longitude.
+
+    Walks out from the centre line on a fixed grid of latitudes, so it needs
+    no bounds and works in either hemisphere. The south edge is the last
+    latitude in totality, the north edge the first one past it.
+    """
+    def inside(k):
+        return L.compute(k * step, lon, 0.0, E).in_totality
+
+    k = round(centre_lat / step)
+    if not inside(k):
+        return None, None
+    lo, hi = k, k + 1
+    while inside(lo - 1):
+        lo -= 1
+    while inside(hi):
+        hi += 1
+    return lo * step, hi * step
 
 
+lon_lo, lon_hi = lon_window(E, event.settings(EVENT).get('lon_window'))
+print(f'longitudes        {lon_lo} to {lon_hi}')
 centre, north, south = [], [], []
-lon = -12.0
-while lon <= 52.0:
+lon = lon_lo
+while lon <= lon_hi:
     c = centerline_latitude(lon, E)
     if c is not None and L.compute(c, lon, 0.0, E).in_totality:
         centre.append([round(lon, 3), round(c, 4)])
-        s, n = limits(lon)
+        s, n = limits(lon, c)
         if s is not None and n is not None:
             south.append([round(lon, 3), round(s, 4)])
             north.append([round(lon, 3), round(n, 4)])

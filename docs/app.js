@@ -12,7 +12,10 @@
  * Source: https://github.com/aravpanwar/eclipse.aravpanwar.com
  */
 
-const EVENT = '2027-08-02';
+// The page names its eclipse (scripts/build_page.py writes it), so this one
+// script serves every event.
+const EVENT = document.documentElement.dataset.event;
+const MONTH = new Date(`${EVENT}T00:00:00Z`).toLocaleString('en-GB', { month: 'long', timeZone: 'UTC' });
 const R_EARTH = 6371.0088;
 
 const state = {
@@ -31,6 +34,7 @@ const state = {
   outside: [],        // towns within 100 km outside the path: partial only
   outsideNames: {},   // country code -> name, for countries only outside towns have
   outsideRange: 100,  // km, from the outside data file
+  hasCloud: true,     // false until scripts/fetch_cloud.py has run for the event
 };
 
 /* ---------- geometry ---------- */
@@ -396,7 +400,7 @@ function render() {
       // times to get past the table.
       const tab = p.i === focusId ? 0 : -1;
       const label = `${p.n}. Totality ${p.t0 ? `from ${p.t0} local time, ` : ''}`
-        + `${mmss(p.d)} long. ${fmtPct(p.w)} August cloud. `
+        + `${mmss(p.d)} long. ${state.hasCloud ? `${fmtPct(p.w)} ${MONTH} cloud. ` : ''}`
         + `${staysSpoken(p.l)} mapped within 25 km.`;
       html += `<div class="row${sel}" data-id="${p.i}" tabindex="${tab}"
         role="row" aria-selected="${p.i === state.selected}"
@@ -461,11 +465,14 @@ async function getJson(url) {
 let map;
 
 function initMap() {
+  // A view chosen for the event (data/events.json) is on the page; without
+  // one the map starts on the whole world and fits the path once it loads.
+  const view = document.documentElement.dataset;
   map = new maplibregl.Map({
     container: 'map',
     style: 'https://tiles.openfreemap.org/styles/positron',
-    center: [32.0, 26.3],
-    zoom: 5.4,
+    center: view.center ? view.center.split(',').map(Number) : [0, 20],
+    zoom: view.zoom ? Number(view.zoom) : 1.5,
     attributionControl: { compact: false },
   });
   map.addControl(new maplibregl.NavigationControl({ showCompass: false }),
@@ -645,6 +652,15 @@ function initMap() {
       const ys = ring.map((c) => c[1]);
       map.fitBounds([[Math.min(...xs), Math.min(...ys)], [Math.max(...xs), Math.max(...ys)]],
                     { padding: 30, duration: 0 });
+    } else if (!view.center) {
+      // No view chosen for this event: frame the whole path.
+      const band = path.features.find((f) => f.properties.kind === 'umbra');
+      if (band) {
+        const xs = band.geometry.coordinates[0].map((c) => c[0]);
+        const ys = band.geometry.coordinates[0].map((c) => c[1]);
+        map.fitBounds([[Math.min(...xs), Math.min(...ys)], [Math.max(...xs), Math.max(...ys)]],
+                      { padding: 40, duration: 0 });
+      }
     }
   });
 }
@@ -851,7 +867,7 @@ function renderTown() {
         <div class="tc-sub">local time${p.off ? `, ${p.off}` : ''}</div></div>
     </div>
     <dl class="tc-facts">
-      ${TC('August cloud', fmtPct(p.w))}${TC('Sun altitude', `${p.a.toFixed(0)}°`)}
+      ${TC(`${MONTH} cloud`, state.hasCloud ? fmtPct(p.w) : 'not yet')}${TC('Sun altitude', `${p.a.toFixed(0)}°`)}
       ${TC('From centre line', `${fmtKm(p.k)} km`)}${TC('Stays, 25 km', p.l ? `~${p.l}` : 'none')}
       ${TC('Stays, 80 km', p.L ? `~${p.L}` : 'none')}
     </dl>
@@ -1101,6 +1117,16 @@ async function main() {
     p.f = purify(p.n);
     addTimes(p);
   }
+  // Cloud is fetched nearer the eclipse, so a new event starts without it.
+  // The page says so once, and the list drops a column of n/a.
+  state.hasCloud = state.data.places.some((p) => p.w != null);
+  if (!state.hasCloud) {
+    document.body.classList.add('nocloud');
+    const note = document.getElementById('nocloud');
+    if (note) note.hidden = false;
+    document.querySelector('#sortbar button[data-sort="w"]').hidden = true;
+    if (state.sort === 'w') state.sort = 's';
+  }
   // Optional: without it the site is exactly as before.
   try {
     const outside = await getJson(`/data/${EVENT}-outside.json`);
@@ -1145,7 +1171,12 @@ async function main() {
 
 /* ---------- view: totality and cloud along the path ---------- */
 
-const PLON = [-7, 52];
+// The chart spans the towns in totality, to whole degrees, and its totality
+// scale tops out at the next 100 s above the longest.
+const lonSpan = () => {
+  const xs = state.data.places.map((p) => p.x);
+  return [Math.floor(Math.min(...xs)), Math.ceil(Math.max(...xs))];
+};
 const CLOUD_MAX = 80;
 // Line colour by totality, shortest dark to longest bright. A single-hue
 // ramp still grades under red-green colour blindness, and red already means
@@ -1207,15 +1238,18 @@ function drawProfile() {
   const sy = t1 + 10;                             // country strip
   const c0 = sy + 50;                             // cloud chart top
   const c1 = H - 8;                               // cloud chart bottom
+  const PLON = lonSpan();
+  const tmax = Math.ceil(state.data.event.peak / 100) * 100;
   const x = (lon) => m.l + (lon - PLON[0]) / (PLON[1] - PLON[0]) * (W - m.l - m.r);
-  const y = (s) => t1 - (s / 400) * (t1 - t0);
+  const y = (s) => t1 - (s / tmax) * (t1 - t0);
   const yc = (w) => c1 - (Math.min(w, CLOUD_MAX) / CLOUD_MAX) * (c1 - c0);
   P = { x, y, yc, m, W, H, t0, t1, c0, c1 };
   let h = '';
 
   // Totality chart.
   h += `<text class="ax" x="${m.l}" y="${t0 - 10}">Totality</text>`;
-  for (const s of [120, 240, 360]) {
+  const tick = tmax >= 300 ? 120 : 60;
+  for (let s = tick; s < tmax; s += tick) {
     h += `<line class="pg" x1="${m.l}" x2="${W - m.r}" y1="${y(s)}" y2="${y(s)}"/>`;
     h += `<text class="pt" x="${m.l - 7}" y="${y(s) + 3.5}" text-anchor="end">${s / 60}:00</text>`;
   }
@@ -1252,9 +1286,12 @@ function drawProfile() {
       <text x="${(x0 + x1) / 2}" y="${sy + 12.5}" text-anchor="middle">${esc(label)}</text></g>`;
   }
 
-  // Cloud chart: median August cloud of the towns in each 1 degree of longitude.
-  h += `<text class="ax" x="${m.l}" y="${c0 - 12}">August cloud at eclipse time</text>`;
-  for (const w of [25, 50, 75]) {
+  // Cloud chart: median cloud of the towns in each 1 degree of longitude.
+  h += `<text class="ax" x="${m.l}" y="${c0 - 12}">${MONTH} cloud at eclipse time</text>`;
+  if (!state.hasCloud) {
+    h += `<text class="pnone" x="${(m.l + W - m.r) / 2}" y="${(c0 + c1) / 2}" text-anchor="middle">No cloud data available yet</text>`;
+  }
+  for (const w of (state.hasCloud ? [25, 50, 75] : [])) {
     h += `<line class="pg" x1="${m.l}" x2="${W - m.r}" y1="${yc(w)}" y2="${yc(w)}"/>`;
     h += `<text class="pt" x="${m.l - 7}" y="${yc(w) + 3.5}" text-anchor="end">${w}%</text>`;
   }
@@ -1279,6 +1316,7 @@ function drawProfile() {
 
   h += `<g id="psel"></g>`;
   svg.innerHTML = h;
+  svg.setAttribute('aria-label', profileLabel(pts, spans));
   svg.onclick = (e) => {
     const g = e.target.closest('.pcn');
     if (g) { setView('map'); openOnCountry(g.dataset.cc); return; }
@@ -1294,6 +1332,31 @@ function drawProfile() {
     if (best) selectPlace(best.i, false);
   };
   profileMarks();
+}
+
+// The charts in words, for screen readers: where totality is shortest and
+// longest along the line, and which countries are clearest and cloudiest.
+function profileLabel(pts, spans) {
+  const spoken = (s) => { const t = Math.floor(s); return `${Math.floor(t / 60)} minutes ${t % 60} seconds`; };
+  const names = (s) => s.cc.map(countryName);
+  const list = (xs) => (xs.length > 1 ? `${xs.slice(0, -1).join(', ')} and ${xs[xs.length - 1]}` : xs[0]);
+  let top = 'Top: totality.';
+  if (pts.length) {
+    const peak = pts.reduce((a, b) => (b[1] > a[1] ? b : a));
+    const near = state.data.places.reduce((a, b) => (Math.abs(b.x - peak[0]) < Math.abs(a.x - peak[0]) ? b : a));
+    top = `Top: totality, ${spoken(pts[0][1])} at the west end, near ${list(names(spans[0]))}, `
+      + `${spoken(state.data.event.peak)} at its longest, in ${countryName(near.c)}, and `
+      + `${spoken(pts[pts.length - 1][1])} at the east end, near ${list(names(spans[spans.length - 1]))}.`;
+  }
+  let bottom = `Bottom: ${MONTH} cloud, no data available yet.`;
+  const rated = spans.filter((s) => s.ws.length).map((s) => ({ s, med: median(s.ws) }))
+    .sort((a, b) => a.med - b.med);
+  if (state.hasCloud && rated.length > 1) {
+    const k = Math.max(1, Math.round(rated.length / 3));
+    bottom = `Bottom: median ${MONTH} cloud, lowest in ${list(rated.slice(0, k).flatMap((r) => names(r.s)))}, `
+      + `highest in ${list(rated.slice(-k).flatMap((r) => names(r.s)))}.`;
+  }
+  return `Two charts sharing one axis, west to east. ${top} ${bottom}`;
 }
 
 // The selected place, marked on both charts.

@@ -21,12 +21,13 @@ sys.stdout.reconfigure(encoding='utf-8')
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'src'))
 
+from eclipse import event
 from eclipse.local_circumstances import Elements
 from eclipse.places import load, COUNTRY_NAMES, haversine_km
 from eclipse.path import (greatest_duration, rank, build_centerline, outside,
-                          path_edges, in_outline, nearest_km)
+                          path_edges, in_outline, nearest_km, lon_window)
 from eclipse.advisories import fetch_all, SEVERITY, ISSUER, ISSUER_SHORT
-from eclipse.lodging import load_cache, combined_index, supply_within
+from eclipse.lodging import load_cache, combined_index, supply_within, EXTRACTS
 from eclipse.cloud import GRID_DEGREES, GRID_KM_APPROX
 
 def fmt_duration(seconds: float) -> str:
@@ -35,7 +36,8 @@ def fmt_duration(seconds: float) -> str:
     return f'{total // 60}m{total % 60:02d}s'
 
 
-EVENT = '2027-08-02'
+EVENT = event.from_argv()
+SETTINGS = event.settings(EVENT)
 RANGE_KM = 100
 OUT = ROOT / 'data' / 'out'
 OUT.mkdir(parents=True, exist_ok=True)
@@ -72,7 +74,9 @@ print(f'greatest eclipse  {ge["central_duration"]} at '
       f'{ge["latitude_deg"]} N {ge["longitude_deg"]} E  (NASA)')
 
 t0 = time.time()
-track = build_centerline(E, -12.0, 50.0, 0.5)
+# The same window the drawn path uses. A narrower one leaves towns past its
+# end measured to the last point of the track instead of to the centre line.
+track = build_centerline(E, *lon_window(E, SETTINGS.get('lon_window')), 0.5)
 print(f'centerline pts   {len(track)}')
 ranked = rank(places, E, peak, track=track)
 print(f'inside the path   {len(ranked)}  ({time.time() - t0:.1f}s)')
@@ -113,6 +117,10 @@ print(f'advisories       {len(advisories)} fetched, {flagged} carry an alert')
 # is the story, and a count stays true where a scraped rate does not.
 SUPPLY_RADII_KM = (25.0, 80.0)
 loaded = load_cache(ROOT / 'data' / 'cache' / 'lodging', TOTALITY_COUNTRIES)
+no_extract = [cc for cc in TOTALITY_COUNTRIES if cc not in EXTRACTS]
+if no_extract:
+    print(f'  WARNING no Geofabrik extract in lodging.EXTRACTS for {no_extract}, '
+          'so their towns get no stays counts')
 if loaded:
     lodging_index = combined_index(loaded)
     total_features = sum(len(v) for v in loaded.values())
@@ -180,9 +188,8 @@ json_path.write_text(json.dumps({
             **({'cloud': ' '.join(cloud_blob['caveats'])} if cloud_blob else {}),
             'delta_t': (f'Computed with delta T = {E.delta_t_seconds} s '
                         f'({meta["provenance"]["delta_t_basis"]}). delta T is not '
-                        'perfectly predictable and shifts the path east or west; '
-                        "NASA's older 2027 map used 71.7 s, about 2 km of "
-                        'longitudinal difference.'),
+                        'perfectly predictable and shifts the path east or west.'
+                        + (f' {SETTINGS["delta_t_note"]}' if 'delta_t_note' in SETTINGS else '')),
             'lunar_limb': ('Path limits carry 1-2 km of uncertainty and duration '
                            '1-3 s from the lunar limb profile. Limb-corrected '
                            'predictions appear 12-18 months before an event.'),

@@ -42,6 +42,59 @@ def greatest_duration(elements: L.Elements, seed: tuple[float, float],
     return lat, lon, best
 
 
+def axis_point(elements: L.Elements, t: float) -> tuple[float, float] | None:
+    """Geodetic lat/lon where the shadow axis pierces Earth, t hours from t0.
+
+    None when the axis misses Earth. Stepping t traces the centre line in
+    time, which works for a path of any shape; it is used to find where the
+    path runs, and the per-longitude solve below then draws it.
+    """
+    el = elements.at(t)
+    x, y = el['x'], el['y']
+    d = math.radians(el['d'])
+    mu = el['mu'] - elements.delta_t_seconds / 3600.0 * 15.0
+
+    rho = math.hypot(x, y)
+    if rho >= 1.0:
+        return None
+    f = L.FLATTENING
+    zeta = math.sqrt(1.0 - rho * rho)
+    for _ in range(60):
+        lat_c = math.asin(max(-1.0, min(1.0, y * math.cos(d) + zeta * math.sin(d))))
+        rho_s, rho_c = L.geocentric_observer(math.degrees(
+            math.atan(math.tan(lat_c) / (1.0 - f) ** 2)), 0.0, 0.0)
+        r = math.hypot(rho_s, rho_c)
+        new_zeta = math.sqrt(max(0.0, r * r - rho * rho))
+        if abs(new_zeta - zeta) < 1e-12:
+            break
+        zeta = new_zeta
+    lat_c = math.asin(max(-1.0, min(1.0, y * math.cos(d) + zeta * math.sin(d))))
+    H = math.degrees(math.atan2(x, zeta * math.cos(d) - y * math.sin(d)))
+    lon = ((H - mu + 180.0) % 360.0) - 180.0
+    return math.degrees(math.atan(math.tan(lat_c) / (1.0 - f) ** 2)), lon
+
+
+def lon_window(elements: L.Elements, chosen: list[float] | None = None,
+               step: float = 0.5) -> tuple[float, float]:
+    """The longitudes to draw the path over, on a whole number of steps.
+
+    A window chosen in data/events.json wins, so a map can stop at the
+    coast. Otherwise the whole centre line, found by stepping through the
+    three hours either side of t0 that the elements are fitted over.
+    """
+    if chosen:
+        return float(chosen[0]), float(chosen[1])
+    lons = [p[1] for i in range(-360, 361)
+            if (p := axis_point(elements, i / 120.0)) is not None]
+    if not lons:
+        raise ValueError('the shadow axis never meets Earth, so this is not a central eclipse')
+    if max(lons) - min(lons) > 180:
+        raise ValueError('the path crosses 180 degrees, so give it a lon_window '
+                         'in data/events.json that stops at 180')
+    return (math.floor(min(lons) / step) * step - step,
+            math.ceil(max(lons) / step) * step + step)
+
+
 _CENTERLINE_CACHE: dict[tuple[int, float], float | None] = {}
 
 

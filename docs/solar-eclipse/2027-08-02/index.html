@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-event="2027-08-02" data-center="32.0,26.3" data-zoom="5.4">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -55,7 +55,7 @@
       <span class="plegend"><span class="pl-line" aria-hidden="true"></span>Totality on the centre line
         <span class="pl-dot" aria-hidden="true"></span>Each town</span>
     </div>
-    <svg id="psvg" role="img" aria-label="Two charts sharing one axis, west to east. Top: totality, rising from 4 minutes 31 seconds west of Spain to 6 minutes 23 seconds in Egypt, then falling to 5 minutes 23 seconds past Somalia. Bottom: median August cloud, lowest in Egypt, Libya and Tunisia, highest in Saudi Arabia and Yemen."></svg>
+    <svg id="psvg" role="img" aria-label="Two charts sharing one axis, west to east: totality, and August cloud."></svg>
   </section>
 
   <section id="mapwrap" role="tabpanel" aria-labelledby="tab-map">
@@ -75,6 +75,8 @@
   </section>
 
   <section id="results" aria-label="Places in the circle">
+    <p id="nocloud" class="cloudnote" role="note" hidden><b>No cloud data available yet.</b>
+      Cloud cover for the date is added closer to the eclipse.</p>
     <div id="town" aria-live="polite" hidden></div>
 
     <div id="summary">

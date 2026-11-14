@@ -16,21 +16,28 @@ shared queue, and 772 requests would be slow and inconsiderate.
 """
 import csv
 import json
+import math
 import sys
+from datetime import timedelta
 from pathlib import Path
 
 sys.stdout.reconfigure(encoding='utf-8')
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'src'))
 
+from eclipse import event
 from eclipse.cloud import (DATASET, build_request, path_area, sample,
                            GRID_DEGREES, GRID_KM_APPROX)
 
-EVENT = '2027-08-02'
+EVENT = event.from_argv()
 YEAR_FROM, YEAR_TO = 1985, 2024
-MONTH = 8
-DAYS = [1, 2, 3]          # the date and a day either side, for sample size
-HOURS_UT = [8, 9, 10, 11, 12]
+# The date and a day either side, for sample size. One request takes one
+# month, so a date on the first or last of a month would need two.
+DATES = [event.day(EVENT) + timedelta(days=k) for k in (-1, 0, 1)]
+if len({d.month for d in DATES}) > 1:
+    sys.exit('the days either side of the eclipse fall in two months, which one request cannot fetch')
+MONTH = DATES[0].month
+DAYS = [d.day for d in DATES]
 
 CACHE = ROOT / 'data' / 'cache' / 'cloud'
 CACHE.mkdir(parents=True, exist_ok=True)
@@ -39,6 +46,9 @@ NC = CACHE / f'{EVENT}-era5-tcc.nc'
 places_csv = ROOT / 'data' / 'out' / f'{EVENT}-places.csv'
 rows = list(csv.DictReader(places_csv.open(encoding='utf-8')))
 print(f'places          {len(rows)}')
+# Every whole hour that brackets a town's maximum eclipse.
+ut = [float(r['max_eclipse_ut_hours']) for r in rows]
+HOURS_UT = list(range(math.floor(min(ut)), math.ceil(max(ut)) + 1))
 
 area = path_area([{'latitude': float(r['latitude']),
                    'longitude': float(r['longitude'])} for r in rows])
@@ -100,15 +110,16 @@ dest.write_text(json.dumps({
     },
     'caveats': [
         f'ERA5 runs on a {GRID_DEGREES} degree grid, about {GRID_KM_APPROX} km. '
-        'One cell can span the Nile valley and the desert plateau beside it, '
-        'which do not have the same cloud behaviour. Read these as regional.',
+        'One cell can span a valley and the plateau beside it, or a coast and '
+        'the sea, which do not have the same cloud behaviour. Read these as '
+        'regional.',
         'Reanalysis is a model constrained by observations, not an observation. '
         'Cloud is among its weaker fields.',
         'A mean hides the spread: 20 percent can be one observation in five '
         'overcast or five all hazy. The clear and overcast counts are included '
         'so the spread is visible. Samples are place-days, three days across '
         'forty years, so 120 observations rather than 120 independent years.',
-        'Climatology is not a forecast. A real forecast for 2 August 2027 will '
+        f'Climatology is not a forecast. A real forecast for {event.long_date(EVENT)} will '
         'exist about a week beforehand and will be worth more than any of this.',
         'For the authoritative eclipse-specific treatment see Jay Anderson at '
         'eclipsophile.com, which uses the satellite record rather than '

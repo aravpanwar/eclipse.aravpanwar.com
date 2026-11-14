@@ -1,0 +1,12 @@
+{
+  "_about": "Choices made by hand for each eclipse. Everything else comes from data/elements/<event>.json and the computed places. Every key is optional: lon_window defaults to the whole path, map to the path's bounds, og to no link card.",
+  "2027-08-02": {
+    "lon_window": [-12, 52],
+    "map": {"center": [32.0, 26.3], "zoom": 5.4},
+    "delta_t_note": "NASA's older 2027 map used 71.7 s, about 2 km of longitudinal difference.",
+    "og": {"lat_top": 42.5, "lat0": 24.0, "lon_left": -19.0, "lat_span": 39.0}
+  },
+  "2028-07-22": {
+    "lon_window": [78.5, 180]
+  }
+}

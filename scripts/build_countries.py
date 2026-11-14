@@ -21,7 +21,10 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding='utf-8')
 ROOT = Path(__file__).resolve().parents[1]
 
-EVENT = '2027-08-02'
+sys.path.insert(0, str(ROOT / 'src'))
+from eclipse import event  # noqa: E402
+
+EVENT = event.from_argv()
 # The UK point-of-view edition, because the advisories are the UK's. It draws
 # Somaliland inside Somalia, as the FCDO's Somalia page covers it and as
 # GeoNames files its towns (Berbera among them).

@@ -558,6 +558,17 @@ input[type=range] {
 /* Towns outside the path: their own group and columns. */
 .country.out .group { background: #eceee8; }
 .row.out, .country.out .head { grid-template-columns: 1.7fr 0.6fr 0.7fr 0.8fr; }
+
+/* An event without cloud data yet: a note above the list, and the list
+   without its cloud column. */
+.cloudnote { margin: 0; padding: 9px 17px; border-bottom: 1px solid var(--line);
+  border-left: 3px solid var(--ochre); background: #fbf3df;
+  font-size: 12.5px; line-height: 1.45; color: #5c4a1e; }
+.cloudnote b { font-weight: 600; color: var(--ink); }
+body.nocloud .country:not(.out) .head,
+body.nocloud .row:not(.out) { grid-template-columns: 1.7fr 0.56fr 0.62fr 0.46fr; }
+body.nocloud .country:not(.out) .head > :nth-child(4),
+body.nocloud .row:not(.out) > :nth-child(4) { display: none; }
 .row.out .cc { margin-left: 4px; font: 10.5px var(--sans); color: var(--faint); }
 .outsub { margin: 4px 0 0; font-size: 11.5px; line-height: 1.45; color: var(--dim); }
 .outnote { margin: 0; padding: 14px 17px 22px; font-size: 12px; line-height: 1.5; color: var(--dim); }
@@ -648,6 +659,7 @@ input[type=range] {
 #psvg .pbar { fill: #7f97a6; }
 #psvg .pbar:hover { fill: #a9bfcc; }
 #psvg .pcm { font: 500 11px var(--sans); fill: #c6d3db; }
+#psvg .pnone { font: 500 12.5px var(--sans); fill: #a49d91; }
 #psvg .psl { stroke: #f0883e; stroke-dasharray: 2 3; }
 #psvg .ps { fill: #ffffff; stroke: #f0883e; stroke-width: 2.5; }
 #psvg .psn { font: 600 11.5px var(--sans); fill: #ffb27a; paint-order: stroke; stroke: #13261b; stroke-width: 3px; }

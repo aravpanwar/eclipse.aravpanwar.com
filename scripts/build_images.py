@@ -24,7 +24,10 @@ from PIL import Image, ImageDraw, ImageFont
 
 sys.stdout.reconfigure(encoding='utf-8')
 ROOT = Path(__file__).resolve().parents[1]
-EVENT = '2027-08-02'
+sys.path.insert(0, str(ROOT / 'src'))
+from eclipse import event  # noqa: E402
+
+EVENT = event.from_argv()
 DOCS = ROOT / 'docs'
 DATA = DOCS / 'data'
 CACHE = ROOT / 'data' / 'cache'
@@ -97,18 +100,23 @@ def polygons(geom):
 
 W, H = 1200, 630
 S = 3                      # drawn at 3x and scaled down, for smooth edges
-LAT_TOP, LAT0 = 42.5, 24.0
-LON_LEFT = -19.0
-K = H / 39.0               # pixels per degree of latitude
+# The card's framing is chosen by hand for each event, in data/events.json:
+# the top latitude, the latitude whose scale it keeps, the left longitude and
+# how many degrees of latitude fit its height.
+OG = event.settings(EVENT).get('og')
 
 
 def project(lon, lat):
-    x = (lon - LON_LEFT) * math.cos(math.radians(LAT0)) * K
-    y = (LAT_TOP - lat) * K
+    k = H / OG['lat_span']
+    x = (lon - OG['lon_left']) * math.cos(math.radians(OG['lat0'])) * k
+    y = (OG['lat_top'] - lat) * k
     return x * S, y * S
 
 
 def card():
+    if not OG:
+        print('og card           SKIP (no og framing in data/events.json)')
+        return
     land = json.loads(cached(NE_URL).read_text(encoding='utf-8'))
     path = json.loads((DATA / f'{EVENT}-path.geojson').read_text(encoding='utf-8'))
     places = json.loads((DATA / f'{EVENT}-places.json').read_text(encoding='utf-8'))
@@ -149,7 +157,7 @@ def card():
     x = px + 30 * S
     d.text((x, py + 26 * S), 'Totality Path & Nearby Locations',
            font=font('bold', 36 * S), fill=INK)
-    d.text((x, py + 82 * S), 'Total solar eclipse, 2 August 2027',
+    d.text((x, py + 82 * S), f'Total solar eclipse, {event.long_date(EVENT)}',
            font=font('serif', 28 * S), fill='#45423d')
     n = len(places['places'])
     # Advisories also cover countries with towns outside the path only.
@@ -280,9 +288,12 @@ def thumbs():
     thumb(*args, out / f'{EVENT}.webp')
     # The homepage shows this one about 560 px wide, so it also gets a 2x copy.
     thumb(*args, out / f'{EVENT}@2x.webp', scale=2)
-    for event, slug in NASA_PATHS.items():
+    # An eclipse computed here is drawn by its own run, from its own data.
+    for other, slug in NASA_PATHS.items():
+        if other == EVENT or (DATA / f'{other}-path.geojson').exists():
+            continue
         ring, centre = nasa_path(slug)
-        thumb(ring, centre, [], out / f'{event}.webp')
+        thumb(ring, centre, [], out / f'{other}.webp')
 
 
 # ---------- icons ----------

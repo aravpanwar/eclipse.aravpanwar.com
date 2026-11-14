@@ -18,15 +18,17 @@ Computed events: 2 August 2027 (total).
 | Path | Contents |
 |---|---|
 | `data/elements/` | Besselian elements, one JSON file per event |
+| `data/events.json` | Choices made by hand for each event: map view, link card framing |
 | `src/eclipse/` | Computation: local circumstances, path, places, cloud, lodging, advisories |
 | `scripts/` | Build steps, listed below |
 | `data/cache/` | Downloaded inputs and extracted caches |
 | `data/out/` | Full build output (CSV and JSON) |
 | `docs/` | The site, served by GitHub Pages; `docs/data/` holds the site's data files |
+| `templates/` | The event page, filled in by `build_page.py` |
 | `tests/` | Validation tests |
 
-Each script sets `EVENT = '2027-08-02'` at the top. To build another event,
-change that value in each script and add the event's file to `data/elements/`.
+Each script takes the event as its one argument, the name of a file in
+`data/elements/`.
 
 ## Requirements
 
@@ -53,14 +55,15 @@ themselves.
 ## Build
 
 ```
-python scripts/extract_lodging.py   # once per OSM refresh; writes data/cache/lodging/
-python scripts/fetch_cloud.py       # once per event; writes data/cache/cloud/
-python scripts/build_geojson.py     # docs/data/<event>-path.geojson, <event>-centre-profile.json
-python scripts/build.py             # data/out/<event>-places.{csv,json}, <event>-outside.{csv,json}
-python scripts/build_site_data.py   # docs/data/<event>-places.json, <event>-outside.json
-python scripts/build_countries.py   # docs/data/<event>-countries.geojson
-python scripts/build_coverage.py    # docs/data/<event>-coverage.json
-python scripts/build_images.py      # docs/og.png, homepage thumbnails, site icons
+python scripts/extract_lodging.py           # once per OSM refresh; writes data/cache/lodging/
+python scripts/build_geojson.py <event>     # docs/data/<event>-path.geojson, <event>-centre-profile.json
+python scripts/build.py <event>             # data/out/<event>-places.{csv,json}, <event>-outside.{csv,json}
+python scripts/fetch_cloud.py <event>       # optional, then build.py again; writes data/cache/cloud/
+python scripts/build_site_data.py <event>   # docs/data/<event>-places.json, <event>-outside.json
+python scripts/build_countries.py <event>   # docs/data/<event>-countries.geojson
+python scripts/build_coverage.py <event>    # docs/data/<event>-coverage.json
+python scripts/build_images.py <event>      # docs/og.png, homepage thumbnails, site icons
+python scripts/build_page.py <event>        # docs/solar-eclipse/<event>/index.html
 python -m pytest tests/ -q
 ```
 
@@ -69,7 +72,29 @@ into `docs/data/`.
 
 `build.py` fetches UK travel advice at run time and takes about 8 minutes, most
 of it the centre line solve. It runs without the lodging or cloud caches and
-leaves those columns empty.
+leaves those columns empty. Without cloud the event page says no cloud data
+is available yet and leaves cloud out of the list.
+
+## Adding an event
+
+1. `python scripts/fetch_elements.py <yyyy-mm-dd>` writes
+   `data/elements/<event>.json` from NASA's Besselian elements page, and keeps
+   the page in `data/cache/nasa/`. It reads the static pages, not the search
+   engine, which has been failing since late 2026 and left out `d3` when it
+   worked. `tests/test_elements.py` then checks the file against NASA's
+   greatest eclipse figures.
+2. Add the event to `data/events.json` if it needs a hand-chosen setting. A
+   path that crosses 180 degrees needs a `lon_window` that stops at 180.
+   Without a `map` view the map frames the whole path; without `og` no link
+   card is drawn.
+3. Download Geofabrik extracts for the path countries and add any new country
+   to `EXTRACTS` in `src/eclipse/lodging.py` and `COUNTRY_NAMES` in
+   `src/eclipse/places.py`. `build.py` stops on a missing name and warns on a
+   missing extract.
+4. Add official hotel counts for the new countries to
+   `data/hotel_registers.json`, or they are rated unknown.
+5. Run the build above, then move the event's card on `docs/index.html` from
+   the upcoming list.
 
 ## Output
 
