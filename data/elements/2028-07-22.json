@@ -1,0 +1,90 @@
+{
+  "id": "2028-07-22",
+  "label": "Total Solar Eclipse of 2028 July 22",
+  "type": "T",
+  "date_utc": "2028-07-22",
+  "t0_tdt_hours": 3.0,
+  "delta_t_seconds": 72.1,
+  "greatest_eclipse": {
+    "instant_tdt": "02:56:39.0",
+    "instant_ut": "02:55:26.9",
+    "jd": 2461974.622673,
+    "latitude_deg": -15.5733,
+    "longitude_deg": 126.7067,
+    "sun_altitude_deg": 52.6,
+    "sun_azimuth_deg": 17.2,
+    "path_width_km": 230.2,
+    "central_duration": "05m09.7s",
+    "gamma": -0.6055,
+    "magnitude": 1.056
+  },
+  "greatest_duration": {
+    "instant_ut": "02:52:18",
+    "latitude_deg": -15.0667,
+    "longitude_deg": 125.7833,
+    "sun_altitude_deg": 52.6,
+    "sun_azimuth_deg": 19.9,
+    "path_width_km": 231.3,
+    "central_duration": "05m09.9s"
+  },
+  "lunar_radius_constants": {
+    "k1_penumbra": 0.272488,
+    "k2_umbra": 0.272281
+  },
+  "elements": {
+    "x": [
+      -0.1543,
+      0.5449941,
+      -2.26e-05,
+      -9.5e-06
+    ],
+    "y": [
+      -0.58638,
+      -0.1746077,
+      -0.0001022,
+      2.9e-06
+    ],
+    "d": [
+      20.18231,
+      -0.007974,
+      -5e-06,
+      0.0
+    ],
+    "l1": [
+      0.535236,
+      -8.59e-05,
+      -1.23e-05,
+      0.0
+    ],
+    "l2": [
+      -0.010847,
+      -8.54e-05,
+      -1.22e-05,
+      0.0
+    ],
+    "mu": [
+      223.37866,
+      15.001018,
+      0.0,
+      0.0
+    ]
+  },
+  "tan_f1": 0.0046016,
+  "tan_f2": 0.0045786,
+  "valid_tdt_hours": [
+    0.0,
+    6.0
+  ],
+  "ephemerides": "VSOP87/ELP2000-85",
+  "saros": 146,
+  "lunation": 353,
+  "provenance": {
+    "source": "NASA GSFC eclipse web site, Besselian elements page",
+    "url": "https://eclipse.gsfc.nasa.gov/SEbeselm/SEbeselm2001/SE2028Jul22Tbeselm.html",
+    "retrieved": "2026-11-14",
+    "attribution": "Eclipse Predictions by Fred Espenak, NASA's GSFC",
+    "publication": "Five Millennium Canon of Solar Eclipses: -1999 to +3000",
+    "delta_t_basis": "the value NASA gives on the elements page",
+    "path_edge_accuracy_km": "1-2 (limited by lunar limb profile)"
+  }
+}
