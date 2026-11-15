@@ -1,0 +1,49 @@
+name: approved issue
+
+# pull_request_target runs in the context of this repository, so it has the
+# token permissions needed to comment on and close pull requests from forks.
+# It never checks out or runs the pull request's code; it only reads the
+# description, which is passed through an environment variable rather than
+# pasted into the script.
+on:
+  pull_request_target:
+    types: [opened, reopened, edited]
+
+permissions:
+  contents: read
+  issues: read
+  pull-requests: write
+
+jobs:
+  check:
+    if: >-
+      github.event.pull_request.author_association != 'OWNER' &&
+      github.event.pull_request.author_association != 'MEMBER' &&
+      github.event.pull_request.author_association != 'COLLABORATOR'
+    runs-on: ubuntu-latest
+    steps:
+      - name: require a linked approved issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          # Only links to issues in this repository count: "#12" or a full
+          # https://github.com/<this repo>/issues/12 URL.
+          nums=$(printf '%s\n' "$PR_BODY" \
+            | grep -oiE "(^|[^/[:alnum:]])#[0-9]+|github\.com/${REPO}/issues/[0-9]+" \
+            | grep -oE '[0-9]+$' | sort -u || true)
+
+          for n in $nums; do
+            approved=$(gh api "repos/${REPO}/issues/${n}" \
+              --jq 'select(.pull_request == null) | [.labels[].name] | index("approved") != null' 2>/dev/null || true)
+            if [ "$approved" = "true" ]; then
+              echo "linked to approved issue #${n}"
+              exit 0
+            fi
+          done
+
+          echo "expected a link to an approved issue, found none"
+          gh pr comment "$PR" --repo "$REPO" --body "Thanks for the pull request. Changes here start as an issue, and a pull request is opened once that issue is labelled \`approved\`. This one doesn't link an approved issue, so it has been closed. Please see [CONTRIBUTING.md](https://github.com/${REPO}/blob/main/CONTRIBUTING.md). Once your issue is approved, open a new pull request with \`Closes #<number>\` in the description."
+          gh pr close "$PR" --repo "$REPO"
