@@ -55,8 +55,9 @@ src = json.loads(CACHE.read_text(encoding='utf-8'))
 by_cc = {f['properties']['ISO_A2']: f['geometry'] for f in src['features']}
 # Natural Earth draws Cocos and Christmas Island as one feature, the Indian
 # Ocean Territories, with no ISO code of its own. Both are tinted with it.
+# France and Norway carry -99 for ISO_A2 there, so they go by A3 code too.
 by_a3 = {f['properties']['ADM0_A3']: f['geometry'] for f in src['features']}
-for cc, a3 in {'CC': 'IOA', 'CX': 'IOA'}.items():
+for cc, a3 in {'CC': 'IOA', 'CX': 'IOA', 'FR': 'FRA', 'NO': 'NOR'}.items():
     by_cc.setdefault(cc, by_a3[a3])
 missing = set(COUNTRIES) - set(by_cc)
 assert not missing, f'expected a Natural Earth outline for {sorted(missing)}'

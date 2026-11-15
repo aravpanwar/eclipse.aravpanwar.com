@@ -128,7 +128,7 @@ function outsideInCircle() {
     haversine(state.pin.lat, state.pin.lon, p.y, p.x) <= state.radius);
 }
 
-const countryName = (cc) => (state.data.advisories[cc] || {}).country || state.outsideNames[cc] || cc;
+const countryName = (cc) => (state.data.countries || {})[cc] || state.outsideNames[cc] || cc;
 const fmtOff = (o) => `UTC${o < 0 ? '−' : '+'}${Math.floor(Math.abs(o) / 60)}${Math.abs(o) % 60 ? `:${String(Math.abs(o) % 60).padStart(2, '0')}` : ''}`;
 
 function matching(list) {
@@ -335,7 +335,7 @@ function render() {
     : (both[0] ? both[0].i : null);
 
   document.getElementById('count').textContent =
-    `${list.length} place${list.length === 1 ? '' : 's'}`;
+    `${list.length.toLocaleString('en-GB')} place${list.length === 1 ? '' : 's'}`;
   const scope = state.pin
     ? `within ${state.radius} km of ${fmtLat(state.pin.lat)} ` +
       `${fmtLon(state.pin.lon)}`
@@ -366,8 +366,7 @@ function render() {
 
   let html = '';
   for (const [cc, places] of groups) {
-    const name = state.data.advisories[cc]
-      ? state.data.advisories[cc].country : cc;
+    const name = countryName(cc);
     const open = openCc.has(cc);
     const longest = Math.max(...places.map((p) => p.d));
     const adv = state.data.advisories[cc];
@@ -1106,10 +1105,16 @@ async function main() {
   // Cloud is fetched nearer the eclipse, so a new event starts without it.
   // The page says so once, and the list drops a column of n/a.
   state.hasCloud = state.data.places.some((p) => p.w != null);
+  // Past by the visitor's own calendar date, as on the homepage.
+  const now = new Date();
+  const passed = EVENT < [now.getFullYear(), now.getMonth() + 1, now.getDate()]
+    .map((n) => String(n).padStart(2, '0')).join('-');
+  const passedNote = document.getElementById('passed');
+  if (passedNote) passedNote.hidden = !passed;
   if (!state.hasCloud) {
     document.body.classList.add('nocloud');
     const note = document.getElementById('nocloud');
-    if (note) note.hidden = false;
+    if (note) note.hidden = passed;
     document.querySelector('#sortbar button[data-sort="w"]').hidden = true;
     if (state.sort === 'w') state.sort = 's';
   }
@@ -1134,7 +1139,7 @@ async function main() {
   // Countries with a town in totality. The advisories also cover countries
   // that only have towns outside the path, so they are not counted here.
   document.getElementById('stats').innerHTML =
-    `<span>${state.data.places.length} places</span>
+    `<span>${state.data.places.length.toLocaleString('en-GB')} places</span>
      <span>${new Set(state.data.places.map((p) => p.c)).size} countries</span>`;
   document.getElementById('csvIn').href = `/data/${EVENT}-places.csv`;
   document.getElementById('csvOut').href = `/data/${EVENT}-outside.csv`;
@@ -1268,7 +1273,7 @@ function drawProfile() {
     const pad = Math.max(0, 1.2 - (s.hi - s.lo)) / 2;
     const x0 = x(s.lo - pad) + 0.5;
     const x1 = x(s.hi + pad) - 0.5;
-    const names = s.cc.map((c) => (state.data.advisories[c] || { country: c }).country);
+    const names = s.cc.map(countryName);
     const full = names.join(', ');
     const label = (x1 - x0) > full.length * 5.7 + 6 ? full : s.cc.join(' ');
     h += `<g class="pcn" data-cc="${s.cc[0]}"><rect x="${x0}" y="${sy}" width="${x1 - x0}" height="18"/>

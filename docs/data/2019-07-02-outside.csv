@@ -1,0 +1,152 @@
+geonameid,name,country_code,country,latitude,longitude,elevation_m,population,timezone,obscuration_percent,magnitude,max_eclipse_ut_hours,sun_altitude_deg,km_to_edge_of_totality,km_to_centre_line
+3865413,Arroyo Cabral,AR,Argentina,-32.49144,-63.40037,223,2727,America/Argentina/Cordoba,99.995,0.9997,20.726522,5.73,0.35,69.32
+3844229,Mina Clavero,AR,Argentina,-31.72945,-65.00501,915,6855,America/Argentina/Cordoba,99.992,0.99958,20.71948,7.37,0.79,71.15
+3866959,Achiras,AR,Argentina,-33.17685,-64.99442,845,2173,America/Argentina/Cordoba,99.997,0.9998,20.699401,6.78,1.37,69.33
+3837960,San Basilio,AR,Argentina,-33.49791,-64.31481,303,2882,America/Argentina/Cordoba,99.994,0.99965,20.702308,6.1,1.62,69.86
+3866935,Adelia María,AR,Argentina,-33.63217,-64.02103,266,6434,America/Argentina/Cordoba,99.994,0.99966,20.70357,5.81,2.11,69.67
+3843881,Monte Buey,AR,Argentina,-32.91649,-62.4564,113,5497,America/Argentina/Cordoba,99.983,0.9993,20.73012,4.8,2.24,70.3
+3832773,Villa Cura Brochero,AR,Argentina,-31.70642,-65.01864,909,4707,America/Argentina/Cordoba,99.978,0.99917,20.719631,7.39,2.39,72.78
+3838760,Rivadavia,AR,Argentina,-31.53245,-68.59731,690,0,America/Argentina/San_Juan,99.986,0.99937,20.675882,10.47,3.48,73.35
+3855043,Los Toldos,AR,Argentina,-34.99997,-61.03874,74,17752,America/Argentina/Buenos_Aires,99.986,0.99938,20.71262,2.9,3.63,69.23
+3832712,Villa Krause,AR,Argentina,-31.56667,-68.53333,634,0,America/Argentina/San_Juan,99.982,0.99927,20.676314,10.4,4.08,73.75
+3838506,Rufino,AR,Argentina,-34.26237,-62.71128,116,18361,America/Argentina/Cordoba,99.966,0.99888,20.70791,4.51,5.43,72.1
+3855031,Germania,AR,Argentina,-34.57702,-62.04778,83,1554,America/Argentina/Buenos_Aires,99.951,0.99856,20.709683,3.86,5.76,73.02
+13452524,Rawson,AR,Argentina,-31.58189,-68.54211,660,130258,America/Argentina/San_Juan,99.963,0.99879,20.675993,10.4,5.97,75.63
+3838174,San Agustín,AR,Argentina,-31.97681,-64.374,548,2870,America/Argentina/Cordoba,99.938,0.9983,20.723186,6.74,6.16,75.59
+3842882,Nueve de Julio,AR,Argentina,-31.6692,-68.39013,578,5444,America/Argentina/San_Juan,99.943,0.99839,20.676938,10.23,7.41,77.17
+3838201,Sampacho,AR,Argentina,-33.38452,-64.72274,513,7238,America/Argentina/Cordoba,99.911,0.99782,20.699426,6.48,8.81,77.23
+3853748,Inriville,AR,Argentina,-32.94413,-62.22983,108,3778,America/Argentina/Cordoba,99.882,0.99736,20.731946,4.6,9.33,77.77
+3860079,Corralito,AR,Argentina,-32.02369,-64.19201,456,1873,America/Argentina/Cordoba,99.88,0.99733,20.724536,6.57,10.08,79.26
+3832806,Villa Ascasubi,AR,Argentina,-32.16274,-63.89237,335,2081,America/Argentina/Cordoba,99.876,0.99727,20.725866,6.27,10.32,79.22
+3832080,Villa Basilio Nievas,AR,Argentina,-31.55,-68.73333,776,4038,America/Argentina/San_Juan,99.885,0.99738,20.673736,10.57,11.13,81.27
+3832622,Villa Santa Rosa,AR,Argentina,-31.74484,-68.31435,572,6332,America/Argentina/San_Juan,99.886,0.9974,20.676978,10.14,11.21,81.06
+3846864,Lincoln,AR,Argentina,-34.86819,-61.52929,76,32773,America/Argentina/Buenos_Aires,99.87,0.99719,20.710148,3.34,11.86,78.2
+3832662,Villa Nueva,AR,Argentina,-32.43289,-63.24811,204,25961,America/Argentina/Cordoba,99.821,0.99647,20.728921,5.63,12.37,81.91
+3845575,Los Surgentes,AR,Argentina,-32.98472,-62.02199,101,2804,America/Argentina/Cordoba,99.783,0.99597,20.733375,4.41,14.34,83.13
+3832822,Villa Aberastain,AR,Argentina,-31.65805,-68.57953,624,0,America/Argentina/San_Juan,99.826,0.9965,20.674432,10.4,15.12,84.74
+3832694,Villa María,AR,Argentina,-32.40751,-63.24016,202,92453,America/Argentina/Cordoba,99.767,0.99575,20.729356,5.63,15.2,84.75
+3843647,Morrison,AR,Argentina,-32.5948,-62.83455,148,3245,America/Argentina/Cordoba,99.762,0.99569,20.730885,5.23,15.9,84.73
+3832731,Villa General Roca,AR,Argentina,-32.66589,-66.4508,650,196,America/Argentina/San_Luis,99.783,0.99593,20.689029,8.19,16.19,85.67
+3847482,La Toma,AR,Argentina,-33.05353,-65.62254,884,6663,America/Argentina/San_Luis,99.768,0.99575,20.693776,7.35,16.63,85.75
+3855072,General Pinto,AR,Argentina,-34.76431,-61.89154,101,0,America/Argentina/Buenos_Aires,99.763,0.99572,20.708329,3.66,17.31,84.22
+3840860,Pocito,AR,Argentina,-31.68333,-68.58333,608,40969,America/Argentina/San_Juan,99.778,0.99584,20.674034,10.39,17.76,87.37
+3845185,Malanzán,AR,Argentina,-30.80476,-66.60394,892,0,America/Argentina/La_Rioja,99.738,0.99534,20.712283,9.09,17.99,88.74
+12561022,Villa Borjas,AR,Argentina,-31.8121,-68.32829,573,6850,America/Argentina/San_Juan,99.758,0.99559,20.675874,10.12,18.36,88.23
+3864331,Bell Ville,AR,Argentina,-32.63021,-62.68883,124,35105,America/Argentina/Cordoba,99.697,0.99487,20.731849,5.09,19.24,87.83
+3863362,Calingasta,AR,Argentina,-31.33394,-69.4208,1369,2722,America/Argentina/San_Juan,99.693,0.99476,20.666776,11.25,20.93,91.71
+3834339,Tío Pujio,AR,Argentina,-32.28752,-63.3549,222,2383,America/Argentina/Cordoba,99.632,0.9941,20.729829,5.77,21.48,91.3
+3859839,Cruz Alta,AR,Argentina,-33.00796,-61.8083,69,6862,America/Argentina/Cordoba,99.628,0.99408,20.735071,4.23,21.62,90.44
+3838954,Tupelí,AR,Argentina,-31.8364,-68.35822,568,1512,America/Argentina/San_Juan,99.684,0.99466,20.675125,10.13,22.11,91.96
+3852468,Laboulaye,AR,Argentina,-34.12688,-63.39083,143,19908,America/Argentina/Cordoba,99.676,0.99463,20.702958,5.11,22.56,89.36
+3859429,Despeñaderos,AR,Argentina,-31.81431,-64.29491,432,5645,America/Argentina/Cordoba,99.563,0.99331,20.72624,6.74,25.57,95.06
+3860178,Coronel Moldes,AR,Argentina,-33.622,-64.59702,365,8104,America/Argentina/Cordoba,99.576,0.99345,20.697345,6.28,26.02,94.59
+3844263,Milagro,AR,Argentina,-31.00831,-65.99103,374,0,America/Argentina/La_Rioja,99.548,0.99311,20.717146,8.49,26.78,96.8
+3832669,Villa Mugueta,AR,Argentina,-33.31129,-61.05515,85,2789,America/Argentina/Cordoba,99.526,0.99295,20.737677,3.51,27.21,94.48
+3879429,Monte Patria,CL,Chile,-30.69496,-70.9577,429,13945,America/Santiago,99.55,0.99307,20.651118,12.85,28.61,100.05
+3853562,James Craik,AR,Argentina,-32.16145,-63.4679,241,4560,America/Argentina/Cordoba,99.468,0.99227,20.730386,5.92,28.88,98.53
+3877918,Ovalle,CL,Chile,-30.60106,-71.19901,218,77138,America/Santiago,99.513,0.99266,20.648361,13.1,30.56,101.99
+3887758,Huasco,CL,Chile,-28.46599,-71.22276,29,8977,America/Santiago,99.422,0.99165,20.673614,14.13,31.92,105.7
+3834704,Tamberías,AR,Argentina,-31.45868,-69.422,1470,0,America/Argentina/San_Juan,99.42,0.99168,20.665132,11.19,33.07,103.89
+3889317,Freirina,CL,Chile,-28.50917,-71.08124,103,6038,America/Santiago,99.365,0.99105,20.675445,13.99,34.33,107.99
+3846991,Leones,AR,Argentina,-32.65828,-62.29773,114,9971,America/Argentina/Cordoba,99.347,0.99104,20.735321,4.76,34.56,102.67
+3855098,General Levalle,AR,Argentina,-34.00719,-63.92334,179,5492,America/Argentina/Cordoba,99.405,0.99162,20.699066,5.58,34.72,101.64
+3866163,Alta Gracia,AR,Argentina,-31.64978,-64.42972,544,40384,America/Argentina/Cordoba,99.328,0.9908,20.726989,6.92,35.25,105.05
+3842662,Oliva,AR,Argentina,-32.03823,-63.57063,245,12890,America/Argentina/Cordoba,99.287,0.9904,20.73099,6.05,36.58,105.94
+3838237,Salsacate,AR,Argentina,-31.31842,-65.09003,916,1205,America/Argentina/Cordoba,99.283,0.99033,20.723985,7.6,36.68,107.49
+3899924,Alto del Carmen,CL,Chile,-28.75946,-70.48651,822,5034,America/Santiago,99.294,0.99033,20.682268,13.35,37.75,110.85
+3866102,Alto Alegre,AR,Argentina,-32.34466,-62.88325,144,1021,America/Argentina/Cordoba,99.248,0.99002,20.733873,5.36,37.84,106.99
+3841493,Pérez Millán,AR,Argentina,-33.7702,-60.09376,51,5137,America/Argentina/Buenos_Aires,99.56,0.99333,20.73936,2.56,38.34,92.43
+3844899,Marcos Juárez,AR,Argentina,-32.6978,-62.10672,117,24226,America/Argentina/Cordoba,99.225,0.98981,20.73662,4.59,38.95,107.38
+3832681,Villa Media Agua,AR,Argentina,-31.9831,-68.42499,561,11187,America/Argentina/San_Juan,99.287,0.99032,20.672192,10.13,39.4,109.25
+3833112,Veinticinco de Mayo,AR,Argentina,-35.43247,-60.17156,59,23814,America/Argentina/Buenos_Aires,99.94,0.99836,20.713488,2.06,39.42,104.34
+3842881,Nueve de Julio,AR,Argentina,-35.44394,-60.88463,79,42098,America/Argentina/Buenos_Aires,99.267,0.99027,20.70709,2.62,40.42,107.11
+3868633,Vallenar,CL,Chile,-28.57617,-70.75938,388,44895,America/Santiago,99.155,0.98893,20.679933,13.67,42.87,116.26
+3855066,General Roca,AR,Argentina,-32.7309,-61.91583,70,2597,America/Argentina/Cordoba,99.081,0.98841,20.737971,4.42,43.96,112.71
+3842621,Oncativo,AR,Argentina,-31.9134,-63.68214,283,14551,America/Argentina/Cordoba,99.104,0.98859,20.731517,6.19,44.07,113.12
+7304383,Cuesta Blanca,AR,Argentina,-31.48658,-64.5715,756,3200,America/Argentina/Cordoba,99.088,0.98841,20.727642,7.1,44.49,114.59
+3832917,Vicuña Mackenna,AR,Argentina,-33.91823,-64.39066,239,8994,America/Argentina/Cordoba,99.101,0.98857,20.695258,6.0,46.18,114.01
+3846414,Los Berros,AR,Argentina,-31.95271,-68.65423,799,5674,America/Argentina/San_Juan,99.097,0.98843,20.669434,10.33,47.11,116.76
+3862351,Casilda,AR,Argentina,-33.04459,-61.16423,73,32002,America/Argentina/Cordoba,98.989,0.98755,20.74051,3.69,47.92,115.69
+3839516,Alfredo Demarchi,AR,Argentina,-35.29238,-61.40573,84,1853,America/Argentina/Buenos_Aires,99.059,0.98824,20.704721,3.09,48.05,113.8
+3837893,San Carlos Minas,AR,Argentina,-31.1764,-65.10248,746,1215,America/Argentina/Cordoba,98.93,0.9869,20.725665,7.67,49.89,120.82
+3834718,Tama,AR,Argentina,-30.50726,-66.52954,654,0,America/Argentina/La_Rioja,98.944,0.98699,20.716971,9.15,50.37,121.27
+3842632,Olta,AR,Argentina,-30.63024,-66.26671,520,0,America/Argentina/La_Rioja,98.938,0.98694,20.718664,8.88,50.67,121.23
+3865888,Florentino Ameghino,AR,Argentina,-34.84405,-62.46701,116,9099,America/Argentina/Buenos_Aires,98.977,0.98743,20.701504,4.1,50.7,117.55
+3861059,Cintra,AR,Argentina,-32.30636,-62.65168,130,1054,America/Argentina/Cordoba,98.867,0.98636,20.736729,5.18,52.29,121.17
+3850929,Laguna Larga,AR,Argentina,-31.77569,-63.80038,314,7854,America/Argentina/Cordoba,98.888,0.98653,20.732125,6.34,52.3,121.25
+3865449,Armstrong,AR,Argentina,-32.78487,-61.60321,109,11181,America/Argentina/Cordoba,98.84,0.98615,20.740167,4.14,52.68,121.45
+3864688,Barreal,AR,Argentina,-31.64996,-69.47224,1640,5062,America/Argentina/San_Juan,98.888,0.98641,20.661879,11.15,53.91,124.76
+3849388,La Playosa,AR,Argentina,-32.09934,-63.03182,161,2376,America/Argentina/Cordoba,98.788,0.98562,20.735742,5.58,54.7,124.3
+3832791,Villa Carlos Paz,AR,Argentina,-31.4183,-64.49008,702,69451,America/Argentina/Cordoba,98.805,0.98574,20.729451,7.06,54.9,124.97
+3874815,Punitaqui,CL,Chile,-30.83448,-71.2586,217,10418,America/Santiago,98.878,0.98628,20.644407,13.04,56.16,127.43
+3845202,Malagueño,AR,Argentina,-31.46737,-64.35903,571,9364,America/Argentina/Cordoba,98.769,0.98541,20.730224,6.93,56.23,126.12
+3841149,Pilar,AR,Argentina,-31.68129,-63.8824,328,18455,America/Argentina/Cordoba,98.737,0.98513,20.732517,6.45,57.64,126.78
+3862981,Cañada de Gómez,AR,Argentina,-32.82033,-61.39513,74,36000,America/Argentina/Cordoba,98.673,0.98462,20.741583,3.96,58.9,127.31
+3838797,Río Segundo,AR,Argentina,-31.6501,-63.91165,343,22171,America/Argentina/Cordoba,98.69,0.9847,20.732624,6.48,59.31,128.51
+3839444,Ramallo,AR,Argentina,-33.48508,-60.00629,23,29964,America/Argentina/Buenos_Aires,98.735,0.98522,20.744238,2.59,60.45,124.21
+7284819,La Punta,AR,Argentina,-33.18368,-66.3127,700,15000,America/Argentina/San_Luis,98.711,0.98486,20.683399,7.86,61.13,129.59
+3848242,Las Junturas,AR,Argentina,-31.83158,-63.45061,238,1541,America/Argentina/Cordoba,98.592,0.98383,20.735065,6.03,62.22,131.6
+3837987,San Antonio de Litín,AR,Argentina,-32.21355,-62.63133,123,1240,America/Argentina/Cordoba,98.587,0.9838,20.73821,5.2,62.23,131.18
+3836846,San Nicolás de los Arroyos,AR,Argentina,-33.33425,-60.2108,28,134217,America/Argentina/Buenos_Aires,98.578,0.9838,20.744698,2.81,62.28,129.88
+3835351,Serrano,AR,Argentina,-34.47156,-63.53822,134,2670,America/Argentina/Cordoba,98.677,0.98462,20.696204,5.1,62.45,129.32
+3843026,Noetinger,AR,Argentina,-32.36604,-62.30723,106,4508,America/Argentina/Cordoba,98.59,0.98384,20.739299,4.88,62.5,130.85
+3834251,Toledo,AR,Argentina,-31.55378,-64.00742,356,3046,America/Argentina/Cordoba,98.548,0.98341,20.732879,6.6,64.2,133.6
+3847933,Las Parejas,AR,Argentina,-32.68478,-61.51637,104,11317,America/Argentina/Cordoba,98.453,0.98263,20.742379,4.11,66.39,135.15
+3859951,Costasacate,AR,Argentina,-31.64816,-63.75963,308,1288,America/Argentina/Cordoba,98.486,0.98286,20.734277,6.36,66.56,135.59
+3862655,Carcarañá,AR,Argentina,-32.85704,-61.15114,40,15619,America/Argentina/Cordoba,98.46,0.98271,20.743278,3.75,66.66,134.64
+3865385,Arroyo Seco,AR,Argentina,-33.15365,-60.51168,31,20620,America/Argentina/Cordoba,98.462,0.98275,20.744714,3.12,67.05,134.16
+3840470,Pozo del Molle,AR,Argentina,-32.02127,-62.91931,157,5429,America/Argentina/Cordoba,98.426,0.98235,20.737955,5.51,67.49,137.02
+3832778,Villa Constitución,AR,Argentina,-33.22795,-60.32994,32,44271,America/Argentina/Cordoba,98.435,0.98251,20.745212,2.94,67.6,134.99
+3852374,La Calera,AR,Argentina,-31.34582,-64.33849,476,24796,America/Argentina/Cordoba,98.403,0.98211,20.73204,6.96,68.99,138.96
+3860259,Córdoba,AR,Argentina,-31.40648,-64.18853,378,2106734,America/Argentina/Cordoba,98.374,0.98185,20.732866,6.81,70.08,139.82
+7116866,Villa Mercedes,AR,Argentina,-33.67571,-65.45783,516,96781,America/Argentina/San_Luis,98.448,0.98251,20.68661,6.96,70.5,138.58
+3841500,Pérez,AR,Argentina,-32.99835,-60.76791,37,24436,America/Argentina/Cordoba,98.357,0.98181,20.744693,3.38,70.74,137.94
+3837056,San Luis,AR,Argentina,-33.2914,-66.32467,729,169947,America/Argentina/San_Luis,98.406,0.98211,20.681702,7.83,72.05,140.56
+8259949,Vallenar,CL,Chile,-28.51576,-70.25551,1990,0,America/Santiago,98.369,0.98161,20.689009,13.25,72.37,145.46
+3862515,Carrilobo,AR,Argentina,-31.87353,-63.11747,185,1522,America/Argentina/Cordoba,98.27,0.98097,20.737946,5.73,72.61,142.55
+3859965,Cosquín,AR,Argentina,-31.24525,-64.46574,707,19070,America/Argentina/Cordoba,98.291,0.98111,20.732014,7.11,72.84,143.03
+3854985,Gobernador Gálvez,AR,Argentina,-33.03016,-60.64045,28,74650,America/Argentina/Cordoba,98.28,0.98114,20.745355,3.27,73.57,140.51
+3838638,Roldán,AR,Argentina,-32.89846,-60.90681,43,12468,America/Argentina/Cordoba,98.256,0.98092,20.744883,3.53,73.97,141.51
+3861824,Chamical,AR,Argentina,-30.35942,-66.31387,473,13383,America/Argentina/La_Rioja,98.25,0.98069,20.721505,9.03,74.81,145.63
+3435690,Capitán Sarmiento,AR,Argentina,-34.1713,-59.79146,56,14887,America/Argentina/Buenos_Aires,99.998,0.99984,20.735951,2.18,74.87,76.6
+3853330,Justo Daract,AR,Argentina,-33.86056,-65.18224,414,9680,America/Argentina/San_Luis,98.29,0.98112,20.687106,6.66,75.86,144.03
+3855302,Funes,AR,Argentina,-32.91568,-60.80995,36,14750,America/Argentina/Cordoba,98.177,0.98023,20.745494,3.45,76.79,144.16
+3893962,Combarbalá,CL,Chile,-31.17863,-71.00304,888,13605,America/Santiago,98.262,0.98068,20.644264,12.66,77.59,149.13
+3862607,Carlos Casares,AR,Argentina,-35.62247,-61.3655,79,19397,America/Argentina/Buenos_Aires,98.228,0.98069,20.699898,2.94,78.55,143.92
+3845073,Malvinas Argentinas,AR,Argentina,-31.38194,-64.05545,389,8628,America/Argentina/Cordoba,98.125,0.97967,20.734652,6.71,78.65,148.26
+3841769,Patquía,AR,Argentina,-30.04728,-66.87999,421,0,America/Argentina/La_Rioja,98.124,0.97957,20.718211,9.65,78.8,150.33
+3428576,San Pedro,AR,Argentina,-33.67918,-59.66633,30,47452,America/Argentina/Buenos_Aires,98.837,0.98617,20.744221,2.25,79.19,122.34
+3862293,Castro Barros,AR,Argentina,-30.58017,-65.72629,236,4322,America/Argentina/La_Rioja,98.081,0.97923,20.725851,8.44,80.73,150.83
+3833412,Unquillo,AR,Argentina,-31.23717,-64.31176,576,15369,America/Argentina/Cordoba,98.058,0.97908,20.733799,6.98,80.79,150.82
+3429399,Saladillo,AR,Argentina,-35.63884,-59.77938,47,30378,America/Argentina/Buenos_Aires,99.896,0.99762,20.713531,1.68,81.38,139.13
+3838583,Rosario,AR,Argentina,-32.94682,-60.63932,38,948312,America/Argentina/Cordoba,98.039,0.97904,20.74655,3.29,81.69,148.73
+3847836,Las Rosas,AR,Argentina,-32.47547,-61.57737,99,12793,America/Argentina/Cordoba,97.933,0.97809,20.744733,4.23,83.86,152.92
+3845365,Luque,AR,Argentina,-31.64772,-63.34505,219,7034,America/Argentina/Cordoba,97.926,0.97797,20.738642,6.01,85.0,154.39
+3833211,Valle Hermoso,AR,Argentina,-31.11205,-64.48114,910,5486,America/Argentina/Cordoba,97.931,0.97798,20.733648,7.17,85.06,155.39
+3863821,Hipólito Bouchard,AR,Argentina,-34.72387,-63.50733,125,1756,America/Argentina/Cordoba,98.025,0.97886,20.69268,4.98,85.21,152.32
+3836170,Jovita,AR,Argentina,-34.51886,-63.94404,147,4059,America/Argentina/Cordoba,98.041,0.97899,20.691128,5.41,85.7,152.05
+3832765,Villa del Rosario,AR,Argentina,-31.55416,-63.53562,251,17496,America/Argentina/Cordoba,97.914,0.97786,20.737903,6.2,85.97,154.94
+3832759,Villa de Soto,AR,Argentina,-30.85524,-64.98496,532,7303,America/Argentina/Cordoba,97.868,0.97742,20.731154,7.7,86.57,157.65
+3851331,La Falda,AR,Argentina,-31.09321,-64.48448,932,15112,America/Argentina/Cordoba,97.881,0.97755,20.733864,7.18,86.74,157.09
+3854895,Granadero Baigorria,AR,Argentina,-32.85683,-60.71754,32,32427,America/Argentina/Cordoba,97.882,0.97768,20.747137,3.39,86.77,154.06
+3832606,Villa Unión,AR,Argentina,-29.31654,-68.22745,1145,0,America/Argentina/La_Rioja,97.875,0.97735,20.709255,11.12,87.11,160.22
+3843871,Montecristo,AR,Argentina,-31.34136,-63.94535,338,13458,America/Argentina/Cordoba,97.856,0.97734,20.736373,6.63,87.71,157.24
+3854008,Huerta Grande,AR,Argentina,-31.0752,-64.49063,997,5630,America/Argentina/Cordoba,97.838,0.97718,20.734049,7.19,88.2,158.57
+3862738,Capitán Bermúdez,AR,Argentina,-32.82262,-60.71852,35,27060,America/Argentina/Cordoba,97.783,0.97684,20.747612,3.4,90.04,157.37
+3835348,Serrezuela,AR,Argentina,-30.63955,-65.38697,270,2291,America/Argentina/Cordoba,97.788,0.97671,20.729157,8.13,90.11,160.49
+3832729,Villa Giardino,AR,Argentina,-31.0503,-64.49678,1044,4679,America/Argentina/Cordoba,97.774,0.97663,20.734318,7.21,90.34,160.74
+3838235,Salsipuedes,AR,Argentina,-31.13789,-64.29277,724,6411,America/Argentina/Cordoba,97.744,0.97638,20.735355,7.0,91.32,161.42
+3847613,Las Varillas,AR,Argentina,-31.8704,-62.71968,139,18631,America/Argentina/Cordoba,97.72,0.97623,20.742015,5.4,91.4,160.82
+3844679,Mattaldi,AR,Argentina,-34.48198,-64.17194,181,1714,America/Argentina/Cordoba,97.852,0.97735,20.689201,5.6,91.98,158.7
+3436150,Baradero,AR,Argentina,-33.81199,-59.50467,37,35389,America/Argentina/Buenos_Aires,98.994,0.98764,20.74359,2.07,92.01,122.01
+3833995,Totoras,AR,Argentina,-32.58472,-61.16762,56,9587,America/Argentina/Cordoba,97.695,0.97607,20.746956,3.86,92.25,160.59
+3855370,Fray Luis A. Beltrán,AR,Argentina,-32.79122,-60.72819,30,14390,America/Argentina/Cordoba,97.703,0.97616,20.747968,3.42,92.63,160.01
+3855041,General Villegas,AR,Argentina,-35.03264,-63.01484,111,22474,America/Argentina/Buenos_Aires,97.788,0.97684,20.693054,4.47,93.95,160.16
+3859500,Del Campillo,AR,Argentina,-34.37591,-64.49649,222,3155,America/Argentina/Cordoba,97.732,0.97631,20.687205,5.91,95.61,163.0
+3858909,El Arañado,AR,Argentina,-31.74295,-62.88966,162,1395,America/Argentina/Cordoba,97.578,0.97501,20.742029,5.59,95.87,165.64
+3838460,Sacanta,AR,Argentina,-31.66344,-63.04791,163,2791,America/Argentina/Cordoba,97.561,0.97487,20.741486,5.76,96.36,166.29
+3866268,Alicia,AR,Argentina,-31.93884,-62.46426,102,3307,America/Argentina/Cordoba,97.568,0.97495,20.743615,5.17,96.62,165.63
+3837097,San Lorenzo,AR,Argentina,-32.74341,-60.73613,30,0,America/Argentina/Cordoba,97.572,0.97505,20.74857,3.45,96.89,164.35
+3851798,La Cumbre,AR,Argentina,-30.98225,-64.49074,1146,7235,America/Argentina/Cordoba,97.566,0.97486,20.735301,7.23,97.24,167.69
+3866667,Agua de Oro,AR,Argentina,-31.06224,-64.30064,807,1553,America/Argentina/Cordoba,97.532,0.97458,20.736281,7.04,98.31,168.48
+3833871,Tres Algarrobos,AR,Argentina,-35.1956,-62.77423,103,2993,America/Argentina/Buenos_Aires,97.636,0.97556,20.692971,4.21,98.49,165.18

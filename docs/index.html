@@ -12,12 +12,12 @@
   }
 </script>
 <title>Eclipses | Arav Panwar</title>
-<meta name="description" content="Maps and data for watching total solar eclipses: every populated place inside the path, with local times, length of totality, cloud and places to stay. By Arav Panwar.">
+<meta name="description" content="Maps and data for watching total solar eclipses: every populated place inside the path, with local times, length of totality and cloud. By Arav Panwar.">
 <link rel="canonical" href="https://eclipse.aravpanwar.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Eclipses | Arav Panwar">
 <meta property="og:title" content="Eclipses | Arav Panwar">
-<meta property="og:description" content="Maps and data for watching total solar eclipses: every populated place inside the path, with local times, length of totality, cloud and places to stay. By Arav Panwar.">
+<meta property="og:description" content="Maps and data for watching total solar eclipses: every populated place inside the path, with local times, length of totality and cloud. By Arav Panwar.">
 <meta property="og:url" content="https://eclipse.aravpanwar.com/">
 <meta property="og:image" content="https://eclipse.aravpanwar.com/og.png">
 <meta property="og:image:width" content="1200">
@@ -36,8 +36,8 @@
   .home { display: block; max-width: 1040px; margin: 0 auto; padding: 0 20px 70px; }
 
   /* The dark band at the top: name and links, then the opening sentence.
-     Its contents line up with the 1040px column below, and the 2027 card
-     overlaps its bottom edge. */
+     Its contents line up with the 1040px column below, and the next
+     eclipse's block overlaps its bottom edge. */
   header.mast { display: block; padding: 0; background: var(--rail); color: var(--rail-ink); border: 0; }
   .mast .in { display: flex; align-items: center; gap: 22px; max-width: 1040px; min-height: 56px;
     margin: 0 auto; padding: 0 20px; }
@@ -55,7 +55,7 @@
   .mast a:focus-visible { outline: 2px solid var(--rail-ink); outline-offset: 3px; }
   h2.section { font-size: 14px; font-weight: 700; color: var(--accent); margin: 44px 0 8px; }
 
-  /* The computed eclipse: a wide block, map left and text right. Only the
+  /* The next eclipse: a wide block, map left and text right. Only the
      date, the map picture and the button link to the map, because the country
      buttons sit inside it and links cannot nest. */
   .feature { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
@@ -87,7 +87,7 @@
   .feature h3 a:focus-visible, .chips a:focus-visible, .go:focus-visible, .feature .pic:focus-visible {
     outline: 2px solid var(--accent); outline-offset: 2px; }
 
-  /* Later eclipses: smaller cards, each a link to its map. */
+  /* Later and past eclipses: smaller cards, each a link to its map. */
   .hint { margin: 0 0 12px; font-size: 12.5px; color: var(--dim); max-width: 680px; }
   .cards { list-style: none; margin: 0; padding: 0; display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
@@ -102,6 +102,9 @@
   .card h3 { margin: 0; font-size: 14px; font-weight: 700; color: #45423d; }
   .card .where { margin: 0; font-size: 12px; line-height: 1.4; color: #45423d; }
   .card .d { margin: 0; font-size: 12px; color: var(--dim); }
+  .past .card { background: var(--paper); }
+  .past .card img { filter: grayscale(.6); }
+  .past .card:hover img { filter: none; }
 
   .note { max-width: 680px; margin-top: 26px; font-size: 12px; line-height: 1.55; color: var(--dim); }
 
@@ -141,21 +144,22 @@
 
 <main class="home">
 
+  <!-- feature: scripts/build_home.py -->
   <article class="feature">
     <a class="pic" href="/solar-eclipse/2027-08-02/" tabindex="-1" aria-hidden="true"><img
       src="/thumbs/2027-08-02.webp" srcset="/thumbs/2027-08-02.webp 1x, /thumbs/2027-08-02@2x.webp 2x"
       alt="" width="640" height="400"></a>
     <div class="body">
       <h3><a href="/solar-eclipse/2027-08-02/">2 August 2027</a></h3>
-      <p class="when" id="countdown" hidden></p>
+      <p class="when" id="countdown" data-date="2027-08-02" hidden></p>
       <p class="dur">Up to <b>6 min 23 s</b> of totality, 771 places mapped</p>
       <p class="what"><b>Totality Path &amp; Nearby Locations</b>: every populated
       place inside the path, ranked by how long totality lasts there, with
       local times and cloud cover.</p>
       <p class="chiplabel" id="chipsLabel">Go straight to a country</p>
       <ul class="chips" aria-labelledby="chipsLabel">
-        <li><a href="/solar-eclipse/2027-08-02/?c=ES">Spain</a></li>
         <li><a href="/solar-eclipse/2027-08-02/?c=GI">Gibraltar</a></li>
+        <li><a href="/solar-eclipse/2027-08-02/?c=ES">Spain</a></li>
         <li><a href="/solar-eclipse/2027-08-02/?c=MA">Morocco</a></li>
         <li><a href="/solar-eclipse/2027-08-02/?c=DZ">Algeria</a></li>
         <li><a href="/solar-eclipse/2027-08-02/?c=TN">Tunisia</a></li>
@@ -169,10 +173,12 @@
       <a class="go" href="/solar-eclipse/2027-08-02/">Open the map</a>
     </div>
   </article>
+  <!-- /feature -->
 
+  <section class="eclipses" data-section="later">
   <h2 class="section">Later total solar eclipses</h2>
-  <p class="hint">Each has its own map, worked out the same way as 2027's. Cloud
-  cover is added closer to each date.</p>
+  <p class="hint">Each has its own map, worked out the same way. Cloud cover is
+  added closer to each date.</p>
   <ol class="cards">
     <!-- cards: scripts/build_home.py -->
     <li class="card">
@@ -227,6 +233,67 @@
     </li>
     <!-- /cards -->
   </ol>
+  </section>
+
+  <section class="eclipses" data-section="past">
+  <h2 class="section">Past total solar eclipses</h2>
+  <p class="hint">Kept with the same maps, as a record of who was in the path.
+  Travel advice and cloud cover are left off once an eclipse has passed.</p>
+  <ol class="cards past">
+    <!-- past: scripts/build_home.py -->
+    <li class="card">
+      <a href="/solar-eclipse/2026-08-12/">
+        <img src="/thumbs/2026-08-12.webp" alt="" width="640" height="400" loading="lazy">
+        <div class="b">
+          <h3>12 August 2026</h3>
+          <p class="where">Iceland, Spain</p>
+          <p class="d">2:18 longest, 3,429 places</p>
+        </div>
+      </a>
+    </li>
+    <li class="card">
+      <a href="/solar-eclipse/2024-04-08/">
+        <img src="/thumbs/2024-04-08.webp" alt="" width="640" height="400" loading="lazy">
+        <div class="b">
+          <h3>8 April 2024</h3>
+          <p class="where">Mexico, United States, Canada</p>
+          <p class="d">4:28 longest, 2,038 places</p>
+        </div>
+      </a>
+    </li>
+    <li class="card">
+      <a href="/solar-eclipse/2020-12-14/">
+        <img src="/thumbs/2020-12-14.webp" alt="" width="640" height="400" loading="lazy">
+        <div class="b">
+          <h3>14 December 2020</h3>
+          <p class="where">Chile, Argentina</p>
+          <p class="d">2:09 longest, 26 places</p>
+        </div>
+      </a>
+    </li>
+    <li class="card">
+      <a href="/solar-eclipse/2019-07-02/">
+        <img src="/thumbs/2019-07-02.webp" alt="" width="640" height="400" loading="lazy">
+        <div class="b">
+          <h3>2 July 2019</h3>
+          <p class="where">Chile, Argentina</p>
+          <p class="d">4:32 longest, 110 places</p>
+        </div>
+      </a>
+    </li>
+    <li class="card">
+      <a href="/solar-eclipse/2017-08-21/">
+        <img src="/thumbs/2017-08-21.webp" alt="" width="640" height="400" loading="lazy">
+        <div class="b">
+          <h3>21 August 2017</h3>
+          <p class="where">United States</p>
+          <p class="d">2:40 longest, 692 places</p>
+        </div>
+      </a>
+    </li>
+    <!-- /past -->
+  </ol>
+  </section>
 
   <p class="note">The time is the longest totality anywhere on the path. Every
   eclipse here is computed from Besselian elements in
@@ -240,9 +307,11 @@
   // Days to go, by the visitor's own calendar date. Hidden once it has passed.
   (() => {
     const now = new Date();
-    const days = Math.round((Date.UTC(2027, 7, 2) -
-      Date.UTC(now.getFullYear(), now.getMonth(), now.getDate())) / 864e5);
     const el = document.getElementById('countdown');
+    if (!el) return;
+    const [y, m, d] = el.dataset.date.split('-').map(Number);
+    const days = Math.round((Date.UTC(y, m - 1, d) -
+      Date.UTC(now.getFullYear(), now.getMonth(), now.getDate())) / 864e5);
     if (days < 0) return;
     el.textContent = days > 1 ? `In ${days} days` : days === 1 ? 'Tomorrow' : 'Today';
     el.hidden = false;

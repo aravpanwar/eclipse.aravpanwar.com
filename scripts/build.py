@@ -15,6 +15,7 @@ import json
 import math
 import sys
 import time
+from datetime import date
 from pathlib import Path
 
 sys.stdout.reconfigure(encoding='utf-8')
@@ -66,6 +67,11 @@ in_box = load(ROOT / 'data' / 'cache' / 'cities1000.zip', box=box)
 places = [p for p in in_box if in_outline(p.longitude, p.latitude, ring)
           or min(nearest_km(p.longitude, p.latitude, e) for e in edges) <= RANGE_KM]
 print(f'places loaded    {len(places)} near the path, of {len(in_box)} in its box')
+# Checked on every candidate, not only the towns found, so a missing name
+# stops the build here rather than after the long solve below.
+unnamed = sorted({p.country_code for p in places} - set(COUNTRY_NAMES))
+if unnamed:
+    sys.exit(f'expected a name in COUNTRY_NAMES for {unnamed}')
 
 ge = meta['greatest_eclipse']
 glat, glon, peak = greatest_duration(E, (ge['latitude_deg'], ge['longitude_deg']))
@@ -96,16 +102,20 @@ def west_to_east(found):
 
 TOTALITY_COUNTRIES = west_to_east(ranked)
 COUNTRIES = west_to_east(ranked + outs)
-unnamed = [cc for cc in COUNTRIES if cc not in COUNTRY_NAMES]
-if unnamed:
-    sys.exit(f'expected a name in COUNTRY_NAMES for {unnamed}')
 print(f'countries        {len(TOTALITY_COUNTRIES)} in totality {TOTALITY_COUNTRIES}, '
       f'{len(COUNTRIES)} with outside towns {COUNTRIES}')
 
 # Advisories, queried once here rather than per visitor. Outside towns get
 # them too: a town 50 km from the path is reached through the same country.
-print('fetching advisories from the FCDO ...')
-advisories = fetch_all(COUNTRIES)
+# An eclipse already past gets none: today's advice says nothing about a
+# trip that can no longer be made.
+PAST = event.day(EVENT) < date.today()
+if PAST:
+    print('advisories       none, the eclipse has passed')
+    advisories = {}
+else:
+    print('fetching advisories from the FCDO ...')
+    advisories = fetch_all(COUNTRIES)
 for cc, ad in advisories.items():
     if ad.unknown_statuses:
         print(f'  WARNING unrecognised alert_status for {ad.country}: '
@@ -202,10 +212,10 @@ json_path.write_text(json.dumps({
                      'satellite treatment see eclipsophile.com, which is the '
                      'standard reference and is linked rather than reproduced '
                      'because it states no licence.')}] if cloud_blob else []),
-        {'name': 'Travel advisories', 'attribution': ISSUER,
+        *([] if PAST else [{'name': 'Travel advisories', 'attribution': ISSUER,
          'url': 'https://www.gov.uk/foreign-travel-advice',
          'note': 'Contains public sector information licensed under the Open '
-                 'Government Licence v3.0.'},
+                 'Government Licence v3.0.'}]),
     ],
     'count': len(rows),
     'places': rows,

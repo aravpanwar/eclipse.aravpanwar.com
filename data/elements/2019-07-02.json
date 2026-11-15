@@ -1,0 +1,90 @@
+{
+  "id": "2019-07-02",
+  "label": "Total Solar Eclipse of 2019 July 02",
+  "type": "T",
+  "date_utc": "2019-07-02",
+  "t0_tdt_hours": 19.0,
+  "delta_t_seconds": 69.0,
+  "greatest_eclipse": {
+    "instant_tdt": "19:24:07.5",
+    "instant_ut": "19:22:58.5",
+    "jd": 2458667.30842,
+    "latitude_deg": -17.3883,
+    "longitude_deg": -109.0,
+    "sun_altitude_deg": 49.6,
+    "sun_azimuth_deg": 359.0,
+    "path_width_km": 200.6,
+    "central_duration": "04m32.8s",
+    "gamma": -0.6466,
+    "magnitude": 1.0459
+  },
+  "greatest_duration": {
+    "instant_ut": "19:24:10",
+    "latitude_deg": -17.3833,
+    "longitude_deg": -108.6167,
+    "sun_altitude_deg": 49.6,
+    "sun_azimuth_deg": 358.0,
+    "path_width_km": 200.7,
+    "central_duration": "04m32.8s"
+  },
+  "lunar_radius_constants": {
+    "k1_penumbra": 0.272508,
+    "k2_umbra": 0.272281
+  },
+  "elements": {
+    "x": [
+      -0.215634,
+      0.566207,
+      2.74e-05,
+      -8.8e-06
+    ],
+    "y": [
+      -0.650709,
+      0.0106401,
+      -0.0001272,
+      -3e-07
+    ],
+    "d": [
+      23.01295,
+      -0.003187,
+      -5e-06,
+      0.0
+    ],
+    "l1": [
+      0.53765,
+      -8.98e-05,
+      -1.2e-05,
+      0.0
+    ],
+    "l2": [
+      -0.008465,
+      -8.94e-05,
+      -1.2e-05,
+      0.0
+    ],
+    "mu": [
+      103.97974,
+      14.999507,
+      0.0,
+      0.0
+    ]
+  },
+  "tan_f1": 0.0045984,
+  "tan_f2": 0.0045755,
+  "valid_tdt_hours": [
+    16.0,
+    22.0
+  ],
+  "ephemerides": "JPL",
+  "saros": 127,
+  "lunation": 241,
+  "provenance": {
+    "source": "NASA GSFC eclipse web site, Besselian elements page",
+    "url": "https://eclipse.gsfc.nasa.gov/SEbeselm/SEbeselm2001/SE2019Jul02Tbeselm.html",
+    "retrieved": "2026-11-15",
+    "attribution": "Eclipse Predictions by Fred Espenak, NASA's GSFC",
+    "publication": "Five Millennium Canon of Solar Eclipses: -1999 to +3000",
+    "delta_t_basis": "the value NASA gives on the elements page",
+    "path_edge_accuracy_km": "1-2 (limited by lunar limb profile)"
+  }
+}

@@ -40,8 +40,9 @@ OUT.mkdir(parents=True, exist_ok=True)
 
 # Morocco moved to permanent UTC+0 on 2026-09-20 (tz 2026c). Older tz data
 # puts it on UTC+1 and every Moroccan time an hour late, so refuse to build.
+# Checked on a fixed date after the change: before it, UTC+1 was right.
 DAY = datetime.fromisoformat(f'{EVENT}T00:00:00+00:00')
-if (DAY + timedelta(hours=9)).astimezone(ZoneInfo('Africa/Casablanca')).utcoffset():
+if datetime(2027, 8, 2, 9, tzinfo=timezone.utc).astimezone(ZoneInfo('Africa/Casablanca')).utcoffset():
     sys.exit('expected tz data from 2026c or later (Morocco on UTC+0): pip install "tzdata>=2026.3"')
 try:
     TZ_VERSION = importlib.metadata.version('tzdata')
@@ -104,6 +105,7 @@ payload = {
         'peak_lon': src['event']['greatest_duration']['longitude_deg'],
         'tz_version': TZ_VERSION,
     },
+    'countries': names,
     'caveats': src['event']['caveats'],
     'sources': src['sources'],
     'advisories': adv,

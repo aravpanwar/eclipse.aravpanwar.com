@@ -58,6 +58,13 @@ COUNTRY_NAMES = {
     'BJ': 'Benin', 'GH': 'Ghana', 'CI': "Côte d'Ivoire", 'TG': 'Togo',
     'IQ': 'Iraq', 'CN': 'China', 'JP': 'Japan', 'KP': 'North Korea',
     'KR': 'South Korea',
+    # 2017 to 2026
+    'CA': 'Canada', 'MX': 'Mexico', 'CL': 'Chile', 'AR': 'Argentina',
+    'UY': 'Uruguay', 'PY': 'Paraguay', 'BR': 'Brazil', 'BO': 'Bolivia',
+    'PE': 'Peru', 'PF': 'French Polynesia', 'KI': 'Kiribati',
+    'PM': 'Saint Pierre and Miquelon', 'BM': 'Bermuda', 'IS': 'Iceland',
+    'GL': 'Greenland', 'FO': 'Faroe Islands', 'FR': 'France', 'AD': 'Andorra',
+    'GB': 'United Kingdom', 'IE': 'Ireland',
 }
 
 

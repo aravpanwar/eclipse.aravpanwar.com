@@ -11,8 +11,11 @@ fraction of the Sun covered at maximum and the distances to the path edge and
 centre line.
 
 Computed events, all total: 2 August 2027, 22 July 2028, 25 November 2030,
-30 March 2033, 20 March 2034 and 2 September 2035. Cloud cover is computed
-for 2027 only so far; the other pages say it is not available yet.
+30 March 2033, 20 March 2034 and 2 September 2035, and five that have passed,
+21 August 2017, 2 July 2019, 14 December 2020, 8 April 2024 and 12 August
+2026. Cloud cover is computed for 2027 only so far; the other pages to come
+say it is not available yet. Past eclipses carry no cloud and no travel
+advice, and their pages say they have passed.
 
 ## Repository layout
 
@@ -61,15 +64,15 @@ python scripts/build_site_data.py <event>   # docs/data/<event>-places.json, <ev
 python scripts/build_countries.py <event>   # docs/data/<event>-countries.geojson
 python scripts/build_images.py <event>      # docs/og.png, homepage thumbnails, site icons
 python scripts/build_page.py <event>        # docs/solar-eclipse/<event>/index.html
-python scripts/build_home.py                # the later eclipses' cards on docs/index.html
+python scripts/build_home.py                # the homepage: next eclipse, later ones, past ones
 python -m pytest tests/ -q
 ```
 
 Then copy `data/out/<event>-places.csv` and `data/out/<event>-outside.csv`
 into `docs/data/`.
 
-`build.py` fetches UK travel advice at run time and takes about 8 minutes, most
-of it the centre line solve. It runs without the cloud cache and leaves those
+`build.py` fetches UK travel advice at run time, for eclipses still to come,
+and takes about 8 minutes, most of it the centre line solve. It runs without the cloud cache and leaves those
 columns empty. Without cloud the event page says no cloud data
 is available yet and leaves cloud out of the list.
 
@@ -86,14 +89,19 @@ is available yet and leaves cloud out of the list.
    180 (2028, 2035) or runs on past it (2033: 179 to 205), in which case
    towns west of Greenwich are carried past 180 while computing and written
    back to -180..180 in the output. A path that doubles back needs a
-   `lat_window` to say which pass to draw (2033 turns back in the Arctic).
+   `lat_window` to say which pass to draw (2033 turns back in the Arctic;
+   2026 runs south past Iceland, so it is drawn from Iceland to Spain).
    Without a `map` view the map frames the whole path; without `og` no link
    card is drawn.
 3. Add any new country to `COUNTRY_NAMES` in `src/eclipse/places.py` and
    `SLUGS` in `src/eclipse/advisories.py`. `build.py` stops on a missing one.
-4. Run the build above, ending with `build_home.py`, which adds the event's
-   card to the homepage. The soonest eclipse still to come has the large
-   block at the top, which is written by hand.
+   A past eclipse needs no slug, since it fetches no advice.
+4. Run the build above, ending with `build_home.py`, which puts the event on
+   the homepage. The soonest eclipse still to come gets the large block at
+   the top, the others still to come get cards, and past ones go in a
+   section at the bottom. `.github/workflows/home.yml` runs `build_home.py`
+   every day and pushes when the page changes, so the day after an eclipse
+   the homepage moves on to the next one by itself.
 
 ## Output
 

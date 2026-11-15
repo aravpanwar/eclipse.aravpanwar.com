@@ -1,0 +1,90 @@
+{
+  "id": "2017-08-21",
+  "label": "Total Solar Eclipse of 2017 August 21",
+  "type": "T",
+  "date_utc": "2017-08-21",
+  "t0_tdt_hours": 18.0,
+  "delta_t_seconds": 68.4,
+  "greatest_eclipse": {
+    "instant_tdt": "18:26:40.3",
+    "instant_ut": "18:25:31.8",
+    "jd": 2457987.268521,
+    "latitude_deg": 36.9667,
+    "longitude_deg": -87.6717,
+    "sun_altitude_deg": 63.9,
+    "sun_azimuth_deg": 197.9,
+    "path_width_km": 114.7,
+    "central_duration": "02m40.1s",
+    "gamma": 0.4367,
+    "magnitude": 1.0306
+  },
+  "greatest_duration": {
+    "instant_ut": "18:21:49",
+    "latitude_deg": 37.5833,
+    "longitude_deg": -89.1167,
+    "sun_altitude_deg": 63.8,
+    "sun_azimuth_deg": 192.5,
+    "path_width_km": 114.5,
+    "central_duration": "02m40.3s"
+  },
+  "lunar_radius_constants": {
+    "k1_penumbra": 0.272508,
+    "k2_umbra": 0.272281
+  },
+  "elements": {
+    "x": [
+      -0.129576,
+      0.5406409,
+      -2.93e-05,
+      -8.1e-06
+    ],
+    "y": [
+      0.485417,
+      -0.1416394,
+      -9.05e-05,
+      2.1e-06
+    ],
+    "d": [
+      11.86697,
+      -0.013622,
+      -2e-06,
+      0.0
+    ],
+    "l1": [
+      0.542112,
+      0.0001241,
+      -1.18e-05,
+      0.0
+    ],
+    "l2": [
+      -0.004025,
+      0.0001235,
+      -1.17e-05,
+      0.0
+    ],
+    "mu": [
+      89.24545,
+      15.003937,
+      0.0,
+      0.0
+    ]
+  },
+  "tan_f1": 0.0046222,
+  "tan_f2": 0.0045992,
+  "valid_tdt_hours": [
+    15.0,
+    21.0
+  ],
+  "ephemerides": "JPL",
+  "saros": 145,
+  "lunation": 218,
+  "provenance": {
+    "source": "NASA GSFC eclipse web site, Besselian elements page",
+    "url": "https://eclipse.gsfc.nasa.gov/SEbeselm/SEbeselm2001/SE2017Aug21Tbeselm.html",
+    "retrieved": "2026-11-15",
+    "attribution": "Eclipse Predictions by Fred Espenak, NASA's GSFC",
+    "publication": "Five Millennium Canon of Solar Eclipses: -1999 to +3000",
+    "delta_t_basis": "the value NASA gives on the elements page",
+    "path_edge_accuracy_km": "1-2 (limited by lunar limb profile)"
+  }
+}
