@@ -60,6 +60,9 @@ class Elements:
     tan_f2: float
     t0_tdt_hours: float
     delta_t_seconds: float
+    # Latitudes to look for the centre line in, south then north. Only a
+    # path that doubles back, as 2033's does in the Arctic, needs it narrowed.
+    lat_window: tuple[float, float] | None = None
 
     @classmethod
     def from_json(cls, path: str | Path) -> "Elements":

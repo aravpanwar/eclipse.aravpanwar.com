@@ -70,5 +70,6 @@ def test_axis_at_greatest_eclipse_instant(path):
 def test_path_window_holds_greatest_eclipse(path):
     """A path that crosses 180 degrees needs its window set by hand."""
     E, _, _, (_, lon) = load(path)
-    lo, hi = lon_window(E, event.settings(path.stem).get('lon_window'))
-    assert lo < lon < hi
+    window = event.settings(path.stem).get('lon_window')
+    lo, hi = lon_window(E, window)
+    assert lo < event.frame(lon, window) < hi

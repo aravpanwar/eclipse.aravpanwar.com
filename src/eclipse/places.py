@@ -49,6 +49,15 @@ COUNTRY_NAMES = {
     'LY': 'Libya', 'EG': 'Egypt', 'SA': 'Saudi Arabia', 'YE': 'Yemen',
     'SO': 'Somalia', 'SD': 'Sudan', 'GI': 'Gibraltar', 'PT': 'Portugal',
     'MT': 'Malta', 'IT': 'Italy',
+    # 2028 to 2035
+    'AU': 'Australia', 'NZ': 'New Zealand', 'CC': 'Cocos (Keeling) Islands',
+    'CX': 'Christmas Island', 'ZA': 'South Africa', 'NA': 'Namibia',
+    'LS': 'Lesotho', 'BW': 'Botswana', 'US': 'United States', 'RU': 'Russia',
+    'NG': 'Nigeria', 'IR': 'Iran', 'IN': 'India', 'PK': 'Pakistan',
+    'AF': 'Afghanistan', 'KW': 'Kuwait', 'TD': 'Chad', 'CM': 'Cameroon',
+    'BJ': 'Benin', 'GH': 'Ghana', 'CI': "Côte d'Ivoire", 'TG': 'Togo',
+    'IQ': 'Iraq', 'CN': 'China', 'JP': 'Japan', 'KP': 'North Korea',
+    'KR': 'South Korea',
 }
 
 
@@ -74,7 +83,9 @@ def load(zip_path: str | Path, countries: list[str] | None = None,
          box: tuple[float, float, float, float] | None = None) -> list[Place]:
     """Read the GeoNames cities archive, filtered to countries or to a box.
 
-    box is (west, south, east, north) in degrees.
+    box is (west, south, east, north) in degrees. For a path that crosses
+    180 degrees the east edge is past 180, and towns west of Greenwich are
+    carried into that range (lon + 360) so they sit beside the path.
     """
     wanted = set(countries) if countries else None
     out: list[Place] = []
@@ -99,6 +110,8 @@ def load(zip_path: str | Path, countries: list[str] | None = None,
         if pop < min_population:
             continue
         lat, lon = float(r['latitude']), float(r['longitude'])
+        if box and box[2] > 180 and lon < box[0] - 180:
+            lon += 360
         if box and not (box[0] <= lon <= box[2] and box[1] <= lat <= box[3]):
             continue
 

@@ -286,7 +286,6 @@ input[type=range] {
 
 .controls .hint { margin: 0 0 10px; padding-bottom: 10px; border-bottom: 1px solid var(--hair);
   font-size: 12.5px; line-height: 1.45; color: var(--ink); }
-.staysnote b { font-weight: 600; color: var(--ink); }
 
 .clearpin {
   top: 14px;
@@ -435,24 +434,6 @@ input[type=range] {
 .advisory a { color: #7a4a1a; border-bottom-color: #d8b48a; }
 
 /* 24px targets: the WCAG 2.2 minimum, and about right for a thumb. */
-.cov {
-  margin-left: auto;
-  font-size: 11px;
-  color: var(--dim);
-  border-bottom-color: var(--line);
-}
-
-.cov + .advshow { margin-left: 4px; }
-
-.staysnote {
-  margin: 0;
-  padding: 7px 17px;
-  font-size: 11.5px;
-  line-height: 1.45;
-  color: var(--dim);
-  border-bottom: 1px solid var(--hair);
-}
-
 .advhide, .advshow {
   font: inherit;
   color: #7a4a1a;
@@ -492,7 +473,7 @@ input[type=range] {
 
 .head, .row {
   display: grid;
-  grid-template-columns: 1.7fr 0.56fr 0.62fr 0.56fr 0.46fr;
+  grid-template-columns: 1.7fr 0.56fr 0.62fr 0.56fr;
   gap: 9px;
   padding: 8px 17px;
 }
@@ -566,7 +547,7 @@ input[type=range] {
   font-size: 12.5px; line-height: 1.45; color: #5c4a1e; }
 .cloudnote b { font-weight: 600; color: var(--ink); }
 body.nocloud .country:not(.out) .head,
-body.nocloud .row:not(.out) { grid-template-columns: 1.7fr 0.56fr 0.62fr 0.46fr; }
+body.nocloud .row:not(.out) { grid-template-columns: 1.7fr 0.56fr 0.62fr; }
 body.nocloud .country:not(.out) .head > :nth-child(4),
 body.nocloud .row:not(.out) > :nth-child(4) { display: none; }
 .row.out .cc { margin-left: 4px; font: 10.5px var(--sans); color: var(--faint); }
@@ -575,6 +556,8 @@ body.nocloud .row:not(.out) > :nth-child(4) { display: none; }
 
 .tc-kind { margin: 2px 0 0; font-size: 12.5px; color: var(--dim); }
 .tc-note { margin: 8px 0 0; font-size: 11.5px; color: var(--dim); }
+.tc-stay { margin: 10px 0 0; font-size: 13px; }
+.tc-stay a::after { content: " \2197"; }
 .tc-safe { display: flex; gap: 6px; align-items: flex-start; margin: 10px 0 0; padding: 8px 10px;
   font-size: 12px; line-height: 1.45; color: #7a4a1a; background: #fbefe2; border: 1px solid #ecd2b4; }
 .tc-safe svg { flex-shrink: 0; margin-top: 2px; }

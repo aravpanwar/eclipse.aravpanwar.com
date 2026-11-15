@@ -1,0 +1,90 @@
+{
+  "id": "2033-03-30",
+  "label": "Total Solar Eclipse of 2033 March 30",
+  "type": "T",
+  "date_utc": "2033-03-30",
+  "t0_tdt_hours": 18.0,
+  "delta_t_seconds": 78.9,
+  "greatest_eclipse": {
+    "instant_tdt": "18:02:35.3",
+    "instant_ut": "18:01:16.4",
+    "jd": 2463687.251797,
+    "latitude_deg": 71.315,
+    "longitude_deg": -155.8083,
+    "sun_altitude_deg": 11.2,
+    "sun_azimuth_deg": 111.1,
+    "path_width_km": 781.0,
+    "central_duration": "02m37.0s",
+    "gamma": 0.9778,
+    "magnitude": 1.0462
+  },
+  "greatest_duration": {
+    "instant_ut": "18:01:00",
+    "latitude_deg": 71.1667,
+    "longitude_deg": -155.9,
+    "sun_altitude_deg": 11.2,
+    "sun_azimuth_deg": 110.9,
+    "path_width_km": 782.3,
+    "central_duration": "02m37.0s"
+  },
+  "lunar_radius_constants": {
+    "k1_penumbra": 0.272488,
+    "k2_umbra": 0.272281
+  },
+  "elements": {
+    "x": [
+      -0.318785,
+      0.5554225,
+      2.27e-05,
+      -9.4e-06
+    ],
+    "y": [
+      0.924678,
+      0.175661,
+      -8e-05,
+      -2.9e-06
+    ],
+    "d": [
+      4.09368,
+      0.015719,
+      -1e-06,
+      0.0
+    ],
+    "l1": [
+      0.534941,
+      2.76e-05,
+      -1.3e-05,
+      0.0
+    ],
+    "l2": [
+      -0.011141,
+      2.75e-05,
+      -1.29e-05,
+      0.0
+    ],
+    "mu": [
+      88.92808,
+      15.004456,
+      0.0,
+      0.0
+    ]
+  },
+  "tan_f1": 0.0046807,
+  "tan_f2": 0.0046574,
+  "valid_tdt_hours": [
+    15.0,
+    21.0
+  ],
+  "ephemerides": "VSOP87/ELP2000-85",
+  "saros": 120,
+  "lunation": 411,
+  "provenance": {
+    "source": "NASA GSFC eclipse web site, Besselian elements page",
+    "url": "https://eclipse.gsfc.nasa.gov/SEbeselm/SEbeselm2001/SE2033Mar30Tbeselm.html",
+    "retrieved": "2026-11-14",
+    "attribution": "Eclipse Predictions by Fred Espenak, NASA's GSFC",
+    "publication": "Five Millennium Canon of Solar Eclipses: -1999 to +3000",
+    "delta_t_basis": "the value NASA gives on the elements page",
+    "path_edge_accuracy_km": "1-2 (limited by lunar limb profile)"
+  }
+}

@@ -224,8 +224,10 @@ def thumb(ring, centre, dots, dest, scale=1):
     for high-density screens.
     """
     tw, th, z = TW * scale, TH * scale, S * scale
-    # Paths that cross 180 degrees are drawn in 0..360 longitude.
-    wrap = max(x for x, _ in centre) - min(x for x, _ in centre) > 180
+    # Paths that cross 180 degrees are drawn in 0..360 longitude: NASA's
+    # tables jump from 180 to -180, this site's own paths run on past 180.
+    wrap = (max(x for x, _ in centre) - min(x for x, _ in centre) > 180
+            or max(x for x, _ in centre) > 180)
     fix = (lambda x: x + 360 if x < 0 else x) if wrap else (lambda x: x)
     ring = [(fix(x), y) for x, y in ring]
     centre = [(fix(x), y) for x, y in centre]

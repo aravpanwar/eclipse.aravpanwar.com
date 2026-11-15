@@ -30,7 +30,6 @@ const state = {
   view: 'map',        // 'map' or 'path'
   query: '',
   closed: new Set(),  // advisories put away, as advisoryId() strings
-  coverage: {},       // country code -> stays coverage, from build_coverage.py
   outside: [],        // towns within 100 km outside the path: partial only
   outsideNames: {},   // country code -> name, for countries only outside towns have
   outsideRange: 100,  // km, from the outside data file
@@ -79,12 +78,17 @@ function mmss(seconds) {
 
 const fmtKm = (v) => (v == null ? 'n/a' : v.toFixed(1));
 const fmtPct = (v) => (v == null ? 'n/a' : v.toFixed(1) + '%');
-// Stays are what OpenStreetMap has mapped, not what exists or is free, so a
-// zero is said as "none mapped" rather than as a fact about the town.
-const staysSpoken = (n) => (n ? `About ${n} stay${n === 1 ? '' : 's'}` : 'No stays');
+// This site is not a booking site: a town links out to a map search for
+// places to stay around it, which knows what is open and what is free.
+function stayLink(p) {
+  const lon = p.x >= 180 ? p.x - 360 : p.x;
+  return `<p class="tc-stay"><a href="https://www.google.com/maps/search/places+to+stay/@${p.y},${lon},12z"
+    target="_blank" rel="noopener">Places to stay near ${esc(p.n)}</a></p>`;
+}
 // A third of the places are west of Greenwich, so the hemisphere is not fixed.
 const fmtLat = (v) => `${Math.abs(v).toFixed(4)}°${v < 0 ? 'S' : 'N'}`;
-const fmtLon = (v) => `${Math.abs(v).toFixed(4)}°${v < 0 ? 'W' : 'E'}`;
+// A path drawn past 180 degrees carries its towns there too (2033: 195 is 165°W).
+const fmtLon = (v) => { const w = v >= 180 ? v - 360 : v; return `${Math.abs(w).toFixed(4)}°${w < 0 ? 'W' : 'E'}`; };
 
 // Local clock times come with the data (t0, t1 and the offset o, in minutes),
 // worked out at build time from a current tz database. Browsers' own zone
@@ -190,14 +194,6 @@ function advisoryShowHtml(cc, name) {
   return `<button type="button" class="advshow" data-adv="${cc}"
     aria-expanded="false" aria-label="Show the travel advisory for ${esc(name)}">
     ${WARN_ICON}<span>Advisory</span></button>`;
-}
-
-// How far to trust the stays counts in this country: mapped hotels against
-// the official register. National, so it says nothing about a single town.
-function coverageHtml(cc) {
-  const c = state.coverage[cc];
-  if (!c) return '';
-  return `<a class="cov" href="/method.html#stays-coverage">Stays coverage: ${c.rating}</a>`;
 }
 
 /* ---------- closed advisories ---------- */
@@ -345,8 +341,6 @@ function render() {
       `${fmtLon(state.pin.lon)}`
     : 'across the whole path';
   document.getElementById('pinHint').hidden = !!state.pin;
-  // The stays caveat only matters when the list is ranked by stays.
-  document.querySelector('.staysnote').hidden = state.sort !== 'l';
   document.querySelector('.controls').classList.toggle('nopin', !state.pin);
   document.getElementById('where').textContent = state.query.trim()
     ? `matching “${state.query.trim()}” ${scope}`
@@ -384,15 +378,14 @@ function render() {
       <button type="button" class="gtoggle" data-cc="${cc}" aria-expanded="${open}">
         <b>${esc(name)}</b><span class="n">${places.length}</span>
         <span class="gsum">up to ${mmss(longest)}</span></button>
-      ${open ? coverageHtml(cc) + advisoryShowHtml(cc, name)
+      ${open ? advisoryShowHtml(cc, name)
              : (adv && adv.worst ? `<span class="advtag">${WARN_ICON}<span>FCDO advisory</span></span>` : '')}</div>
       ${open ? advisoryHtml(cc, name) : ''}`;
     html += `<div class="head" role="row">
       <div role="columnheader">Place</div>
       <div class="num" role="columnheader" title="Local time totality begins${places[0].off ? `, ${places[0].off}` : ''}">Starts</div>
       <div class="num" role="columnheader">Totality</div>
-      <div class="num" role="columnheader">Cloud</div>
-      <div class="num" role="columnheader" title="Places to stay mapped in OpenStreetMap within 25 km">Stays</div></div></div>`;
+      <div class="num" role="columnheader">Cloud</div></div></div>`;
     for (const p of places) {
       const sel = p.i === state.selected ? ' sel' : '';
       // Roving tabindex: exactly one row is tabbable, the rest are reached
@@ -400,8 +393,7 @@ function render() {
       // times to get past the table.
       const tab = p.i === focusId ? 0 : -1;
       const label = `${p.n}. Totality ${p.t0 ? `from ${p.t0} local time, ` : ''}`
-        + `${mmss(p.d)} long. ${state.hasCloud ? `${fmtPct(p.w)} ${MONTH} cloud. ` : ''}`
-        + `${staysSpoken(p.l)} mapped within 25 km.`;
+        + `${mmss(p.d)} long.${state.hasCloud ? ` ${fmtPct(p.w)} ${MONTH} cloud.` : ''}`;
       html += `<div class="row${sel}" data-id="${p.i}" tabindex="${tab}"
         role="row" aria-selected="${p.i === state.selected}"
         aria-label="${esc(label)}">
@@ -409,7 +401,6 @@ function render() {
         <div class="num" role="cell">${p.t0 || 'n/a'}</div>
         <div class="num dur" role="cell">${mmss(p.d)}</div>
         <div class="num" role="cell">${fmtPct(p.w)}</div>
-        <div class="num" role="cell">${p.l || 'none'}</div>
       </div>`;
     }
     html += '</div>';
@@ -868,9 +859,9 @@ function renderTown() {
     </div>
     <dl class="tc-facts">
       ${TC(`${MONTH} cloud`, state.hasCloud ? fmtPct(p.w) : 'not yet')}${TC('Sun altitude', `${p.a.toFixed(0)}°`)}
-      ${TC('From centre line', `${fmtKm(p.k)} km`)}${TC('Stays, 25 km', p.l ? `~${p.l}` : 'none')}
-      ${TC('Stays, 80 km', p.L ? `~${p.L}` : 'none')}
+      ${TC('From centre line', `${fmtKm(p.k)} km`)}
     </dl>
+    ${stayLink(p)}
     ${advLine(adv, country, `The named areas are under ${esc(country)} in the list.`)}`;
   el.hidden = false;
   el.querySelector('.tc-close').onclick = () => selectPlace(p.i, false);
@@ -902,6 +893,7 @@ function renderOutsideTown(el, p) {
     </dl>
     <p class="tc-note">Straight-line distances, not road distances. Totality is
       longest along the centre line.</p>
+    ${stayLink(p)}
     <p class="tc-safe">${WARN_ICON}<span>Never look at a partial eclipse without
       eclipse glasses, even at 99%. Only totality itself is safe to look at.</span></p>
     ${advLine(adv, countryName(p.c), named)}`;
@@ -971,7 +963,7 @@ function readUrl() {
   const r = Number(q.get('r'));
   if (r >= 10 && r <= 400) state.radius = r;
   const s = q.get('sort');
-  if (['s', 'w', 'l', 'p'].includes(s)) state.sort = s;
+  if (['s', 'w', 'p'].includes(s)) state.sort = s;
   const place = Number(q.get('place'));
   if (place) state.selected = place;
   const c = q.get('c');
@@ -1106,12 +1098,6 @@ async function main() {
     console.error(e);
     showLoadError('the list of places');
     return;
-  }
-  // Optional: without it the list simply shows no coverage ratings.
-  try {
-    state.coverage = (await getJson(`/data/${EVENT}-coverage.json`)).by_country;
-  } catch (e) {
-    console.error(e);
   }
   for (const p of state.data.places) {
     p.f = purify(p.n);
@@ -1270,7 +1256,10 @@ function drawProfile() {
       </linearGradient></defs>`;
     h += `<path class="pc" stroke="url(#tg)" d="M${pts.map((r) => `${x(r[0]).toFixed(1)},${y(r[1]).toFixed(1)}`).join('L')}"/>`;
     const pk = pts.reduce((a, b) => (b[1] > a[1] ? b : a));
-    h += `<text class="pkl" x="${x(pk[0])}" y="${y(pk[1]) - 9}" text-anchor="middle">${mmss(state.data.event.peak)} longest</text>`;
+    // Kept inside the chart when the longest point is at one end (2033).
+    const px = x(pk[0]);
+    const anchor = px > W - m.r - 50 ? 'end' : px < m.l + 50 ? 'start' : 'middle';
+    h += `<text class="pkl" x="${px}" y="${y(pk[1]) - 9}" text-anchor="${anchor}">${mmss(state.data.event.peak)} longest</text>`;
   }
 
   // Country strip, with each country's median cloud.

@@ -21,6 +21,7 @@ from eclipse.path import centerline_latitude, lon_window
 
 EVENT = event.from_argv()
 E = L.Elements.from_json(ROOT / 'data' / 'elements' / f'{EVENT}.json')
+E.lat_window = event.settings(EVENT).get('lat_window')
 OUT = ROOT / 'docs' / 'data'
 OUT.mkdir(parents=True, exist_ok=True)
 
@@ -38,10 +39,13 @@ def limits(lon, centre_lat, step=0.02):
     k = round(centre_lat / step)
     if not inside(k):
         return None, None
+    # A path that doubles back (2033) is drawn only within its lat_window,
+    # as the drawing of any path is cropped to its lon_window.
+    south, north = E.lat_window or (-90.0, 90.0)
     lo, hi = k, k + 1
-    while inside(lo - 1):
+    while inside(lo - 1) and (lo - 1) * step >= south:
         lo -= 1
-    while inside(hi):
+    while inside(hi) and hi * step <= north:
         hi += 1
     return lo * step, hi * step
 

@@ -40,6 +40,16 @@ SLUGS = {
     'LY': 'libya', 'EG': 'egypt', 'SA': 'saudi-arabia', 'YE': 'yemen',
     'SO': 'somalia', 'SD': 'sudan', 'GI': 'gibraltar', 'PT': 'portugal',
     'MT': 'malta', 'IT': 'italy',
+    # 2028 to 2035. Cocos and Christmas Island are Australian territories,
+    # which the FCDO covers on its Australia page.
+    'AU': 'australia', 'CC': 'australia', 'CX': 'australia',
+    'NZ': 'new-zealand', 'ZA': 'south-africa', 'NA': 'namibia',
+    'LS': 'lesotho', 'BW': 'botswana', 'US': 'usa', 'RU': 'russia',
+    'NG': 'nigeria', 'IR': 'iran', 'IN': 'india', 'PK': 'pakistan',
+    'AF': 'afghanistan', 'KW': 'kuwait', 'TD': 'chad', 'CM': 'cameroon',
+    'BJ': 'benin', 'GH': 'ghana', 'CI': 'cote-d-ivoire', 'TG': 'togo',
+    'IQ': 'iraq', 'CN': 'china', 'JP': 'japan', 'KP': 'north-korea',
+    'KR': 'south-korea',
 }
 
 # The FCDO taxonomy, most severe first. Ordering is ours, for sorting badges;

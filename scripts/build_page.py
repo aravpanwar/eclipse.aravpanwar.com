@@ -34,14 +34,15 @@ outside = json.loads((ROOT / 'data' / 'out' / f'{EVENT}-outside.json').read_text
 settings = event.settings(EVENT)
 
 # The countries of the westernmost and easternmost towns in totality.
-west = min(places, key=lambda p: p['longitude'])['country']
-east = max(places, key=lambda p: p['longitude'])['country']
+window = event.settings(EVENT).get('lon_window')
+west = min(places, key=lambda p: event.frame(p['longitude'], window))['country']
+east = max(places, key=lambda p: event.frame(p['longitude'], window))['country']
 
 kind = KINDS[meta['type']]
 date = event.long_date(EVENT)
 has_cloud = any(p['mean_cloud_percent'] is not None for p in places)
 told = ['how long totality lasts there', 'local times',
-        *(['cloud'] if has_cloud else []), 'places to stay']
+        *(['cloud'] if has_cloud else [])]
 description = (f'Every populated place inside the path of the {date} {kind.lower()} '
                f'solar eclipse, with {", ".join(told[:-1])} and {told[-1]}.')
 view = settings.get('map')

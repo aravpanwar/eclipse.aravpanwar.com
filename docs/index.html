@@ -87,13 +87,17 @@
   .feature h3 a:focus-visible, .chips a:focus-visible, .go:focus-visible, .feature .pic:focus-visible {
     outline: 2px solid var(--accent); outline-offset: 2px; }
 
-  /* Later eclipses: not computed yet, greyed, smaller. */
+  /* Later eclipses: smaller cards, each a link to its map. */
   .hint { margin: 0 0 12px; font-size: 12.5px; color: var(--dim); max-width: 680px; }
   .cards { list-style: none; margin: 0; padding: 0; display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
   .card { display: flex; flex-direction: column; background: #f3efe5; border: 1px solid var(--line); }
+  .card > a { display: flex; flex-direction: column; flex-grow: 1; color: inherit; border: 0; padding: 0; }
+  .card:hover { border-color: var(--accent); }
+  .card:hover h3 { color: var(--accent); }
+  .card > a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .card img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10;
-    filter: grayscale(1); opacity: .55; border-bottom: 1px solid var(--line); }
+    border-bottom: 1px solid var(--line); }
   .card .b { display: flex; flex-direction: column; gap: 3px; flex-grow: 1; padding: 10px 11px 11px; }
   .card h3 { margin: 0; font-size: 14px; font-weight: 700; color: #45423d; }
   .card .where { margin: 0; font-size: 12px; line-height: 1.4; color: #45423d; }
@@ -147,7 +151,7 @@
       <p class="dur">Up to <b>6 min 23 s</b> of totality, 771 places mapped</p>
       <p class="what"><b>Totality Path &amp; Nearby Locations</b>: every populated
       place inside the path, ranked by how long totality lasts there, with
-      local times, cloud cover and places to stay nearby.</p>
+      local times and cloud cover.</p>
       <p class="chiplabel" id="chipsLabel">Go straight to a country</p>
       <ul class="chips" aria-labelledby="chipsLabel">
         <li><a href="/solar-eclipse/2027-08-02/?c=ES">Spain</a></li>
@@ -167,56 +171,69 @@
   </article>
 
   <h2 class="section">Later total solar eclipses</h2>
-  <p class="hint">Not computed yet. The ones up to the end of 2031 are next,
-  soonest first.</p>
+  <p class="hint">Each has its own map, worked out the same way as 2027's. Cloud
+  cover is added closer to each date.</p>
   <ol class="cards">
+    <!-- cards: scripts/build_home.py -->
     <li class="card">
-      <img src="/thumbs/2028-07-22.webp" alt="" width="640" height="400" loading="lazy">
-      <div class="b">
-        <h3>22 July 2028</h3>
-        <p class="where">Australia, New Zealand</p>
-        <p class="d">5:10 longest</p>
-      </div>
+      <a href="/solar-eclipse/2028-07-22/">
+        <img src="/thumbs/2028-07-22.webp" alt="" width="640" height="400" loading="lazy">
+        <div class="b">
+          <h3>22 July 2028</h3>
+          <p class="where">Cocos (Keeling) Islands, Christmas Island, Australia, New Zealand</p>
+          <p class="d">5:09 longest, 119 places</p>
+        </div>
+      </a>
     </li>
     <li class="card">
-      <img src="/thumbs/2030-11-25.webp" alt="" width="640" height="400" loading="lazy">
-      <div class="b">
-        <h3>25 November 2030</h3>
-        <p class="where">Botswana, South Africa, Australia</p>
-        <p class="d">3:44 longest</p>
-      </div>
+      <a href="/solar-eclipse/2030-11-25/">
+        <img src="/thumbs/2030-11-25.webp" alt="" width="640" height="400" loading="lazy">
+        <div class="b">
+          <h3>25 November 2030</h3>
+          <p class="where">Namibia, Botswana, Lesotho, South Africa, Australia</p>
+          <p class="d">3:43 longest, 143 places</p>
+        </div>
+      </a>
     </li>
     <li class="card">
-      <img src="/thumbs/2033-03-30.webp" alt="" width="640" height="400" loading="lazy">
-      <div class="b">
-        <h3>30 March 2033</h3>
-        <p class="where">Russia, United States (Alaska)</p>
-        <p class="d">2:37 longest</p>
-      </div>
+      <a href="/solar-eclipse/2033-03-30/">
+        <img src="/thumbs/2033-03-30.webp" alt="" width="640" height="400" loading="lazy">
+        <div class="b">
+          <h3>30 March 2033</h3>
+          <p class="where">Russia, United States</p>
+          <p class="d">2:37 longest, 10 places</p>
+        </div>
+      </a>
     </li>
     <li class="card">
-      <img src="/thumbs/2034-03-20.webp" alt="" width="640" height="400" loading="lazy">
-      <div class="b">
-        <h3>20 March 2034</h3>
-        <p class="where">Nigeria, Cameroon, Chad, Sudan, Egypt, Saudi Arabia, Iran, Afghanistan, Pakistan, India, China</p>
-        <p class="d">4:09 longest</p>
-      </div>
+      <a href="/solar-eclipse/2034-03-20/">
+        <img src="/thumbs/2034-03-20.webp" alt="" width="640" height="400" loading="lazy">
+        <div class="b">
+          <h3>20 March 2034</h3>
+          <p class="where">Benin, Nigeria, Cameroon, Chad, Sudan, Egypt, Saudi Arabia, Kuwait, Iran, Afghanistan, Pakistan, India</p>
+          <p class="d">4:09 longest, 579 places</p>
+        </div>
+      </a>
     </li>
     <li class="card">
-      <img src="/thumbs/2035-09-02.webp" alt="" width="640" height="400" loading="lazy">
-      <div class="b">
-        <h3>2 September 2035</h3>
-        <p class="where">China, Korea, Japan</p>
-        <p class="d">2:54 longest</p>
-      </div>
+      <a href="/solar-eclipse/2035-09-02/">
+        <img src="/thumbs/2035-09-02.webp" alt="" width="640" height="400" loading="lazy">
+        <div class="b">
+          <h3>2 September 2035</h3>
+          <p class="where">China, North Korea, Japan</p>
+          <p class="d">2:54 longest, 366 places</p>
+        </div>
+      </a>
     </li>
+    <!-- /cards -->
   </ol>
 
-  <p class="note">The time is the longest totality anywhere on the path. For
-  eclipses not yet computed here, dates, times and countries are from
+  <p class="note">The time is the longest totality anywhere on the path. Every
+  eclipse here is computed from Besselian elements in
   <a href="https://eclipse.gsfc.nasa.gov/solar.html">NASA&rsquo;s eclipse tables</a>
-  and the paths are drawn from NASA&rsquo;s path tables (Fred Espenak, NASA
-  GSFC). Only total eclipses are listed; annular and hybrid eclipses are not.</p>
+  (Fred Espenak, NASA GSFC). Places are counted from GeoNames, which lists
+  towns of 1,000 people or more, so a thinly settled path such as 2033&rsquo;s
+  has few. Only total eclipses are listed; annular and hybrid eclipses are not.</p>
 </main>
 
 <script>

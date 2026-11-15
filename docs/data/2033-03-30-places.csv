@@ -1,0 +1,11 @@
+geonameid,name,country_code,country,latitude,longitude,elevation_m,population,timezone,duration_seconds,seconds_sacrificed,sun_altitude_deg,max_eclipse_ut_hours,distance_from_centerline_km,mean_cloud_percent,clear_sky_probability,cloud_observations
+5880054,Utqiagvik,US,United States,71.29058,-156.78872,3,4384,America/Anchorage,155.7,1.5,10.93,18.017065,33.6,,,
+5866726,Kotzebue,US,United States,66.89846,-162.59809,6,3277,America/Nome,150.8,6.4,9.35,17.866792,69.1,,,
+5870133,Nome,US,United States,64.50111,-165.40639,6,3806,America/Nome,150.2,7.0,8.13,17.787443,0.2,,,
+4031574,Provideniya,RU,Russia,64.42289,-173.22641,0,2536,Asia/Anadyr,123.0,34.2,4.7,17.77662,227.7,,,
+4031637,Lavrentiya,RU,Russia,65.58299,-170.99663,4,1242,Asia/Anadyr,117.9,39.3,5.84,17.812576,267.6,,,
+5864197,Hooper Bay,US,United States,61.53111,-166.09667,8,1187,America/Nome,117.4,39.8,7.53,17.696292,237.6,,,
+2126710,Beringovskiy,RU,Russia,63.06101,179.35046,1,1861,Asia/Anadyr,114.9,42.3,1.12,17.741413,223.0,,,
+4031625,Lorino,RU,Russia,65.50306,-171.70387,36,1450,Asia/Anadyr,114.2,43.0,5.53,17.809663,282.4,,,
+5859114,Chevak,US,United States,61.52778,-165.58639,15,1018,America/Nome,112.8,44.4,7.78,17.697064,252.7,,,
+2127202,Anadyr,RU,Russia,64.73424,177.5103,35,15604,Asia/Anadyr,49.1,108.1,0.86,17.792467,423.4,,,

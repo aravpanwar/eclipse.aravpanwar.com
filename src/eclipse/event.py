@@ -45,6 +45,17 @@ def settings(event: str) -> dict:
     return blob.get(event, {})
 
 
+def frame(lon: float, window: list[float] | None) -> float:
+    """A longitude in the range of a window that runs past 180 degrees.
+
+    For 2033, drawn from 179 to 204 so the path is unbroken, a town at
+    -165 is at 195. Any other window leaves longitudes as they are.
+    """
+    if window and window[1] > 180 and lon < window[0] - 180:
+        return lon + 360
+    return lon
+
+
 def day(event: str) -> date:
     return date.fromisoformat(event)
 

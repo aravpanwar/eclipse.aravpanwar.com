@@ -6,12 +6,13 @@ as CSV, JSON and a static map site.
 
 For each place inside the path the dataset gives the duration of totality, the
 time of maximum eclipse, the Sun's altitude, the distance from the centre line,
-historical cloud cover for the date and hour, and counts of lodging and camping
-sites nearby. For each place within 100 km outside the path it gives the
+and historical cloud cover for the date and hour. For each place within 100 km outside the path it gives the
 fraction of the Sun covered at maximum and the distances to the path edge and
 centre line.
 
-Computed events: 2 August 2027 (total).
+Computed events, all total: 2 August 2027, 22 July 2028, 25 November 2030,
+30 March 2033, 20 March 2034 and 2 September 2035. Cloud cover is computed
+for 2027 only so far; the other pages say it is not available yet.
 
 ## Repository layout
 
@@ -19,7 +20,7 @@ Computed events: 2 August 2027 (total).
 |---|---|
 | `data/elements/` | Besselian elements, one JSON file per event |
 | `data/events.json` | Choices made by hand for each event: map view, link card framing |
-| `src/eclipse/` | Computation: local circumstances, path, places, cloud, lodging, advisories |
+| `src/eclipse/` | Computation: local circumstances, path, places, cloud, advisories |
 | `scripts/` | Build steps, listed below |
 | `data/cache/` | Downloaded inputs and extracted caches |
 | `data/out/` | Full build output (CSV and JSON) |
@@ -32,7 +33,7 @@ Each script takes the event as its one argument, the name of a file in
 
 ## Requirements
 
-Python 3.11. Packages: `osmium`, `xarray`, `netCDF4` or another xarray netCDF
+Python 3.11. Packages: `xarray`, `netCDF4` or another xarray netCDF
 engine, `cdsapi`, `Pillow`, `tzdata` 2026.3 or later, `pytest`. Pinned
 versions are in `requirements.txt`:
 
@@ -44,8 +45,6 @@ python -m venv .venv
 Download these separately:
 
 - `data/cache/cities1000.zip` from GeoNames.
-- Geofabrik country extracts in `data/cache/osm/`, for `extract_lodging.py`
-  only.
 - A Copernicus Climate Data Store account in `~/.cdsapirc`, for
   `fetch_cloud.py` only.
 
@@ -55,15 +54,14 @@ themselves.
 ## Build
 
 ```
-python scripts/extract_lodging.py           # once per OSM refresh; writes data/cache/lodging/
 python scripts/build_geojson.py <event>     # docs/data/<event>-path.geojson, <event>-centre-profile.json
 python scripts/build.py <event>             # data/out/<event>-places.{csv,json}, <event>-outside.{csv,json}
 python scripts/fetch_cloud.py <event>       # optional, then build.py again; writes data/cache/cloud/
 python scripts/build_site_data.py <event>   # docs/data/<event>-places.json, <event>-outside.json
 python scripts/build_countries.py <event>   # docs/data/<event>-countries.geojson
-python scripts/build_coverage.py <event>    # docs/data/<event>-coverage.json
 python scripts/build_images.py <event>      # docs/og.png, homepage thumbnails, site icons
 python scripts/build_page.py <event>        # docs/solar-eclipse/<event>/index.html
+python scripts/build_home.py                # the later eclipses' cards on docs/index.html
 python -m pytest tests/ -q
 ```
 
@@ -71,8 +69,8 @@ Then copy `data/out/<event>-places.csv` and `data/out/<event>-outside.csv`
 into `docs/data/`.
 
 `build.py` fetches UK travel advice at run time and takes about 8 minutes, most
-of it the centre line solve. It runs without the lodging or cloud caches and
-leaves those columns empty. Without cloud the event page says no cloud data
+of it the centre line solve. It runs without the cloud cache and leaves those
+columns empty. Without cloud the event page says no cloud data
 is available yet and leaves cloud out of the list.
 
 ## Adding an event
@@ -84,17 +82,18 @@ is available yet and leaves cloud out of the list.
    worked. `tests/test_elements.py` then checks the file against NASA's
    greatest eclipse figures.
 2. Add the event to `data/events.json` if it needs a hand-chosen setting. A
-   path that crosses 180 degrees needs a `lon_window` that stops at 180.
+   path that crosses 180 degrees needs a `lon_window` that either stops at
+   180 (2028, 2035) or runs on past it (2033: 179 to 205), in which case
+   towns west of Greenwich are carried past 180 while computing and written
+   back to -180..180 in the output. A path that doubles back needs a
+   `lat_window` to say which pass to draw (2033 turns back in the Arctic).
    Without a `map` view the map frames the whole path; without `og` no link
    card is drawn.
-3. Download Geofabrik extracts for the path countries and add any new country
-   to `EXTRACTS` in `src/eclipse/lodging.py` and `COUNTRY_NAMES` in
-   `src/eclipse/places.py`. `build.py` stops on a missing name and warns on a
-   missing extract.
-4. Add official hotel counts for the new countries to
-   `data/hotel_registers.json`, or they are rated unknown.
-5. Run the build above, then move the event's card on `docs/index.html` from
-   the upcoming list.
+3. Add any new country to `COUNTRY_NAMES` in `src/eclipse/places.py` and
+   `SLUGS` in `src/eclipse/advisories.py`. `build.py` stops on a missing one.
+4. Run the build above, ending with `build_home.py`, which adds the event's
+   card to the homepage. The soonest eclipse still to come has the large
+   block at the top, which is written by hand.
 
 ## Output
 
@@ -113,8 +112,6 @@ is available yet and leaves cloud out of the list.
 | `mean_cloud_percent` | Mean total cloud cover, ERA5, 1985 to 2024, eclipse date and a day either side, nearest hour |
 | `clear_sky_probability` | Share of those hours under 20% cloud cover |
 | `cloud_observations` | Number of hours sampled |
-| `lodging_within_25km`, `lodging_within_80km` | OSM `tourism=*` lodging features |
-| `camping_within_25km`, `camping_within_80km` | OSM camp and caravan sites |
 
 `<event>-outside.csv`, one row per place within 100 km outside the path:
 GeoNames columns as above, then `obscuration_percent`, `magnitude`,
@@ -170,15 +167,10 @@ durations by 1 to 3 s.
 - Places: GeoNames, CC BY 4.0.
 - Cloud: ERA5 hourly data on single levels, Copernicus Climate Change Service.
   Contains modified Copernicus Climate Change Service information.
-- Lodging: OpenStreetMap contributors, ODbL 1.0, via Geofabrik extracts.
 - Travel advice: UK Foreign, Commonwealth & Development Office, Open Government
   Licence v3.0.
 - Country outlines: Natural Earth 1:10m, UK point of view, v5.1.2, public
   domain.
-- Hotel registers, used for the stays coverage rating: INE (Spain), HCP
-  (Morocco), ONTT (Tunisia), GASTAT (Saudi Arabia), UN Tourism Statistics
-  Database (Algeria, Egypt), Statistics Office (Gibraltar). Figures, periods
-  and links are in `data/hotel_registers.json`.
 
 ## Licence
 
@@ -187,6 +179,12 @@ Code: AGPL 3.0 (`LICENSE`).
 Fonts in `docs/fonts/`: Schibsted Grotesk and Source Serif 4, SIL Open Font
 License 1.1.
 
-Data in `data/out/` and `docs/data/`: ODbL 1.0 (`LICENSE-DATA.md`). The lodging
-columns come from OpenStreetMap, which is share-alike. Required attributions
-are listed in `LICENSE-DATA.md`.
+Data in `data/out/` and `docs/data/`: CC BY 4.0 (`LICENSE-DATA.md`). Required
+attributions are listed in `LICENSE-DATA.md`. Versions before November 2026
+were ODbL 1.0, and copies of those stay ODbL.
+
+There are no places to stay in the dataset. Versions before November 2026 had
+counts of OpenStreetMap lodging and camping features (`lodging_within_*`,
+`camping_within_*`); they were dropped because a count of what is mapped says
+little about what can be booked. The site links each town to a map search
+instead.

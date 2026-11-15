@@ -1,0 +1,90 @@
+{
+  "id": "2030-11-25",
+  "label": "Total Solar Eclipse of 2030 November 25",
+  "type": "T",
+  "date_utc": "2030-11-25",
+  "t0_tdt_hours": 7.0,
+  "delta_t_seconds": 77.3,
+  "greatest_eclipse": {
+    "instant_tdt": "06:51:36.5",
+    "instant_ut": "06:50:19.2",
+    "jd": 2462830.785839,
+    "latitude_deg": -43.6133,
+    "longitude_deg": 71.2417,
+    "sun_altitude_deg": 67.0,
+    "sun_azimuth_deg": 7.0,
+    "path_width_km": 169.3,
+    "central_duration": "03m43.5s",
+    "gamma": -0.3868,
+    "magnitude": 1.0468
+  },
+  "greatest_duration": {
+    "instant_ut": "06:51:53",
+    "latitude_deg": -43.7167,
+    "longitude_deg": 72.0333,
+    "sun_altitude_deg": 67.0,
+    "sun_azimuth_deg": 4.1,
+    "path_width_km": 169.2,
+    "central_duration": "03m43.6s"
+  },
+  "lunar_radius_constants": {
+    "k1_penumbra": 0.272488,
+    "k2_umbra": 0.272281
+  },
+  "elements": {
+    "x": [
+      0.0442,
+      0.5787731,
+      1.57e-05,
+      -9.9e-06
+    ],
+    "y": [
+      -0.392726,
+      -0.0551896,
+      0.0001744,
+      8e-07
+    ],
+    "d": [
+      -20.761,
+      -0.007989,
+      5e-06,
+      0.0
+    ],
+    "l1": [
+      0.538213,
+      -3.79e-05,
+      -1.3e-05,
+      0.0
+    ],
+    "l2": [
+      -0.007886,
+      -3.77e-05,
+      -1.3e-05,
+      0.0
+    ],
+    "mu": [
+      288.27457,
+      14.99836,
+      0.0,
+      0.0
+    ]
+  },
+  "tan_f1": 0.0047361,
+  "tan_f2": 0.0047125,
+  "valid_tdt_hours": [
+    4.0,
+    10.0
+  ],
+  "ephemerides": "VSOP87/ELP2000-85",
+  "saros": 133,
+  "lunation": 382,
+  "provenance": {
+    "source": "NASA GSFC eclipse web site, Besselian elements page",
+    "url": "https://eclipse.gsfc.nasa.gov/SEbeselm/SEbeselm2001/SE2030Nov25Tbeselm.html",
+    "retrieved": "2026-11-14",
+    "attribution": "Eclipse Predictions by Fred Espenak, NASA's GSFC",
+    "publication": "Five Millennium Canon of Solar Eclipses: -1999 to +3000",
+    "delta_t_basis": "the value NASA gives on the elements page",
+    "path_edge_accuracy_km": "1-2 (limited by lunar limb profile)"
+  }
+}

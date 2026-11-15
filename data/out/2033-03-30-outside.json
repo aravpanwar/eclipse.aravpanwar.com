@@ -1,0 +1,49 @@
+{
+ "event": {
+  "id": "2033-03-30",
+  "label": "Total Solar Eclipse of 2033 March 30"
+ },
+ "range_km": 100,
+ "note": "Populated places within range_km of the edge of totality that see a partial eclipse only. Distances are straight-line, to the nearest point on the north or south limit and on the centre line.",
+ "countries": {
+  "RU": "Russia",
+  "US": "United States"
+ },
+ "count": 2,
+ "places": [
+  {
+   "geonameid": 4031742,
+   "name": "Egvekinot",
+   "country_code": "RU",
+   "country": "Russia",
+   "latitude": 66.32321,
+   "longitude": -179.11838,
+   "elevation_m": 9,
+   "population": 2248,
+   "timezone": "Asia/Anadyr",
+   "obscuration_percent": 99.93,
+   "magnitude": 0.99802,
+   "max_eclipse_ut_hours": 17.834706,
+   "sun_altitude_deg": 2.68,
+   "km_to_edge_of_totality": 56.47,
+   "km_to_centre_line": 537.76
+  },
+  {
+   "geonameid": 5880568,
+   "name": "Bethel",
+   "country_code": "US",
+   "country": "United States",
+   "latitude": 60.79222,
+   "longitude": -161.75583,
+   "elevation_m": 1,
+   "population": 6450,
+   "timezone": "America/Anchorage",
+   "obscuration_percent": 99.786,
+   "magnitude": 0.99568,
+   "max_eclipse_ut_hours": 17.683395,
+   "sun_altitude_deg": 9.61,
+   "km_to_edge_of_totality": 64.04,
+   "km_to_centre_line": 445.23
+  }
+ ]
+}

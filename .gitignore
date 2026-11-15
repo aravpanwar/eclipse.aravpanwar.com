@@ -10,9 +10,6 @@ data/cache/osm/
 # GeoNames archive, re-downloadable.
 data/cache/*.zip
 
-# The extracted lodging cache IS committed: it is small, and it means a site
-# build never needs the multi-gigabyte extracts.
-
 # Natural Earth country outlines, re-downloadable.
 data/cache/ne_*.geojson
 

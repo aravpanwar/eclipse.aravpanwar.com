@@ -1,5 +1,5 @@
 {
-  "_about": "Choices made by hand for each eclipse. Everything else comes from data/elements/<event>.json and the computed places. Every key is optional: lon_window defaults to the whole path, map to the path's bounds, og to no link card.",
+  "_about": "Choices made by hand for each eclipse. Everything else comes from data/elements/<event>.json and the computed places. Every key is optional: lon_window defaults to the whole path and must stop at 180 or run past it for a path that crosses 180, lat_window narrows the centre line search for a path that doubles back, map defaults to the path's bounds, og to no link card.",
   "2027-08-02": {
     "lon_window": [-12, 52],
     "map": {"center": [32.0, 26.3], "zoom": 5.4},
@@ -8,5 +8,12 @@
   },
   "2028-07-22": {
     "lon_window": [78.5, 180]
+  },
+  "2033-03-30": {
+    "lon_window": [179, 205],
+    "lat_window": [55, 74]
+  },
+  "2035-09-02": {
+    "lon_window": [79.5, 180]
   }
 }

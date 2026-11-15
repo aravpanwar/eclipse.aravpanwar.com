@@ -54,24 +54,27 @@ def axis_point(elements: L.Elements, t: float) -> tuple[float, float] | None:
     d = math.radians(el['d'])
     mu = el['mu'] - elements.delta_t_seconds / 3600.0 * 15.0
 
-    rho = math.hypot(x, y)
-    if rho >= 1.0:
+    # Meeus, Elements of Solar Eclipses: stretch the fundamental plane so the
+    # flattened Earth becomes a unit sphere, solve there, then convert the
+    # latitude back to geodetic.
+    e2 = L.FLATTENING * (2.0 - L.FLATTENING)
+    rho1 = math.sqrt(1.0 - e2 * math.cos(d) ** 2)
+    sin_d1 = math.sin(d) / rho1
+    cos_d1 = math.sqrt(1.0 - e2) * math.cos(d) / rho1
+    y1 = y / rho1
+    b = 1.0 - x * x - y1 * y1
+    if b <= 0.0:
         return None
-    f = L.FLATTENING
-    zeta = math.sqrt(1.0 - rho * rho)
-    for _ in range(60):
-        lat_c = math.asin(max(-1.0, min(1.0, y * math.cos(d) + zeta * math.sin(d))))
-        rho_s, rho_c = L.geocentric_observer(math.degrees(
-            math.atan(math.tan(lat_c) / (1.0 - f) ** 2)), 0.0, 0.0)
-        r = math.hypot(rho_s, rho_c)
-        new_zeta = math.sqrt(max(0.0, r * r - rho * rho))
-        if abs(new_zeta - zeta) < 1e-12:
-            break
-        zeta = new_zeta
-    lat_c = math.asin(max(-1.0, min(1.0, y * math.cos(d) + zeta * math.sin(d))))
-    H = math.degrees(math.atan2(x, zeta * math.cos(d) - y * math.sin(d)))
+    zeta1 = math.sqrt(b)
+    phi1 = math.asin(max(-1.0, min(1.0, y1 * cos_d1 + zeta1 * sin_d1)))
+    H = math.degrees(math.atan2(x, zeta1 * cos_d1 - y1 * sin_d1))
     lon = ((H - mu + 180.0) % 360.0) - 180.0
-    return math.degrees(math.atan(math.tan(lat_c) / (1.0 - f) ** 2)), lon
+    return math.degrees(math.atan(math.tan(phi1) / math.sqrt(1.0 - e2))), lon
+
+
+def real_lon(lon: float) -> float:
+    """A longitude carried past 180 for a path that crosses it, back in -180..180."""
+    return lon - 360.0 if lon >= 180.0 else lon
 
 
 def lon_window(elements: L.Elements, chosen: list[float] | None = None,
@@ -111,7 +114,7 @@ def centerline_latitude(lon: float, elements: L.Elements) -> float | None:
     if key in _CENTERLINE_CACHE:
         return _CENTERLINE_CACHE[key]
 
-    lo, hi = -60.0, 60.0
+    lo, hi = elements.lat_window or (-60.0, 60.0)
     # Coarse scan first: the axis-distance function has one minimum in lat but
     # a golden-section search needs a bracketing interval to be safe.
     best_lat, best_m = None, float('inf')
@@ -216,7 +219,7 @@ class RankedPlace:
             'country_code': p.country_code,
             'country': p.country,
             'latitude': round(p.latitude, 5),
-            'longitude': round(p.longitude, 5),
+            'longitude': round(real_lon(p.longitude), 5),
             'elevation_m': int(p.elevation_m),
             'population': p.population,
             'timezone': p.timezone,
@@ -313,7 +316,7 @@ class OutsidePlace:
             'country_code': p.country_code,
             'country': p.country,
             'latitude': round(p.latitude, 5),
-            'longitude': round(p.longitude, 5),
+            'longitude': round(real_lon(p.longitude), 5),
             'elevation_m': int(p.elevation_m),
             'population': p.population,
             'timezone': p.timezone,

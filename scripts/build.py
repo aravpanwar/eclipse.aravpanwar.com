@@ -27,7 +27,6 @@ from eclipse.places import load, COUNTRY_NAMES, haversine_km
 from eclipse.path import (greatest_duration, rank, build_centerline, outside,
                           path_edges, in_outline, nearest_km, lon_window)
 from eclipse.advisories import fetch_all, SEVERITY, ISSUER, ISSUER_SHORT
-from eclipse.lodging import load_cache, combined_index, supply_within, EXTRACTS
 from eclipse.cloud import GRID_DEGREES, GRID_KM_APPROX
 
 def fmt_duration(seconds: float) -> str:
@@ -45,6 +44,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 elements_path = ROOT / 'data' / 'elements' / f'{EVENT}.json'
 meta = json.loads(elements_path.read_text(encoding='utf-8'))
 E = Elements.from_json(elements_path)
+E.lat_window = SETTINGS.get('lat_window')
 
 print(f'event            {meta["label"]}')
 print(f'delta T          {E.delta_t_seconds} s')
@@ -113,22 +113,6 @@ for cc, ad in advisories.items():
 flagged = sum(1 for ad in advisories.values() if ad.worst)
 print(f'advisories       {len(advisories)} fetched, {flagged} carry an alert')
 
-# Lodging supply. Counts, never prices: supply thinning toward the centreline
-# is the story, and a count stays true where a scraped rate does not.
-SUPPLY_RADII_KM = (25.0, 80.0)
-loaded = load_cache(ROOT / 'data' / 'cache' / 'lodging', TOTALITY_COUNTRIES)
-no_extract = [cc for cc in TOTALITY_COUNTRIES if cc not in EXTRACTS]
-if no_extract:
-    print(f'  WARNING no Geofabrik extract in lodging.EXTRACTS for {no_extract}, '
-          'so their towns get no stays counts')
-if loaded:
-    lodging_index = combined_index(loaded)
-    total_features = sum(len(v) for v in loaded.values())
-    print(f'lodging          {total_features} features from {len(loaded)} extracts')
-else:
-    lodging_index = None
-    print('lodging          SKIP (run scripts/extract_lodging.py first)')
-
 # Cloud climatology, if the ERA5 cache has been built.
 cloud_path = ROOT / 'data' / 'cache' / 'cloud' / f'{EVENT}-cloud.json'
 if cloud_path.exists():
@@ -152,13 +136,6 @@ for r in ranked:
         row['mean_cloud_percent'] = None
         row['clear_sky_probability'] = None
         row['cloud_observations'] = None
-    if lodging_index is not None:
-        for radius in SUPPLY_RADII_KM:
-            s_ = supply_within(r.place.latitude, r.place.longitude,
-                               radius, lodging_index)
-            tag = int(radius)
-            row[f'lodging_within_{tag}km'] = s_.lodging_count
-            row[f'camping_within_{tag}km'] = s_.camping_count
     rows.append(row)
 
 # CSV: the full dataset, openly licensed.
@@ -215,14 +192,6 @@ json_path.write_text(json.dumps({
          'retrieved': meta['provenance']['retrieved']},
         {'name': 'Populated places', 'attribution': 'GeoNames, CC BY 4.0',
          'url': 'https://download.geonames.org/export/dump/'},
-        {'name': 'Lodging supply',
-         'attribution': 'OpenStreetMap contributors, ODbL 1.0',
-         'url': 'https://download.geofabrik.de/',
-         'note': 'Counts of tourism=hotel|guest_house|hostel|motel|apartment|'
-                 'chalet|resort|hut features, and campsites counted '
-                 'separately. Supply only: this dataset carries no prices. '
-                 'Coverage varies enormously by country, so counts compare '
-                 'honestly within a country and poorly across borders.'},
         *([{'name': 'Cloud climatology',
             'attribution': cloud_blob['source']['attribution'],
             'url': cloud_blob['source']['url'],
@@ -246,7 +215,7 @@ print(f'wrote            {csv_path.relative_to(ROOT)}')
 print(f'wrote            {json_path.relative_to(ROOT)}  '
       f'({json_path.stat().st_size // 1024} KB)')
 
-# Towns outside the path: a partial eclipse only, so no stays or cloud.
+# Towns outside the path: a partial eclipse only, so no cloud.
 out_rows = [r.as_row() for r in outs]
 out_csv = OUT / f'{EVENT}-outside.csv'
 with out_csv.open('w', newline='', encoding='utf-8') as fh:

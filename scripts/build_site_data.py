@@ -29,6 +29,9 @@ sys.path.insert(0, str(ROOT / 'src'))
 from eclipse import event  # noqa: E402
 
 EVENT = event.from_argv()
+# A path drawn past 180 degrees gets its towns in the same range, so the map
+# and the chart along the path put them beside it.
+WINDOW = event.settings(EVENT).get('lon_window')
 
 src = json.loads((ROOT / 'data' / 'out' / f'{EVENT}-places.json')
                  .read_text(encoding='utf-8'))
@@ -62,7 +65,7 @@ for p in src['places']:
         'n': p['name'],
         'c': p['country_code'],
         'y': round(p['latitude'], 4),
-        'x': round(p['longitude'], 4),
+        'x': round(event.frame(p['longitude'], WINDOW), 4),
         'p': p['population'],
         'd': round(p['duration_seconds'], 1),
         's': round(p['seconds_sacrificed'], 1),
@@ -71,18 +74,19 @@ for p in src['places']:
         'k': p['distance_from_centerline_km'],
         'w': p['mean_cloud_percent'],
         'q': p['clear_sky_probability'],
-        'l': p['lodging_within_25km'],
-        'L': p['lodging_within_80km'],
         'z': p['timezone'],
         't0': t0,
         't1': t1,
         'o': offset,
     })
 
+# Names from this dataset's own list: the FCDO files Cocos and Christmas
+# Island under Australia, and its page title would name them that.
+names = {p['country_code']: p['country'] for p in src['places']}
 adv = {}
 for cc, a in src['advisories']['by_country'].items():
     adv[cc] = {
-        'country': a['country'],
+        'country': names.get(cc, a['country']),
         'worst': a['worst'],
         'label': a['labels'][0] if a['labels'] else None,
         'regions': a['regions'],
@@ -123,7 +127,7 @@ for p in outside_src['places']:
         'n': p['name'],
         'c': p['country_code'],
         'y': round(p['latitude'], 4),
-        'x': round(p['longitude'], 4),
+        'x': round(event.frame(p['longitude'], WINDOW), 4),
         'p': p['population'],
         'v': round(p['obscuration_percent'], 1),
         'm': mid.strftime('%H:%M'),

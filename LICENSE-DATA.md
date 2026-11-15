@@ -1,23 +1,27 @@
 # Licence: data
 
 Everything under `data/out/` and `docs/data/` is licensed under the
-**Open Database License (ODbL) v1.0**.
+**Creative Commons Attribution 4.0 International (CC BY 4.0)**.
 
-https://opendatacommons.org/licenses/odbl/1-0/
+https://creativecommons.org/licenses/by/4.0/
 
 The code is licensed separately, under AGPL 3.0. See `LICENSE`.
 
-## Why ODbL and not something more permissive
+## Why CC BY
 
-The lodging columns are derived from OpenStreetMap, which is ODbL. ODbL is
-share-alike, so a dataset containing OSM-derived data cannot be released under
-a permissive licence such as CC BY. Rather than split the dataset or drop the
-columns, the whole thing is ODbL. GeoNames requires attribution only, which
-ODbL satisfies.
+Every source that goes into the dataset asks for attribution at most, so the
+dataset asks for nothing more. GeoNames is itself CC BY 4.0.
 
-In short: use it, change it, build on it, including commercially. If you
-publish a database derived from it, publish that under ODbL too, and keep the
-attributions below.
+In short: use it, change it, build on it, including commercially, under any
+licence you like. Keep the attributions below.
+
+## Earlier versions
+
+Versions before November 2026 carried lodging counts derived from
+OpenStreetMap, which is ODbL and share-alike, so they were released under the
+Open Database License (ODbL) v1.0. Copies taken from those versions stay under
+ODbL. Those columns have since been dropped, and everything published from
+November 2026 on is CC BY 4.0.
 
 ## What you must carry
 
@@ -30,11 +34,6 @@ Attribution for every source that went into the dataset:
 - **Cloud.** Contains modified Copernicus Climate Change Service information
   (ERA5 hourly data on single levels). Neither the European Commission nor
   ECMWF is responsible for any use of this information.
-- **Places to stay.** © OpenStreetMap contributors, ODbL 1.0.
-  https://www.openstreetmap.org/copyright
-- **Hotel registers**, used only for the stays coverage rating. INE (Spain),
-  HCP (Morocco), ONTT (Tunisia), GASTAT (Saudi Arabia) and the UN Tourism
-  Statistics Database (Algeria, Egypt). Sources in `data/hotel_registers.json`.
 - **Country outlines.** Natural Earth, public domain. No attribution is
   required; it is listed for provenance. https://www.naturalearthdata.com/
 - **Travel advisories.** Contains public sector information licensed under the
@@ -52,7 +51,7 @@ were computed independently.
 ## Accuracy
 
 The dataset is offered as-is. The eclipse geometry is validated against
-published NASA values, and the checks are in `tests/`. The cloud, lodging and
+published NASA values, and the checks are in `tests/`. The cloud and
 advisory columns each carry limitations that are documented in the `caveats`
 block of the JSON output and on the site's method page. Read those before
 relying on any of it for a decision that costs money.

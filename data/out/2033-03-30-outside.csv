@@ -1,0 +1,3 @@
+geonameid,name,country_code,country,latitude,longitude,elevation_m,population,timezone,obscuration_percent,magnitude,max_eclipse_ut_hours,sun_altitude_deg,km_to_edge_of_totality,km_to_centre_line
+4031742,Egvekinot,RU,Russia,66.32321,-179.11838,9,2248,Asia/Anadyr,99.93,0.99802,17.834706,2.68,56.47,537.76
+5880568,Bethel,US,United States,60.79222,-161.75583,1,6450,America/Anchorage,99.786,0.99568,17.683395,9.61,64.04,445.23
