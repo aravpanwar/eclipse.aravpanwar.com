@@ -22,7 +22,7 @@ advice, and their pages say they have passed.
 | Path | Contents |
 |---|---|
 | `data/elements/` | Besselian elements, one JSON file per event |
-| `data/events.json` | Choices made by hand for each event: map view, link card framing |
+| `data/events.json` | Choices made by hand for each event: path windows, map view, delta T note |
 | `src/eclipse/` | Computation: local circumstances, path, places, cloud, advisories |
 | `scripts/` | Build steps, listed below |
 | `data/cache/` | Downloaded inputs and extracted caches |
@@ -51,7 +51,7 @@ Download these separately:
 - A Copernicus Climate Data Store account in `~/.cdsapirc`, for
   `fetch_cloud.py` only.
 
-The scripts download Natural Earth outlines, NASA path tables and fonts
+The scripts download Natural Earth outlines, NASA elements pages and fonts
 themselves.
 
 ## Build
