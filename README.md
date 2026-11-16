@@ -185,6 +185,10 @@ durations by 1 to 3 s.
 - Country outlines: Natural Earth 1:10m, UK point of view, v5.1.2, public
   domain.
 
+## Citation
+
+See [CITATION.cff](CITATION.cff).
+
 ## Licence
 
 Code: AGPL 3.0 (`LICENSE`).

@@ -1,0 +1,28 @@
+{
+  "title": "Totality Path & Nearby Locations",
+  "description": "Maps and data for watching total solar eclipses: every populated place in the path of totality, using NASA's Besselian elements. For each place the dataset gives the duration of totality, local times, the Sun's altitude, the distance from the centre line and, closer to each date, historical cloud cover. It covers eleven total eclipses from 2017 to 2035. Interactive version: https://eclipse.aravpanwar.com/",
+  "upload_type": "software",
+  "version": "1.0.0",
+  "creators": [
+    {
+      "name": "Panwar, Arav",
+      "orcid": "0009-0009-3013-5970"
+    }
+  ],
+  "license": "agpl-3.0-or-later",
+  "notes": "The code is licensed under AGPL 3.0 or later. The data in data/out/ and docs/data/ is licensed under CC BY 4.0, with the attributions listed in LICENSE-DATA.md. The bundled fonts, Schibsted Grotesk and Source Serif 4, are under the SIL Open Font License 1.1.",
+  "keywords": [
+    "solar eclipse",
+    "astronomy",
+    "besselian elements",
+    "geonames",
+    "open data"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://eclipse.aravpanwar.com/",
+      "relation": "isSupplementedBy",
+      "resource_type": "other"
+    }
+  ]
+}
