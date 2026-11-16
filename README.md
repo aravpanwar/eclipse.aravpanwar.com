@@ -1,5 +1,7 @@
 # eclipse.aravpanwar.com
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24274887.svg)](https://doi.org/10.5281/zenodo.24274887)
+
 Computes local circumstances of a solar eclipse from NASA's Besselian elements
 for every populated place in GeoNames near the path, and publishes the results
 as CSV, JSON and a static map site.
