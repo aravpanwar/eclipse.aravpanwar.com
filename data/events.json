@@ -1,5 +1,5 @@
 {
-  "_about": "Choices made by hand for each eclipse. Everything else comes from data/elements/<event>.json and the computed places. Every key is optional: lon_window defaults to the whole path and must stop at 180 or run past it for a path that crosses 180, lat_window narrows the centre line search for a path that doubles back, map defaults to the path's bounds, og to no link card.",
+  "_about": "Choices made by hand for each eclipse. Everything else comes from data/elements/<event>.json and the computed places. Every key is optional: lon_window defaults to the whole path and must stop at 180 or run past it for a path that crosses 180, lat_window narrows the centre line search for a path that doubles back, map defaults to the path's bounds.",
   "2026-08-12": {
     "lon_window": [-26.5, 5],
     "lat_window": [36, 72]
@@ -7,8 +7,7 @@
   "2027-08-02": {
     "lon_window": [-12, 52],
     "map": {"center": [32.0, 26.3], "zoom": 5.4},
-    "delta_t_note": "NASA's older 2027 map used 71.7 s, about 2 km of longitudinal difference.",
-    "og": {"lat_top": 42.5, "lat0": 24.0, "lon_left": -19.0, "lat_span": 39.0}
+    "delta_t_note": "NASA's eclipse search engine gives 76.0 s for this eclipse instead, about 2 km of difference east to west."
   },
   "2028-07-22": {
     "lon_window": [78.5, 180]

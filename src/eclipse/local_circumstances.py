@@ -18,14 +18,15 @@ source of silent kilometre-scale errors:
   x, y, l1, l2   Earth equatorial radii
   d, mu          degrees
   tan f1, f2     dimensionless
-  longitude      degrees, EAST POSITIVE (enters as mu - lon; see note below)
+  longitude      degrees, EAST POSITIVE (enters as mu + lon; see note below)
   t              decimal hours from t0, in TDT
 
 The observer's position enters through the fundamental plane: a plane through
 Earth's centre perpendicular to the shadow axis, with +y north and +x east.
 
-The local hour angle of the shadow axis is H = mu - longitude for east-positive
-longitude. Getting this sign backwards mirrors the path about the sub-shadow
+The local hour angle of the shadow axis is H = mu + longitude for east-positive
+longitude, mu being the Greenwich hour angle. Meeus writes it mu - longitude
+because he counts longitude positive west. Getting this sign backwards mirrors the path about the sub-shadow
 meridian: duration at the peak still looks right, but the peak lands on the
 wrong side, which is why the greatest-duration point is the load-bearing test
 rather than Luxor's duration alone.
@@ -125,10 +126,10 @@ def fundamental_plane(lat_deg, lon_deg, elevation_m, el, delta_t_seconds=0.0):
     """Observer coordinates (xi, eta, zeta) in the fundamental plane.
 
     mu is tabulated against TDT but expresses a Greenwich hour angle, which is
-    a UT quantity. The two frames differ by delta_T, so it has to be added
-    here. Omitting it leaves latitude correct and shifts longitude west by
-    delta_T * 15 / 3600 degrees, about 32 km for this eclipse: exactly the
-    east/west path shift the project brief flags as correctness-critical.
+    a UT quantity. The two frames differ by delta_T, so mu is reduced by
+    delta_T * 15 / 3600 degrees here. Leaving that out keeps latitude right
+    but moves the whole path west, by about 30 km at the latitude of 2027's
+    path, far more than any other error in the calculation.
     """
     rho_sin, rho_cos = geocentric_observer(lat_deg, lon_deg, elevation_m)
     d = math.radians(el["d"])

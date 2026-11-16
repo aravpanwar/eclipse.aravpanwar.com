@@ -1,7 +1,11 @@
 # Moves the homepage on by itself: the day after an eclipse, the next one
 # takes the large block at the top and the one just gone moves to the past
 # section. scripts/build_home.py does the work; this only runs it every day
-# and pushes when the page has changed, which is a few times a decade.
+# and pushes when the pages have changed, which is a few times a decade.
+#
+# GitHub turns off a scheduled workflow after 60 days without a push to the
+# repository, and a year can pass between eclipses here. Each run turns this
+# one on again through the API, which restarts that count.
 name: homepage
 
 on:
@@ -10,6 +14,7 @@ on:
   workflow_dispatch:
 
 permissions:
+  actions: write
   contents: write
   pages: write
 
@@ -17,8 +22,8 @@ jobs:
   home:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.11'
       - name: write the homepage for today
@@ -27,7 +32,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if git diff --quiet docs/index.html; then
+          if git diff --quiet docs/; then
             echo 'no change'
             exit 0
           fi
@@ -37,3 +42,7 @@ jobs:
           git push
           # Pushes made with this token may not start a Pages build on their own.
           gh api -X POST "repos/${{ github.repository }}/pages/builds" || true
+      - name: keep the schedule on
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/home.yml/enable"

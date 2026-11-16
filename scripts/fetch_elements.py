@@ -47,7 +47,7 @@ def fetch(kind):
     slug = f'{day.year}{day:%b}{day.day:02d}{kind}'
     url = BASE.format(century=century, slug=slug)
     try:
-        with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=60) as r:
+        with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=64) as r:
             page = r.read().decode('latin-1')
     except urllib.error.HTTPError as e:
         if e.code == 404:

@@ -139,8 +139,8 @@ function matching(list) {
 function sorted(list) {
   const k = state.sort;
   const copy = list.slice();
-  // Seconds lost and cloud sort ascending (less is better); beds and
-  // population descending (more is more).
+  // Seconds lost and cloud sort ascending (less is better); population
+  // descending (more is more).
   const asc = (k === 's' || k === 'w');
   copy.sort((a, b) => {
     const av = a[k], bv = b[k];
@@ -178,10 +178,10 @@ function advisoryHtml(cc, name) {
   const regions = a.regions.length
     ? ` Named areas: ${esc(a.regions.join(', '))}.`
     : '';
-  return `<div class="advisory">${WARN_ICON}<span>${state.data.issuer
-    .replace('UK Foreign, Commonwealth &amp; Development Office', 'FCDO')}
+  return `<div class="advisory">${WARN_ICON}<span>${esc(state.data.issuer
+    .replace('UK Foreign, Commonwealth & Development Office', 'FCDO'))}
     ${a.label.toLowerCase()}.${regions}
-    <a href="${a.url}" target="_blank" rel="noopener">Checked ${a.reviewed}</a>.</span>
+    <a href="${a.url}" target="_blank" rel="noopener">FCDO review of ${a.reviewed}</a>.</span>
     <button type="button" class="advhide" data-adv="${cc}" aria-expanded="true"
       aria-label="Hide the travel advisory for ${esc(name)}">×</button></div>`;
 }
@@ -388,8 +388,8 @@ function render() {
     for (const p of places) {
       const sel = p.i === state.selected ? ' sel' : '';
       // Roving tabindex: exactly one row is tabbable, the rest are reached
-      // with arrow keys. Without this a keyboard user has to press Tab 772
-      // times to get past the table.
+      // with arrow keys. Without this a keyboard user has to press Tab once
+      // per place to get past the table.
       const tab = p.i === focusId ? 0 : -1;
       const label = `${p.n}. Totality ${p.t0 ? `from ${p.t0} local time, ` : ''}`
         + `${mmss(p.d)} long.${state.hasCloud ? ` ${fmtPct(p.w)} ${MONTH} cloud.` : ''}`;
@@ -955,7 +955,9 @@ function readUrl() {
   const at = q.get('at');
   if (at && /^-?\d+(\.\d+)?,-?\d+(\.\d+)?$/.test(at)) {
     const [lat, lon] = at.split(',').map(Number);
-    if (lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180) {
+    // Up to 360: a path drawn past 180 degrees, as 2033's is, puts its
+    // pins there too.
+    if (lat >= -90 && lat <= 90 && lon >= -180 && lon <= 360) {
       state.pin = { lat, lon };
     }
   }

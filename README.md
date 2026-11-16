@@ -62,9 +62,9 @@ python scripts/build.py <event>             # data/out/<event>-places.{csv,json}
 python scripts/fetch_cloud.py <event>       # optional, then build.py again; writes data/cache/cloud/
 python scripts/build_site_data.py <event>   # docs/data/<event>-places.json, <event>-outside.json
 python scripts/build_countries.py <event>   # docs/data/<event>-countries.geojson
-python scripts/build_images.py <event>      # docs/og.png, homepage thumbnails, site icons
+python scripts/build_images.py <event>      # docs/og/<event>.png, homepage thumbnails, site icons
 python scripts/build_page.py <event>        # docs/solar-eclipse/<event>/index.html
-python scripts/build_home.py                # the homepage: next eclipse, later ones, past ones
+python scripts/build_home.py                # the homepage: next eclipse, later ones, past ones; sitemap
 python -m pytest tests/ -q
 ```
 
@@ -91,8 +91,7 @@ is available yet and leaves cloud out of the list.
    back to -180..180 in the output. A path that doubles back needs a
    `lat_window` to say which pass to draw (2033 turns back in the Arctic;
    2026 runs south past Iceland, so it is drawn from Iceland to Spain).
-   Without a `map` view the map frames the whole path; without `og` no link
-   card is drawn.
+   Without a `map` view the map frames the whole path.
 3. Add any new country to `COUNTRY_NAMES` in `src/eclipse/places.py` and
    `SLUGS` in `src/eclipse/advisories.py`. `build.py` stops on a missing one.
    A past eclipse needs no slug, since it fetches no advice.
@@ -132,16 +131,20 @@ from GeoNames is missing here.
 ## Validation
 
 `tests/test_validation.py` checks the 2027 computation against published
-values:
+values, and `tests/test_elements.py` checks every eclipse's elements against
+NASA's greatest eclipse figures: the point lies on the shadow axis, and the
+Sun's altitude and the duration there agree within 0.3 degrees and 2 s.
+For 2027:
 
 | Check | Reference | Computed |
 |---|---|---|
-| Distance of NASA's greatest eclipse point from the shadow axis | 0 | 1.0e-5 Earth radii |
-| Sun altitude at greatest eclipse | 81.7 deg (NASA) | 81.69 deg |
-| Duration at greatest eclipse | 6m23s (NASA) | 382.5 s |
-| Duration at Luxor | 6m19s to 6m23s | 380.0 s |
-| Greatest duration minus duration at greatest eclipse | 0 to 3 s | passes |
-| Countries crossed | 9 plus Gibraltar, not Sudan | passes |
+| Distance of NASA's greatest eclipse point from the shadow axis | 0 | 1.6e-5 Earth radii |
+| Sun altitude at greatest eclipse | 81.7 deg (NASA) | 81.68 deg |
+| Duration at greatest eclipse | 6m22.6s (NASA) | 382.5 s |
+| Duration at Luxor (25.687 N, 32.640 E, 76 m) | 6m19s to 6m24s | 380.2 s |
+| Greatest duration minus duration at greatest eclipse | 0 to 3 s | 0.6 s |
+| A point inside the path in each of the 9 countries and Gibraltar | in totality | passes |
+| Three points in Sudan | outside totality | passes |
 | Cairo, Aden, Berbera | outside totality | passes |
 | ERA5 August cloud, Girga and Sanaa | under 10%, over 40% | 1.8%, 79.8% |
 
@@ -155,11 +158,13 @@ mountains.
 
 `mu` is tabulated against TDT but is a Greenwich hour angle, which is a UT
 quantity, so the code subtracts delta T from it. Leaving it out shifts
-longitudes by delta T x 15 / 3600 degrees. The 2027 build uses delta T =
-76.0 s.
+longitudes by delta T x 15 / 3600 degrees. Each eclipse uses the delta T on
+NASA's elements page for it, 71.7 s for 2027. NASA's search engine gives 76.0 s
+for 2027 instead, which moves the path about 2 km east or west; versions
+before November 2026 used that value.
 
 Greatest eclipse and greatest duration are different points. For 2027 they are
-about 215 km and 0.6 s apart. `seconds_sacrificed` is measured from greatest
+about 250 km and 0.6 s apart. `seconds_sacrificed` is measured from greatest
 duration.
 
 The lunar radius is k1 = 0.272488 for penumbral contacts and k2 = 0.272281 for

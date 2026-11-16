@@ -56,8 +56,7 @@ values = {
     'kind': kind,
     'month': event.month_name(EVENT),
     'description': description,
-    'first': west,
-    'last': east,
+    'where': event.where(west, east),
     'count': f'{len(places):,}',
     'range_km': outside['range_km'],
 }
@@ -74,6 +73,6 @@ page = re.sub(r'\{\{(\w+)\}\}', fill, page)
 dest = ROOT / 'docs' / 'solar-eclipse' / EVENT / 'index.html'
 dest.parent.mkdir(parents=True, exist_ok=True)
 dest.write_text(page, encoding='utf-8')
-print(f'places            {values["count"]} from {values["first"]} to {values["last"]}')
+print(f'places            {values["count"]} {values["where"]}')
 print(f'cloud             {"yes" if has_cloud else "none yet, the page says so"}')
 print(f'wrote             {dest.relative_to(ROOT)}')

@@ -31,7 +31,7 @@
  "advisories": {
   "issuer": "UK Foreign, Commonwealth & Development Office",
   "issuer_short": "FCDO",
-  "handling": "Attached to the country group, never to individual rows. Nothing is hidden or reordered because of an advisory: a ranking that optimises for duration, clear sky and low crowds will surface places under serious advisories at the top, because on those axes they genuinely win.",
+  "handling": "Attached to the country group, never to individual rows. Nothing is hidden or reordered because of an advisory: a ranking that optimises for duration and clear sky will surface places under serious advisories at the top, because on those axes they genuinely win.",
   "by_country": {
    "RU": {
     "country_code": "RU",

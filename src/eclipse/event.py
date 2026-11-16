@@ -66,5 +66,13 @@ def long_date(event: str) -> str:
     return f'{d.day} {d:%B %Y}'
 
 
+def where(west: str, east: str) -> str:
+    """'from Spain to Somalia', or 'in the United States' for one country."""
+    def named(country):
+        plural = country.startswith('United ') or 'Islands' in country
+        return f'the {country}' if plural else country
+    return f'from {named(west)} to {named(east)}' if west != east else f'in {named(west)}'
+
+
 def month_name(event: str) -> str:
     return f'{day(event):%B}'

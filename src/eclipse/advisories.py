@@ -8,13 +8,13 @@
 
 """Travel advisories from the FCDO, fetched at build time.
 
-Queried once per build and committed, never per visitor. The brief requires the
-issuing body and the date checked to be shown, and both come straight from the
-feed rather than being asserted by hand.
+Queried once per build and committed, never per visitor. The issuing body and
+the date the FCDO last reviewed the advice are shown with it, and both come
+straight from the feed rather than being asserted by hand.
 
 Handling is deliberately soft but unmissable: the advisory attaches to the
 country group, never to individual rows, and nothing is hidden or reordered
-because of it. A ranking that optimises for duration, clear sky and low crowds
+because of it. A ranking that optimises for duration and clear sky
 will surface places under serious advisories at the top, because on those axes
 they genuinely win. The map should not lie about what is in the path.
 """

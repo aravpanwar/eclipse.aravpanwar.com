@@ -5,17 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#1e4a33">
 <title>Method | Totality Path &amp; Nearby Locations | Arav Panwar</title>
-<meta name="description" content="How the durations, places, cloud and travel advisories for the 2 August 2027 total solar eclipse are computed, sourced and checked.">
+<meta name="description" content="How the durations, places, cloud and travel advisories for each total solar eclipse on this site are computed, sourced and checked.">
 <link rel="canonical" href="https://eclipse.aravpanwar.com/method.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Eclipses | Arav Panwar">
 <meta property="og:title" content="Method | Totality Path &amp; Nearby Locations">
-<meta property="og:description" content="How the durations, places, cloud and travel advisories for the 2 August 2027 total solar eclipse are computed, sourced and checked.">
+<meta property="og:description" content="How the durations, places, cloud and travel advisories for each total solar eclipse on this site are computed, sourced and checked.">
 <meta property="og:url" content="https://eclipse.aravpanwar.com/method.html">
-<meta property="og:image" content="https://eclipse.aravpanwar.com/og.png">
+<meta property="og:image" content="https://eclipse.aravpanwar.com/og/2027-08-02.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Map of the path of totality from Spain to Somalia, with the 771 places inside it marked.">
+<meta property="og:image:alt" content="Map of the path of totality of 2 August 2027, from Spain to Somalia, with the 773 places inside it marked.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -52,16 +52,18 @@
   <span class="rule" aria-hidden="true"></span>
   <span class="event">Method</span>
   <span class="spacer"></span>
-  <nav><a href="/solar-eclipse/2027-08-02/">Back to the map</a></nav>
+  <nav><a href="/" id="back">All eclipses</a></nav>
 </header>
 
 <div class="prose">
 
 <h2>What this is</h2>
-<p>Every populated place inside the path of the total solar eclipse of
-2 August 2027, with how long totality lasts there and what that costs against
-the longest totality anywhere on the path. Places within 100 km outside the
-path are listed too, with how much of the sun is covered there.</p>
+<p>For each total solar eclipse on this site, every populated place inside the
+path, with how long totality lasts there and what that costs against the
+longest totality anywhere on the path. Places within 100 km outside the path
+are listed too, with how much of the sun is covered there.</p>
+<p>Every eclipse is computed the same way. Where a figure below belongs to one
+eclipse, it is for 2 August 2027, the next one.</p>
 
 <h2>Eclipse geometry</h2>
 <p>Local circumstances are computed from the Besselian elements published by
@@ -70,22 +72,23 @@ Astronomical Ephemeris (1974) and Meeus, <i>Elements of Solar Eclipses</i>
 (1989). Nothing is traced from a map.</p>
 
 <h3>Delta T</h3>
-<p>Computed with &Delta;T = 76.0 s, the value NASA publishes for this eclipse,
-based on Morrison and Stephenson (2004). &Delta;T is not perfectly predictable
-and shifts the path east or west: an older NASA map for this eclipse used
-71.7 s, a difference of about 2 km of longitude. The figure used is stated
-here and in the dataset, so you can tell which one these numbers assume.</p>
+<p>Each eclipse is computed with the &Delta;T on NASA&rsquo;s Besselian
+elements page for it: 71.7 s for 2 August 2027. &Delta;T is not perfectly
+predictable and shifts the path east or west. NASA&rsquo;s eclipse search
+engine gives 76.0 s for 2027, which moves the path by about 2 km, and versions
+of this site before November 2026 used that value. The figure used is stated
+in each dataset, so you can tell which one the numbers assume.</p>
 
 <h3>Lunar limb</h3>
-<p>The Moon has mountains, which move the path limits by 1&ndash;2 km and
-duration by 1&ndash;3 s against the smooth-limb figures used here.
-Limb-corrected predictions are usually published 12&ndash;18 months before an
-event.</p>
+<p>The Moon has mountains, which move the path limits by 1 to 2 km and
+duration by 1 to 3 s against the smooth-limb figures used here.
+Limb-corrected predictions are usually published 12 to 18 months before an
+eclipse.</p>
 
 <h3>Greatest eclipse is not greatest duration</h3>
 <p>These are different points. Greatest eclipse is where the shadow axis passes
 closest to the centre of the Earth; greatest duration is where totality lasts
-longest. For this eclipse they are 0.6 s and about 215 km apart. The site shows
+longest. For 2027 they are 0.6 s and about 250 km apart. The site shows
 how long totality lasts at each place, not how much it falls short. That gap
 is in the CSV download as <code>seconds_sacrificed</code>, measured against
 greatest duration, which is the honest denominator.</p>
@@ -96,39 +99,42 @@ eclipse, less half the duration for the start and plus half for the end, in the
 place&rsquo;s time zone from GeoNames. They are worked out when the dataset is
 built, with the rules of the IANA time zone database, so they include summer
 time: Egypt is on UTC+3 in August 2027, not UTC+2. Morocco moved to permanent
-UTC+0 on 20 September 2026, so Moroccan times here are an hour earlier than in
-sources made before then. Times are truncated to the minute, and the
+UTC+0 on 20 September 2026, so Moroccan times for 2027 here are an hour
+earlier than in sources made before then. Times are truncated to the minute, and the
 Moon&rsquo;s mountains can move the start and end by a second or two.</p>
 
 <h3>Distances</h3>
 <p>All distances are great-circle. Circle membership is by distance, not by
 testing points against the drawn circle polygon, which would make places on the
 edge flicker in and out as you zoom. The radius is straight-line, and straight
-lines are not journeys: 120 km along the Nile and 120 km into the Western
-Desert are very different drives.</p>
+lines are not journeys: in 2027, 120 km along the Nile and 120 km into the
+Western Desert are very different drives.</p>
 
 <h2>Validation</h2>
 <p>The computation is checked against independently published values before
-anything downstream is trusted.</p>
+anything downstream is trusted. For every eclipse, NASA&rsquo;s greatest
+eclipse point must lie on the computed shadow axis, with the Sun&rsquo;s
+altitude within 0.3&deg; and the duration within 2 s of NASA&rsquo;s figures.
+2 August 2027 is checked in more detail:</p>
 <div class="tablewrap"><table>
 <tr><th>Check</th><th>Published</th><th>Computed</th></tr>
-<tr><td>Greatest eclipse on the shadow axis</td><td class="n">~0</td><td class="n">1.0e-5</td></tr>
-<tr><td>Sun altitude at greatest eclipse</td><td class="n">81.7&deg;</td><td class="n">81.69&deg;</td></tr>
-<tr><td>Duration at greatest eclipse</td><td class="n">6m 23s</td><td class="n">382.5 s</td></tr>
-<tr><td>Luxor</td><td class="n">6m 20s</td><td class="n">380.4 s</td></tr>
+<tr><td>Greatest eclipse on the shadow axis</td><td class="n">~0</td><td class="n">1.6e-5</td></tr>
+<tr><td>Sun altitude at greatest eclipse</td><td class="n">81.7&deg;</td><td class="n">81.68&deg;</td></tr>
+<tr><td>Duration at greatest eclipse</td><td class="n">6m 22.6s</td><td class="n">382.5 s</td></tr>
+<tr><td>Luxor</td><td class="n">6m 20s</td><td class="n">380.2 s</td></tr>
 <tr><td>Countries crossed</td><td class="n">9 and Gibraltar</td><td class="n">9 and Gibraltar</td></tr>
 </table></div>
-<p>Sudan appears in some lists of countries this eclipse crosses. It does not:
-where the path is at Sudan&rsquo;s longitudes the centre line is near
-25&ndash;27&deg;N, and Sudan&rsquo;s northern border is at 22&deg;N.</p>
+<p>Sudan appears in some lists of countries the 2027 eclipse crosses. It does
+not: where the path is at Sudan&rsquo;s longitudes the centre line is near
+25 to 27&deg;N, and Sudan&rsquo;s northern border is at 22&deg;N.</p>
 
 <h2>Places</h2>
 <p>From GeoNames <code>cities1000</code>, filtered to populated places and
 administrative seats. Sections of a town are left out, since GeoNames lists
 them as places of their own and they would list one town twice. Every country
 is searched, and the eclipse calculation decides which places are in totality.
-Coverage is uneven by country: 117 Spanish places inside
-the path against 18 Libyan and 8 Somali. That is a fact about who edits
+Coverage is uneven by country: in 2027, 118 Spanish places
+inside the path against 18 Libyan and 8 Somali. That is a fact about who edits
 GeoNames, not about where towns are. A place missing here is missing from
 GeoNames.</p>
 <p>Population figures come from GeoNames as published and are not always the
@@ -137,7 +143,7 @@ Esna appears larger than Luxor.</p>
 
 <h2 id="outside">Towns outside the path</h2>
 <p>Every place in the same GeoNames list that is within 100 km of the edge of
-totality but not inside it: 1,061 places in 13 countries. They see a partial
+totality but not inside it: for 2027, 1,062 places in 13 countries. They see a partial
 eclipse only. They are on the map as hollow dots and join the list when you
 search or drop a pin. They have no cloud or ranking, and are in a
 CSV of their own.</p>
@@ -154,22 +160,23 @@ proper solar filter, even at 99%. Only totality itself is safe to look at with
 the naked eye.</p>
 
 <h2>Cloud</h2>
-<p>ERA5 total cloud cover, 1985&ndash;2024, sampled at each place&rsquo;s local
+<p>ERA5 total cloud cover, 1985 to 2024, sampled at each place&rsquo;s local
 eclipse hour on the eclipse date and the day either side. That is 120
 observations per place, not 120 independent years, since consecutive days in
-one August are correlated.</p>
+one month are correlated. Cloud is added for each eclipse closer to its date,
+so later eclipses show none yet, and eclipses that have passed carry none.</p>
 <p>ERA5 runs on a 0.25 degree grid, about 28 km. That is coarser than the
-terrain here: one cell can span the Nile valley and the desert plateau beside
+terrain: in 2027, one cell can span the Nile valley and the desert plateau beside
 it, which do not have the same weather. Read these numbers as regional.</p>
-<p>Checked against Jay Anderson&rsquo;s satellite-derived figures at
+<p>2027 is checked against Jay Anderson&rsquo;s satellite-derived figures at
 <a href="https://eclipsophile.com/tse2027/">eclipsophile.com</a>: Tarifa
 computes at 23.8% against his 26%, close agreement from an independent method
 and dataset. Luxor computes at 3.1% against his 0.7%, and Melilla at 25.3%
 against his 39%; both read high for the grid-resolution reason above. For a
 specific site Anderson is the better source. His tables are not reproduced
 here because they state no licence.</p>
-<p>Climatology is not a forecast. A real forecast for 2 August 2027 will exist
-about a week beforehand and will be worth more than any of this.</p>
+<p>Climatology is not a forecast. A real forecast for an eclipse day exists
+about a week beforehand and is worth more than any of this.</p>
 
 <h2>Travel advisories</h2>
 <p>From the UK Foreign, Commonwealth &amp; Development Office, fetched when the
@@ -177,7 +184,9 @@ dataset was built and shown with the date the FCDO last reviewed it. The
 advisory is attached to the country group, never to individual places, and
 nothing is hidden or reordered because of one. Where the FCDO names the
 specific regions an advisory covers, those are listed, because
-&ldquo;parts of the country&rdquo; without saying which parts is not useful.</p>
+&ldquo;parts of the country&rdquo; without saying which parts is not useful.
+Eclipses that have passed carry no advisories, since today&rsquo;s advice
+says nothing about a trip that can no longer be made.</p>
 <p>On the map, a country under an advisory against all travel is shaded:
 red when the advisory covers the whole country, pink when it covers parts.
 The FCDO publishes those parts as names, not outlines, so the pink covers the
@@ -212,7 +221,9 @@ its UK point-of-view edition to match the source of the advisories.</p>
 </ul>
 <p>The full dataset is on the map page as two CSV downloads: the places in
 totality, and the places within 100 km outside the path. Corrections are
-visible in the git history.</p>
+visible in the git history. Found a wrong town or time?
+<a href="https://github.com/aravpanwar/eclipse.aravpanwar.com/blob/main/CONTRIBUTING.md">Here
+is how to report it</a>.</p>
 
 <h2>Licence</h2>
 <p>The dataset, both CSV files included, is <a href="https://creativecommons.org/licenses/by/4.0/">CC BY
@@ -222,6 +233,20 @@ attributions above.</p>
 <a href="https://github.com/aravpanwar/eclipse.aravpanwar.com">AGPL 3.0</a>.</p>
 
 </div>
+<script>
+  // Came here from an eclipse's map: the link goes back to that map.
+  (() => {
+    try {
+      const from = new URL(document.referrer);
+      if (from.origin === location.origin
+          && /^\/solar-eclipse\/\d{4}-\d{2}-\d{2}\/$/.test(from.pathname)) {
+        const back = document.getElementById('back');
+        back.href = from.pathname + from.search;
+        back.textContent = 'Back to the map';
+      }
+    } catch (e) { /* no referrer: the link stays on all eclipses */ }
+  })();
+</script>
 <!-- Visit counts: GoatCounter, no cookies, no personal data. -->
 <script data-goatcounter="https://aravpanwar.goatcounter.com/count"
         async src="https://gc.zgo.at/count.js"></script>

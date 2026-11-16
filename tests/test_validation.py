@@ -1,6 +1,7 @@
 """Validation gate. If these fail, nothing downstream matters.
 
-Targets come from the project brief plus independently published values.
+Targets are NASA's published figures for 2 August 2027 plus independently
+published values.
 """
 import math
 import sys
@@ -13,8 +14,8 @@ import eclipse.local_circumstances as L
 E = L.Elements.from_json(
     Path(__file__).resolve().parents[1] / 'data' / 'elements' / '2027-08-02.json')
 
-LUXOR = (25.6872, 32.6396, 76.0)
-NASA_GREATEST_ECLIPSE = (25.5, 33.2)
+LUXOR = (25.6872, 32.6396, 76.0)          # latitude, longitude, elevation in m
+NASA_GREATEST_ECLIPSE = (25.505, 33.1833)
 
 
 def approx(a, b, tol):
@@ -35,13 +36,13 @@ def test_greatest_eclipse_sun_altitude():
 
 
 def test_greatest_eclipse_duration():
-    """NASA publishes central duration 06m23s at greatest eclipse."""
+    """NASA publishes central duration 06m22.6s at greatest eclipse."""
     c = L.compute(*NASA_GREATEST_ECLIPSE, 0.0, E)
-    assert approx(c.duration_seconds, 383.0, 1.0), c.duration_seconds
+    assert approx(c.duration_seconds, 382.6, 1.0), c.duration_seconds
 
 
 def test_luxor_duration():
-    """Brief says ~6m23s; eclipsewhere publishes 6m20s. Accept the 6m19-6m23 band."""
+    """eclipsewhere publishes 6m20s. Accept the 6m19-6m24 band."""
     c = L.compute(*LUXOR, E)
     assert c.in_totality
     assert 379.0 <= c.duration_seconds <= 384.0, c.duration_seconds
@@ -70,7 +71,7 @@ def test_greatest_duration_exceeds_greatest_eclipse_slightly():
 
 
 def test_path_crosses_expected_countries():
-    """Sampled points that must be inside the path, one per brief country."""
+    """Sampled points that must be inside the path, one per country crossed."""
     inside = {
         'Spain (Cadiz)':        (36.53, -6.29),
         'Morocco (Tangier)':    (35.78, -5.81),
@@ -79,6 +80,9 @@ def test_path_crosses_expected_countries():
         'Libya (Benghazi)':     (32.12, 20.07),
         'Egypt (Luxor)':        (25.69, 32.64),
         'Saudi Arabia (Jeddah)':(21.49, 39.19),
+        'Yemen (Ataq)':         (14.54, 46.83),
+        'Somalia (Qandala)':    (11.47, 49.87),
+        'Gibraltar':            (36.14, -5.35),
     }
     failures = []
     for name, (lat, lon) in inside.items():
@@ -104,8 +108,8 @@ def test_outside_path_is_not_total():
 def test_path_does_not_cross_sudan():
     """Some sources list Sudan as a tenth country. The centerline runs well
     north of it: at longitude 31-34 E the centre is near 25-27 N, and Sudan's
-    northern border is at 22 N. Kept as a regression test because the brief's
-    nine-country list depends on it.
+    northern border is at 22 N. Kept as a regression test because the
+    nine-country count on the method page depends on it.
     """
     for lat, lon in ((21.0, 31.5), (20.0, 33.0), (19.5, 34.0)):
         c = L.compute(lat, lon, 0.0, E)
@@ -138,8 +142,12 @@ def test_nearest_km_is_straight_line_distance_to_the_path():
 
 
 def test_delta_t_is_recorded():
-    """The brief requires the assumed delta T to be stored and displayable."""
-    assert E.delta_t_seconds == 76.0
+    """The delta T assumed is stored with the elements and shown on the site.
+
+    71.7 s is the value on NASA's Besselian elements page for this eclipse,
+    the same source as every other eclipse here.
+    """
+    assert E.delta_t_seconds == 71.7
 
 
 def _greatest_duration():

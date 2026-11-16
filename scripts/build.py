@@ -190,8 +190,8 @@ json_path.write_text(json.dumps({
         'issuer_short': ISSUER_SHORT,
         'handling': ('Attached to the country group, never to individual rows. '
                      'Nothing is hidden or reordered because of an advisory: a '
-                     'ranking that optimises for duration, clear sky and low '
-                     'crowds will surface places under serious advisories at '
+                     'ranking that optimises for duration and clear sky will '
+                     'surface places under serious advisories at '
                      'the top, because on those axes they genuinely win.'),
         'by_country': {cc: ad.as_dict() for cc, ad in advisories.items()},
     },

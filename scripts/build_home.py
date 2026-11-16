@@ -14,7 +14,9 @@ The soonest eclipse still to come gets the large block at the top, the
 others still to come get cards below it, soonest first, and the ones that
 have passed go in a section at the bottom, latest first. An eclipse counts
 as to come until the end of its own day, so the page changes the day after.
-Each part is written between its markers in docs/index.html. A scheduled
+Each part is written between its markers in docs/index.html, the link
+preview of it and of the method page points at the featured eclipse, and
+docs/sitemap.xml lists every page. A scheduled
 GitHub Action runs this every day, so the page moves on by itself.
 """
 import html
@@ -114,15 +116,49 @@ def section(page, name, shown):
                   lambda m: m[1] + ('' if shown else ' hidden'), page)
 
 
+def preview(page, e):
+    """Point a page's link-preview card at an eclipse's own card."""
+    places, _, _ = facts(e)
+    # The countries of the westernmost and easternmost towns, as on the
+    # eclipse's own page.
+    window = event.settings(e).get('lon_window')
+    west = min(places, key=lambda p: event.frame(p['longitude'], window))['country']
+    east = max(places, key=lambda p: event.frame(p['longitude'], window))['country']
+    alt = (f'Map of the path of totality of {event.long_date(e)}, '
+           f'{event.where(west, east)}, with the {len(places):,} places inside it marked.')
+    page = re.sub(r'(<meta property="og:image" content=")[^"]*(">)',
+                  lambda m: f'{m[1]}https://eclipse.aravpanwar.com/og/{e}.png{m[2]}', page)
+    return re.sub(r'(<meta property="og:image:alt" content=")[^"]*(">)',
+                  lambda m: m[1] + html.escape(alt) + m[2], page)
+
+
+# The method page has no eclipse of its own, so it shares the homepage's card.
+shown = featured or (past[0] if past else None)
+METHOD = ROOT / 'docs' / 'method.html'
+if shown:
+    METHOD.write_text(preview(METHOD.read_text(encoding='utf-8'), shown),
+                      encoding='utf-8', newline='\n')
+
 page = HOME.read_text(encoding='utf-8')
+if shown:
+    page = preview(page, shown)
 page = put(page, 'feature', feature(featured) if featured else '')
 page = put(page, 'cards', '\n'.join(card(e) for e in later))
 page = put(page, 'past', '\n'.join(card(e) for e in past))
 page = section(page, 'later', bool(later))
 page = section(page, 'past', bool(past))
 HOME.write_text(page, encoding='utf-8', newline='\n')
+
+# The sitemap lists the same pages, so it is written from the same list.
+SITE = 'https://eclipse.aravpanwar.com'
+urls = [f'{SITE}/', f'{SITE}/method.html', *(f'{SITE}/solar-eclipse/{e}/' for e in built)]
+SITEMAP = ROOT / 'docs' / 'sitemap.xml'
+SITEMAP.write_text('<?xml version="1.0" encoding="UTF-8"?>\n'
+                   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+                   + ''.join(f'  <url><loc>{u}</loc></url>\n' for u in urls)
+                   + '</urlset>\n', encoding='utf-8', newline='\n')
 print(f'today             {TODAY}')
 print(f'featured          {featured}')
 print(f'later             {", ".join(later) or "none"}')
 print(f'past              {", ".join(past) or "none"}')
-print(f'wrote             {HOME.relative_to(ROOT)}')
+print(f'wrote             {HOME.relative_to(ROOT)}, {SITEMAP.relative_to(ROOT)}')

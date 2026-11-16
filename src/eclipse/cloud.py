@@ -86,8 +86,8 @@ def build_request(year_from: int, year_to: int, month: int, days: list[int],
                   hours_ut: list[int], area: tuple[float, float, float, float]):
     """A single CDS request covering the whole path and the whole year window.
 
-    One request rather than one per place: the API is a queue, and 772 requests
-    would be both slow and inconsiderate. Area is (north, west, south, east) in
+    One request rather than one per place: the API is a queue, and hundreds of
+    requests would be both slow and inconsiderate. Area is (north, west, south, east) in
     degrees, which is the order the API expects and an easy one to get wrong.
     """
     north, west, south, east = area

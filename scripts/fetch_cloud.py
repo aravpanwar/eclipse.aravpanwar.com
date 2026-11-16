@@ -12,7 +12,7 @@ Run once per event. Needs ~/.cdsapirc and the ERA5 licence accepted on
 https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels
 
 One request for the whole path and all years, not one per place: the CDS is a
-shared queue, and 772 requests would be slow and inconsiderate.
+shared queue, and hundreds of requests would be slow and inconsiderate.
 """
 import csv
 import json

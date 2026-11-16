@@ -37,9 +37,7 @@ Everything in `data/out/`, `docs/data/`, `docs/solar-eclipse/` and
 `src/eclipse/` or `scripts/`, or the hand choices in `data/events.json`, then
 rebuild the affected eclipses as described in the README.
 
-- Error messages are lowercase, start with what was expected or what failed,
-  and have no trailing period.
-- Use plain hyphens, not en or em dashes.
+Use plain hyphens, not en or em dashes.
 
 Before opening a pull request, run:
 

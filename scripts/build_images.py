@@ -6,7 +6,9 @@
 # the Free Software Foundation, either version 3 of the License, or (at your
 # option) any later version. See <https://www.gnu.org/licenses/>.
 
-"""Draw the link-preview card, the homepage thumbnails and the site icons.
+"""Draw the eclipse's link-preview card, its homepage thumbnails and the site icons.
+
+    python scripts/build_images.py <event>
 
 The card is drawn from the same outlines, path and places as the site, not
 screenshotted from the map, so it carries no basemap tiles and needs no tile
@@ -15,7 +17,6 @@ first run.
 """
 import json
 import math
-import re
 import sys
 import urllib.request
 from pathlib import Path
@@ -96,138 +97,16 @@ def polygons(geom):
     return []
 
 
-# ---------- link-preview card ----------
+# ---------- the map ----------
 
-W, H = 1200, 630
-S = 3                      # drawn at 3x and scaled down, for smooth edges
-# The card's framing is chosen by hand for each event, in data/events.json:
-# the top latitude, the latitude whose scale it keeps, the left longitude and
-# how many degrees of latitude fit its height.
-OG = event.settings(EVENT).get('og')
+def fitted_map(ring, centre, dots, tw, th, z):
+    """Land, the band of totality, the centre line and the towns, fitted to one path.
 
-
-def project(lon, lat):
-    k = H / OG['lat_span']
-    x = (lon - OG['lon_left']) * math.cos(math.radians(OG['lat0'])) * k
-    y = (OG['lat_top'] - lat) * k
-    return x * S, y * S
-
-
-def card():
-    if not OG:
-        print('og card           SKIP (no og framing in data/events.json)')
-        return
-    land = json.loads(cached(NE_URL).read_text(encoding='utf-8'))
-    path = json.loads((DATA / f'{EVENT}-path.geojson').read_text(encoding='utf-8'))
-    places = json.loads((DATA / f'{EVENT}-places.json').read_text(encoding='utf-8'))
-
-    img = Image.new('RGBA', (W * S, H * S), SEA)
-    d = ImageDraw.Draw(img)
-    for f in land['features']:
-        for poly in polygons(f['geometry']):
-            ring = [project(*c) for c in poly[0]]
-            xs = [p[0] for p in ring]
-            ys = [p[1] for p in ring]
-            if max(xs) < 0 or min(xs) > W * S or max(ys) < 0 or min(ys) > H * S:
-                continue
-            d.polygon(ring, fill=GROUND, outline=LINE, width=S)
-
-    over = Image.new('RGBA', img.size, (0, 0, 0, 0))
-    o = ImageDraw.Draw(over)
-    for f in path['features']:
-        if f['properties']['kind'] == 'umbra':
-            ring = [project(*c) for c in f['geometry']['coordinates'][0]]
-            o.polygon(ring, fill=rgba(ACCENT, 0.16))
-            o.line(ring, fill=rgba(EDGE, 1), width=round(1.4 * S))
-    for f in path['features']:
-        if f['properties']['kind'] == 'centerline':
-            o.line([project(*c) for c in f['geometry']['coordinates']],
-                   fill=rgba(ACCENT, 1), width=round(2.2 * S), joint='curve')
-    for p in places['places']:
-        x, y = project(p['x'], p['y'])
-        r = (1.1 + 2.1 * min(1.0, math.log10(max(p['p'], 1000) / 1000) / 3.3)) * S
-        o.ellipse((x - r, y - r, x + r, y + r), fill=rgba(DOT, 0.8))
-    img = Image.alpha_composite(img, over)
-
-    # Text panel over the empty Sahara, clear of the path.
-    d = ImageDraw.Draw(img)
-    px, py, pw, ph = 36 * S, 352 * S, 660 * S, 242 * S
-    d.rectangle((px, py, px + pw, py + ph), fill=PAPER, outline=LINE, width=S)
-    d.rectangle((px, py, px + pw, py + 4 * S), fill=ACCENT)
-    x = px + 30 * S
-    d.text((x, py + 26 * S), 'Totality Path & Nearby Locations',
-           font=font('bold', 36 * S), fill=INK)
-    d.text((x, py + 82 * S), f'Total solar eclipse, {event.long_date(EVENT)}',
-           font=font('serif', 28 * S), fill='#45423d')
-    n = len(places['places'])
-    # Advisories also cover countries with towns outside the path only.
-    countries = len({p['c'] for p in places['places']})
-    d.text((x, py + 136 * S),
-           f'{n} places in {countries} countries, ranked by seconds of totality lost',
-           font=font('regular', 16 * S), fill=DIM)
-    d.text((x, py + 184 * S), 'eclipse.aravpanwar.com',
-           font=font('bold', 21 * S), fill=ACCENT)
-    d.text((px + pw - 30 * S, py + ph - 20 * S), 'Places: GeoNames',
-           font=font('regular', 12 * S), fill='#75716a', anchor='rs')
-
-    out = img.resize((W, H), Image.LANCZOS).convert('RGB')
-    dest = DOCS / 'og.png'
-    out.save(dest, optimize=True)
-    print(f'wrote             {dest.relative_to(ROOT)} '
-          f'({dest.stat().st_size // 1024} KB)')
-
-
-# ---------- homepage thumbnails ----------
-
-TW, TH = 640, 400          # 16:10, shown at about half that on the homepage
-
-# Eclipses on the homepage not yet computed here. Their paths are drawn from
-# NASA's published path tables (Fred Espenak, NASA GSFC), so the thumbnail
-# shows where totality falls before this site has computed anything.
-NASA_PATHS = {
-    '2028-07-22': 'SE2028Jul22T', '2030-11-25': 'SE2030Nov25T',
-    '2033-03-30': 'SE2033Mar30T', '2034-03-20': 'SE2034Mar20T',
-    '2035-09-02': 'SE2035Sep02T',
-}
-NASA_URL = 'https://eclipse.gsfc.nasa.gov/SEpath/SEpath2001/{}path.html'
-_PAIR = re.compile(r'(\d{2}) (\d{2}\.\d)([NS])\s+(\d{3}) (\d{2}\.\d)([EW])')
-
-
-def _lonlat(text):
-    m = _PAIR.search(text)
-    if not m:
-        return None
-    lat = int(m[1]) + float(m[2]) / 60
-    lon = int(m[4]) + float(m[5]) / 60
-    return (-lon if m[6] == 'W' else lon, -lat if m[3] == 'S' else lat)
-
-
-def nasa_path(slug):
-    """North limit, south limit and centre line from a NASA path table.
-
-    Rows are fixed-width. Where the shadow edge runs off the Earth's limb a
-    limit is blank, so each line keeps only the points it has.
+    Drawn at z times tw by th, to be scaled down for smooth edges.
     """
-    page = cached(NASA_URL.format(slug)).read_text(encoding='latin-1')
-    rows = [r for r in re.sub(r'<[^>]+>', '', page).splitlines()
-            if re.match(r'^\s*(Limits|\d{2}:\d{2})\s', r)]
-    north = [p for p in (_lonlat(r[9:27]) for r in rows) if p]
-    south = [p for p in (_lonlat(r[29:47]) for r in rows) if p]
-    centre = [p for p in (_lonlat(r[49:67]) for r in rows) if p]
-    return north + south[::-1], centre
-
-
-def thumb(ring, centre, dots, dest, scale=1):
-    """A map fitted to one path: land, the band of totality, the centre line.
-
-    scale 2 draws the same picture at twice the size, lines and dots included,
-    for high-density screens.
-    """
-    tw, th, z = TW * scale, TH * scale, S * scale
-    # Paths that cross 180 degrees are drawn in 0..360 longitude: NASA's
-    # tables jump from 180 to -180, this site's own paths run on past 180.
-    wrap = (max(x for x, _ in centre) - min(x for x, _ in centre) > 180
-            or max(x for x, _ in centre) > 180)
+    # Paths that cross 180 degrees run on past it in this site's data, so
+    # their land is drawn a second time, 360 degrees east.
+    wrap = max(x for x, _ in centre) > 180
     fix = (lambda x: x + 360 if x < 0 else x) if wrap else (lambda x: x)
     ring = [(fix(x), y) for x, y in ring]
     centre = [(fix(x), y) for x, y in centre]
@@ -236,21 +115,21 @@ def thumb(ring, centre, dots, dest, scale=1):
     ys = [y for _, y in ring]
     lat_c = (min(ys) + max(ys)) / 2
     kx = math.cos(math.radians(lat_c))
-    # Fit the band with a margin, then widen the short side to 16:10.
+    # Fit the band with a margin, then widen the short side to the frame.
     w = (max(xs) - min(xs)) * kx * 1.25 + 6
     h = (max(ys) - min(ys)) * 1.25 + 6
-    if w / h > TW / TH:
-        h = w * TH / TW
+    if w / h > tw / th:
+        h = w * th / tw
     else:
-        w = h * TW / TH
+        w = h * tw / th
     cx, cy = (min(xs) + max(xs)) / 2, lat_c
-    k = tw * S / w
+    k = tw * z / w
 
     def project(lon, lat):
-        return ((lon - cx) * kx * k + tw * S / 2, (cy - lat) * k + th * S / 2)
+        return ((lon - cx) * kx * k + tw * z / 2, (cy - lat) * k + th * z / 2)
 
     land = json.loads(cached(NE_URL).read_text(encoding='utf-8'))
-    img = Image.new('RGBA', (tw * S, th * S), SEA)
+    img = Image.new('RGBA', (tw * z, th * z), SEA)
     d = ImageDraw.Draw(img)
     for f in land['features']:
         for poly in polygons(f['geometry']):
@@ -258,7 +137,7 @@ def thumb(ring, centre, dots, dest, scale=1):
                 pts = [project(x + shift, y) for x, y in poly[0]]
                 px = [p[0] for p in pts]
                 py = [p[1] for p in pts]
-                if max(px) < 0 or min(px) > tw * S or max(py) < 0 or min(py) > th * S:
+                if max(px) < 0 or min(px) > tw * z or max(py) < 0 or min(py) > th * z:
                     continue
                 d.polygon(pts, fill=GROUND, outline=LINE, width=z)
 
@@ -273,29 +152,70 @@ def thumb(ring, centre, dots, dest, scale=1):
         px, py = project(fix(x), y)
         r = (1.0 + 1.6 * min(1.0, math.log10(max(pop, 1000) / 1000) / 3.3)) * z
         o.ellipse((px - r, py - r, px + r, py + r), fill=rgba(DOT, 0.8))
-    img = Image.alpha_composite(img, over)
-    img.resize((tw, th), Image.LANCZOS).convert('RGB').save(dest, quality=82, method=6)
-    print(f'wrote             {dest.relative_to(ROOT)} ({dest.stat().st_size // 1024} KB)')
+    return Image.alpha_composite(img, over)
+
+
+S = 3                      # drawn at 3x and scaled down, for smooth edges
+path = json.loads((DATA / f'{EVENT}-path.geojson').read_text(encoding='utf-8'))
+places = json.loads((DATA / f'{EVENT}-places.json').read_text(encoding='utf-8'))
+feats = {f['properties']['kind']: f['geometry']['coordinates'] for f in path['features']}
+SHAPE = ([tuple(p) for p in feats['umbra'][0]], [tuple(p) for p in feats['centerline']],
+         [(p['x'], p['y'], p['p']) for p in places['places']])
+
+
+# ---------- link-preview card ----------
+
+W, H = 1200, 630
+MAP_W = 700                # the map on the left, the text on the right
+
+
+def card():
+    img = Image.new('RGBA', (W * S, H * S), PAPER)
+    img.paste(fitted_map(*SHAPE, MAP_W, H, S), (0, 0))
+    d = ImageDraw.Draw(img)
+    d.line((MAP_W * S, 0, MAP_W * S, H * S), fill=LINE, width=S)
+    d.rectangle((MAP_W * S, 0, W * S, 6 * S), fill=ACCENT)
+
+    n = len(places['places'])
+    countries = len({p['c'] for p in places['places']})
+    peak = int(places['event']['peak'])
+    x = (MAP_W + 44) * S
+    d.text((x, 70 * S), 'Total solar eclipse', font=font('regular', 22 * S), fill=DIM)
+    d.text((x, 104 * S), event.long_date(EVENT), font=font('bold', 50 * S), fill=INK)
+    d.text((x, 196 * S), f'Up to {peak // 60} min {peak % 60} s of totality',
+           font=font('serif', 27 * S), fill='#45423d')
+    d.text((x, 240 * S), f'{n:,} places in {countries} '
+           f'{"country" if countries == 1 else "countries"}',
+           font=font('serif', 27 * S), fill='#45423d')
+    d.text((x, 470 * S), 'Totality Path & Nearby Locations',
+           font=font('bold', 22 * S), fill=INK)
+    d.text((x, 506 * S), 'eclipse.aravpanwar.com',
+           font=font('bold', 22 * S), fill=ACCENT)
+    d.text((W * S - 30 * S, H * S - 22 * S), 'Places: GeoNames',
+           font=font('regular', 12 * S), fill='#75716a', anchor='rs')
+
+    dest = DOCS / 'og' / f'{EVENT}.png'
+    dest.parent.mkdir(exist_ok=True)
+    img.resize((W, H), Image.LANCZOS).convert('RGB').save(dest, optimize=True)
+    print(f'wrote             {dest.relative_to(ROOT)} '
+          f'({dest.stat().st_size // 1024} KB)')
+
+
+# ---------- homepage thumbnails ----------
+
+TW, TH = 640, 400          # 16:10, shown at about half that on the homepage
 
 
 def thumbs():
     out = DOCS / 'thumbs'
     out.mkdir(exist_ok=True)
-    # The computed eclipse is drawn from this site's own path and places.
-    path = json.loads((DATA / f'{EVENT}-path.geojson').read_text(encoding='utf-8'))
-    places = json.loads((DATA / f'{EVENT}-places.json').read_text(encoding='utf-8'))
-    feats = {f['properties']['kind']: f['geometry']['coordinates'] for f in path['features']}
-    args = ([tuple(p) for p in feats['umbra'][0]], [tuple(p) for p in feats['centerline']],
-            [(p['x'], p['y'], p['p']) for p in places['places']])
-    thumb(*args, out / f'{EVENT}.webp')
-    # The homepage shows this one about 560 px wide, so it also gets a 2x copy.
-    thumb(*args, out / f'{EVENT}@2x.webp', scale=2)
-    # An eclipse computed here is drawn by its own run, from its own data.
-    for other, slug in NASA_PATHS.items():
-        if other == EVENT or (DATA / f'{other}-path.geojson').exists():
-            continue
-        ring, centre = nasa_path(slug)
-        thumb(ring, centre, [], out / f'{other}.webp')
+    # The featured eclipse is shown about 560 px wide, so each also gets a 2x copy.
+    for scale, name in ((1, f'{EVENT}.webp'), (2, f'{EVENT}@2x.webp')):
+        img = fitted_map(*SHAPE, TW, TH, S * scale)
+        dest = out / name
+        img.resize((TW * scale, TH * scale), Image.LANCZOS).convert('RGB').save(
+            dest, quality=82, method=6)
+        print(f'wrote             {dest.relative_to(ROOT)} ({dest.stat().st_size // 1024} KB)')
 
 
 # ---------- icons ----------
