@@ -2,6 +2,10 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24274887.svg)](https://doi.org/10.5281/zenodo.24274887)
 
+**Live:** https://eclipse.aravpanwar.com/
+
+![Opening the 2027 map, finding Luxor and switching to the cloud view](screenshots/hero.gif)
+
 Computes local circumstances of a solar eclipse from NASA's Besselian elements
 for every populated place in GeoNames near the path, and publishes the results
 as CSV, JSON and a static map site.
@@ -18,6 +22,14 @@ Computed events, all total: 2 August 2027, 22 July 2028, 25 November 2030,
 2026. Cloud cover is computed for 2027 only so far; the other pages to come
 say it is not available yet. Past eclipses carry no cloud and no travel
 advice, and their pages say they have passed.
+
+![Homepage with the next eclipse, later ones and past ones](screenshots/home.jpg)
+
+![The 2027 path from Spain to Somalia, with every place in totality](screenshots/map.jpg)
+
+![Luxor selected: 6:20 of totality, local times and August cloud](screenshots/town.jpg)
+
+![Cloud view: totality and August cloud along the path, west to east](screenshots/cloud.jpg)
 
 ## Repository layout
 
